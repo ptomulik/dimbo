@@ -1,0 +1,3 @@
+# NOTE: These files reside in "../". Don't forget to set XGETTEXTPATH='../'
+# in "SConsript.i18n".
+common_options_description.cpp

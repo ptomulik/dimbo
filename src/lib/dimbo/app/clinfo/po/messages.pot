@@ -1,0 +1,362 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-06 16:28+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: common_options_description.cpp:71
+msgid "display detailed options"
+msgstr ""
+
+#: common_options_description.cpp:72
+msgid "display detailed platform options"
+msgstr ""
+
+#: common_options_description.cpp:73
+msgid "display detailed device options"
+msgstr ""
+
+#: common_options_description.cpp:77
+msgid "read options from `file'"
+msgstr ""
+
+#: common_options_description.cpp:79
+msgid "indent each level of output by `num' spaces"
+msgstr ""
+
+#: common_options_description.cpp:81
+msgid "short listing (no details)"
+msgstr ""
+
+#: device_detail_options_description.cpp:44
+msgid "Device Detail Options"
+msgstr ""
+
+#: device_detail_options_description.cpp:76
+msgid "query for device id"
+msgstr ""
+
+#: device_detail_options_description.cpp:80
+msgid "query for device type"
+msgstr ""
+
+#: device_detail_options_description.cpp:83
+msgid "query for device vendor-id"
+msgstr ""
+
+#: device_detail_options_description.cpp:88
+msgid "query for max-compute-units"
+msgstr ""
+
+#: device_detail_options_description.cpp:91
+msgid "query for max-work-item-dimensions"
+msgstr ""
+
+#: device_detail_options_description.cpp:94
+msgid "query for max-work-item-sizes"
+msgstr ""
+
+#: device_detail_options_description.cpp:97
+msgid "query for max-work-group-size"
+msgstr ""
+
+#: device_detail_options_description.cpp:101
+msgid "query for preferred-vector-width-char"
+msgstr ""
+
+#: device_detail_options_description.cpp:104
+msgid "query for preferred-vector-width-short"
+msgstr ""
+
+#: device_detail_options_description.cpp:107
+msgid "query for preferred-vector-width-int"
+msgstr ""
+
+#: device_detail_options_description.cpp:110
+msgid "query for preferred-vector-width-long"
+msgstr ""
+
+#: device_detail_options_description.cpp:113
+msgid "query for preferred-vector-width-float"
+msgstr ""
+
+#: device_detail_options_description.cpp:116
+msgid "query for preferred-vector-width-double"
+msgstr ""
+
+#: device_detail_options_description.cpp:119
+msgid "query for preferred-vector-width-half"
+msgstr ""
+
+#: device_detail_options_description.cpp:122
+msgid "query for native-vector-width-char"
+msgstr ""
+
+#: device_detail_options_description.cpp:125
+msgid "query for native-vector-width-short"
+msgstr ""
+
+#: device_detail_options_description.cpp:128
+msgid "query for native-vector-width-int"
+msgstr ""
+
+#: device_detail_options_description.cpp:131
+msgid "query for native-vector-width-long"
+msgstr ""
+
+#: device_detail_options_description.cpp:134
+msgid "query for native-vector-width-float"
+msgstr ""
+
+#: device_detail_options_description.cpp:137
+msgid "query for native-vector-width-double"
+msgstr ""
+
+#: device_detail_options_description.cpp:140
+msgid "query for native-vector-width-half"
+msgstr ""
+
+#: device_detail_options_description.cpp:144
+msgid "query for max-clock-frequency"
+msgstr ""
+
+#: device_detail_options_description.cpp:147
+msgid "query for address-bits"
+msgstr ""
+
+#: device_detail_options_description.cpp:152
+msgid "query for max-mem-alloc-size"
+msgstr ""
+
+#: device_detail_options_description.cpp:157
+msgid "query for image-support"
+msgstr ""
+
+#: device_detail_options_description.cpp:160
+msgid "query for max-read-image-args"
+msgstr ""
+
+#: device_detail_options_description.cpp:163
+msgid "query for max-write-image-args"
+msgstr ""
+
+#: device_detail_options_description.cpp:166
+msgid "query for image2d-max-width"
+msgstr ""
+
+#: device_detail_options_description.cpp:169
+msgid "query for image2d-max-height"
+msgstr ""
+
+#: device_detail_options_description.cpp:172
+msgid "query for image3d-max-width"
+msgstr ""
+
+#: device_detail_options_description.cpp:175
+msgid "query for image3d-max-height"
+msgstr ""
+
+#: device_detail_options_description.cpp:178
+msgid "query for image3d-max-depth"
+msgstr ""
+
+#: device_detail_options_description.cpp:181
+msgid "query for max-samplers"
+msgstr ""
+
+#: device_detail_options_description.cpp:186
+msgid "query for max-parameter-size"
+msgstr ""
+
+#: device_detail_options_description.cpp:189
+msgid "query for mem-base-addr-align"
+msgstr ""
+
+#: device_detail_options_description.cpp:192
+msgid "query for min-data-type-align-size"
+msgstr ""
+
+#: device_detail_options_description.cpp:195
+msgid "query for single-fp-config"
+msgstr ""
+
+#: device_detail_options_description.cpp:200
+msgid "query for global-mem-cache-type"
+msgstr ""
+
+#: device_detail_options_description.cpp:203
+msgid "query for global-mem-cacheline-size"
+msgstr ""
+
+#: device_detail_options_description.cpp:206
+msgid "query for global-mem-cache-size"
+msgstr ""
+
+#: device_detail_options_description.cpp:209
+msgid "query for global-mem-size"
+msgstr ""
+
+#: device_detail_options_description.cpp:214
+msgid "query for max-constant-buffer-size"
+msgstr ""
+
+#: device_detail_options_description.cpp:217
+msgid "query for max-constant-args"
+msgstr ""
+
+#: device_detail_options_description.cpp:221
+msgid "query for local-mem-type"
+msgstr ""
+
+#: device_detail_options_description.cpp:224
+msgid "query for local-mem-size"
+msgstr ""
+
+#: device_detail_options_description.cpp:227
+msgid "query for error-correction-support"
+msgstr ""
+
+#: device_detail_options_description.cpp:231
+msgid "query for host-unified-memory"
+msgstr ""
+
+#: device_detail_options_description.cpp:235
+msgid "query for profiling-timer-resolution"
+msgstr ""
+
+#: device_detail_options_description.cpp:239
+msgid "query for endian-little"
+msgstr ""
+
+#: device_detail_options_description.cpp:242
+msgid "query for availability"
+msgstr ""
+
+#: device_detail_options_description.cpp:246
+msgid "query for compiler-availability"
+msgstr ""
+
+#: device_detail_options_description.cpp:250
+msgid "query for execution-capabilities"
+msgstr ""
+
+#: device_detail_options_description.cpp:254
+msgid "query for queue-properties"
+msgstr ""
+
+#: device_detail_options_description.cpp:258
+msgid "query for platform-id"
+msgstr ""
+
+#: device_detail_options_description.cpp:263
+msgid "query for name"
+msgstr ""
+
+#: device_detail_options_description.cpp:266
+msgid "query for vendor"
+msgstr ""
+
+#: device_detail_options_description.cpp:269
+msgid "query for driver-version"
+msgstr ""
+
+#: device_detail_options_description.cpp:272
+msgid "query for profile"
+msgstr ""
+
+#: device_detail_options_description.cpp:275
+msgid "query for version"
+msgstr ""
+
+#: device_detail_options_description.cpp:278
+msgid "query for opencl-c-version"
+msgstr ""
+
+#: device_detail_options_description.cpp:281
+msgid "query for extensions"
+msgstr ""
+
+#: device_general_options_description.cpp:44
+msgid "Device General Options"
+msgstr ""
+
+#: device_general_options_description.cpp:77
+msgid "do not list devices"
+msgstr ""
+
+#: main.cpp:62
+msgid "Usage: "
+msgstr ""
+
+#: options_description.cpp:42
+msgid "Common Options"
+msgstr ""
+
+#: output_options_description.cpp:43
+msgid "Output Options"
+msgstr ""
+
+#: output_options_description.cpp:69
+msgid "output format (see --help-output)"
+msgstr ""
+
+#: platform_detail_options_description.cpp:43
+msgid "Platform Detail Options"
+msgstr ""
+
+#: platform_detail_options_description.cpp:73
+msgid "query for platform profile?"
+msgstr ""
+
+#: platform_detail_options_description.cpp:77
+msgid "query for platform version?"
+msgstr ""
+
+#: platform_detail_options_description.cpp:81
+msgid "query for platform name?"
+msgstr ""
+
+#: platform_detail_options_description.cpp:85
+msgid "query for platform vendor?"
+msgstr ""
+
+#: platform_detail_options_description.cpp:89
+msgid "query for platform extensions?"
+msgstr ""
+
+#: platform_general_options_description.cpp:43
+msgid "Platform General Options"
+msgstr ""
+
+#: platform_general_options_description.cpp:73
+msgid "query for compute unit information"
+msgstr ""
+
+#: platform_general_options_description.cpp:76
+msgid "query for xxx-vector-width-xxx options"
+msgstr ""
+
+#: platform_general_options_description.cpp:79
+msgid "query for information on image support"
+msgstr ""
+
+#: platform_general_options_description.cpp:82
+msgid "query for global memory information"
+msgstr ""
+
+#: platform_general_options_description.cpp:85
+msgid "query for generic device info"
+msgstr ""

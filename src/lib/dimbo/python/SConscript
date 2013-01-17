@@ -1,0 +1,109 @@
+# @COPYRIGHT@
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE
+Import('env')
+
+from distutils import sysconfig
+
+# New environment to run swig tool and compile C units generated with swig
+env = env.Clone()
+env.Append(CPPPATH = [sysconfig.get_python_inc()])
+env.Append(CPPPATH = ['#%s' % Dir('../swig').path])
+env.Replace(SHLIBPREFIX = '_')
+env.Append(SWIGFLAGS = ['-python'])
+env.Prepend(SWIGPATH = [ '#%s' % Dir('../swig/python').path] )
+env.Append(SWIGPATH = [ '#%s' % Dir('.').path] )
+# FIXME: The following is due to swig bug #3530021:
+# http://sourceforge.net/tracker/?func=detail&aid=3530021&group_id=1645&atid=101645
+# the bug seems to be fixed in 2.0.8 but I had no opportunity to verify it.
+env.Append(CXXFLAGS = ['-Wno-unused'])
+
+
+_parent_dir_a = Dir('..').path
+_this_dir_a = Dir('.').path
+
+def _file_incpath(env, subdir):
+    from os import path
+    subdir_a = env.File(subdir).path
+    return path.relpath(subdir_a, _this_dir_a)
+
+def _dir_incpath(env, subdir):
+    from os import path
+    subdir_a = env.Dir(subdir).path
+    return path.relpath(subdir_a, _this_dir_a)
+
+def _module_dir_tail(module):
+    fileparts = module.split('.')
+    tail = fileparts[-1]
+    if len(fileparts) > 1:
+        base = path.join(*fileparts[:-1])
+    else:
+        base = ''
+    return base, tail
+
+def _modules_i_includes(env, subdirs, tail = 'modules.i'):
+    from os import path
+    return '\n'.join(['%%include <%s>' 
+        % path.join(_dir_incpath(env,s),tail) for s in subdirs] ) 
+
+def _modules_i_defines(env, modules):
+    def _define(module):
+        import re
+        from os import path
+        base_c, tail = _module_dir_tail(module)
+        base_t = _dir_incpath(env,base_c)
+        swigfile_t = path.join(base_t, tail + ".i")
+        const = re.sub(r'[^A-Z0-9]','_', swigfile_t.upper())
+        return '#define %s <%s>' % (const, swigfile_t)
+    return '\n'.join([_define(m) for m in modules])
+
+def SwigPyModule(env, module, **kw):
+    import re
+    from os import path
+    tgtbase_c, tgttail = _module_dir_tail(module)
+    tgt_c = path.join(tgtbase_c, tgttail)
+    #cxxtail = tgttail.lstrip('_').lower()
+    cxxtail = tgttail
+    shtail = tgttail.lstrip('_')
+    cxxfile_c = path.join(tgtbase_c, cxxtail)
+    shfile_c = path.join(tgtbase_c, shtail)
+    swigfile_c = path.join(tgtbase_c, tgttail + '.i')
+    # do our job
+    cxxpy = env.CXXFile(cxxfile_c, swigfile_c)
+    tgt = env.SharedLibrary(shfile_c, cxxpy[0], **kw)
+    return cxxpy + [tgt]
+
+def SwigPyModulesI(env, modules = [], subdirs = []):
+    defs = _modules_i_defines(env, modules)
+    incs = _modules_i_includes(env, subdirs)
+    return env.Substfile(['modules.i.in'], SUBST_DICT = { 
+        '@MODULES_I_DEFINES@'    : defs,
+        '@MODULES_I_INCLUDES@'   : incs })
+
+# 
+env.AddMethod(SwigPyModule, 'SwigPyModule')
+env.AddMethod(SwigPyModulesI, 'SwigPyModulesI')
+
+# define subdirectories and scripts within
+subdirs = [ 'Dimbo' ]
+scripts = [ '%s/SConscript' % s for s in subdirs ]
+# create 'modules.i' from 'modules.i.in'
+env.SwigPyModulesI([], subdirs)
+# build in subdirectories
+SConscript( scripts, exports = ['env'] )

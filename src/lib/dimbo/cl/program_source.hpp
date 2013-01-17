@@ -1,0 +1,61 @@
+/*
+ * @COPYRIGHT@
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a
+ * copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ * DEALINGS IN THE SOFTWARE
+ */
+
+// dimbo/cl/program_source.hpp
+
+/** // doc: dimbo/cl/program_source.hpp {{{ 
+ * \file dimbo/cl/program_source.hpp
+ * \todo Write documentation
+ */ // }}}
+#ifndef DIMBO_CL_PROGRAM_SOURCE_HPP_INCLUDED
+#define DIMBO_CL_PROGRAM_SOURCE_HPP_INCLUDED
+
+#include <dimbo/protobuf/cl/program_source.pb.h>
+
+namespace Dimbo {
+namespace Cl {
+
+/** // doc: class Program_Source {{{
+ * \todo Write documentation
+ */ // }}}
+class Program_Source
+{
+public:
+  /** // doc: Program_Source() {{{
+   * \todo Write documentation
+   */ // }}}
+  Program_Source();
+  /** // doc: ~Program_Source() {{{
+   * \todo Write documentation for class Program_Source
+   */ // }}}
+  virtual ~Program_Source();
+  /** // doc: foo() {{{
+   * \todo Write documentation
+   */ // }}}
+  virtual void foo( ) ;
+};
+} /* namespace Cl */
+} /* namespace Dimbo */
+
+#endif /* DIMBO_CL_PROGRAM_SOURCE_HPP_INCLUDED */
+// vim: set expandtab tabstop=2 shiftwidth=2:
+// vim: set foldmethod=marker foldcolumn=4:
