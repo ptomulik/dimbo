@@ -182,13 +182,15 @@ operator=(Context const& rhs)
 }
 /* ------------------------------------------------------------------------ */
 bool Context::
-operator == (Context const& rhs) const
+operator == (Context const& rhs) const 
+  throw()
 {
   return this->_ctx == rhs._ctx;
 }
 /* ------------------------------------------------------------------------ */
 bool Context::
 operator != (Context const& rhs) const
+  throw()
 {
   return ! (*this == rhs);
 }

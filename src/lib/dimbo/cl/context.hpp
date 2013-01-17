@@ -401,7 +401,7 @@ public:
    * \ref DIMBO_CL_CONTEXT_GET_INFO_EXCEPTIONS constant.
    */ // }}}
   void get_info(cl_context_info name, size_t value_size, void* value, 
-                size_t*a value_size_ret) const
+                size_t* value_size_ret) const
     throw( DIMBO_CL_CONTEXT_GET_INFO_EXCEPTIONS );
   /** // doc: get_reference_count() {{{
    * \brief   Get reference count for the OpenCL context referred to by 
