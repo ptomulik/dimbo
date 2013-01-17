@@ -20,17 +20,24 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-/** // doc: dimbo/swig/dimbo/cl/exceptions/context_uninitialized.swg {{{ 
- * \file dimbo/swig/dimbo/cl/exceptions/context_uninitialized.swg
+// dimbo/cl/exceptions/uninitialized_program.hpp
+
+/** // doc: dimbo/cl/exceptions/uninitialized_program.hpp {{{ 
+ * \file dimbo/cl/exceptions/uninitialized_program.hpp
  * \todo Write documentation
  */ // }}}
+#ifndef DIMBO_CL_EXCEPTIONS_UNINITIALIZED_PROGRAM_HPP_INCLUDED
+#define DIMBO_CL_EXCEPTIONS_UNINITIALIZED_PROGRAM_HPP_INCLUDED
 
-%{
-#include <dimbo/cl/exceptions/context_uninitialized.hpp>
-%}
-%exceptionclass Dimbo::Cl::Exception_Context_Uninitialized;
-%include <dimbo/cl/exceptions/decl_logic_error.swg>
-%include <dimbo/cl/exceptions/context_uninitialized.hpp>
+#include <dimbo/cl/exceptions/decl_logic_error.hpp>
+#include <dimbo/cl/exceptions/common.hpp>
 
+namespace Dimbo {
+namespace Cl {
+DIMBO_CL_DECL_LOGIC_ERROR(Uninitialized_Program, "Access to uninitialized program object")
+} /* namespace Cl */
+} /* namespace Dimbo */
+
+#endif /* DIMBO_CL_EXCEPTIONS_UNINITIALIZED_PROGRAM_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

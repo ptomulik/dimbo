@@ -20,24 +20,24 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/cl/exceptions/device_uninitialized.hpp
+// dimbo/cl/exceptions/uninitialized_context.hpp
 
-/** // doc: dimbo/cl/exceptions/device_uninitialized.hpp {{{ 
- * \file dimbo/cl/exceptions/device_uninitialized.hpp
+/** // doc: dimbo/cl/exceptions/uninitialized_context.hpp {{{ 
+ * \file dimbo/cl/exceptions/uninitialized_context.hpp
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_CL_EXCEPTIONS_DEVICE_UNINITIALIZED_HPP_INCLUDED
-#define DIMBO_CL_EXCEPTIONS_DEVICE_UNINITIALIZED_HPP_INCLUDED
+#ifndef DIMBO_CL_EXCEPTIONS_UNINITIALIZED_CONTEXT_HPP_INCLUDED
+#define DIMBO_CL_EXCEPTIONS_UNINITIALIZED_CONTEXT_HPP_INCLUDED
 
 #include <dimbo/cl/exceptions/decl_logic_error.hpp>
 #include <dimbo/cl/exceptions/common.hpp>
 
 namespace Dimbo {
 namespace Cl {
-DIMBO_CL_DECL_LOGIC_ERROR(Device_Uninitialized, "Access to uninitialized device object")
+DIMBO_CL_DECL_LOGIC_ERROR(Uninitialized_Context, "Access to uninitialized context object")
 } /* namespace Cl */
 } /* namespace Dimbo */
 
-#endif /* DIMBO_CL_EXCEPTIONS_DEVICE_UNINITIALIZED_HPP_INCLUDED */
+#endif /* DIMBO_CL_EXCEPTIONS_UNINITIALIZED_CONTEXT_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

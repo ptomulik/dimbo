@@ -32,7 +32,7 @@
 #define DIMBO_CL_DEVICE_HPP_INCLUDED
 
 #include <dimbo/cl/exceptions/bad_alloc.hpp>
-#include <dimbo/cl/exceptions/device_uninitialized.hpp>
+#include <dimbo/cl/exceptions/uninitialized_device.hpp>
 #include <dimbo/cl/cl_errors/other_cl_error.hpp>
 #include <dimbo/cl/cl_errors/cl_invalid_device.hpp>
 #include <dimbo/cl/cl_errors/cl_invalid_value.hpp>
@@ -72,7 +72,7 @@ namespace Cl {
  * \def DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS
  */ // }}}
 #define DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS \
-           DIMBO_CL_EXCEPTION(Device_Uninitialized) \
+           DIMBO_CL_EXCEPTION(Uninitialized_Device) \
          , DIMBO_CL_GET_DEVICE_INFO_EXCEPTIONS
 
 /** // doc: Device {{{
@@ -139,7 +139,7 @@ public:
    * \return Reference to this object.
    */ // }}}
   Device& operator=(Device const& rhs)
-    throw(DIMBO_CL_EXCEPTION(Device_Uninitialized))
+    throw(DIMBO_CL_EXCEPTION(Uninitialized_Device))
   {
     this->assign(rhs);
     return *this;
@@ -186,11 +186,11 @@ public:
   /** // {{{
    * \brief Verify and return the device ID.
    * \return The ID of OpenCL device represented by this proxy object.
-   * \exception DIMBO_CL_EXCEPTION(Device_Uninitialized) In case the object is
+   * \exception DIMBO_CL_EXCEPTION(Uninitialized_Device) In case the object is
    *    not initialized (is_initialized() returned \c false).
    */ // }}}
   cl_device_id get_valid_id() const 
-    throw(DIMBO_CL_EXCEPTION(Device_Uninitialized));
+    throw(DIMBO_CL_EXCEPTION(Uninitialized_Device));
   /** // {{{
    * \brief Get certain information from device.
    * \param name

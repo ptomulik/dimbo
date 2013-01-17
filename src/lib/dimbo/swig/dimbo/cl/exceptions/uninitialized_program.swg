@@ -20,24 +20,17 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/cl/exceptions/platform_uninitialized.hpp
-
-/** // doc: dimbo/cl/exceptions/platform_uninitialized.hpp {{{ 
- * \file dimbo/cl/exceptions/platform_uninitialized.hpp
+/** // doc: dimbo/swig/dimbo/cl/exceptions/uninitialized_program.swg {{{ 
+ * \file dimbo/swig/dimbo/cl/exceptions/uninitialized_program.swg
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_CL_EXCEPTIONS_PLATFORM_UNINITIALIZED_HPP_INCLUDED
-#define DIMBO_CL_EXCEPTIONS_PLATFORM_UNINITIALIZED_HPP_INCLUDED
 
-#include <dimbo/cl/exceptions/decl_logic_error.hpp>
-#include <dimbo/cl/exceptions/common.hpp>
+%{
+#include <dimbo/cl/exceptions/uninitialized_program.hpp>
+%}
+%exceptionclass Dimbo::Cl::Exception_Uninitialized_Program;
+%include <dimbo/cl/exceptions/decl_logic_error.swg>
+%include <dimbo/cl/exceptions/uninitialized_program.hpp>
 
-namespace Dimbo {
-namespace Cl {
-DIMBO_CL_DECL_LOGIC_ERROR(Platform_Uninitialized, "Access to uninitialized platform object")
-} /* namespace Cl */
-} /* namespace Dimbo */
-
-#endif /* DIMBO_CL_EXCEPTIONS_PLATFORM_UNINITIALIZED_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

@@ -20,17 +20,17 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-/** // doc: dimbo/swig/dimbo/cl/exceptions/program_uninitialized.swg {{{ 
- * \file dimbo/swig/dimbo/cl/exceptions/program_uninitialized.swg
+/** // doc: dimbo/swig/dimbo/cl/exceptions/uninitialized_context.swg {{{ 
+ * \file dimbo/swig/dimbo/cl/exceptions/uninitialized_context.swg
  * \todo Write documentation
  */ // }}}
 
 %{
-#include <dimbo/cl/exceptions/program_uninitialized.hpp>
+#include <dimbo/cl/exceptions/uninitialized_context.hpp>
 %}
-%exceptionclass Dimbo::Cl::Exception_Program_Uninitialized;
+%exceptionclass Dimbo::Cl::Exception_Uninitialized_Context;
 %include <dimbo/cl/exceptions/decl_logic_error.swg>
-%include <dimbo/cl/exceptions/program_uninitialized.hpp>
+%include <dimbo/cl/exceptions/uninitialized_context.hpp>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

@@ -31,13 +31,13 @@
 
 #include <dimbo/cl/exceptions/common.hpp>
 #include <dimbo/cl/exceptions/bad_alloc.hpp>
-#include <dimbo/cl/exceptions/context_uninitialized.hpp>
-#include <dimbo/cl/exceptions/device_uninitialized.hpp>
+#include <dimbo/cl/exceptions/uninitialized_context.hpp>
+#include <dimbo/cl/exceptions/uninitialized_device.hpp>
 #include <dimbo/cl/exceptions/invalid_argument.hpp>
 #include <dimbo/cl/exceptions/length_error.hpp>
 #include <dimbo/cl/exceptions/not_enough_space.hpp>
-#include <dimbo/cl/exceptions/platform_uninitialized.hpp>
-#include <dimbo/cl/exceptions/program_uninitialized.hpp>
+#include <dimbo/cl/exceptions/uninitialized_platform.hpp>
+#include <dimbo/cl/exceptions/uninitialized_program.hpp>
 #include <dimbo/cl/exceptions/uninitialized.hpp>
 
 #endif /* DIMBO_CL_EXCEPTIONS_HPP */

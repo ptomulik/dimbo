@@ -40,8 +40,8 @@
  *       - Dimbo::Cl::Cl_Error_No<CL_DEVICE_NOT_FOUND>
  *       - Dimbo::Cl::Cl_Error_No<CL_INVALID_DEVICE>
  *       - ...
- *     - Dimbo::Cl::Exception_Platform_Uninitialized
- *     - Dimbo::Cl::Exception_Device_Uninitialized
+ *     - Dimbo::Cl::Exception_Uninitialized_Platform
+ *     - Dimbo::Cl::Exception_Uninitialized_Device
  *   - ...
  *
  * When handling exception, the user may wish to catch all %Dimbo exceptions

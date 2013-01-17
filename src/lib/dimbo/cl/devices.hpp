@@ -46,6 +46,7 @@ namespace Dimbo {
 namespace Cl {
 
 /** // doc: DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS {{{
+ * \ingroup Dimbo_Cl_Platform
  * \todo Write documentation
  */ // }}}
 #define DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS \
@@ -57,15 +58,21 @@ namespace Cl {
          , DIMBO_CL_CL_ERROR_NO(CL_OUT_OF_HOST_MEMORY) \
          , DIMBO_CL_OTHER_CL_ERROR
 
+/** // doc: Devices {{{
+ * \ingroup Dimbo_Cl_Platform
+ * \todo Write documentation
+ */ // }}}
 typedef ::Dimbo::ObId_Vec<Device> Devices;
 
 /** // {{{
+ * \ingroup Dimbo_Cl_Platform
  * \todo Write documentation
  */ // }}}
 cl_uint 
 get_num_devices(cl_platform_id platform, cl_device_type device_type)
    throw( DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS );
 /** // {{{
+ * \ingroup Dimbo_Cl_Platform
  * \todo Write documentation
  */ // }}}
 void
@@ -74,6 +81,7 @@ get_device_ids(cl_platform_id platform, cl_device_type device_type,
                cl_uint* num_devices)
    throw( DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS );
 /** // {{{
+ * \ingroup Dimbo_Cl_Platform
  * \todo Write documentation
  */ // }}}
 std::vector<cl_device_id>
@@ -81,6 +89,7 @@ get_device_ids(cl_platform_id platform,
                cl_device_type device_type = CL_DEVICE_TYPE_ALL)
    throw( DIMBO_CL_EXCEPTION(Bad_Alloc), DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS );
 /** // {{{
+ * \ingroup Dimbo_Cl_Platform
  * \todo Write documentation
  */ // }}}
 Devices
@@ -89,6 +98,7 @@ get_devices(cl_platform_id platform,
    throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
         , DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS );
 /** // {{{
+ * \ingroup Dimbo_Cl_Platform
  * \todo Write documentation
  */ // }}}
 Devices

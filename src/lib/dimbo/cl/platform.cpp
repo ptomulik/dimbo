@@ -55,10 +55,10 @@ _get_string_info(Platform const& platform, cl_platform_info name)
 /* ------------------------------------------------------------------------ */
 cl_platform_id Platform::
 get_valid_id() const
-  throw( DIMBO_CL_EXCEPTION(Platform_Uninitialized) )
+  throw( DIMBO_CL_EXCEPTION(Uninitialized_Platform) )
 {
   if(!this->is_initialized())
-    DIMBO_CL_THROW(Platform_Uninitialized);
+    DIMBO_CL_THROW(Uninitialized_Platform);
   return this->_platform_id;
 }
 /* ------------------------------------------------------------------------ */

@@ -20,17 +20,17 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-/** // doc: dimbo/swig/dimbo/cl/exceptions/platform_uninitialized.swg {{{ 
- * \file dimbo/swig/dimbo/cl/exceptions/platform_uninitialized.swg
+/** // doc: dimbo/swig/dimbo/cl/exceptions/uninitialized_device.swg {{{ 
+ * \file dimbo/swig/dimbo/cl/exceptions/uninitialized_device.swg
  * \todo Write documentation
  */ // }}}
 
 %{
-#include <dimbo/cl/exceptions/platform_uninitialized.hpp>
+#include <dimbo/cl/exceptions/uninitialized_device.hpp>
 %}
-%exceptionclass Dimbo::Cl::Exception_Platform_Uninitialized;
+%exceptionclass Dimbo::Cl::Exception_Uninitialized_Device;
 %include <dimbo/cl/exceptions/decl_logic_error.swg>
-%include <dimbo/cl/exceptions/platform_uninitialized.hpp>
+%include <dimbo/cl/exceptions/uninitialized_device.hpp>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

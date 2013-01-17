@@ -111,7 +111,7 @@ Program(cl_program id, bool retain)
 }
 Program::
 Program(const Program& rhs) 
-  throw( DIMBO_CL_EXCEPTION(Program_Uninitialized)
+  throw( DIMBO_CL_EXCEPTION(Uninitialized_Program)
        , DIMBO_CL_CL_ERROR_NO(CL_INVALID_PROGRAM) )
 {
   this->_set_id(rhs.id(), true, false);
@@ -132,15 +132,15 @@ get_info(cl_program_info name, size_t value_size,
 }
 cl_program Program::
 id() const
-  throw( DIMBO_CL_EXCEPTION(Program_Uninitialized) )
+  throw( DIMBO_CL_EXCEPTION(Uninitialized_Program) )
 {
   if(!this->is_initialized())
-    DIMBO_CL_THROW(Program_Uninitialized);
+    DIMBO_CL_THROW(Uninitialized_Program);
   return this->_id;
 }
 Program& Program::
 operator=(Program const& rhs)
-  throw( DIMBO_CL_EXCEPTION(Program_Uninitialized)
+  throw( DIMBO_CL_EXCEPTION(Uninitialized_Program)
        , DIMBO_CL_CL_ERROR_NO(CL_INVALID_PROGRAM) )
 {
   this->assign(rhs);
@@ -148,7 +148,7 @@ operator=(Program const& rhs)
 }
 void Program::
 assign(Program const& rhs)
-  throw( DIMBO_CL_EXCEPTION(Program_Uninitialized) 
+  throw( DIMBO_CL_EXCEPTION(Uninitialized_Program) 
        , DIMBO_CL_CL_ERROR_NO(CL_INVALID_PROGRAM) )
 {
   if(&rhs != this)

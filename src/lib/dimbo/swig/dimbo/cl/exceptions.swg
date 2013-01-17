@@ -27,13 +27,13 @@
 
 %include <dimbo/cl/exceptions/bad_alloc.swg>
 %include <dimbo/cl/exceptions/common.swg>
-%include <dimbo/cl/exceptions/context_uninitialized.swg>
-%include <dimbo/cl/exceptions/device_uninitialized.swg>
+%include <dimbo/cl/exceptions/uninitialized_context.swg>
+%include <dimbo/cl/exceptions/uninitialized_device.swg>
 %include <dimbo/cl/exceptions/invalid_argument.swg>
 %include <dimbo/cl/exceptions/length_error.swg>
 %include <dimbo/cl/exceptions/not_enough_space.swg>
-%include <dimbo/cl/exceptions/platform_uninitialized.swg>
-%include <dimbo/cl/exceptions/program_uninitialized.swg>
+%include <dimbo/cl/exceptions/uninitialized_platform.swg>
+%include <dimbo/cl/exceptions/uninitialized_program.swg>
 %include <dimbo/cl/exceptions/uninitialized.swg>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

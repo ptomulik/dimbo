@@ -33,7 +33,7 @@
 
 #include <dimbo/cl/exceptions/decl_logic_error.hpp>
 #include <dimbo/cl/exceptions/bad_alloc.hpp>
-#include <dimbo/cl/exceptions/program_uninitialized.hpp>
+#include <dimbo/cl/exceptions/uninitialized_program.hpp>
 #include <dimbo/cl/cl_errors/other_cl_error.hpp>
 #include <dimbo/cl/cl_errors/cl_invalid_value.hpp>
 #include <dimbo/cl/cl_errors/cl_invalid_program.hpp>
@@ -52,7 +52,7 @@ namespace Cl {
  * \todo Write documentation
  */ // }}}
 #define DIMBO_CL_PROGRAM_GET_INFO_EXCEPTIONS \
-            DIMBO_CL_EXCEPTION(Program_Uninitialized) \
+            DIMBO_CL_EXCEPTION(Uninitialized_Program) \
           , DIMBO_CL_GET_PROGRAM_INFO_EXCEPTIONS
 
 /** // doc: class Program {{{
@@ -68,7 +68,7 @@ private:
    */ // }}}
 protected:
   cl_program id() const
-    throw( DIMBO_CL_EXCEPTION(Program_Uninitialized) );
+    throw( DIMBO_CL_EXCEPTION(Uninitialized_Program) );
   /** // doc: _set_id() {{{
    * \todo Write documentation for class Program_Interface
    */ // }}}
@@ -85,7 +85,7 @@ public:
    * \todo Write documentation for class Program_Interface
    */ // }}}
   Program(const Program& rhs) 
-    throw( DIMBO_CL_EXCEPTION(Program_Uninitialized)
+    throw( DIMBO_CL_EXCEPTION(Uninitialized_Program)
          , DIMBO_CL_CL_ERROR_NO(CL_INVALID_PROGRAM) );
 /* FIXME: develop more verbose constant name */
 #ifndef SWIG
@@ -94,7 +94,7 @@ public:
    * \todo Finish documentation
    */ // }}}
   Program& operator=(Program const& rhs)
-    throw( DIMBO_CL_EXCEPTION(Program_Uninitialized)
+    throw( DIMBO_CL_EXCEPTION(Uninitialized_Program)
          , DIMBO_CL_CL_ERROR_NO(CL_INVALID_PROGRAM) );
 #endif
   /** // {{{
@@ -102,7 +102,7 @@ public:
    * \todo Finish documentation
    */ // }}}
   void assign(Program const& rhs)
-    throw( DIMBO_CL_EXCEPTION(Program_Uninitialized)
+    throw( DIMBO_CL_EXCEPTION(Uninitialized_Program)
          , DIMBO_CL_CL_ERROR_NO(CL_INVALID_PROGRAM) );
   /** // {{{
    * \todo Finish documentation

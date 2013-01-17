@@ -33,7 +33,7 @@
 #define DIMBO_CL_PLATFORM_HPP_INCLUDED
 
 #include <dimbo/cl/exceptions/bad_alloc.hpp>
-#include <dimbo/cl/exceptions/platform_uninitialized.hpp>
+#include <dimbo/cl/exceptions/uninitialized_platform.hpp>
 #include <dimbo/cl/cl_errors/other_cl_error.hpp>
 #include <dimbo/cl/cl_errors/cl_invalid_value.hpp>
 #include <dimbo/cl/cl_errors/cl_invalid_platform.hpp>
@@ -73,7 +73,7 @@ namespace Cl {
  * exception if the platform proxy object is uninitialized.
  */ // }}}
 #define DIMBO_CL_PLATFORM_GET_INFO_EXCEPTIONS \
-         DIMBO_CL_EXCEPTION(Platform_Uninitialized) \
+         DIMBO_CL_EXCEPTION(Uninitialized_Platform) \
        , DIMBO_CL_GET_PLATFORM_INFO_EXCEPTIONS
 
 /** // {{{ doc: Platform
@@ -188,10 +188,10 @@ public:
    *
    * This function also checks, if the platform ID is not NULL (proxy
    * initialized). If it is NULL, then the exception
-   * DIMBO_CL_EXCEPTION(Platform_Uninitialized) is thrown.
+   * DIMBO_CL_EXCEPTION(Uninitialized_Platform) is thrown.
    */ // }}}
   cl_platform_id get_valid_id() const 
-    throw(DIMBO_CL_EXCEPTION(Platform_Uninitialized));
+    throw(DIMBO_CL_EXCEPTION(Uninitialized_Platform));
   /** // {{{
    * \brief Query OpenCL platform for certain information.
    *
@@ -217,7 +217,7 @@ public:
    * clGetPlatformInfo(). 
    *
    * If this object holds uninitialized platform ID, then the method throws
-   * exception DIMBO_CL_EXCEPTION(Platform_Uninitialized).
+   * exception DIMBO_CL_EXCEPTION(Uninitialized_Platform).
    * 
    */ // }}}
   void get_info(cl_platform_info name, size_t value_size, void* value, 
