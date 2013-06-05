@@ -27,7 +27,6 @@
 
 %module(package="Dimbo.Cl") Exception_Mod
 %feature("autodoc","3");
-//%rename(DimboClException) Dimbo::Cl::Exception;
 %include <dimbo/cl/exception_mod.swg>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

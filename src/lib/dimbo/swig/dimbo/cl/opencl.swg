@@ -34,7 +34,16 @@
 #endif
 #define __attribute__(x)
 #define __extension__
+/* not usable */
 %ignore clSetPrintfCallback;
+/* deprecated */
+%ignore clEnqueueMarker;
+%ignore clEnqueueWaitForEvents;
+%ignore clEnqueueBarrier;
+%ignore clUnloadCompiler;
+%ignore clGetExtensionFunctionAddress;
+%ignore clCreateImage2D;
+%ignore clCreateImage3D;
 %include <stdint.i>
 %include <CL/cl_platform.h>
 %include <CL/cl.h>

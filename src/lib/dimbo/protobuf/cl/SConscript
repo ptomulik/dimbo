@@ -28,3 +28,9 @@ overrides = { 'PROTOCPYTHONOUTDIR' : None, 'PROTOCOUTDIR' : '${TARGET.dir}' }
 platform_query = env.Protoc( ['platform_query.proto'], **overrides )
 platform_info = env.Protoc( ['platform_info.proto'], **overrides )
 ##env.Depends(platform_info[2], platform_query[2])
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

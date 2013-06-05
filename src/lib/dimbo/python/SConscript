@@ -17,6 +17,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
+
 Import('env')
 
 from distutils import sysconfig
@@ -26,7 +27,7 @@ env = env.Clone()
 env.Append(CPPPATH = [sysconfig.get_python_inc()])
 env.Append(CPPPATH = ['#%s' % Dir('../swig').path])
 env.Replace(SHLIBPREFIX = '_')
-env.Append(SWIGFLAGS = ['-python'])
+env.Append(SWIGFLAGS = ['-python', '-builtin'])
 env.Prepend(SWIGPATH = [ '#%s' % Dir('../swig/python').path] )
 env.Append(SWIGPATH = [ '#%s' % Dir('.').path] )
 # FIXME: The following is due to swig bug #3530021:
@@ -107,3 +108,9 @@ scripts = [ '%s/SConscript' % s for s in subdirs ]
 env.SwigPyModulesI([], subdirs)
 # build in subdirectories
 SConscript( scripts, exports = ['env'] )
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

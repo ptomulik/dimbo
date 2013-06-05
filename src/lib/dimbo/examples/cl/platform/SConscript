@@ -24,3 +24,9 @@ libs = ['dimbo_cl','dimbo_format','OpenCL']
 env.Program(['cl_platform1'], ['cl_platform1.cpp'], LIBS = libs)
 env.Program(['cl_platform2'], ['cl_platform2.cpp'], LIBS = libs) 
 env.Program(['cl_platform3'], ['cl_platform3.cpp'], LIBS = libs)
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

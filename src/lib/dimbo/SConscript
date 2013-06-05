@@ -22,9 +22,10 @@ Import('env')
 
 ## --------------------------------------------------------------------------
 ## NOTE: THIS PART (CONFIG CODE) MUST GO BEFORE THE NORMAL BUILD CODE
-conf = Configure(env, config_h = 'config.h')
-SConscript('SConscript.conf', exports = ['conf'])
-env = conf.Finish()
+if not env.GetOption('clean') and not env.GetOption('help'):
+    conf = Configure(env, config_h = 'config.h')
+    SConscript('SConscript.conf', exports = ['conf'])
+    env = conf.Finish()
 ## --------------------------------------------------------------------------
 
 subdirs = [ 'doc', 'app', 'cl', 'format', 'protobuf', 'swig', 'python',
@@ -32,3 +33,8 @@ subdirs = [ 'doc', 'app', 'cl', 'format', 'protobuf', 'swig', 'python',
 scripts = [ '%s/SConscript' % s for s in subdirs ]
 SConscript(scripts, exports = ['env'])
 
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

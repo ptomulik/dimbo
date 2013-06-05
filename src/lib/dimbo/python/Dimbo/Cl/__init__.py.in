@@ -18,9 +18,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
 
-from OpenCL_Mod import *
-from Exception_Mod import *
-from Platform_Mod  import *
-from Platform_Info_Mod  import *
-from Context_Mod  import *
-from Program_Mod  import *
+#from OpenCL_Mod import *
+#from Exception_Mod import *
+#from Platform_Mod  import *
+#from Platform_Info_Mod  import *
+#from Context_Mod  import *
+#from Program_Mod  import *

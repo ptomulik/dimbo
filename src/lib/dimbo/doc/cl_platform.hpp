@@ -51,14 +51,14 @@
  * encapsulates the result of single query to device.
  *
  * Queries may be predefined via Dimbo::Cl::Platform_Query
- * and Dimbo::Cl::Device_Query objects respectivelly. The query objects
+ * and Dimbo::Cl::Device_Query objects respectively. The query objects
  * Dimbo::Cl::Platform_Query and Dimbo::Cl::Device_Query define a set
  * of boolean flags to decide what parameters should be retrieved from
  * platform/device. Single query object may be used multiple times to retrieve
  * same set of parameters from different platforms/devices.
  *
  * The Dimbo::Cl::Platform_Layer and Dimbo::Cl::Platform_Layer_Info provide
- * convienient ways to query multiple platforms/devices at once (see Examples
+ * convenient ways to query multiple platforms/devices at once (see Examples
  * below).
  *
  * The easiest way to retrieve parameters of all locally available platforms
@@ -72,7 +72,7 @@
  *       parameters with Dimbo::Cl::Platform_Layer_Info::query().
  *       If you provide Dimbo::Cl::Platform_Layer object to
  *       Dimbo::Cl::Platform_Layer_Info constructor, you don't have to
- *       call @c query() method explicitelly:
+ *       call @c query() method explicitly:
  *       \snippet cl_platform1.cpp CreatePlatformLayerInfo
  *
  *
@@ -91,7 +91,7 @@
  *    -# Create info object, i.e. an instance of Dimbo::Cl::Platform_Info or
  *       Dimbo::Cl::Device_Info and perform query by
  *       Dimbo::Cl::Platform_Info::query() or Dimbo::Cl::Device_Info::query()
- *       respectivelly. These two activities may also be done during
+ *       respectively. These two activities may also be done during
  *       initialization of Dimbo::Cl::Platform_Info or Dimbo::Cl::Device_Info
  *       objects:
  *       \snippet cl_platform2.cpp CreatePlatformInfo

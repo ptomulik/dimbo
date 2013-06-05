@@ -18,6 +18,8 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
 
+import os
+
 def BuildVariant(env, variant_dir, src_dir, duplicate = 0, **kw):
     SConscript( '%s/SConscript' % variant_dir, exports = ['env'] )
 
@@ -27,7 +29,9 @@ env = Environment(tools =  [ 'default'
                            , 'gettext'
                            , 'doxygen'
                            , 'protoc'
-                           , 'swig' ] )
+                           , 'swig' ],
+                  ENV = os.environ )
+
 # Variant directories
 variants = [
   { 'variant_dir' : 'build', 
@@ -51,3 +55,9 @@ SConscript( 'src/SConscript.i18n', exports = ['env'] )
 # Global targets
 api_doc = env.AlwaysBuild(env.Alias('api-doc'))
 env.Depends(api_doc, env.Glob('bin/doxy*'))
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

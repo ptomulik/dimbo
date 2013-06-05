@@ -17,6 +17,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
+
 Import('env')
 
 clinfo = env.Program( target = 'dimbo-clinfo'
@@ -25,6 +26,12 @@ clinfo = env.Program( target = 'dimbo-clinfo'
                              , 'dimbo_app'
                              , 'dimbo_format'
                              , 'dimbo_cl'
-                             , 'boost_program_options-mt'
-                             , 'boost_serialization-mt'
+                             , 'boost_program_options'
+                             , 'boost_serialization'
                              , 'OpenCL.so' ] )
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:
