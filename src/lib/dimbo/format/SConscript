@@ -28,6 +28,9 @@ libdimbo_format = env.StaticLibrary(
             , 'cl/device_query.cpp'
             , 'cl/platform_layer_info.cpp' ]
 )
+
+env.Install("#/preinst/usr/lib", libdimbo_format)
+
 # TODO: Install
 
 # Local Variables:

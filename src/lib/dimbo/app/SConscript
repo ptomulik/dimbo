@@ -28,6 +28,8 @@ libdimbo_app = env.SharedLibrary(
             , 'main.cpp' ]
 )
 
+env.Install('#/preinst/usr/lib', libdimbo_app)
+
 subdirs = [ 'po', 'clinfo' ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]
 SConscript( scripts, exports = ['env'] )

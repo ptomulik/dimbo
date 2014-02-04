@@ -33,7 +33,7 @@ env.Append(SWIGPATH = [ '#%s' % Dir('.').path] )
 # FIXME: The following is due to swig bug #3530021:
 # http://sourceforge.net/tracker/?func=detail&aid=3530021&group_id=1645&atid=101645
 # the bug seems to be fixed in 2.0.8 but I had no opportunity to verify it.
-env.Append(CXXFLAGS = ['-Wno-unused'])
+env.Append(CXXFLAGS = ['-Wno-unused-parameter', '-Wno-maybe-uninitialized'])
 
 
 _parent_dir_a = Dir('..').path
@@ -88,6 +88,7 @@ def SwigPyModule(env, module, **kw):
     # do our job
     cxxpy = env.CXXFile(cxxfile_c, swigfile_c)
     tgt = env.SharedLibrary(shfile_c, cxxpy[0], **kw)
+    print "tgtbase_c: %r\n" % tgtbase_c
     return cxxpy + [tgt]
 
 def SwigPyModulesI(env, modules = [], subdirs = []):

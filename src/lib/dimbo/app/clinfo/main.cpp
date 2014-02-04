@@ -97,7 +97,6 @@ serialize_platform_layer( Archive& ar
 {
   using Dimbo::Cl::Platform_Layer;
   using Dimbo::Cl::Platform_Layer_Info;
-  typedef Platform_Layer_Info::Platform_Info_Ptr Platform_Info_Ptr;
 
   Platform_Layer layer;
   Platform_Layer_Info info;
@@ -114,7 +113,6 @@ display_platform_layer( Ostream& os
 {
   using Dimbo::Cl::Platform_Layer;
   using Dimbo::Cl::Platform_Layer_Info;
-  typedef Platform_Layer_Info::Platform_Info_Ptr Platform_Info_Ptr;
 
   Platform_Layer layer;
   Platform_Layer_Info info;

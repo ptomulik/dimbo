@@ -43,6 +43,8 @@ libdimbo_cl = env.SharedLibrary(
   ]
 )
 
+env.Install("#/preinst/usr/lib", libdimbo_cl)
+
 # Local Variables:
 # # tab-width:4
 # # indent-tabs-mode:nil

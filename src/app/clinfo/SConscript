@@ -30,6 +30,8 @@ clinfo = env.Program( target = 'dimbo-clinfo'
                              , 'boost_serialization'
                              , 'OpenCL.so' ] )
 
+env.Install("#/preinst/usr/bin", clinfo)
+
 # Local Variables:
 # # tab-width:4
 # # indent-tabs-mode:nil
