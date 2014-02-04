@@ -1,0 +1,75 @@
+---
+layout: page
+title: Cosimulation
+sidenav: intro
+---
+{% include JB/setup %}
+
+<div id="home">
+  <p>
+  Virtually each engineering discipline is equipped with a computer software
+  supporting design and analysis in that field. In the scope of multibody
+  system dynamics one can count at least seven commercial packages suitable for
+  the simulation and analysis of mechanisms. Each one provides its own
+  procedures for analysis and optimization as well as database formats used to
+  store models.
+  </p>
+
+  <p>
+  In multidisciplinary projects, or projects conducted by collaborating groups,
+  it sometimes happens that two or more independently prepared models have to
+  be analysed jointly as a single system. As long as models are compatible with
+  some common simulation package, they may be merged into single model and
+  loaded by that tool for analysis. Things become more difficult when models
+  are incompatible. For related disciplines, such as the multibody system
+  dynamics with finite element analysis or control systems, one can utilize
+  predefined co-simulation interfaces provided by the engineering packages.
+  Such interfaces usually support single counterpart software. Extending
+  simulation environment to allow free interaction between N incompatible tools
+  requires Nx(N-1) interfaces to be developed
+  </p>
+
+  <p>
+  DIMBO follows some design principles of
+  <a href="http://www.mpcci.de/mpcci-software.html">MpCCI</a> where the
+  computational environment may be split into two layers such that the lower
+  layer contains simulators with their adapters, whereas the higher layer
+  provides a service responsible for synchronization/coupling.
+  </p>
+  
+
+  <div class="float-right">
+    <!--[if !IE]>-->
+      <object type="image/svg+xml" data="{{ BASE_PATH }}/files/img/cosimulation/0001.svg"
+          width="480" height="320" alt="Dimbo coupling environment"><!--<![endif]>-->
+    <!--[if lt IE 9]>
+      IE &lt; 9
+      <object classid="image/svg+xml" data="/files/img/cosimulation/0001.svg"
+        width="480" height="320" alt="Dimbo coupling environment"> <![endif]-->
+    <!--[if gte IE 9]>
+      IE &gte; 9
+      <object type="image/svg+xml" data="/files/img/cosimulation/0001.svg"
+        width="480" height="320" alt="Dimbo coupling environment"> <![endif]-->
+      </object>
+  </div>
+
+  <p>
+  Computational codes interfaced by DIMBO are assumed to represent multibody
+  subsystems. First supported code is our in-house routine for rigid multibody
+  systems based on OpenCL. In general, two kinds of computational codes are
+  assumed to be supported at some point:
+  </p>
+
+  <ul>
+    <li>routines which evaluate equations of motion at prescribed time instants,</li>
+    <li>simulators which integrate by their own the underlying differential equations.</li>
+  </ul>
+
+  <p>
+  The resultant computational algorithm is a kind of distributed integrator of
+  Differential Algebraic Equations. It's iterative and it's based on methods
+  known as dynamic iteration or waveform relaxation. Especially tailored to
+  subsystem coupled by constraints is the waveform-Newton algorithm.
+  </p>
+</div>
+<!-- vim: set syntax=liquid: -->

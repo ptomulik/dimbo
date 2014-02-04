@@ -1,0 +1,316 @@
+/*****************************************************************************/
+/*
+/* Common
+/*
+/*****************************************************************************/
+
+/* Fonts */
+@font-face {
+    font-family: 'OpenSansCondensedBold';
+    src: url('fonts/OpenSans-CondBold-webfont.eot');
+    src: url('fonts/OpenSans-CondBold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-CondBold-webfont.woff') format('woff'),
+         url('fonts/OpenSans-CondBold-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-CondBold-webfont.svg#OpenSansCondensedBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OpenSansCondensedLight';
+    src: url('fonts/OpenSans-CondLight-webfont.eot');
+    src: url('fonts/OpenSans-CondLight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-CondLight-webfont.woff') format('woff'),
+         url('fonts/OpenSans-CondLight-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-CondLight-webfont.svg#OpenSansCondensedLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body { height: 100%; }
+
+body {
+  /* background: none repeat scroll 0 0 #C6C1B0; */
+  background: url("img/bg_body.gif") repeat-x scroll center top #C6C1B0;
+  color: #525252;
+  /* background-color: #F5F2E9; */
+  font: 13.34px Helvetica, Arial, sans-serif;
+  font-size: small;
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  /* font-size: 100%;  */
+  font-family: OpenSansCondensedLight;
+}
+
+h1 { margin-bottom: 1em; }
+p { margin: 1em 0; }
+
+/*
+a         { color: #00a; }
+a:hover   { color: #000; }
+a:visited { color: #a0a; }
+*/
+/*****************************************************************************/
+/*
+/* Home
+/*
+/*****************************************************************************/
+.posts {
+  list-style-type: none;
+  margin-bottom: 2em;
+}
+
+.posts li {
+  line-height: 1.75em;
+}
+
+.posts span {
+  color: #aaa;
+  font-family: Monaco, "Courier New", monospace;
+  font-size: 80%;
+}
+
+/*****************************************************************************/
+/*
+/* Site
+/*
+/*****************************************************************************/
+
+.site {
+  font-family: Arial, Helvetica,sans-serif;
+  font-size: 13px;
+  /* font-size: 115%; */
+  text-align: justify;
+  /* width: 42em; */
+  width: 990px;
+  margin: 0 auto 0;
+  line-height: 1.5em;
+  background: none repeat scroll 0 0 #C6C1B0;
+  min-height: 500px;
+  padding: 0;
+  border: 0;
+}
+
+.title {
+  display: inline-block;
+  margin-bottom: 2em;
+}
+
+.title a {
+  /* color: #a00; */
+}
+
+.title a:hover {
+  /* color: #000; */
+}
+
+.header {
+  height: 100px;
+}
+
+.header, .footer {
+  padding-left: 2em;
+  padding-right: 2em;
+  padding-top: 1em;
+  padding-bottom: 0;
+}
+
+.header a, .footer a {
+  text-decoration: none;
+}
+
+.header a.extra {
+  /* color: #aaa; */
+  margin-left: 1em;
+}
+
+.header a.extra:hover {
+  /* color: #000; */
+}
+
+#header-nav {
+  margin-top: 50px;
+}
+
+.footer .contact {
+  text-align: center;
+}
+
+.footer .contact a {
+  color: #8085C1;
+}
+
+.footer .rss {
+  margin-top: 1.1em;
+  margin-right: -.2em;
+  /* float: right; */
+}
+
+.footer .rss img {
+  border: 0;
+}
+
+#header-nav ul.nav {
+  text-align: right;
+}
+
+#footer-nav {
+  text-align: center;
+}
+
+.header ol.nav, .header ul.nav, .footer ol.nav, .footer ul.nav {
+  list-style: none outside none;
+}
+
+.header ol.nav li, .header ul.nav li, #footer-nav {
+  font-weight: bold;
+  background: url("img/bg_nav.gif") repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+#header-nav, #header-nav a, #footer-nav, #footer-nav a {
+  color: #8C8671;
+  font-weight: bold;
+  letter-spacing: -1px;
+  text-decoration: none;
+  text-shadow: 1px 1px 0 #FFFFFF;
+}
+
+.header ol.nav li, .header ul.nav li {
+  display: inline;
+  margin: 4px;
+  padding: 6px 4px;
+}
+
+#footer-nav {
+  font-family: OpenSansCondensedBold;
+  font-weight: bold;
+  font-size: 130%;
+}
+
+#header-nav {
+  font-family: OpenSansCondensedLight;
+  font-weight: bold;
+  font-size: 180%;
+}
+
+.header ol.nav li.active, .header ul.nav li.active {
+  background: url("img/bg_nav_li_active.gif") repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid;
+  border-color: rgba(0,0,0,0) #FFFFFF #FFFFFF rgba(0,0,0,0);
+}
+
+.header ol.nav li a, .header ul.nav li a {
+  font-family: OpenSansCondensedLight;
+}
+
+.float-left { float: left; }
+.float-right { float: right; }
+
+.clear:after {
+  content: '.';
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+
+.meta {
+  color: #aaa;
+}
+
+.header-shadow {
+  background: url("img/bg_content.jpg") no-repeat scroll center top; /* rgba(0,0,0,0); */
+  height: 49px;
+}
+
+.main {
+  border: 1px solid #DAD7CF;
+  background: #FFFFFF;
+  min-height: 400px;
+  list-style: inside;
+}
+
+.content {
+  width: 700px;
+  float: left;
+  padding: 25px 22px;
+}
+
+.content img {
+  float: right
+}
+
+.sidebar {
+  float: left;
+  padding: 25px 22px;
+}
+
+#side-nav {
+  font-family: OpenSansCondensedLight;
+  /* font-weight: bold; */
+  color: #C6C1B0;
+  text-shadow: 1px 1px 0 #000000;
+}
+
+#side-nav a {
+  font-family: OpenSansCondensedBold;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+  /* font-weight: bold; */
+  color: #C6C1B0;
+  text-shadow: 1px 1px 0 #000000;
+}
+
+#side-nav ul li {
+  list-style: none outside none;
+}
+
+#side-nav ul li.active {
+  list-style: square outside none;
+}
+
+/*****************************************************************************/
+/*
+/* Posts
+/*
+/*****************************************************************************/
+
+/* standard */
+.post pre {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  padding: 0 .4em;
+}
+
+.post ul, .post ol {
+  margin-left: 1.35em;
+}
+
+.post code {
+  border: 1px solid #ddd;
+  background-color: #eef;
+  padding: 0 .2em;
+}
+
+.post pre code {
+  border: none;
+}
+
+/* terminal */
+.post pre.terminal {
+  border: 1px solid #000;
+  background-color: #333;
+  color: #FFF;
+}
+
+.post pre.terminal code {
+  background-color: #333;
+}

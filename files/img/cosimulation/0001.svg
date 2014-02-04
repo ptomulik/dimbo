@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="480"
+   height="320"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="0001.svg"
+   style="enable-background:new"
+   inkscape:export-filename="/home/ptomulik/projects/dimbo-website/img/0001.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4">
+    <filter
+       inkscape:collect="always"
+       id="filter3842"
+       color-interpolation-filters="sRGB">
+      <feBlend
+         inkscape:collect="always"
+         mode="lighten"
+         in2="BackgroundImage"
+         id="feBlend3844" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="298.5729"
+     inkscape:cy="234.0333"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer3"
+     showgrid="false"
+     width="649px"
+     inkscape:window-width="1920"
+     inkscape:window-height="1025"
+     inkscape:window-x="-3"
+     inkscape:window-y="-3"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="background"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-732.36217)"
+     style="display:inline;filter:url(#filter3842)">
+    <text
+       xml:space="preserve"
+       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Nimbus Sans L;-inkscape-font-specification:Nimbus Sans L"
+       x="115.15739"
+       y="138.56844"
+       id="text2985"
+       sodipodi:linespacing="100%"
+       transform="translate(0,572.36217)"><tspan
+         sodipodi:role="line"
+         id="tspan2987"
+         x="115.15739"
+         y="138.56844" /></text>
+    <path
+       style="fill:#f5f2e9;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       d="m 15.120387,741.22144 452.573733,0 -1.42857,301.42936 -452.573734,0 z"
+       id="rect3826"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#c4c4c1;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 4;stroke-dashoffset:0"
+       d="m 14.714286,882.93359 452.285714,0"
+       id="path3846"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="diagram"
+     transform="translate(0,-160)">
+    <rect
+       ry="5.5558395"
+       rx="5.5558395"
+       y="329.28021"
+       x="39.38353"
+       height="48.464516"
+       width="181.86687"
+       id="rect3808"
+       style="fill:#cdc7b7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.75256443000000006;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    <rect
+       style="fill:#97b4dc;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.77165353000000003;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       id="rect3810"
+       width="183.84778"
+       height="48.992397"
+       x="38.393066"
+       y="403.26248"
+       rx="5.5558395"
+       ry="5.5558395" />
+    <rect
+       ry="5.5558395"
+       rx="5.5558395"
+       y="403.26248"
+       x="250.02005"
+       height="48.992397"
+       width="183.84778"
+       id="rect3812"
+       style="fill:#97b4dc;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.77165353000000003;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline" />
+    <rect
+       style="fill:#cdc7b7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.77165353000000003;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       id="rect3814"
+       width="183.84778"
+       height="48.992397"
+       x="250.02005"
+       y="329.01627"
+       rx="5.5558395"
+       ry="5.5558395" />
+    <path
+       style="fill:#d2caa4;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.77165353;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 130.31697,402.99092 0,-25.35714"
+       id="path3816"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3818"
+       d="m 341.94393,402.99092 0,-25.35714"
+       style="fill:#d2caa4;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.77165353;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <rect
+       style="fill:#cdc7b7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.75256443000000006;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+       id="rect3820"
+       width="395.43829"
+       height="48.464508"
+       x="39.38353"
+       y="188.56592"
+       rx="5.5558395"
+       ry="5.5558395" />
+    <path
+       style="fill:#d2caa4;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.77165353;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 130.31697,327.7251 0,-90.27739"
+       id="path3822"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#d2caa4;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.77165353;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 341.94393,328.23018 0,-91.20089"
+       id="path3824"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="labels"
+     transform="translate(0,-160)">
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;text-align:center;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Liberation Sans Narrow;-inkscape-font-specification:Liberation Sans Narrow Condensed"
+       x="229.49243"
+       y="217.4785"
+       id="text2993"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         id="tspan2995"
+         x="229.49243"
+         y="217.4785">DIMBO Coupling Service</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;text-align:center;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Liberation Sans Narrow;-inkscape-font-specification:Liberation Sans Narrow Condensed"
+       x="130.22884"
+       y="357.69647"
+       id="text2997"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         id="tspan2999"
+         x="130.22884"
+         y="357.69647">DIMBO Adapter (for A)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;text-align:center;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Liberation Sans Narrow;-inkscape-font-specification:Liberation Sans Narrow Condensed"
+       x="341.8558"
+       y="357.69647"
+       id="text3001"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         id="tspan3003"
+         x="341.8558"
+         y="357.69647">DIMBO Adapter (for B)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;text-align:center;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Liberation Sans Narrow;-inkscape-font-specification:Liberation Sans Narrow Condensed"
+       x="130.0527"
+       y="433.50269"
+       id="text3009"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         id="tspan3011"
+         x="130.0527"
+         y="433.50269">Code A</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:condensed;text-align:center;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Liberation Sans Narrow;-inkscape-font-specification:Liberation Sans Narrow Condensed"
+       x="341.91968"
+       y="433.50269"
+       id="text3005"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         id="tspan3007"
+         x="341.91968"
+         y="433.50269">Code B</tspan></text>
+  </g>
+</svg>
