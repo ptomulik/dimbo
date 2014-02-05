@@ -1,63 +1,99 @@
 ---
 layout: page
 title: Waveform Newton
-sidenav: home
-group: navigation
+sidenav: theory
+#group: navigation
 ---
 
 <div id="home">
   <p>
-  MultiBOdy systems. The project aims at providing software base for our
-  scientific research in parallel and distributed methods for analysis of
-  multibody systems including co-simulation and simulator coupling.
+  In what follows we approach a problem of solving an initial value problem
+  with differential-algebraic equations (DAEs). In most general form, DAEs are
+  written as
+  <div class="equation">
+    {% include theory/waveform_newton/eq0001.html %}
+  </div>
+  where
+  <math>
+    <mi mathvariant="bold">y</mi>
+    <mo>(</mo><mi>t</mi><mo>)</mo>
+  </math> is a function to be determined,
+  <math>
+    <mover>
+      <mi mathvariant="bold">y</mi>
+      <mi mathvariant="bold">.</mi>
+    </mover>
+    <mo>(</mo><mi>t</mi><mo>)</mo>
+  </math> its derivative.
+  We'll define corresponding functional operator <math><mo>&#x2131;</mo></math>
+  which acts on function <math><mi>y</mi></math> as follows
   </p>
 
-  <p>For more information please proceed to <a href="{{ BASE_PATH }}/intro.html">Introduction</a></p>
+  <div class="equation">
+  {% include theory/waveform_newton/eq0002.html %}
+  </div>
 
-  <math display="block">
-  <mrow>
-    <mfenced open="(" close=")" separators=",">
-      <mrow>
-        <mo>F</mo>
-        <mi>y</mi>
-      </mrow>
-    </mfenced>
-    <mfenced open="(" close=")" separators=",">
-      <mrow>
-        <mi>t</mi>
-      </mrow>
-    </mfenced>
-    <mo>=</mo>
-    <mi  mathvariant="bold">F</mi><mo>&ApplyFunction;</mo>
-    <mfenced open="(" close=")" separators=",">
-      <mrow>
-        <mi>t</mi>
-        <mtext>,</mtext>
-        <mfrac>
-          <mrow>
-            <mo>d</mo>
-          </mrow>
-          <mrow>
-            <mo>d</mo>
-            <mi>t</mi>
-          </mrow>
-        </mfrac>
-        <mi>y</mi>
-        <mfenced open="(" close=")" separators=",">
-          <mrow>
-            <mi>t</mi>
-          </mrow>
-        </mfenced>
-        <mtext>,</mtext>
-        <mi>y</mi><mo>&ApplyFunction;</mo>
-        <mfenced open="(" close=")" separators=",">
-          <mrow>
-            <mi>t</mi>
-          </mrow>
-        </mfenced>
-      </mrow>
-    </mfenced>
-  </mrow>
-  </math>
+  <p>
+  The waveform-Newton algorithm is based on the following functional iteration
+  <div class="equation">
+  {% include theory/waveform_newton/eq0003.html %}
+  </div>
+  </p>
+
+  <p>
+  The symbol <math><mo>&#x2131;</mo><mo>&rsquo;</mo></math> is a Fretchet
+  derivative of operator <math><mo>&#x2131;</mo></math>. This functional
+  iteration may be written in terms of functions 
+  <math><mi mathvariant="bold">F</mi></math>,
+  <math><mi mathvariant="bold">y</mi></math>,
+  and <math><mi mathvariant="bold">&delta;</mi></math> (we drop iteration index
+  for brevity)
+  <div class="equation">
+  {% include theory/waveform_newton/eq0004.html %}
+  </div>
+  </p>
+
+  <p>
+  The above equation is a linearized DAE problem. It preserves structural
+  properties such as Hessenberg form/size and thus the differential index. It
+  still needs a DAE integrator to be solved.
+  </p>
+
+  <p>
+  Computational procedure may be decomposed into few stages.
+  <ol>
+    <li>Determine
+        <math>
+          <msub>
+            <mi mathvariant="bold">F</mi>
+            <mrow><mo>(</mo><mi>k</mi><mo>)</mo></mrow>
+          </msub>
+        </math>,
+        <math>
+          <msub>
+            <mi mathvariant="bold">F</mi>
+            <mrow>
+              <mi mathvariant="bold">y</mi>,
+              <mo>(</mo><mi>k</mi><mo>)</mo>
+            </mrow>
+          </msub>
+        </math> and
+        <math>
+          <msub>
+            <mi mathvariant="bold">F</mi>
+            <mrow>
+              <mover>
+                <mi mathvariant="bold">y</mi>
+                <mi>.</mi>
+              </mover>,
+              <mo>(</mo><mi>k</mi><mo>)</mo>
+            </mrow>
+          </msub>
+        </math>
+        at discrete mesh <math><msub><mi>t</mi><mi>k</mi></msub></math>
+  </ol>
+  </p>
+
+
 </div>
 <!-- vim: set syntax=liquid: -->
