@@ -88,7 +88,6 @@ def SwigPyModule(env, module, **kw):
     # do our job
     cxxpy = env.CXXFile(cxxfile_c, swigfile_c)
     tgt = env.SharedLibrary(shfile_c, cxxpy[0], **kw)
-    print "tgtbase_c: %r\n" % tgtbase_c
     return cxxpy + [tgt]
 
 def SwigPyModulesI(env, modules = [], subdirs = []):
