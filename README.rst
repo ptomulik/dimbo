@@ -3,6 +3,16 @@ DIMBO - Software for distributed simulation of multibody systems
 
 Welcome to the DIMBO development tree.
 
+START
+-----
+
+Start with cloning this repository (note: we use git submodules so we need
+``--recursive`` flag):
+
+.. code:: bash
+
+    git clone --recursive git://github.com/ptomulik/dimbo.git
+
 HOWTO
 -----
 
