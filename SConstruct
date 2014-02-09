@@ -25,6 +25,7 @@ def BuildVariant(env, variant_dir, src_dir, duplicate = 0, **kw):
 
 EnsureSConsVersion(2,2)
 env = Environment(tools =  [ 'default'
+                           , 'cxxtest'
                            , 'textfile'
                            , 'gettext'
                            , 'doxyfile'
