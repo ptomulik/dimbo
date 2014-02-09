@@ -27,6 +27,7 @@ EnsureSConsVersion(2,2)
 env = Environment(tools =  [ 'default'
                            , 'textfile'
                            , 'gettext'
+                           , 'doxyfile'
                            , 'doxygen'
                            , 'protoc'
                            , 'swig' ],

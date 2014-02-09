@@ -1,3 +1,4 @@
+#
 # @COPYRIGHT@
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -18,46 +19,27 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
 
-Import('env')
+Import(['env'])
 
-output_directory = '.'
-srcdir = env.Dir('../').srcnode()
-strip_from_path =  env.Dir('#').get_abspath()
-strip_from_inc_path = env.Dir('#src/lib').get_abspath()
-input_list = [ srcdir.get_abspath() ]
-input_str = ' \\\n'.join([''] + ['"%s"' % di for di in input_list])
-file_patterns_list = []
-file_patterns_str = ''
-# FIXME: On windows platform, we need to use '*.bat' script
-cppfilter = env.File('#bin/doxycppfilter')
-cppfilter_py = env.File('#bin/doxycppfilter.py')
-example_path = env.Dir('#src/lib/dimbo/examples').get_abspath()
-doxyfile_dict = [ 
- ('@PROJECT_NAME@',         '"Dimbo Libraries"'),
- ('@PROJECT_NUMBER@',       '"0.1.0"'),
- ('@PROJECT_BRIEF@',        '"Libraries that are part of Dimbo package"'),
- ('@PROJECT_LOGO@',         ''),
- ('@OUTPUT_DIRECTORY@',     '"%s"' % output_directory ),
- ('@STRIP_FROM_PATH@',      '"%s"' % strip_from_path ),
- ('@STRIP_FROM_INC_PATH@',  '"%s"' % strip_from_inc_path ),
- ('@INPUT@',                '%s'   % input_str ),
- ('@FILE_PATTERNS@',        '%s'   % file_patterns_str ),
- ('@EXCLUDE@',              ''),
- ('@EXCLUDE_PATTERNS@',     ''),
- ('@EXAMPLE_PATH@',         '%s'   % example_path),
- ('@EXAMPLE_PATTERNS@',     ''),
- ('@IMAGE_PATH@',           ''),
- ('@CPPFILTER@',            '%s'   % cppfilter.get_path()),
- ('@HPPFILTER@',            '%s'   % cppfilter.get_path()),
-]
-doxyfile = env.Substfile(['Doxyfile'], ['Doxyfile.in'], SUBST_DICT = doxyfile_dict)
+doxyfile = env.Doxyfile(
+    INPUT               = '..',
+    RECURSIVE           = True,
+    PROJECT_NAME        = "Dimbo Libraries",
+    PROJECT_NUMBER      = '0.1.0',
+    PROJECT_BRIEF       = 'Libraries that are part of Dimbo package',
+    OUTPUT_DIRECTORY    = '.',
+    STRIP_FROM_PATH     = '../../../..',
+    STRIP_FROM_INC_PATH = '../..',
+    EXAMPLE_PATH        = '../examples',
+    FILTER_PATTERNS     = { '*.cpp' : env.File('#bin/doxycppfilter'),
+                          '*.hpp' : env.File('#bin/doxycppfilter') }
+)
 
 doc = env.Doxygen(doxyfile)
 
-env.Clean(doc, env.Dir('html'))
-
-env.Ignore('.', doc)
-env.Alias('api-doc', doc)
+env.Clean('..','.')
+env.Ignore('..', '.')
+env.Alias('api-doc', '.')
 
 # Local Variables:
 # # tab-width:4
