@@ -10,6 +10,7 @@ The above command shall create following files:
 
 - ``src/lib/fully/qualified/class/name.hpp`` (C++ header),
 - ``src/lib/fully/qualified/class/name.cpp`` (C++ source),
+- ``src/lib/fully/test/unit/fully/qualified/class/name.t.h`` (Unit test).
 - ``src/lib/fully/protobuf/qualified/class/name.proto`` (Google Protobuf),
 - ``src/lib/fully/swig/fully/qualified/class/name.swg`` (SWIG interface).
 
@@ -17,6 +18,7 @@ These files are generated from templates:
 
 - ``template/class.hpp.in``,
 - ``template/class.cpp.in``,
+- ``template/class.t.h.in``,
 - ``template/class.proto.in``,
 - ``template/class.swg.in``.
 

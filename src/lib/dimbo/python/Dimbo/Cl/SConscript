@@ -23,7 +23,10 @@ Import(['env'])
 # "Generate" __init__.py 
 env.Substfile(['__init__.py.in'], SUBST_DICT = {})
 # Generate python modules with swig
-overrides = { 'LIBS' : ['dimbo_cl', 'dimbo_format'] }
+overrides = {
+    'LIBS'      : ['dimbo_cl', 'dimbo_format'],
+    'LIBPATH'   : ['../../../cl', '../../../format']
+}
 modules = [ 'OpenCL_Mod', 'Exception_Mod', 'Platform_Mod', 
             'Platform_Info_Mod', 'Context_Mod', 'Program_Mod' ]
 # Create 'modules.i' from 'modules.i.in'

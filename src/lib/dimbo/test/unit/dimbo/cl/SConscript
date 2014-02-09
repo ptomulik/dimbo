@@ -1,3 +1,4 @@
+#
 # @COPYRIGHT@
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -18,23 +19,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
 
-import sys
+Import('env')
 
-Import(['conf'])
-##conf.env.Append( LIBPATH = [ '#%s' % Dir('.').path ] )
-subdirs = [ 'po', 'clinfo' ]
-scripts = [ '%s/SConscript.conf' % s for s in subdirs ]
-SConscript( scripts, exports = ['conf'])
-
-############################# Local config checks ###############################
-hdrs = [ 'boost/program_options/options_description.hpp'
-       , 'boost/program_options/variables_map.hpp'  ]
-for hdr in hdrs:
-  if not conf.CheckCXXHeader(hdr, '<>'):
-    sys.stderr.write ( "Can't find required boost headers. Please check if" \
-                     + " the `boost_program_options' library is installed" \
-                     + " (developer's files)\n")
-    conf.env.Exit(1)
+env.CxxTest(env.Glob('*.t.h'))
 
 # Local Variables:
 # # tab-width:4

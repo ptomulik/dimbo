@@ -20,8 +20,8 @@
 
 Import('env')
 
-env.Program(['autosep1'], ['autosep1.cpp'], LIBS = ['dimbo_format'] )
-env.Program(['autosep2'], ['autosep2.cpp'], LIBS = ['dimbo_format'] )
+env.Program(['autosep1'], ['autosep1.cpp'], LIBS = ['dimbo_format'], LIBPATH = ['../../format'] )
+env.Program(['autosep2'], ['autosep2.cpp'], LIBS = ['dimbo_format'], LIBPATH = ['../../format'] )
 
 # Local Variables:
 # # tab-width:4

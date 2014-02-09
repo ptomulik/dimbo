@@ -23,7 +23,10 @@ Import( 'env' )
 env.Substfile(['__init__.py.in'], SUBST_DICT = {})
 #env.Substfile(['Detail/__init__.py.in'], SUBST_DICT = {})
 
-overrides = { 'LIBS' : ['dimbo_cl', 'dimbo_format'] }
+overrides = {
+    'LIBS'      : ['dimbo_cl', 'dimbo_format'],
+    'LIBPATH'   : ['../../cl', '../../format']
+}
 modules = [ 'Exception_Mod' ]
 subdirs = [ 'Std', 'Cl' ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]

@@ -28,7 +28,11 @@ clinfo = env.Program( target = 'dimbo-clinfo'
                              , 'dimbo_cl'
                              , 'boost_program_options'
                              , 'boost_serialization'
-                             , 'OpenCL.so' ] )
+                             , 'OpenCL.so' ]
+                    , LIBPATH = [ '../../lib/dimbo/app'
+                                , '../../lib/dimbo/app/clinfo'
+                                , '../../lib/dimbo/format'
+                                , '../../lib/dimbo/cl' ])
 
 env.Install("#/preinst/usr/bin", clinfo)
 
