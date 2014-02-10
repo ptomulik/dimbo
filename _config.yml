@@ -5,7 +5,7 @@ permalink: /:categories/:year/:month/:day/:title
 name: DIMBO
 markdown: redcarpet
 
-exclude: [".rvmrc", ".rbenv-version", "README.rst", "Rakefile", "changelog.md", "Gemfile", "vendor"]
+exclude: [".rvmrc", ".rbenv-version", "README.rst", "Rakefile", "changelog.md", "Gemfile", "vendor", "lib", "site_scons", "build"]
 pygments: true
 
 # Themes are encouraged to use these universal variables 
