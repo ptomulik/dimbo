@@ -4,7 +4,7 @@ TODO: Write docs for XXX
 """
 
 #
-# Copyright (c) 2012 by Pawel Tomulik
+# @COPYRIGHT@
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
