@@ -20,14 +20,16 @@
 
 Import( 'env' )
 # "Generate" __init__.py
-env.Substfile(['__init__.py.in'], SUBST_DICT = {})
+init_py = env.Substfile(['__init__.py.in'], SUBST_DICT = {})
 #env.Substfile(['Detail/__init__.py.in'], SUBST_DICT = {})
 
 modules = [ 'exception_mod' ]
 subdirs = [ 'std', 'cl' ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]
 # Build modules
-env.SwigPyModule(modules)
+modfiles = env.SwigPyModule(modules)
+instfiles =  [m for m in modfiles if not str(m).endswith('.cc')] + [init_py]
+Install('#preinst/usr/lib/python/dist-packages/dimbo', instfiles)
 
 # Nest into subdirs
 SConscript( scripts, exports = ['env'] )

@@ -21,7 +21,7 @@
 Import(['env'])
 
 # "Generate" __init__.py
-env.Substfile(['__init__.py.in'], SUBST_DICT = {})
+init_py = env.Substfile(['__init__.py.in'], SUBST_DICT = {})
 # Generate python modules with swig
 overrides = { }
 modules = [
@@ -34,7 +34,10 @@ modules = [
     'bad_alloc_mod'
 ]
 # Build modules
-env.SwigPyModule(modules, **overrides)
+modfiles = env.SwigPyModule(modules, **overrides)
+instfiles =  [m for m in modfiles if not str(m).endswith('.cc')] + [init_py]
+Install('#preinst/usr/lib/python/dist-packages/dimbo/std', instfiles)
+
 
 # Local Variables:
 # # tab-width:4
