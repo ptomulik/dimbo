@@ -1,10 +1,10 @@
 src/lib/dimbo/swig/
 ```````````````````
 
-This subtree contains swig_ library of ``.swg`` interface files used to generate
-wrappers for *target languages* other than C/C++. The typical library use is to
-``%include`` appropriate ``.swg`` files into target-language-specific ``.i``
-interface files.
+This subtree contains swig_ library of ``.swg`` interface files used to
+generate wrappers for *target languages* other than C/C++. The typical library
+use is to ``%include`` appropriate ``.swg`` files into target-language-specific
+``.i`` interface files.
 
 By wrapping our C++ code, most of the functionality implemented here in C++ is
 available also in other languages. The list of target languages may be further
@@ -74,44 +74,12 @@ It is responsibility of the target subtree to define module names and location o
 ``.i`` files (target subtree layout don't have to be same as the swig
 subtree). For python language, for example, we have such a correspondence:
 
-- ``#/build/lib/dimbo/python/Dimbo/Exception_Mod.i`` %includes
+- ``#/build/lib/dimbo/python/dimbo/exception_mod.i`` %includes
   ``dimbo/exception_mod.swg``
-- ``#/build/lib/dimbo/python/Dimbo/Cl/Exception_Mod.i`` %includes
+- ``#/build/lib/dimbo/python/dimbo/cl/exception_mod.i`` %includes
   ``dimbo/cl/exception_mod.swg``
-- ``#/build/lib/dimbo/python/Dimbo/Cl/Platform_Mod.i`` %includes
+- ``#/build/lib/dimbo/python/dimbo/cl/platform_mod.i`` %includes
   ``dimbo/cl/platform_mod.swg``
-
-``modules.i``
-:::::::::::::
-
-The target subtree which defines bindings for particular language, for
-example ``#/src/lib/dimbo/python/``, must have ``modules.i`` file at its top
-level. This file gets included by several ``_mod.swg`` files present here. This
-way we provide feedback information from target subtree to the swig subtree.
-For example, the ``modules.i`` provides definition of ``*_MOD_I`` constants
-(see below).
-
-``*_MOD_I`` constants defining module names
-:::::::::::::::::::::::::::::::::::::::::::
-
-For each ``_mod.swg`` file in ``#/src/lib/dimbo/swig/`` subtree, there should
-be defined corresponding ``*_MOD_I`` constant in ``modules.i``. The constant
-defines the target interface ``.i`` file which %includes the ``_mod.swg``. For
-example, if ``#/build/lib/dimbo/python/Dimbo/Exception_Mod.i`` %includes
-``dimbo/exception_mod.swg``, then ``modules.i`` must provide a constant
-``DIMBO_EXCEPTION_MOD_I`` with value ``<Dimbo/Exception_Mod.i>`` as follows
-
-    #define DIMBO_EXCEPTION_MOD_I <Dimbo/Exception_Mod.i>
-
-The constant name ``DIMBO_EXCEPTION_MOD_I`` above is created as follows:
-
-#. strip ``.swg`` suffix from ``dimbo/exception_mod.swg`` file name,
-#. replace all slashes ``/`` with underscore ``_``,
-#. convert the result to uppercase,
-#. append ``_I`` suffix
-
-In practice (in ``python`` case, for example) such definitions are generated
-automatically by SConscripts.
 
 .. _swig: https://swig.org
 
