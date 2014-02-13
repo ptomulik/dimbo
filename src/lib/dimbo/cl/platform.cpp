@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,7 +24,7 @@
 
 /** // doc: dimbo/cl/platform.hpp {{{
  * \file dimbo/cl/platform.hpp
- * \todo Write documentation 
+ * \todo Write documentation
  */ // }}}
 #include <dimbo/cl/platform.hpp>
 #include <dimbo/cl/throw.hpp>
@@ -46,7 +46,7 @@ _get_string_info(Platform const& platform, cl_platform_info name)
   platform.get_info(name, 0, NULL, &size);
 
   boost::shared_array<char> str;
-  try { str = boost::shared_array<char>(new char[size]); } 
+  try { str = boost::shared_array<char>(new char[size]); }
   catch(std::bad_alloc const& e) { DIMBO_CL_THROW(Bad_Alloc); }
   platform.get_info(name, size, str.get(), &size);
   try { return std::string(str.get()); }
@@ -63,7 +63,7 @@ get_valid_id() const
 }
 /* ------------------------------------------------------------------------ */
 void Platform::
-get_info( cl_platform_info name, size_t value_size, void* value, 
+get_info( cl_platform_info name, size_t value_size, void* value,
           size_t* value_size_ret) const
   throw( DIMBO_CL_PLATFORM_GET_INFO_EXCEPTIONS )
 {
@@ -123,7 +123,7 @@ get_platform_info(  cl_platform_id platform,
   throw( DIMBO_CL_GET_PLATFORM_INFO_EXCEPTIONS )
 {
   cl_int err = clGetPlatformInfo(platform, param_name, param_value_size,
-                                 param_value, param_value_size_ret); 
+                                 param_value, param_value_size_ret);
   switch(err)
     {
       case CL_SUCCESS:            break;

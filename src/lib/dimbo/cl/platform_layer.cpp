@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/cl/platform_layer.cpp 
+// dimbo/cl/platform_layer.cpp
 
 /** // doc: dimbo/cl/platform_layer.cpp {{{
  * @file dimbo/cl/platform_layer.cpp
@@ -72,7 +72,7 @@ devices() const
 Devices Platform_Layer::
 devices(Platform const& platform) const
 {
-  typedef Platform_Devices_Map::const_iterator map_iterator;  
+  typedef Platform_Devices_Map::const_iterator map_iterator;
   map_iterator found = this->_platform_devices_map.find(platform.id());
   if(found == this->_platform_devices_map.end())
     // FIXME: throw ???
@@ -89,7 +89,7 @@ devices(Platform const& platform) const
 Platform Platform_Layer::
 platform(Device const& device) const
 {
-  typedef std::map<cl_device_id,cl_platform_id>::const_iterator iterator;  
+  typedef std::map<cl_device_id,cl_platform_id>::const_iterator iterator;
   iterator found = this->_device_platform_map.find(device.id());
   // FIXME: assert device in _device_platform_map ?
   //if(found == this->_device_platform_map.end())

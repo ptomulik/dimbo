@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,11 +20,11 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/app/clinfo/device_detail_options_description.cpp 
+// dimbo/app/clinfo/device_detail_options_description.cpp
 
 /** // doc: dimbo/app/clinfo/device_detail_options_description.cpp {{{
- * \file dimbo/app/clinfo/device_detail_options_description.cpp 
- * \todo Write documentation 
+ * \file dimbo/app/clinfo/device_detail_options_description.cpp
+ * \todo Write documentation
  */ // }}}
 #include <dimbo/app/clinfo/device_detail_options_description.hpp>
 #include <dimbo/app/options/option_value.hpp>
@@ -65,7 +65,7 @@ Device_Detail_Options_Description::
 
 void Device_Detail_Options_Description::
 _init_options_description()
-{ 
+{
   using Dimbo::App::Options::value;
   using std::vector;
   using std::string;
@@ -193,7 +193,7 @@ _init_options_description()
     ("single-fp-config"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
     ,_("query for single-fp-config"))
-    
+
     // global-mem-info {{{
     ("global-mem-cache-type"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")

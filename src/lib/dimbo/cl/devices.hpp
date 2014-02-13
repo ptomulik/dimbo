@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
 
 // dimbo/cl/devices.hpp
 
-/** // doc: dimbo/cl/devices.hpp {{{ 
+/** // doc: dimbo/cl/devices.hpp {{{
  * \file dimbo/cl/devices.hpp
  * \todo Write documentation
  */ // }}}
@@ -68,7 +68,7 @@ typedef ::Dimbo::ObId_Vec<Device> Devices;
  * \ingroup Dimbo_Cl_Platform
  * \todo Write documentation
  */ // }}}
-cl_uint 
+cl_uint
 get_num_devices(cl_platform_id platform, cl_device_type device_type)
    throw( DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS );
 /** // {{{
@@ -77,7 +77,7 @@ get_num_devices(cl_platform_id platform, cl_device_type device_type)
  */ // }}}
 void
 get_device_ids(cl_platform_id platform, cl_device_type device_type,
-               cl_uint num_entries, cl_device_id* devices, 
+               cl_uint num_entries, cl_device_id* devices,
                cl_uint* num_devices)
    throw( DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS );
 /** // {{{
@@ -85,7 +85,7 @@ get_device_ids(cl_platform_id platform, cl_device_type device_type,
  * \todo Write documentation
  */ // }}}
 std::vector<cl_device_id>
-get_device_ids(cl_platform_id platform, 
+get_device_ids(cl_platform_id platform,
                cl_device_type device_type = CL_DEVICE_TYPE_ALL)
    throw( DIMBO_CL_EXCEPTION(Bad_Alloc), DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS );
 /** // {{{
@@ -93,7 +93,7 @@ get_device_ids(cl_platform_id platform,
  * \todo Write documentation
  */ // }}}
 Devices
-get_devices(cl_platform_id platform, 
+get_devices(cl_platform_id platform,
             cl_device_type device_type = CL_DEVICE_TYPE_ALL)
    throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
         , DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS );
@@ -102,7 +102,7 @@ get_devices(cl_platform_id platform,
  * \todo Write documentation
  */ // }}}
 Devices
-get_devices(Platform const& platform, 
+get_devices(Platform const& platform,
             cl_device_type device_type = CL_DEVICE_TYPE_ALL)
    throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
         , DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS );

@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
 
 // dimbo/cl/device_query.hpp
 
-/** // doc: dimbo/cl/device_query.hpp {{{ 
+/** // doc: dimbo/cl/device_query.hpp {{{
  * \file dimbo/cl/device_query.hpp
  *
  * This file contains definition of Dimbo::Cl::Device_Query class, which
@@ -50,7 +50,7 @@ namespace Cl {
  * used together with Device_Info to query several parmeters describing local
  * OpenCL device(s) at once.
  */ // }}}
-class Device_Query 
+class Device_Query
 {
 public:
 #ifndef SWIG // FIXME: provide more verbose constant name
@@ -73,7 +73,7 @@ public:
    * \todo Write documentation
    */ // }}}
   Device_Query& select_none() ;
-  // getters ... {{{ 
+  // getters ... {{{
   /** // doc: id_selected() {{{
    * \todo Write documentation
    */ //  }}}

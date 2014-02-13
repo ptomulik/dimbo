@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,9 +22,9 @@
 
 // dimbo/cl/device_info.hpp
 
-/** // doc: dimbo/cl/device_info.hpp {{{ 
+/** // doc: dimbo/cl/device_info.hpp {{{
  * \file dimbo/cl/device_info.hpp
- * \todo Refine 
+ * \todo Refine
  *
  * This module contains class Dimbo::Cl::Device_Info which stores paramteres
  * of an OpenCl device.
@@ -55,11 +55,11 @@ namespace Cl {
  * This class encapsulates the result of a single query to OpenCL function
  * \c clGetDeviceInfo(). The query is defined by Dimbo::Cl::Device_Query.
  * The Dimbo::Cl::Device_Info may be filled-in with device parameters in
- * several ways. The info may be queried at 
+ * several ways. The info may be queried at
  *
  * \todo Refine documentation
  */ // }}}
-class Device_Info 
+class Device_Info
 {
 public:
 #ifndef SWIG // FIXME: provide more verbose constant name

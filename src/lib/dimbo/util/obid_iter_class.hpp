@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
 
 // dimbo/util/obid_iter_class.hpp
 
-/** // doc: dimbo/util/obid_iter_class.hpp {{{ 
+/** // doc: dimbo/util/obid_iter_class.hpp {{{
  * \file dimbo/util/obid_iter_class.hpp
  * \todo Write documentation
  */ // }}}
@@ -37,9 +37,9 @@ template <class ObIterT, class IdIterT, class ObIterC, class IdIterC>
 class ObId_Ref;
 
 template <class ObIterT, class IdIterT, class ObIterC, class IdIterC>
-class ObId_Iter 
+class ObId_Iter
 #if 0
-  : public std::iterator < 
+  : public std::iterator <
     std::random_access_iterator_tag                         // category
   , typename std::iterator_traits<IdIterT>::value_type      // value_type
   , typename std::iterator_traits<IdIterT>::difference_type // difference_type
@@ -104,7 +104,7 @@ public:
 
 public:
 
-  ObId_Iter() 
+  ObId_Iter()
     : _ob_iter(), _id_iter()
   {
   }
@@ -120,10 +120,10 @@ public:
   }
 // FIXME: develop more verbose constant here
   template <class ObIterT1, class IdIterT1, class ObIterC1, class IdIterC1>
-  ObId_Iter& operator = (ObId_Iter<ObIterT1,IdIterT1,ObIterC1,IdIterC1> const& rhs) 
+  ObId_Iter& operator = (ObId_Iter<ObIterT1,IdIterT1,ObIterC1,IdIterC1> const& rhs)
   {
-    this->_ob_iter = rhs._ob_iter; 
-    this->_id_iter = rhs._id_iter; 
+    this->_ob_iter = rhs._ob_iter;
+    this->_id_iter = rhs._id_iter;
     return this;
   }
   template <class ObIterT1, class IdIterT1, class ObIterC1, class IdIterC1>

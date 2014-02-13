@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
 
 // dimbo/cl/platform_layer_info.hpp
 
-/** // doc: dimbo/cl/platform_layer_info.hpp {{{ 
+/** // doc: dimbo/cl/platform_layer_info.hpp {{{
  * \file dimbo/cl/platform_layer_info.hpp
  * \todo Write documentation
  */ // }}}
@@ -51,7 +51,7 @@ namespace Cl {
  * \ingroup Dimbo_Cl_Platform
  * \todo Write documentation
  */ // }}}
-class Platform_Layer_Info 
+class Platform_Layer_Info
 {
 public:
 #ifndef SWIG // FIXME: provide more verbose constant name
@@ -74,7 +74,7 @@ public:
   /** // doc: Platform_Layer_Info(layer, pquery, dquery) {{{
    * \todo Write documentation
    */ // }}}
-  Platform_Layer_Info(Platform_Layer const& layer, 
+  Platform_Layer_Info(Platform_Layer const& layer,
                       Platform_Query const& pquery = Platform_Query(),
                       Device_Query const& dquery = Device_Query());
   /** // doc: ~Platform_Layer_Info() {{{

@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -80,7 +80,7 @@ namespace Cl {
  * \brief Proxy object to access OpenCL device information.
  *
  * This class provides access to OpenCL device information equivalent to
- * that offered by OpenCL's \c clGetDeviceInfo() function. Compared to 
+ * that offered by OpenCL's \c clGetDeviceInfo() function. Compared to
  * \c clGetDeviceInfo() it has simplified usage and replaces error codes
  * returned by OpenCL calls with exceptions defined within DIMBO library
  * (see Dimbo::Cl::Cl_Error). It also uses std::string and std::vector instead
@@ -100,7 +100,7 @@ private:
 public:
   /** // {{{
    * \brief Default constructor
-   * 
+   *
    * Sets internal device ID to NULL, so this proxy object is regardes as
    * uninitialized (get_initilized() returns \c false).
    */ // }}}
@@ -159,7 +159,7 @@ public:
    * Assigns device ID of other Device proxy object to this object.
    */ // }}}
   void assign(Device const& rhs) throw()
-  { 
+  {
     if(&rhs != this)
       {
         this->_device_id = rhs.id();
@@ -170,7 +170,7 @@ public:
    * \return True if object is initialized (id is not NULL) or false otherwise.
    */ // }}}
   bool is_initialized() const throw()
-  { 
+  {
     return (this->_device_id != NULL);
   }
   /** // {{{
@@ -178,7 +178,7 @@ public:
    * \return The ID of OpenCL device represented by this proxy object (or NULL
    *         if the object is not iniatilized).
    */ // }}}
-  cl_device_id id() const 
+  cl_device_id id() const
     throw()
   {
     return this->_device_id;
@@ -189,7 +189,7 @@ public:
    * \exception DIMBO_CL_EXCEPTION(Uninitialized_Device) In case the object is
    *    not initialized (is_initialized() returned \c false).
    */ // }}}
-  cl_device_id get_valid_id() const 
+  cl_device_id get_valid_id() const
     throw(DIMBO_CL_EXCEPTION(Uninitialized_Device));
   /** // {{{
    * \brief Get certain information from device.
@@ -203,7 +203,7 @@ public:
    *    specified in the OpenCL specification (\c clGetDeviceInfo()).
    * \param value
    *    A pointer to memory location where appropriate values for a given
-   *    \c param_name as specified in the OpenCL specification 
+   *    \c param_name as specified in the OpenCL specification
    *    (\c clGetDeviceInfo()) will be returned. If \c param_value is \c NULL,
    *    it is ignored.
    * \param value_size_ret
@@ -221,7 +221,7 @@ public:
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    *  \brief Get \c CL_DEVICE_TYPE information.
-   *  \return The OpenCL device type. It may be for example 
+   *  \return The OpenCL device type. It may be for example
    *      \c CL_DEVICE_TYPE_CPU, \c CL_DEVICE_TYPE_GPU, or other value defined
    *      by OpenCL specification (depending on OpenCL version).
    */ // }}}
@@ -253,7 +253,7 @@ public:
    * \return Maximum number of work-items that can be specified in each
    *    dimension of the work-group to \c clEnqueueNDRangeKernel. Returns \c n
    *    \c size_t entries, where \c n is the value returned by the query for \c
-   *    CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS. The minimum value is 
+   *    CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS. The minimum value is
    *    \c (1,\c 1, \c 1).
    */ // }}}
   std::vector<size_t> get_max_work_item_sizes() const
@@ -285,7 +285,7 @@ public:
   /** // {{{
    * \brief Get \c CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT information.
    * \return Preferred native vector width size for built-in \c int scalar
-   *    when put into vector. The vector width is defined as the number of 
+   *    when put into vector. The vector width is defined as the number of
    *    \c int elements that can be stored in the vector.
    */ // }}}
   cl_uint get_preferred_vector_width_int() const
@@ -293,7 +293,7 @@ public:
   /** // {{{
    * \brief Get \c CL_DEVICE_PREFERRED_VECTOR_WIDTH_LONG information.
    * \return Preferred native vector width size for built-in \c long scalar
-   *    when put longo vector. The vector width is defined as the number of 
+   *    when put longo vector. The vector width is defined as the number of
    *    \c long elements that can be stored in the vector.
    */ // }}}
   cl_uint get_preferred_vector_width_long() const
@@ -301,7 +301,7 @@ public:
   /** // {{{
    * \brief Get \c CL_DEVICE_PREFERRED_VECTOR_WIDTH_FLOAT information.
    * \return Preferred native vector width size for built-in \c float scalar
-   *    when put floato vector. The vector width is defined as the number of 
+   *    when put floato vector. The vector width is defined as the number of
    *    \c float elements that can be stored in the vector.
    */ // }}}
   cl_uint get_preferred_vector_width_float() const
@@ -309,7 +309,7 @@ public:
   /** // {{{
    * \brief Get \c CL_DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE information.
    * \return Preferred native vector width size for built-in \c double scalar
-   *    when put doubleo vector. The vector width is defined as the number of 
+   *    when put doubleo vector. The vector width is defined as the number of
    *    \c double elements that can be stored in the vector.
    */ // }}}
   cl_uint get_preferred_vector_width_double() const
@@ -317,7 +317,7 @@ public:
   /** // {{{
    * \brief Get \c CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF information.
    * \return Preferred native vector width size for built-in \c half scalar
-   *    when put halfo vector. The vector width is defined as the number of 
+   *    when put halfo vector. The vector width is defined as the number of
    *    \c half elements that can be stored in the vector.
    */ // }}}
   cl_uint get_preferred_vector_width_half() const
@@ -401,7 +401,7 @@ public:
   /** // {{{
    * \brief Get \c CL_DEVICE_MAX_READ_IMAGE_ARGS information.
    * \return Max number of simultaneous image objects that can be read by a
-   *    kernel. The minimum value is 128 if \c CL_DEVICE_IMAGE_SUPPORT is 
+   *    kernel. The minimum value is 128 if \c CL_DEVICE_IMAGE_SUPPORT is
    *    \c CL_TRUE.
    */ // }}}
   cl_uint get_max_read_image_args() const
@@ -409,7 +409,7 @@ public:
   /** // {{{
    * \brief Get \c CL_DEVICE_MAX_WRITE_IMGE_ARGS information.
    * \return Max number of simultaneous image objects that can be written to by
-   * a kernel. The minimum value is 8 if \c CL_DEVICE_IMAGE_SUPPORT is 
+   * a kernel. The minimum value is 8 if \c CL_DEVICE_IMAGE_SUPPORT is
    * \c CL_TRUE.
    */ // }}}
   cl_uint get_max_write_image_args() const
@@ -430,21 +430,21 @@ public:
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Get \c CL_DEVICE_IMAGE3D_MAX_WIDTH information.
-   * \return Max width of 3D image in pixels. The minimum value is 2048 if 
+   * \return Max width of 3D image in pixels. The minimum value is 2048 if
    *    \c CL_DEVICE_IMAGE_SUPPORT is \c CL_TRUE.
    */ // }}}
   size_t get_image3d_max_width() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Get \c CL_DEVICE_IMAGE3D_MAX_HEIGHT information.
-   * \return Max height of 3D image in pixels. The minimum value is 2048 if 
+   * \return Max height of 3D image in pixels. The minimum value is 2048 if
    *    \c CL_DEVICE_IMAGE_SUPPORT is \c CL_TRUE.
    */ // }}}
   size_t get_image3d_max_height() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Get \c CL_DEVICE_IMAGE3D_MAX_DEPTH information.
-   * \return Max depth of 3D image in pixels. The minimum value is 2048 if 
+   * \return Max depth of 3D image in pixels. The minimum value is 2048 if
    *    \c CL_DEVICE_IMAGE_SUPPORT is \c CL_TRUE.
    */ // }}}
   size_t get_image3d_max_depth() const
@@ -497,14 +497,14 @@ public:
    * - \c CL_FP_SOFT_FLOAT - Basic floating-point operations (such as addition,
    *   subtraction, multiplication) are implemented in software.
    *
-   * The mandated minimum floating-point capability is 
+   * The mandated minimum floating-point capability is
    * \c CL_FP_ROUND_TO_NEAREST \c | \c CL_FP_INF_NAN.
    */ // }}}
   cl_device_fp_config get_single_fp_config() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Get \c CL_DEVICE_GLOBAL_MEM_CACHE_TYPE information.
-   * \return Type of global memory cache supported. Possible values are: 
+   * \return Type of global memory cache supported. Possible values are:
    *    \c CL_NONE, \c CL_READ_ONLY_CACHE, and \c CL_READ_WRITE_CACHE.
    */ // }}}
   cl_device_mem_cache_type get_global_mem_cache_type() const
@@ -517,7 +517,7 @@ public:
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Get \c CL_DEVICE_GLOBAL_MEM_CACHE_SIZE information.
-   * \return Type of global memory cache supported. Possible values are: 
+   * \return Type of global memory cache supported. Possible values are:
    *    \c CL_NONE, \c CL_READ_ONLY_CACHE, and \c CL_READ_WRITE_CACHE.
    */ // }}}
   cl_ulong get_global_mem_cache_size() const
@@ -537,8 +537,8 @@ public:
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Get \c CL_DEVICE_LOCAL_MEM_TYPE information.
-   * \return Type of local memory supported. This can be set to \c CL_LOCAL 
-   *    implying dedicated local memory storage such as \c SRAM, or 
+   * \return Type of local memory supported. This can be set to \c CL_LOCAL
+   *    implying dedicated local memory storage such as \c SRAM, or
    *    \c CL_GLOBAL.
    */ // }}}
   cl_device_local_mem_type get_local_mem_type() const
@@ -552,7 +552,7 @@ public:
   /** // {{{
    * \brief Get \c CL_DEVICE_ERROR_CORRECTION_SUPPORT information.
    * \return \c CL_TRUE if the device implements error correction for all
-   *    accesses to compute device memory (global and constant); 
+   *    accesses to compute device memory (global and constant);
    *    \c CL_FALSE if * the device does not implement such error correction.
    */ // }}}
   cl_bool get_error_correction_support() const
@@ -587,7 +587,7 @@ public:
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Get \c CL_DEVICE_COMPILER_AVAILABLE information.
-   * \return \c CL_FALSE if the implementation does not have a compiler 
+   * \return \c CL_FALSE if the implementation does not have a compiler
    *    available to compile the program source; \c CL_TRUE if the compiler is
    *    available. This can be \c CL_FALSE for the embedded platform profile
    *    only.
@@ -658,7 +658,7 @@ public:
    * \return OpenCL profile string.
    *
    * Returns the profile name supported by the device (see note). The profile
-   * name returned can be one of the following strings: 
+   * name returned can be one of the following strings:
    *
    * - \c FULL_PROFILE - if the device supports the OpenCL specification
    *   (functionality defined as part of the core specification and does not
@@ -732,7 +732,7 @@ public:
  *    specified in the OpenCL specification (\c clGetDeviceInfo()).
  * \param value
  *    A pointer to memory location where appropriate values for a given
- *    \c param_name as specified in the OpenCL specification 
+ *    \c param_name as specified in the OpenCL specification
  *    (\c clGetDeviceInfo()) will be returned. If \c param_value is \c NULL, it
  *    is ignored.
  * \param value_size_ret
@@ -745,7 +745,7 @@ public:
  * In case of error, this method throws one of the exceptions defined by
  * DIMBO_CL_GET_DEVICE_INFO_EXCEPTIONS.
  */ // }}}
-void 
+void
 get_device_info( cl_device_id device, cl_device_info name, size_t value_size,
                  void* value, size_t* value_size_ret)
   throw( DIMBO_CL_GET_DEVICE_INFO_EXCEPTIONS );
@@ -756,8 +756,8 @@ get_device_info( cl_device_id device, cl_device_info name, size_t value_size,
 #include <dimbo/util/obid_id.hpp>
 namespace Dimbo {
 template<> struct obid_id<Dimbo::Cl::Device>
-{ 
-  typedef cl_device_id type; 
+{
+  typedef cl_device_id type;
 };
 } /* namespace Dimbo */
 

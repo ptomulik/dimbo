@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,14 +22,14 @@
 
 // dimbo/util/obid_ref.hpp
 
-/** // doc: dimbo/util/obid_ref.hpp {{{ 
+/** // doc: dimbo/util/obid_ref.hpp {{{
  * \file dimbo/util/obid_ref.hpp
  * \todo Write documentation
  */ // }}}
 #ifndef DIMBO_UTIL_OBID_REF_HPP_INCLUDED
 #define DIMBO_UTIL_OBID_REF_HPP_INCLUDED
 
-#include <dimbo/util/obid_iter_class.hpp> 
+#include <dimbo/util/obid_iter_class.hpp>
 #include <iterator>
 
 namespace Dimbo {
@@ -80,7 +80,7 @@ public:
 
 } /* namespace Dimbo */
 
-#include <dimbo/util/obid_iter_methods.hpp> 
+#include <dimbo/util/obid_iter_methods.hpp>
 
 #endif /* DIMBO_UTIL_OBID_REF_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

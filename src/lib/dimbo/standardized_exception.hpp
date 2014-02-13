@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
 
 // dimbo/standardized_exception.hpp
 
-/** // doc: dimbo/standardized_exception.hpp {{{ 
+/** // doc: dimbo/standardized_exception.hpp {{{
  * \file dimbo/standardized_exception.hpp
  * \todo Write documentation
  */ // }}}
@@ -54,7 +54,7 @@ namespace Dimbo {
  * \tparam StdCtorArg
  *         If the StdClass has only the non-default argument with
  *         obligatory argument, its type must be passed via StdCtorArg.
- * 
+ *
  * Some standard exception classes such as std::runtime_error or
  * std::logic_error have only non-default constructor which takes std::string
  * as an argument. Others have only default and copy constructors. To generate
@@ -102,13 +102,13 @@ template <
   class ExceptionBase
 , class StdClass
 , class StdCtorArg = typename std_except_ctor_arg<StdClass>::type
-> class Standardized_Exception 
+> class Standardized_Exception
     : public ExceptionBase,
       public StdClass
   {
   public:
     /** // {{{
-     * 
+     *
      * \brief Copy constructor
      *
      * \param e
@@ -123,7 +123,7 @@ template <
      * \param stdArg
      * An argument, that gets passed to the constructor of StdClass. In normal
      * use it is the string that will be returned by the what() method.
-     * The method what() is assumed to be implemented in StdClass. 
+     * The method what() is assumed to be implemented in StdClass.
      * \param at
      * A reference to Src_At object that points to the source point of this
      * exception in the source code.
@@ -145,12 +145,12 @@ template <
 
 /** // {{{
  * This is partial specialization of Standardized_Exception class for the cases
- * when StdCtorArg equals to void. 
+ * when StdCtorArg equals to void.
  *
  * \todo Finish documentation for class Dimbo::Standardized_Exception
  */ // }}}
 template <class ExceptionBase, class StdClass>
-  class Standardized_Exception<ExceptionBase, StdClass, 
+  class Standardized_Exception<ExceptionBase, StdClass,
                                std_except_no_ctor_arg_tag>
     : public ExceptionBase,
       public StdClass

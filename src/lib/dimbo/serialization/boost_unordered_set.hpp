@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
  * deal in the Software without restriction, including without limitation the
  * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
  * sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -36,7 +36,7 @@
 #include <boost/serialization/collections_load_imp.hpp>
 #include <boost/serialization/split_free.hpp>
 
-namespace boost { 
+namespace boost {
 namespace serialization {
 
 template<class Archive, class Key, class Compare, class Allocator >
@@ -46,7 +46,7 @@ inline void save(
     const unsigned int /* file_version */
 ){
     boost::serialization::stl::save_collection<
-        Archive, boost::unordered_set<Key, Compare, Allocator> 
+        Archive, boost::unordered_set<Key, Compare, Allocator>
     >(ar, t);
 }
 
@@ -60,10 +60,10 @@ inline void load(
         Archive,
         boost::unordered_set<Key, Compare, Allocator>,
         boost::serialization::stl::archive_input_set<
-            Archive, boost::unordered_set<Key, Compare, Allocator> 
+            Archive, boost::unordered_set<Key, Compare, Allocator>
         >,
         boost::serialization::stl::no_reserve_imp<boost::unordered_set<
-            Key, Compare, Allocator> 
+            Key, Compare, Allocator>
         >
     >(ar, t);
 }
@@ -87,8 +87,8 @@ inline void save(
     const unsigned int /* file_version */
 ){
     boost::serialization::stl::save_collection<
-        Archive, 
-        std::multiset<Key, Compare, Allocator> 
+        Archive,
+        std::multiset<Key, Compare, Allocator>
     >(ar, t);
 }
 
@@ -102,10 +102,10 @@ inline void load(
         Archive,
         std::multiset<Key, Compare, Allocator>,
         boost::serialization::stl::archive_input_set<
-            Archive, std::multiset<Key, Compare, Allocator> 
+            Archive, std::multiset<Key, Compare, Allocator>
         >,
         boost::serialization::stl::no_reserve_imp<
-            std::multiset<Key, Compare, Allocator> 
+            std::multiset<Key, Compare, Allocator>
         >
     >(ar, t);
 }

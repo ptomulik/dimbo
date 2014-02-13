@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/format/cl/platform_query.cpp 
+// dimbo/format/cl/platform_query.cpp
 
 /** // doc: dimbo/format/cl/platform_query.cpp {{{
  * @file dimbo/format/cl/platform_query.cpp
@@ -40,14 +40,14 @@ operator << ( std::basic_ostream<wchar_t, _Traits>& os
 }
 
 /* Name-pointer pair */
-struct Npp 
+struct Npp
 {
   const char* name;
   bool (Dimbo::Cl::Platform_Query::*ptr) () const;
 };
 #define NPP(name) { #name, &Dimbo::Cl::Platform_Query::name ## _selected}
 
-static Npp npps[] = 
+static Npp npps[] =
 {
   NPP(id)
 , NPP(profile)
@@ -60,7 +60,7 @@ static Npp npps[] =
 namespace Dimbo {
 namespace Format {
 
-template <class Ostream> Ostream& 
+template <class Ostream> Ostream&
 write(Ostream& os, Dimbo::Cl::Platform_Query const& query, int ind)
 {
   Autosep<const char*> as("\n");
@@ -81,7 +81,7 @@ write(Ostream& os, Dimbo::Cl::Platform_Query const& query)
 } /* namespace Format */
 } /* namespace Dimbo */
 
-template <typename _CharT, typename _Traits> 
+template <typename _CharT, typename _Traits>
 std::basic_ostream<_CharT, _Traits>&
 operator << ( std::basic_ostream<_CharT, _Traits>& os
             , Dimbo::Cl::Platform_Query const& query)

@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/cl/program.cpp 
+// dimbo/cl/program.cpp
 
 /** // doc: dimbo/cl/program.cpp {{{
  * \file dimbo/cl/program.cpp
@@ -45,7 +45,7 @@ _get_string_info(Program const& prog, cl_program_info name)
   prog.get_info(name, 0, NULL, &size);
 
   boost::shared_array<char> str;
-  try { str = boost::shared_array<char>(new char[size]); } 
+  try { str = boost::shared_array<char>(new char[size]); }
   catch(std::bad_alloc const& e) { DIMBO_CL_THROW(Bad_Alloc); }
   prog.get_info(name, size, str.get(), &size);
   try { return std::string(str.get()); }
@@ -60,7 +60,7 @@ _get_pod_info(Program const& prog, cl_program_info name)
   return value;
 }
 template<typename T> static std::vector<T>
-_get_vec_info(Program const& prog, cl_program_info name) 
+_get_vec_info(Program const& prog, cl_program_info name)
   throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
        , DIMBO_CL_PROGRAM_GET_INFO_EXCEPTIONS )
 {
@@ -79,7 +79,7 @@ _set_id(cl_program id, bool retain_new, bool release_old)
     throw( DIMBO_CL_CL_ERROR_NO(CL_INVALID_PROGRAM) )
 {
   if(id != this->_id) // Avoid unintended deletion by clReleaseProgram()
-    { 
+    {
       if(release_old)
         {
           cl_int err = clReleaseProgram(this->id());
@@ -110,7 +110,7 @@ Program(cl_program id, bool retain)
   this->_set_id(id, retain, false);
 }
 Program::
-Program(const Program& rhs) 
+Program(const Program& rhs)
   throw( DIMBO_CL_EXCEPTION(Uninitialized_Program)
        , DIMBO_CL_CL_ERROR_NO(CL_INVALID_PROGRAM) )
 {
@@ -119,7 +119,7 @@ Program(const Program& rhs)
 Program::
 ~Program() throw()
 {
-  // catch all: destructor shouldn't throw anything ... 
+  // catch all: destructor shouldn't throw anything ...
   try { this->_set_id(NULL, false, true); }
   catch(...) { }
 }
@@ -148,7 +148,7 @@ operator=(Program const& rhs)
 }
 void Program::
 assign(Program const& rhs)
-  throw( DIMBO_CL_EXCEPTION(Uninitialized_Program) 
+  throw( DIMBO_CL_EXCEPTION(Uninitialized_Program)
        , DIMBO_CL_CL_ERROR_NO(CL_INVALID_PROGRAM) )
 {
   if(&rhs != this)
@@ -217,7 +217,7 @@ get_binaries() const
   }
 }
 
-void 
+void
 get_program_info(cl_program id, cl_program_info name,
                  size_t value_size, void *value,
                  size_t* value_size_ret)

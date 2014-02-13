@@ -37,14 +37,14 @@
 #include <sstream>
 
 template<typename T>
-struct Bit 
+struct Bit
 {
   const char* name;
   T value;
 };
 
 template<typename T>
-struct Const 
+struct Const
 {
   const char* name;
   T value;
@@ -111,7 +111,7 @@ write_id(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 template<class Ostream> static Ostream&
 write_type(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 {
-  static const Bit<cl_device_type> nvp[4] = 
+  static const Bit<cl_device_type> nvp[4] =
     {
       {"CPU", CL_DEVICE_TYPE_CPU}
     , {"GPU", CL_DEVICE_TYPE_GPU}
@@ -293,7 +293,7 @@ write_min_data_type_align_size(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 template<class Ostream> static Ostream&
 write_single_fp_config(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 {
-  static const Bit<cl_device_fp_config> nvp[7] = 
+  static const Bit<cl_device_fp_config> nvp[7] =
     {
       {"Denorm", CL_FP_DENORM},
       {"Inf & Quiet NaN", CL_FP_INF_NAN},
@@ -308,7 +308,7 @@ write_single_fp_config(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 template<class Ostream> static Ostream&
 write_global_mem_cache_type(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 {
-  static const Const<cl_device_mem_cache_type> nvp[3] = 
+  static const Const<cl_device_mem_cache_type> nvp[3] =
     {
       {"None", CL_NONE},
       {"Read Only", CL_READ_ONLY_CACHE},
@@ -339,7 +339,7 @@ write_max_constant_args(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 template<class Ostream> static Ostream&
 write_local_mem_type(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 {
-  static const Const<cl_device_local_mem_type> nvp[2] = 
+  static const Const<cl_device_local_mem_type> nvp[2] =
     {
       {"Dedicated", CL_LOCAL},
       {"Global", CL_GLOBAL}
@@ -384,7 +384,7 @@ write_compiler_available(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 template<class Ostream> static Ostream&
 write_execution_capabilities(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 {
-  static const Bit<cl_device_exec_capabilities> nvp[2] = 
+  static const Bit<cl_device_exec_capabilities> nvp[2] =
     {
       {"OpenCL Kernel", CL_EXEC_KERNEL},
       {"Native Kernel", CL_EXEC_NATIVE_KERNEL}
@@ -394,7 +394,7 @@ write_execution_capabilities(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 template<class Ostream> static Ostream&
 write_queue_properties(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 {
-  static const Bit<cl_command_queue_properties> nvp[2] = 
+  static const Bit<cl_command_queue_properties> nvp[2] =
     {
       {"Out of Order Exec", CL_QUEUE_OUT_OF_ORDER_EXEC_MODE_ENABLE},
       {"Queue Profiling", CL_QUEUE_PROFILING_ENABLE}

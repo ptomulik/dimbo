@@ -1,15 +1,16 @@
+#
 # @COPYRIGHT@
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -18,25 +19,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
 
-Import(['env'])
-
-# "Generate" __init__.py 
-env.Substfile(['__init__.py.in'], SUBST_DICT = {})
-# Generate python modules with swig
-overrides = {
-    'LIBS'      : ['dimbo_cl', 'dimbo_format'],
-    'LIBPATH'   : ['../../../cl', '../../../format']
-}
-modules = [ 'OpenCL_Mod', 'Exception_Mod', 'Platform_Mod', 
-            'Platform_Info_Mod', 'Context_Mod', 'Program_Mod' ]
-# Create 'modules.i' from 'modules.i.in'
-env.SwigPyModulesI(modules)
-# Build modules
-for module in modules:
-    env.SwigPyModule(module, **overrides)
-
-# Local Variables:
-# # tab-width:4
-# # indent-tabs-mode:nil
-# # End:
-# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:
+#from String_Mod import *
+#from Vector_Mod import *
+#from List_Mod import *
+#from Map_Mod import *
+#from Exception_Mod import *
+#from Bad_Alloc_Mod import *

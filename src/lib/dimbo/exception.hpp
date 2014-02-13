@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
  * deal in the Software without restriction, including without limitation the
  * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
  * sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -38,7 +38,7 @@ namespace Dimbo {
 
 /** // {{{
  * \ingroup Dimbo_Exception
- * \brief Base class for all %Dimbo exceptions. 
+ * \brief Base class for all %Dimbo exceptions.
  *
  * All %Dimbo exceptions shall be descendants of Dimbo::Exception. Note, that
  * the class is not designated to derive directly from it. For your own
@@ -48,17 +48,17 @@ namespace Dimbo {
  * Do not derive from this class directly. Use Dimbo::Standardized_Exception template
  * class instead.
  *
- * \note 
+ * \note
  * This is dummy class, concrete exceptions should derive also from concrete
- * standard exception(s) using multiple inheritance. 
+ * standard exception(s) using multiple inheritance.
  *
  * \todo Write documentation for class Dimbo::Exception.
  *
  * \todo Develop some code to discourage developers to derive classes
  *       directly from this Dimbo::Exception.
  */ // }}}
-class Exception 
-  { 
+class Exception
+  {
   public:
     /** // {{{
      * \brief Constructor

@@ -4,7 +4,7 @@ src/lib/dimbo/swig/
 This subtree contains swig_ library of ``.swg`` interface files used to generate
 wrappers for *target languages* other than C/C++. The typical library use is to
 ``%include`` appropriate ``.swg`` files into target-language-specific ``.i``
-interface files. 
+interface files.
 
 By wrapping our C++ code, most of the functionality implemented here in C++ is
 available also in other languages. The list of target languages may be further
@@ -29,7 +29,7 @@ Subdirectory          Description
 ==================== ========================================================
 
 When generating wrappers with swig, the top-level directory of this subtree, i.e
-``#/src/lib/dimbo/swig`` must be in swig's include path (the ``-I`` flag). 
+``#/src/lib/dimbo/swig`` must be in swig's include path (the ``-I`` flag).
 
 files that enter bindings: the ``.swg`` files
 :::::::::::::::::::::::::::::::::::::::::::::
@@ -48,7 +48,7 @@ target subtree(s) with bindings definition(s)
 
 Bindings for particular languages are compiled from separate subtrees of dimbo
 source tree. For example, bindings for python are defined under
-``#/src/lib/dimbo/python/``. We'll call them  *target subtrees*. 
+``#/src/lib/dimbo/python/``. We'll call them  *target subtrees*.
 
 A target subtree contains ``SConscript`` files which drive the compilation of
 swig ``.i`` interfaces located under the target subtree. Usually, these target
@@ -67,18 +67,18 @@ files that define modules: the ``_mod.swg`` and ``.i`` files
 There are several files in this subtree that end with ``_mod.swg``. These are
 "module files". A ``_mod.swg`` file usually includes all the contents of a
 module located in other ``.swg`` files (mentioned previously). It, however, has
-no ``%module`` directive. 
+no ``%module`` directive.
 
 The ``_mod.swg`` files are designated for %inclusion in target ``.i`` files.
 It is responsibility of the target subtree to define module names and location of
 ``.i`` files (target subtree layout don't have to be same as the swig
 subtree). For python language, for example, we have such a correspondence:
 
-- ``#/build/lib/dimbo/python/Dimbo/Exception_Mod.i`` %includes 
+- ``#/build/lib/dimbo/python/Dimbo/Exception_Mod.i`` %includes
   ``dimbo/exception_mod.swg``
-- ``#/build/lib/dimbo/python/Dimbo/Cl/Exception_Mod.i`` %includes 
+- ``#/build/lib/dimbo/python/Dimbo/Cl/Exception_Mod.i`` %includes
   ``dimbo/cl/exception_mod.swg``
-- ``#/build/lib/dimbo/python/Dimbo/Cl/Platform_Mod.i`` %includes 
+- ``#/build/lib/dimbo/python/Dimbo/Cl/Platform_Mod.i`` %includes
   ``dimbo/cl/platform_mod.swg``
 
 ``modules.i``
@@ -106,7 +106,7 @@ example, if ``#/build/lib/dimbo/python/Dimbo/Exception_Mod.i`` %includes
 The constant name ``DIMBO_EXCEPTION_MOD_I`` above is created as follows:
 
 #. strip ``.swg`` suffix from ``dimbo/exception_mod.swg`` file name,
-#. replace all slashes ``/`` with underscore ``_``, 
+#. replace all slashes ``/`` with underscore ``_``,
 #. convert the result to uppercase,
 #. append ``_I`` suffix
 

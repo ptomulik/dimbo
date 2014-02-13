@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -52,7 +52,7 @@ namespace Cl {
 
 /** // doc: DIMBO_CL_GET_CONTEXT_INFO_EXCEPTIONS {{{
  * \ingroup Dimbo_Cl_Platform
- * \brief List of exceptions that might be thrown by 
+ * \brief List of exceptions that might be thrown by
  *        Dimbo::Cl::get_context_info()
  */ // }}}
 #define DIMBO_CL_GET_CONTEXT_INFO_EXCEPTIONS \
@@ -61,7 +61,7 @@ namespace Cl {
           , DIMBO_CL_OTHER_CL_ERROR
 /** // doc: DIMBO_CL_GET_CONTEXT_INFO_EXCEPTIONS {{{
  * \ingroup Dimbo_Cl_Platform
- * \brief List of exceptions that might be thrown by 
+ * \brief List of exceptions that might be thrown by
  *        Dimbo::Cl::Context::get_info()
  */ // }}}
 #define DIMBO_CL_CONTEXT_GET_INFO_EXCEPTIONS \
@@ -69,7 +69,7 @@ namespace Cl {
           , DIMBO_CL_GET_CONTEXT_INFO_EXCEPTIONS
 /** // doc: DIMBO_CL_GET_CONTEXT_INFO_EXCEPTIONS {{{
  * \ingroup Dimbo_Cl_Platform
- * \brief List of exceptions that might be thrown by 
+ * \brief List of exceptions that might be thrown by
  *        Dimbo::Cl::create_context()
  */ // }}}
 #define DIMBO_CL_CREATE_CONTEXT_EXCEPTIONS \
@@ -81,7 +81,7 @@ namespace Cl {
           , DIMBO_CL_OTHER_CL_ERROR
 /** // doc: DIMBO_CL_GET_CONTEXT_INFO_EXCEPTIONS {{{
  * \ingroup Dimbo_Cl_Platform
- * \brief List of exceptions that might be thrown by 
+ * \brief List of exceptions that might be thrown by
  *        Dimbo::Cl::create_context_from_type()
  */ // }}}
 #define DIMBO_CL_CREATE_CONTEXT_FROM_TYPE_EXCEPTIONS \
@@ -117,14 +117,14 @@ namespace Cl {
  * contexts to OpenCL platform layer. It encapsulates a \c cl_context handle
  * and supports following operations:
  *
- * - context creation (constructors), by calling internally 
+ * - context creation (constructors), by calling internally
  *   \c clCreateContext() and \c clCreateContextFromType(),
  * - automatic reference count management by using internally
  *   \c clRetainContext() and \c clReleaseContext(),
- * - retrieving context information from OpenCL (via class methods), 
+ * - retrieving context information from OpenCL (via class methods),
  *   by invoking internally \c clGetContextInfo().
  *
- * \note Because a Context object maintains internally reference count for 
+ * \note Because a Context object maintains internally reference count for
  *       its \c cl_context handle, the \c cl_context handle is hidden
  *       from users (private). This is intentional, the intent is to force the
  *       usage of Context objects to achieve consistency in the reference count
@@ -154,7 +154,7 @@ private:
   Context();
 protected:
   /** // doc: ctx() {{{
-   * \brief   Get \c cl_context handle held by \c this object. 
+   * \brief   Get \c cl_context handle held by \c this object.
    *
    * \return  The \c cl_context handle held by \c this object.
    */ // }}}
@@ -162,7 +162,7 @@ protected:
     throw( );
   /** // doc: get_valid_ctx() {{{
    * \brief   Check if \c this object is initialized and return \c cl_context
-   *          handle held by this object. 
+   *          handle held by this object.
    *
    * \return  The \c cl_context handle to OpenCL context encapsulated within
    *          this object.
@@ -180,12 +180,12 @@ protected:
    *    \c retain_new is true.
    * \param retain_new
    *    If \c true, the reference count for \c ctx gets increased,
-   * \param release_old 
+   * \param release_old
    *    If \c true, the reference count for old identifier encapsulated to this
    *    end by the object gets decreased,
    *
    * \exception DIMBO_CL_CL_ERROR(CL_INVALID_CONTEXT)
-   *    thrown when the \c retain_new is true and \c ctx is not a valid 
+   *    thrown when the \c retain_new is true and \c ctx is not a valid
    *    \c cl_context handle or when \c release_old is \c true and \c this
    *    object holds an invalid \c cl_context handle.
    */ // }}}
@@ -220,7 +220,7 @@ public:
    *        is returned by the OpenCL implementation that can be used to log
    *        additional information helpful in debugging the error,
    *      - \c user_data is a pointer to user supplied data.
-   * \param user_data 
+   * \param user_data
    *    Will be passed as the \c user_data argument when \c pfn_notify is
    *    called. \c user_data can be NULL.
    *
@@ -260,7 +260,7 @@ public:
    *        is returned by the OpenCL implementation that can be used to log
    *        additional information helpful in debugging the error,
    *      - \c user_data is a pointer to user supplied data.
-   * \param user_data 
+   * \param user_data
    *    Will be passed as the \c user_data argument when \c pfn_notify is
    *    called. \c user_data can be NULL.
    *
@@ -272,11 +272,11 @@ public:
    * defined by \ref DIMBO_CL_CONTEXT_CREATE_FROM_TYPE_EXCEPTIONS constant.
    */ // }}}
   Context(Context_Properties const& properties,
-          cl_device_type device_type, 
+          cl_device_type device_type,
           void(*pfn_notify)(const char* errinfo,
                             const void* private_info,
                             size_t cb,
-                            void* user_data) = NULL, 
+                            void* user_data) = NULL,
           void* user_data = NULL)
     throw( DIMBO_CL_CONTEXT_CREATE_FROM_TYPE_EXCEPTIONS );
   /** // doc: Context(rhs) {{{
@@ -296,7 +296,7 @@ public:
    * reference count for this handle is increased by one during
    * copy-construction by performing an internal call to \c clRetainContext().
    */ // }}}
-  Context(Context const& rhs) 
+  Context(Context const& rhs)
     throw( DIMBO_CL_EXCEPTION(Uninitialized_Context)
          , DIMBO_CL_CL_ERROR_NO(CL_INVALID_CONTEXT) );
 /* FIXME: develop more verbose constant name */
@@ -318,7 +318,7 @@ public:
    *  reference count for handle originating from \c rhs gets increased by
    *  one, as it acquires new user (\c this object). The reference count for
    *  identifier held up to now by \c this object is decreased by one, as it is
-   *  forgotten by one user (namely, by \c this object). 
+   *  forgotten by one user (namely, by \c this object).
    */ // }}}
   Context& operator=(Context const& rhs)
     throw( DIMBO_CL_EXCEPTION(Uninitialized_Context)
@@ -347,7 +347,7 @@ public:
   bool operator != (Context const& rhs) const
     throw();
   /** // {{{
-   * \brief Assignment 
+   * \brief Assignment
    *
    * \exception DIMBO_CL_EXCEPTION(Uninitialized_Context)
    *    thrown when \c rhs is an uninitialized Context object.
@@ -400,18 +400,18 @@ public:
    * In case of errors, this function throws one of the exceptions defined by
    * \ref DIMBO_CL_CONTEXT_GET_INFO_EXCEPTIONS constant.
    */ // }}}
-  void get_info(cl_context_info name, size_t value_size, void* value, 
+  void get_info(cl_context_info name, size_t value_size, void* value,
                 size_t* value_size_ret) const
     throw( DIMBO_CL_CONTEXT_GET_INFO_EXCEPTIONS );
   /** // doc: get_reference_count() {{{
-   * \brief   Get reference count for the OpenCL context referred to by 
+   * \brief   Get reference count for the OpenCL context referred to by
    *          \c this object.
    *
    * \return  The reference count for the OpenCL context referred to by
-   *          \c this object as returned by 
+   *          \c this object as returned by
    *          \c clGetContextInfo(this->_ctx,CL_CONTEXT_REFERENCE_COUNT,...)
    *
-   * In case of errors, the method throws one of the exceptions defined 
+   * In case of errors, the method throws one of the exceptions defined
    * by \ref DIMBO_CL_CONTEXT_GET_INFO_EXCEPTIONS constant.
    */ // }}}
   cl_uint get_reference_count() const
@@ -422,7 +422,7 @@ public:
    * \return  The number of devices in context, as returned by
    *          \clGetContextInfo(this->_ctx,CL_CONTEXT_NUM_DEVICES,...)
    *
-   * In case of errors, the method throws one of the exceptions defined 
+   * In case of errors, the method throws one of the exceptions defined
    * by \ref DIMBO_CL_CONTEXT_GET_INFO_EXCEPTIONS constant.
    */ // }}}
   cl_uint get_num_devices() const
@@ -434,9 +434,9 @@ public:
    *
    * The returned result contains devices as returned by the call
    * \c clGetContextInfo(this->_ctx,CL_CONTEXT_DEVICES,...).
-   * 
+   *
    * In case of errors, this method throws DIMBO_CL_EXCEPTION(Bad_Alloc)
-   * or one of the exceptions defined by 
+   * or one of the exceptions defined by
    * \ref DIMBO_CL_CONTEXT_GET_INFO_EXCEPTIONS constant.
    */ // }}}
   Devices get_devices() const
@@ -448,7 +448,7 @@ public:
    * \return Properties of this OpenCL context.
    *
    * In case of errors, this method throws DIMBO_CL_EXCEPTION(Bad_Alloc)
-   * or one of the exceptions defined by 
+   * or one of the exceptions defined by
    * \ref DIMBO_CL_CONTEXT_GET_INFO_EXCEPTIONS constant.
    */ // }}}
   Context_Properties get_properties() const
@@ -467,7 +467,7 @@ public:
  * \param value_size
  *    Specifies the size in bytes of memory pointed to by \c value. This
  *    size must be greater than or equal to the size of return type as
- *    described in the OpenCL standard (see documentation of 
+ *    described in the OpenCL standard (see documentation of
  *    \c clGetContextInfo()).
  * \param value
  *    A pointer to memory where the appropriate result being queried is
@@ -479,7 +479,7 @@ public:
  * In case of error, this function throws one of the exceptions defined
  * by \ref DIMBO_CL_GET_CONTEXT_INFO_EXCEPTIONS constant.
  */ // }}}
-void 
+void
 get_context_info(cl_context context, cl_context_info name,
                  size_t value_size, void *value,
                  size_t* value_size_ret)
@@ -491,9 +491,9 @@ get_context_info(cl_context context, cl_context_info name,
 cl_context
 create_context(const cl_context_properties* properties,
                cl_uint num_devices,
-               const cl_device_id* devices, 
+               const cl_device_id* devices,
                void(*pfn_notify)(const char* errinfo, const void* private_info,
-                                 size_t cb, void* user_data), 
+                                 size_t cb, void* user_data),
                void* user_data)
   throw( DIMBO_CL_CREATE_CONTEXT_EXCEPTIONS );
 /** // {{{
@@ -504,7 +504,7 @@ cl_context
 create_context_from_type(const cl_context_properties* properties,
                cl_device_type device_type,
                void(*pfn_notify)(const char* errinfo, const void* private_info,
-                                 size_t cb, void* user_data), 
+                                 size_t cb, void* user_data),
                void* user_data)
   throw( DIMBO_CL_CREATE_CONTEXT_FROM_TYPE_EXCEPTIONS );
 } /* namespace Cl */

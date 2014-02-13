@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-/** // doc: dimbo/swig/dimbo/util/obid_vec_common.swg {{{ 
+/** // doc: dimbo/swig/dimbo/util/obid_vec_common.swg {{{
  * \file dimbo/swig/dimbo/util/obid_vec_common.swg
  * \todo Write documentation
  */ // }}}
@@ -52,7 +52,7 @@ public:
   typedef ptrdiff_t difference_type;
   typedef size_t size_type;
 public:
-  
+
   %traits_swigtype(ObT);
   %traits_enum(ObT);
 
@@ -73,7 +73,7 @@ public:
 #ifdef %swig_vector_methods_val
   %swig_vector_methods_val(Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc>);
 #endif
-  
+
   %std_vector_methods_val(ObId_Vec);
 };
 

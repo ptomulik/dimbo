@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
  * deal in the Software without restriction, including without limitation the
  * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
  * sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -61,14 +61,14 @@ namespace Dimbo {
 /** // {{{
  * \brief Representation of single point within source code.
  *
- * This class represents single point within source code. The information 
+ * This class represents single point within source code. The information
  * stored by Std_At object consists of
  * - function name
  * - file name
  * - line number
  *
  *
- * The class is designated to hold the source point for exception thrown 
+ * The class is designated to hold the source point for exception thrown
  * from within the DIMBO (see the Dimbo::Exception::at() method).
  */ // }}}
 class Src_At
@@ -92,7 +92,7 @@ public:
    * - file = ""
    * - line = 0
    */ // }}}
-  Src_At() throw() 
+  Src_At() throw()
   {
     this->set_function("");
     this->set_file("");
@@ -175,7 +175,7 @@ public:
    */ // }}}
   virtual char const* function() const throw()
   {
-    return this->_function; 
+    return this->_function;
   }
   /** // {{{
    * \brief Get the file name of the source file pointed to by this object.
@@ -183,7 +183,7 @@ public:
    */ // }}}
   virtual char const* file() const throw()
   {
-    return this->_file; 
+    return this->_file;
   }
   /** // {{{
    * \brief Get the line of the the source line pointed to by this object.
@@ -199,7 +199,7 @@ public:
    * \brief Assignment operator.
    * \param rhs
    *        An another object, which will be copied to this object.
-   * \return 
+   * \return
    *        The reference to this object.
    */ // }}}
   Src_At& operator=(Src_At const& rhs)

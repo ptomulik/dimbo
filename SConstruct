@@ -31,7 +31,8 @@ env = Environment(tools =  [ 'default'
                            , 'doxyfile'
                            , 'doxygen'
                            , 'protoc'
-                           , 'swig' ],
+                           , 'swig'
+                           , 'swigpy' ],
                   ENV = os.environ )
 
 # Variant directories

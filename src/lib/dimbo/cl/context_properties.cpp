@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/cl/context_properties.cpp 
+// dimbo/cl/context_properties.cpp
 
 /** // doc: dimbo/cl/context_properties.cpp {{{
  * \file dimbo/cl/context_properties.cpp
@@ -110,9 +110,9 @@ assign_array(cl_context_properties const* props, size_t size)
   if(!props && size)
     DIMBO_CL_THROW(Length_Error);
 
-  // temporary object, to keep this one unchanged in case we must 
+  // temporary object, to keep this one unchanged in case we must
   // throw an exception
-  Context_Properties cp; 
+  Context_Properties cp;
   while(size && *props)
     {
       name = *props++; --size;
@@ -124,7 +124,7 @@ assign_array(cl_context_properties const* props, size_t size)
             if(cp.has_platform_id()) DIMBO_CL_THROW(Invalid_Argument);
             cp.set_platform_id((cl_platform_id)value);
             break;
-          case CL_CONTEXT_INTEROP_USER_SYNC: 
+          case CL_CONTEXT_INTEROP_USER_SYNC:
             if(cp.has_interop_user_sync()) DIMBO_CL_THROW(Invalid_Argument);
             cp.set_interop_user_sync((cl_bool)value);
             break;
@@ -168,7 +168,7 @@ platform_id() const
 }
 /* ----------------------------------------------------------------------- */
 cl_bool Context_Properties::
-interop_user_sync() const 
+interop_user_sync() const
   throw(DIMBO_CL_EXCEPTION(Uninitialized))
 {
   if(!this->has_interop_user_sync()) DIMBO_CL_THROW(Uninitialized);

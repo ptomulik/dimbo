@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
 
 // dimbo/cl/context_properties.hpp
 
-/** // doc: dimbo/cl/context_properties.hpp {{{ 
+/** // doc: dimbo/cl/context_properties.hpp {{{
  * \file dimbo/cl/context_properties.hpp
  *
  * This file contains definition of Dimbo::Cl::Context_Properties class,
@@ -97,11 +97,11 @@ namespace Cl {
  *
  * \note
  * Before reading a property from this object (with e.g. platform_id()) always
- * check, if the propery is initialized. For this, use appropriate \c has_ 
+ * check, if the propery is initialized. For this, use appropriate \c has_
  * method, for example has_platform_id(). If you'll try to access a property
  * that is is uninitialized, an exception will be raised.
  */ // }}}
-class Context_Properties 
+class Context_Properties
 {
 private:
   boost::optional<cl_platform_id>  _platform_id;
@@ -125,12 +125,12 @@ public:
    * \param props Pointer to array of properties.
    * \param size Size of the \c props array (may be greater than the size
    *    of actual content contained in array).
-   * 
+   *
    * This constructor takes a pointer to array of cl_context_properties and
    * assigns the properties encoded in the array to the object. The array
-   * format is same as the format of \c properties for OpenCL functions 
+   * format is same as the format of \c properties for OpenCL functions
    * \c clCreateContext() and \c clCreateContextFromType(). The array should
-   * contains a sequence of context property names, each one followed by its 
+   * contains a sequence of context property names, each one followed by its
    * corresponding value. See documentation of assign_array() for more
    * details.
    *
@@ -147,11 +147,11 @@ public:
    *
    * This constructor takes a reference to vector of cl_context_properties and
    * assigns the properties from vector to the object. The vector format
-   * corresponds to the format of \c properties for OpenCL functions 
+   * corresponds to the format of \c properties for OpenCL functions
    * \c clCreateContext() and \c clCreateContextFromType(). The vector should
    * contain a sequence of context property names each one followed by its
    * corresponding value. See documentation of assign_array() for more details.
-   * 
+   *
    * This constructor may throw exceptions specified by
    * DIMBO_CL_CONTEXT_PROPERTIES_ASSIGN_ARRAY_EXCEPTIONS constant. See
    * documentation of assign_array() for details.
@@ -211,7 +211,7 @@ public:
    * corresponding desired value. The list is terminated with 0. Up to \c size
    * elements from the array are processed.
    *
-   * The list of supported properties is described the table below. 
+   * The list of supported properties is described the table below.
    *
    * <table border=1>
    *  <tr>
@@ -234,7 +234,7 @@ public:
    * </table>
    *
    * If the \c props is NULL and the \c size is zero, the object gets reset to
-   * an empty state (all properties are uninitialized). 
+   * an empty state (all properties are uninitialized).
    *
    */ // }}}
   void assign_array(cl_context_properties const* props, size_t size)
@@ -267,7 +267,7 @@ public:
    *  The platform ID property corresponds to the OpenCL context property
    *  denoted by \c CL_CONTEXT_PLATFORM.
    */ // }}}
-  Platform platform() const 
+  Platform platform() const
     throw(DIMBO_CL_EXCEPTION(Uninitialized));
   /** // doc: platform_id() {{{
    * \brief Get the platform ID stored as context property in this object.
@@ -278,7 +278,7 @@ public:
    *  The platform ID property corresponds to the OpenCL context property
    *  denoted by \c CL_CONTEXT_PLATFORM.
    */ // }}}
-  cl_platform_id platform_id() const 
+  cl_platform_id platform_id() const
     throw(DIMBO_CL_EXCEPTION(Uninitialized));
   /** // doc: interop_user_sync() {{{
    * \brief Get the interop_user_sync property stored in this object.

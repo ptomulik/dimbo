@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -53,7 +53,7 @@ namespace Cl {
  * List of exceptions thrown by Dimbo::Cl::get_platform_info() function.
  * The list includes exceptions corresponding to the OpenCL errors returned
  * by \c clGetPlatformInfo():
- * 
+ *
  * - \c CL_INVALID_PLATFORM,
  * - \c CL_INVALID_VALUE,
  * - \c CL_OUT_OF_HOST_MEMORY (first mentioned by OpenCL v1.1).
@@ -94,7 +94,7 @@ namespace Cl {
  *       virtual tables.
  *
  */ // }}}
-class Platform 
+class Platform
 {
 private:
   cl_platform_id _platform_id;
@@ -154,9 +154,9 @@ public:
   }
 #endif
   /** // {{{
-   * \brief Assignment 
+   * \brief Assignment
    *
-   * Assign new platform ID to this proxy object (start proxying to another 
+   * Assign new platform ID to this proxy object (start proxying to another
    * OpenCL platform).
    */ // }}}
   void assign(Platform const& rhs) throw()
@@ -190,12 +190,12 @@ public:
    * initialized). If it is NULL, then the exception
    * DIMBO_CL_EXCEPTION(Uninitialized_Platform) is thrown.
    */ // }}}
-  cl_platform_id get_valid_id() const 
+  cl_platform_id get_valid_id() const
     throw(DIMBO_CL_EXCEPTION(Uninitialized_Platform));
   /** // {{{
    * \brief Query OpenCL platform for certain information.
    *
-   * \param name 
+   * \param name
    *    An enumeration constant that identifies the platform information being
    *    queried. It may be \c CL_PLATFORM_PROFILE, \c CL_PLATFORM_VERSION, and
    *    so on. See OpenCL specification (\c clGetPlatformInfo()) for details.
@@ -214,13 +214,13 @@ public:
    *
    * This function maps directly to \c clGetGetPlatformInfo(). The platform ID
    * encapsulated by this proxy object is used as first argument to \c
-   * clGetPlatformInfo(). 
+   * clGetPlatformInfo().
    *
    * If this object holds uninitialized platform ID, then the method throws
    * exception DIMBO_CL_EXCEPTION(Uninitialized_Platform).
-   * 
+   *
    */ // }}}
-  void get_info(cl_platform_info name, size_t value_size, void* value, 
+  void get_info(cl_platform_info name, size_t value_size, void* value,
                 size_t* value_size_ret) const
     throw( DIMBO_CL_PLATFORM_GET_INFO_EXCEPTIONS );
   /** // {{{
@@ -233,7 +233,7 @@ public:
    * - \c FULL_PROFILE, if the implementation supports the OpenCL
    *   specification (functionality defined as part of the core specification
    *   and does not require any extensions to be supported)
-   * - \c EMBEDDED_PROFILE, if the implementation supports the OpenCL 
+   * - \c EMBEDDED_PROFILE, if the implementation supports the OpenCL
    *   embedded profile. The embedded profile is defined to be a subset
    *   for each version of OpenCL.
    *
@@ -248,7 +248,7 @@ public:
    * \return OpenCL platform version string.
    *
    * This method returns the OpenCL version supported by the implementation.
-   * The returned string is same as that returned by 
+   * The returned string is same as that returned by
    * \c clGetPlatformInfo(this->id(),CL_PLATFORM_VERSION,...)
    * According to OpenCL specification, this version string has the
    * following format:
@@ -261,14 +261,14 @@ public:
    * DIMBO_CL_EXCEPTION(Bad_Alloc).
    */ // }}}
   std::string get_version() const
-    throw( DIMBO_CL_EXCEPTION(Bad_Alloc) 
+    throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
          , DIMBO_CL_PLATFORM_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Query the OpenCL for platform name string.
    * \return The platform name string.
    *
    * This method returns the name of this OpenCL platform.
-   * The returned string is same as that returned by 
+   * The returned string is same as that returned by
    * \c clGetPlatformInfo(this->id(),CL_PLATFORM_NAME,...)
    *
    * In case of error, this method throws one of the exceptions mentioned in
@@ -283,7 +283,7 @@ public:
    * \return The platform vendor string.
    *
    * This method returns vendor string shown by this OpenCL platform.
-   * The returned string is same as that returned by 
+   * The returned string is same as that returned by
    * \c clGetPlatformInfo(this->id(),CL_PLATFORM_VENDOR,...)
    *
    * In case of error, this method throws one of the exceptions mentioned in
@@ -297,12 +297,12 @@ public:
    * \brief Query the OpenCL for platform extensions string
    * \return Space separated list of platform extension names
    *
-   * This method returns a space separated list of extension names (the 
+   * This method returns a space separated list of extension names (the
    * extension names themselves do not contain any spaces) supported by
    * the platform. Extensions defined here must be supported by all devices
    * associated with this platform.
    *
-   * The returned string is same as that returned by 
+   * The returned string is same as that returned by
    * \c clGetPlatformInfo(this->id(),CL_PLATFORM_EXTENSIONS,...)
    *
    * In case of error, this method throws one of the exceptions mentioned in
@@ -322,7 +322,7 @@ public:
  *    The platform ID - one of these returned by Dimbo::Cl::get_platform_ids(),
  *    or can be NULL. If platform is NULL, the behavior is
  *    implementation-defined.
- * \param name 
+ * \param name
  *    An enumeration constant that identifies the platform information being
  *    queried. It may be \c CL_PLATFORM_PROFILE, \c CL_PLATFORM_VERSION, and
  *    so on. See OpenCL specification (\c clGetPlatformInfo()) for details.
@@ -341,13 +341,13 @@ public:
  *
  * This function maps directly to \c clGetGetPlatformInfo(). The platform ID
  * encapsulated by this proxy object is used as first argument to \c
- * clGetPlatformInfo(). 
+ * clGetPlatformInfo().
  *
  * In case of error, this function throws one of the exceptions mentioned in
  * DIMBO_CL_GET_PLATFORM_INFO_EXCEPTIONS.
  */ // }}}
-void 
-get_platform_info(  cl_platform_id platform, 
+void
+get_platform_info(  cl_platform_id platform,
                     cl_platform_info param_name,
                     size_t param_value_size,
                     void* param_value,
@@ -360,7 +360,7 @@ get_platform_info(  cl_platform_id platform,
 #include <dimbo/util/obid_id.hpp>
 
 namespace Dimbo {
-template <> struct obid_id<Dimbo::Cl::Platform> 
+template <> struct obid_id<Dimbo::Cl::Platform>
 {
   typedef cl_platform_id type;
 };

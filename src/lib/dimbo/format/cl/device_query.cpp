@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/format/cl/device_query.cpp 
+// dimbo/format/cl/device_query.cpp
 
 /** // doc: dimbo/format/cl/device_query.cpp {{{
  * @file dimbo/format/cl/device_query.cpp
@@ -40,7 +40,7 @@ operator << ( std::basic_ostream<wchar_t, _Traits>& os
 
 
 template<typename _CharT, typename _Traits>
-std::basic_ostream<_CharT, _Traits>& 
+std::basic_ostream<_CharT, _Traits>&
 operator << ( std::basic_ostream<_CharT, _Traits>& os
             , Dimbo::Cl::Device_Query const& info)
 {
@@ -70,6 +70,6 @@ operator << ( std::basic_ostream<char> & os
             , Dimbo::Cl::Device_Query const& info );
 template std::basic_ostream<wchar_t> &
 operator << ( std::basic_ostream<wchar_t> & os
-            , Dimbo::Cl::Device_Query const& info ); 
+            , Dimbo::Cl::Device_Query const& info );
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

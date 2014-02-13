@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
  * deal in the Software without restriction, including without limitation the
  * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
  * sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
  * OpenCL specification under chapter 4 "The OpenCL Platform Layer". Most of
  * the functionalities is provided in object oriented way, some calls are
  * simplified, OpenCL errors are turned-out into %Dimbo CL exceptions
- * (see \ref Dimbo::Cl::Exception).  All the stuff is made type-safe. 
+ * (see \ref Dimbo::Cl::Exception).  All the stuff is made type-safe.
  * Some objects used to represent platform/device parameters or parameter
  * queries are serializable.
  *
@@ -44,7 +44,7 @@
  * platform. The Dimbo::Cl::Device is used to send queries to single OpenCL
  * device. The Dimbo::Cl::Platform and Dimbo::Cl::Device objects are
  * lightweight. In fact, each of them stores only one attribute &mdash; the
- * platform/device identifier. 
+ * platform/device identifier.
  *
  * The Dimbo::Cl::Platform_Info encapsulates parameters that are result of
  * single query performed on a platform. The Dimbo::Cl::Device_Info

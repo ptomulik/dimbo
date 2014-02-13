@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
 
 // dimbo/cl/platforms.hpp
 
-/** // doc: dimbo/cl/platforms.hpp {{{ 
+/** // doc: dimbo/cl/platforms.hpp {{{
  * \file dimbo/cl/platforms.hpp
  *
  * This file provides functions to retrieve platform identifiers (and platform
@@ -60,7 +60,7 @@ namespace Cl {
 #define DIMBO_CL_GET_PLATFORM_IDS_EXCEPTIONS \
          DIMBO_CL_CL_ERROR_NO(CL_INVALID_VALUE) \
        , DIMBO_CL_CL_ERROR_NO(CL_OUT_OF_HOST_MEMORY) \
-       , DIMBO_CL_OTHER_CL_ERROR 
+       , DIMBO_CL_OTHER_CL_ERROR
 
 /** // {{{ doc: Platforms
  * \ingroup Dimbo_Cl_Platform
@@ -84,7 +84,7 @@ typedef Dimbo::ObId_Vec<Platform> Platforms;
  * DIMBO_CL_GET_PLATFORM_IDS_EXCEPTIONS.
  */ // }}}
 cl_uint
-get_num_platforms() 
+get_num_platforms()
   throw( DIMBO_CL_GET_PLATFORM_IDS_EXCEPTIONS );
 /** // {{{ doc: get_platform_ids()
  * \ingroup Dimbo_Cl_Platform
@@ -101,15 +101,15 @@ get_num_platforms()
  *    \c num_entries or the number of OpenCL platforms available
  * \param num_platforms
  *    Returns the number of OpenCL platforms available. If \c num_platforms is
- *    \c NULL, this argument is ignored 
+ *    \c NULL, this argument is ignored
  *
  * Call to this function maps directly to call to \c clGetPlatformIDs().
  *
  * In case of error, this function throws one of the exceptions defined by
  * DIMBO_CL_GET_PLATFORM_IDS_EXCEPTIONS.
  */ // }}}
-void 
-get_platform_ids(   cl_uint num_entries, 
+void
+get_platform_ids(   cl_uint num_entries,
                     cl_platform_id* platforms,
                     cl_uint* num_platforms)
   throw( DIMBO_CL_GET_PLATFORM_IDS_EXCEPTIONS );

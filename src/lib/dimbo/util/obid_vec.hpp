@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
 
 // dimbo/cl/util/obid_vec.hpp
 
-/** // doc: dimbo/cl/util/obid_vec.hpp {{{ 
+/** // doc: dimbo/cl/util/obid_vec.hpp {{{
  * \file dimbo/cl/util/obid_vec.hpp
  * \todo Write documentation
  */ // }}}
@@ -46,7 +46,7 @@ namespace Dimbo {
 template <class ObT
          , class IdT = typename obid_id<ObT>::type
          , class ObAlloc = std::allocator<ObT>
-         , class IdAlloc = std::allocator<IdT> 
+         , class IdAlloc = std::allocator<IdT>
          >
 class ObId_Vec
 {
@@ -109,8 +109,8 @@ public:
    * \todo Write documentation
    */ // }}}
   explicit ObId_Vec(ob_allocator_type const& ob_alloc = ob_allocator_type(),
-                    id_allocator_type const& id_alloc = id_allocator_type()) 
-    : _obs(ob_alloc), _ids(id_alloc) 
+                    id_allocator_type const& id_alloc = id_allocator_type())
+    : _obs(ob_alloc), _ids(id_alloc)
   {
   }
   /** // doc: ObId_Vec() {{{
@@ -127,7 +127,7 @@ public:
    * \todo Write documentation
    */ // }}}
   template <class InputIterator>
-  ObId_Vec(InputIterator first, InputIterator last, 
+  ObId_Vec(InputIterator first, InputIterator last,
            ob_allocator_type const& ob_alloc = ob_allocator_type(),
            id_allocator_type const& id_alloc = id_allocator_type())
     : _obs(ob_alloc), _ids(id_alloc)
@@ -144,8 +144,8 @@ public:
   /** // doc: ObId_Vec() {{{
    * \todo Write documentation
    */ // }}}
-  explicit ObId_Vec(ob_vector const & obs, 
-                    ob_allocator_type const& ob_alloc = ob_allocator_type(), 
+  explicit ObId_Vec(ob_vector const & obs,
+                    ob_allocator_type const& ob_alloc = ob_allocator_type(),
                     id_allocator_type const& id_alloc = id_allocator_type())
     : _obs(ob_alloc), _ids(id_alloc)
   {
@@ -155,14 +155,14 @@ public:
    * \todo Write documentation
    */ // }}}
   explicit ObId_Vec(id_vector const & ids,
-                    ob_allocator_type const& ob_alloc = ob_allocator_type(), 
+                    ob_allocator_type const& ob_alloc = ob_allocator_type(),
                     id_allocator_type const& id_alloc = id_allocator_type())
     : _obs(ob_alloc), _ids(id_alloc)
   {
     this->assign(ids.begin(), ids.end());
   }
   /** // doc: ~ObId_Vec() {{{
-   * \todo Write documentation 
+   * \todo Write documentation
    */ // }}}
   ~ObId_Vec()
   {
@@ -390,7 +390,7 @@ public:
   iterator insert(iterator pos, value_type const& val)
   {
     difference_type i = pos - this->begin();
-    return iterator( this->_obs.insert(this->_obs.begin() + i, 
+    return iterator( this->_obs.insert(this->_obs.begin() + i,
                                        ob_value_type(val))
                    , this->_ids.insert(this->_ids.begin() + i,
                                        id_value_type(val)) );
@@ -412,12 +412,12 @@ public:
   {
     difference_type i = pos - this->begin();
     this->_obs.insert(
-      this->_obs.begin() + i, 
+      this->_obs.begin() + i,
       Conv_Iter<InputIterator,ob_value_type>(first),
       Conv_Iter<InputIterator,ob_value_type>(last)
     );
     this->_ids.insert(
-      this->_ids.begin() + i, 
+      this->_ids.begin() + i,
       Conv_Iter<InputIterator,id_value_type>(first),
       Conv_Iter<InputIterator,id_value_type>(last)
     );
@@ -440,7 +440,7 @@ public:
     difference_type i_l = last - this->begin();
     return iterator(
       this->_obs.erase(this->_obs.begin() + i_f, this->_obs.begin() + i_l),
-      this->_ids.erase(this->_ids.begin() + i_f, this->_ids.begin() + i_l) 
+      this->_ids.erase(this->_ids.begin() + i_f, this->_ids.begin() + i_l)
     );
   }
   /** // doc: swap() const {{{
@@ -552,7 +552,7 @@ bool operator > (Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& lhs,
  * \todo Write documentation
  */ // }}}
 template <class ObT, class IdT, class ObAlloc, class IdAlloc>
-bool operator >= (Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& lhs, 
+bool operator >= (Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& lhs,
                   Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& rhs)
 {
   return static_cast<std::vector<IdT,IdAlloc> const&>(lhs)

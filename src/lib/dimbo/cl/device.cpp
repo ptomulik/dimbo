@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,7 +43,7 @@ _get_string_info(Device const& dev, cl_device_info name)
   dev.get_info(name, 0, NULL, &size);
 
   boost::shared_array<char> str;
-  try { str = boost::shared_array<char>(new char[size]); } 
+  try { str = boost::shared_array<char>(new char[size]); }
   catch(std::bad_alloc const& e) { DIMBO_CL_THROW(Bad_Alloc); }
   dev.get_info(name, size, str.get(), &size);
   try { return std::string(str.get()); }
@@ -57,7 +57,7 @@ _get_pod_info(Device const& dev, cl_device_info name)
   dev.get_info(name,sizeof(value),&value,NULL);
   return value;
 }
-template<typename T> static std::vector<T> 
+template<typename T> static std::vector<T>
 _get_vec_info(Device const& dev, cl_device_info name)
   throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
        , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
@@ -74,7 +74,7 @@ _get_vec_info(Device const& dev, cl_device_info name)
 }
 /* ------------------------------------------------------------------------ */
 cl_device_id Device::
-get_valid_id() const 
+get_valid_id() const
   throw(DIMBO_CL_EXCEPTION(Uninitialized_Device))
 {
   if(!this->is_initialized())
@@ -87,7 +87,7 @@ get_info( cl_device_info name, size_t value_size, void* value,
           size_t* value_size_ret) const
   throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
 {
-  get_device_info(this->get_valid_id(),name,value_size,value,value_size_ret); 
+  get_device_info(this->get_valid_id(),name,value_size,value,value_size_ret);
 }
 /* ------------------------------------------------------------------------ */
 cl_device_type Device::
@@ -347,7 +347,7 @@ cl_device_mem_cache_type Device::
 get_global_mem_cache_type() const
   throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
 {
-  return _get_pod_info<cl_device_mem_cache_type>(*this, 
+  return _get_pod_info<cl_device_mem_cache_type>(*this,
     CL_DEVICE_GLOBAL_MEM_CACHE_TYPE);
 }
 /* ------------------------------------------------------------------------ */
@@ -383,7 +383,7 @@ cl_device_local_mem_type Device::
 get_local_mem_type() const
   throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
 {
-  return _get_pod_info<cl_device_local_mem_type>(*this, 
+  return _get_pod_info<cl_device_local_mem_type>(*this,
     CL_DEVICE_LOCAL_MEM_TYPE);
 }
 /* ------------------------------------------------------------------------ */
@@ -440,7 +440,7 @@ cl_device_exec_capabilities Device::
 get_execution_capabilities() const
   throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
 {
-  return _get_pod_info<cl_device_exec_capabilities>(*this, 
+  return _get_pod_info<cl_device_exec_capabilities>(*this,
     CL_DEVICE_EXECUTION_CAPABILITIES);
 }
 /* ------------------------------------------------------------------------ */
@@ -448,7 +448,7 @@ cl_command_queue_properties Device::
 get_queue_properties() const
   throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
 {
-  return _get_pod_info<cl_command_queue_properties>(*this, 
+  return _get_pod_info<cl_command_queue_properties>(*this,
     CL_DEVICE_QUEUE_PROPERTIES);
 }
 /* ------------------------------------------------------------------------ */
@@ -530,7 +530,7 @@ get_device_info(  cl_device_id device,
   throw( DIMBO_CL_GET_DEVICE_INFO_EXCEPTIONS )
 {
   cl_int err = clGetDeviceInfo(device, param_name, param_value_size,
-                               param_value, param_value_size_ret); 
+                               param_value, param_value_size_ret);
   switch(err)
     {
       case CL_SUCCESS:            break;

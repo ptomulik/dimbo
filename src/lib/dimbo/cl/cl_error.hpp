@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -23,7 +23,7 @@
 // dimbo/cl/cl_error.hpp
 
 /** // doc:  dimbo/cl/cl_error.hpp {{{
- * \todo Write documentation 
+ * \todo Write documentation
  */ // }}}
 #ifndef DIMBO_CL_CL_ERROR_HPP_INCLUDED
 #define DIMBO_CL_CL_ERROR_HPP_INCLUDED
@@ -33,7 +33,7 @@
 #include <dimbo/cl/exception.hpp>
 #include <CL/cl.h>
 
-namespace Dimbo { 
+namespace Dimbo {
 /** // {{{
  * \todo Write documentation (look for better place for it)
  */ // }}}
@@ -46,9 +46,9 @@ namespace Cl {
  * Do not derive from this class. Use Dimbo::Standardized_Exception template
  * class instead.
  *
- * \note 
+ * \note
  * This is dummy class, concrete exceptions should derive also from concrete
- * standard exception(s) using multiple inheritance. 
+ * standard exception(s) using multiple inheritance.
  *
  * \todo Write documentation
  */ // }}}

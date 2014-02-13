@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/cl/context.cpp 
+// dimbo/cl/context.cpp
 
 /** // doc: dimbo/cl/context.cpp {{{
  * \file dimbo/cl/context.cpp
@@ -46,7 +46,7 @@ _get_pod_info(Context const& ctx, cl_context_info name)
 }
 /* ------------------------------------------------------------------------ */
 template<typename T> static std::vector<T>
-_get_vec_info(Context const& ctx, cl_context_info name) 
+_get_vec_info(Context const& ctx, cl_context_info name)
   throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
        , DIMBO_CL_CONTEXT_GET_INFO_EXCEPTIONS )
 {
@@ -66,7 +66,7 @@ _set_id(cl_context ctx, bool retain_new, bool release_old)
     throw( DIMBO_CL_CL_ERROR_NO(CL_INVALID_CONTEXT) )
 {
   if(ctx != this->_ctx) // Avoid unintended deletion by clReleaseContext()
-    { 
+    {
       if(release_old)
         {
           cl_int err = clReleaseContext(this->get_valid_ctx());
@@ -110,11 +110,11 @@ Context(Context_Properties const& props, Devices const& devs,
 /* ------------------------------------------------------------------------ */
 Context::
 Context(const Context_Properties& props,
-        cl_device_type device_type, 
+        cl_device_type device_type,
         void(*pfn_notify)(const char* errinfo,
                           const void* private_info,
                           size_t cb,
-                          void* user_data), 
+                          void* user_data),
         void* user_data)
   throw( DIMBO_CL_CONTEXT_CREATE_FROM_TYPE_EXCEPTIONS )
 {
@@ -128,7 +128,7 @@ Context(const Context_Properties& props,
 }
 /* ------------------------------------------------------------------------ */
 Context::
-Context(const Context& rhs) 
+Context(const Context& rhs)
   throw( DIMBO_CL_EXCEPTION(Uninitialized_Context)
        , DIMBO_CL_CL_ERROR_NO(CL_INVALID_CONTEXT) )
 {
@@ -182,7 +182,7 @@ operator=(Context const& rhs)
 }
 /* ------------------------------------------------------------------------ */
 bool Context::
-operator == (Context const& rhs) const 
+operator == (Context const& rhs) const
   throw()
 {
   return this->_ctx == rhs._ctx;
@@ -197,7 +197,7 @@ operator != (Context const& rhs) const
 /* ------------------------------------------------------------------------ */
 void Context::
 assign(Context const& rhs)
-  throw( DIMBO_CL_EXCEPTION(Uninitialized_Context) 
+  throw( DIMBO_CL_EXCEPTION(Uninitialized_Context)
        , DIMBO_CL_CL_ERROR_NO(CL_INVALID_CONTEXT) )
 {
   if(&rhs != this)
@@ -240,7 +240,7 @@ get_properties() const
   return Context_Properties(props);
 }
 /* ------------------------------------------------------------------------ */
-void 
+void
 get_context_info(cl_context ctx, cl_context_info name,
                  size_t value_size, void *value,
                  size_t* value_size_ret)
@@ -259,9 +259,9 @@ get_context_info(cl_context ctx, cl_context_info name,
 cl_context
 create_context(const cl_context_properties* properties,
                cl_uint num_devices,
-               const cl_device_id* devices, 
+               const cl_device_id* devices,
                void(*pfn_notify)(const char* errinfo, const void* private_info,
-                                 size_t cb, void* user_data), 
+                                 size_t cb, void* user_data),
                void* user_data)
   throw( DIMBO_CL_CREATE_CONTEXT_EXCEPTIONS )
 {
@@ -287,7 +287,7 @@ cl_context
 create_context_from_type(const cl_context_properties* properties,
                cl_device_type device_type,
                void(*pfn_notify)(const char* errinfo, const void* private_info,
-                                 size_t cb, void* user_data), 
+                                 size_t cb, void* user_data),
                void* user_data)
   throw( DIMBO_CL_CREATE_CONTEXT_FROM_TYPE_EXCEPTIONS )
 {

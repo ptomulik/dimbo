@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
 
 // dimbo/util/obid_iter_methods.hpp
 
-/** // doc: dimbo/util/obid_iter_methods.hpp {{{ 
+/** // doc: dimbo/util/obid_iter_methods.hpp {{{
  * \file dimbo/util/obid_iter_methods.hpp
  * \todo Write documentation
  */ // }}}
@@ -43,29 +43,29 @@ typename ObId_Iter<ObIterT,IdIterT, ObIterC,IdIterC>::reference
 ObId_Iter<ObIterT,IdIterT, ObIterC,IdIterC>::
 operator [] (difference_type n) const
 {
-  ObId_Iter itn(*this);  
+  ObId_Iter itn(*this);
   return reference(itn.advance(n));
 }
 
 } // namespace Dimbo
 
 template <class ObIterT, class IdIterT, class ObIterC, class IdIterC>
-Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>& 
+Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>&
 operator += (Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>& it,
              typename Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>::difference_type n)
 {
   return it.advance(n);
 }
 template <class ObIterT, class IdIterT, class ObIterC, class IdIterC>
-Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>& 
-operator -= (Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>& it, 
+Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>&
+operator -= (Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>& it,
              typename Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>::difference_type n)
 {
   return it.advance(-n);
 }
 template <class ObIterT, class IdIterT, class ObIterC, class IdIterC>
 Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>
-operator + (Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC> const& a, 
+operator + (Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC> const& a,
             typename Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>::difference_type n)
 {
   Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC> x(a);
@@ -81,7 +81,7 @@ operator + (typename Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>::differen
 }
 template <class ObIterT, class IdIterT, class ObIterC, class IdIterC>
 Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>
-operator - (Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC> const& a, 
+operator - (Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC> const& a,
             typename Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC>::difference_type n)
 {
   Dimbo::ObId_Iter<ObIterT,IdIterT,ObIterC,IdIterC> x(a);

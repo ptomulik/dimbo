@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
 
 // dimbo/cl/other_cl_error.hpp
 
-/** // doc: dimbo/cl/other_cl_error.hpp {{{ 
+/** // doc: dimbo/cl/other_cl_error.hpp {{{
  * \file dimbo/cl/other_cl_error.hpp
  * \todo Write documentation
  */ // }}}
@@ -53,13 +53,13 @@ class Other_Cl_Error
     /** // {{{
      * \todo Write documentation
      */ // }}}
-    Other_Cl_Error(cl_int e, Src_At const& at) throw() 
+    Other_Cl_Error(cl_int e, Src_At const& at) throw()
       : Standardized_Exception(at)
       ,  _cl_error(e) { }
     /** // {{{
      * \todo Write documentation
      */ // }}}
-    virtual ~Other_Cl_Error() throw() {} 
+    virtual ~Other_Cl_Error() throw() {}
     /** // {{{
      * \todo Write documentation
      */ // }}}
@@ -72,7 +72,7 @@ class Other_Cl_Error
      */ // }}}
     virtual cl_int cl_error() const throw()
     {
-      return this->_cl_error; 
+      return this->_cl_error;
     }
   };
 

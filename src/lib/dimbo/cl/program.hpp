@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
 
 // dimbo/cl/program.hpp
 
-/** // doc: dimbo/cl/program.hpp {{{ 
+/** // doc: dimbo/cl/program.hpp {{{
  * \file dimbo/cl/program.hpp
  * \todo Write documentation
  */ // }}}
@@ -84,7 +84,7 @@ public:
   /** // doc: ~Program() {{{
    * \todo Write documentation for class Program_Interface
    */ // }}}
-  Program(const Program& rhs) 
+  Program(const Program& rhs)
     throw( DIMBO_CL_EXCEPTION(Uninitialized_Program)
          , DIMBO_CL_CL_ERROR_NO(CL_INVALID_PROGRAM) );
 /* FIXME: develop more verbose constant name */
@@ -98,7 +98,7 @@ public:
          , DIMBO_CL_CL_ERROR_NO(CL_INVALID_PROGRAM) );
 #endif
   /** // {{{
-   * \brief Assignment 
+   * \brief Assignment
    * \todo Finish documentation
    */ // }}}
   void assign(Program const& rhs)
@@ -160,7 +160,7 @@ public:
 /** // {{{
  * \todo Write documentation
  */ // }}}
-void 
+void
 get_program_info(cl_program program, cl_program_info name,
                  size_t value_size, void *value,
                  size_t* value_size_ret)

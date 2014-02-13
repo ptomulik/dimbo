@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/app/clinfo/build_platform_query.cpp 
+// dimbo/app/clinfo/build_platform_query.cpp
 
 /** // doc: dimbo/app/clinfo/build_platform_query.cpp {{{
  * \file dimbo/app/clinfo/build_platform_query.cpp
@@ -32,7 +32,7 @@ namespace Dimbo {
 namespace App {
 namespace Clinfo {
 
-static void 
+static void
 _select_vector_width_info(Dimbo::Cl::Device_Query& query, bool flag)
 {
   query.select_preferred_vector_width_char(flag);
@@ -130,7 +130,7 @@ Dimbo::Cl::Device_Query
 create_device_query( Dimbo::App::Options::Options_Map const& om )
 {
   Dimbo::Cl::Device_Query query;
- 
+
   if(om.count("short") && om["short"].as<bool>())
     {
       query.select_none();

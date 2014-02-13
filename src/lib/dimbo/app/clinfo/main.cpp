@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/app/clinfo/main.cpp 
+// dimbo/app/clinfo/main.cpp
 
 /** // doc: dimbo/app/clinfo/main.cpp {{{
  * \file dimbo/app/clinfo/main.cpp
@@ -59,7 +59,7 @@ process_help_options( Dimbo::App::Options::Options_Map const& om
   if(om.count("help") || om.count("help-detail") || om.count("help-platform")
      || om.count("help-device") )
     {
-      std::cout << _("Usage: ") << "dimbo-clinfo [options]" 
+      std::cout << _("Usage: ") << "dimbo-clinfo [options]"
                 << std::endl << std::endl;
     }
   if(om.count("help"))
@@ -148,9 +148,9 @@ run()
     return EXIT_SUCCESS;
 
   bool xml = false;
-  if(this->options_map().count("format")) 
+  if(this->options_map().count("format"))
     {
-      if(this->options_map()["format"].as<std::string>() == "xml") 
+      if(this->options_map()["format"].as<std::string>() == "xml")
         xml = true;
     }
 
@@ -167,7 +167,7 @@ run()
         indent = this->options_map()["indent"].as<int>();
       display_platform_layer( std::cout
                             , create_platform_query(this->options_map())
-                            , create_device_query(this->options_map()) 
+                            , create_device_query(this->options_map())
                             , indent );
     }
   return EXIT_SUCCESS;

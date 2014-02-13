@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
 
 // dimbo/app/options/option_value.hpp
 
-/** // doc: dimbo/app/options/option_value.hpp {{{ 
+/** // doc: dimbo/app/options/option_value.hpp {{{
  * \file dimbo/app/options/option_value.hpp
  * \todo Write documentation
  */ // }}}
@@ -44,7 +44,7 @@
  *   (BOOST_PROGRAM_OPTIONS_VERSION <= 2) */
 
 
-#if BOOST_PROGRAM_OPTIONS_NEED_VALUE_NAME_FIX 
+#if BOOST_PROGRAM_OPTIONS_NEED_VALUE_NAME_FIX
 namespace boost { namespace program_options {
 extern BOOST_PROGRAM_OPTIONS_DECL std::string arg;
 }}
@@ -58,7 +58,7 @@ namespace Options {
  * \todo Write documentation
  */ // }}}
 template <class T, class charT = char>
-class Option_Value 
+class Option_Value
   : public boost::program_options::typed_value<T, charT>
 {
 public:
@@ -103,7 +103,7 @@ private:
  * \todo Write documentation
  */ // }}}
 template<class T>
-Option_Value<T>* 
+Option_Value<T>*
 value(T* v)
 { // {{{
   Option_Value<T> *r = new Option_Value<T>(v);
@@ -114,7 +114,7 @@ value(T* v)
  * \todo Write documentation
  */ // }}}
 template<class T>
-Option_Value<T>* 
+Option_Value<T>*
 value()
 { // {{{
   return Dimbo::App::Options::value<T>(0);
@@ -124,7 +124,7 @@ value()
  * \todo Write documentation
  */ // }}}
 template<class T>
-Option_Value<T, wchar_t>* 
+Option_Value<T, wchar_t>*
 wvalue(T* v)
 { // {{{
   Option_Value<T,wchar_t>* r = new Option_Value<T,wchar_t>(v);
@@ -135,7 +135,7 @@ wvalue(T* v)
  * \todo Write documentation
  */ // }}}
 template<class T>
-Option_Value<T, wchar_t>* 
+Option_Value<T, wchar_t>*
 wvalue()
 { // {{{
   return Dimbo::App::Options::wvalue<T>(0);

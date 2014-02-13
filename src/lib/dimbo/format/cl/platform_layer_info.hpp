@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,7 +22,7 @@
 
 // dimbo/format/cl/platform_layer_info.hpp
 
-/** // doc: dimbo/format/cl/platform_layer_info.hpp {{{ 
+/** // doc: dimbo/format/cl/platform_layer_info.hpp {{{
  * @file dimbo/format/cl/platform_layer_info.hpp
  * @todo Write documentation
  */ // }}}
@@ -38,12 +38,12 @@ namespace Format {
 /** // doc: write(os, info, pre) {{{
  * \todo Write documentation
  */ // }}}
-template <class Ostream> Ostream& 
+template <class Ostream> Ostream&
 write(Ostream& os, Dimbo::Cl::Platform_Layer_Info const& info, int ind);
 /** // doc: write(os, info) {{{
  * \todo Write documentation
  */ // }}}
-template <class Ostream> Ostream& 
+template <class Ostream> Ostream&
 write(Ostream& os, Dimbo::Cl::Platform_Layer_Info const& info);
 
 } /* namespace Format */
@@ -53,7 +53,7 @@ write(Ostream& os, Dimbo::Cl::Platform_Layer_Info const& info);
  * \todo Write documentation
  */ // }}}
 template<typename _CharT, typename _Traits>
-std::basic_ostream<_CharT, _Traits>& 
+std::basic_ostream<_CharT, _Traits>&
 operator << ( std::basic_ostream<_CharT, _Traits>& os
             , Dimbo::Cl::Platform_Layer_Info const& info);
 

@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to
  * deal in the Software without restriction, including without limitation the
  * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
  * sell copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -54,7 +54,7 @@
  *   }
  * @endcode
  * or he may wish to handle only exceptions that fall to predefined `categry'
- * in %Dimbo - for example exceptions raised when invoking OpenCL functions 
+ * in %Dimbo - for example exceptions raised when invoking OpenCL functions
  * (error codes returned from OpenCL functions converted to exception classes)
  * @code
  *   try {
@@ -101,7 +101,7 @@
  * \ref Dimbo_Exception_developer_view).
  *
  *
- * Below we provide several simple examples, about how the %Dimbo exceptions 
+ * Below we provide several simple examples, about how the %Dimbo exceptions
  * might be handled.
  *
  * @code
@@ -110,10 +110,10 @@
  *   // Dimbo calls
  * } catch (const Dimbo::Exception& e) {
  *   // Catch all Dimbo exceptions
- *   std::cout << "File:" << e.at().file() << std::endl; 
- *   std::cout << "Line:" << e.at().line() << std::endl; 
- *   std::cout << "Function:" << e.at().function() << std::endl; 
- *   std::cout << e.std_except().what() << std::endl; 
+ *   std::cout << "File:" << e.at().file() << std::endl;
+ *   std::cout << "Line:" << e.at().line() << std::endl;
+ *   std::cout << "Function:" << e.at().function() << std::endl;
+ *   std::cout << e.std_except().what() << std::endl;
  * }
  * @endcode
  *
@@ -123,10 +123,10 @@
  *   // Dimbo calls
  * } catch (const Dimbo::Cl::Exception& e) {
  *   // Catch only Dimbo CL exceptions
- *   std::cout << "File:" << e.at().file() << std::endl; 
- *   std::cout << "Line:" << e.at().line() << std::endl; 
- *   std::cout << "Function:" << e.at().function() << std::endl; 
- *   std::cout << e.std_except().what() << std::endl; 
+ *   std::cout << "File:" << e.at().file() << std::endl;
+ *   std::cout << "Line:" << e.at().line() << std::endl;
+ *   std::cout << "Function:" << e.at().function() << std::endl;
+ *   std::cout << e.std_except().what() << std::endl;
  * }
  * @endcode
  *
@@ -136,9 +136,9 @@
  *     // Dimbo calls
  *   } catch (const Dimbo::Exception & e) {
  *     // Print source information and rethrow the exception
- *     std::cout << "File:" << e.at().file() << std::endl; 
- *     std::cout << "Line:" << e.at().line() << std::endl; 
- *     std::cout << "Function:" << e.at().function() << std::endl; 
+ *     std::cout << "File:" << e.at().file() << std::endl;
+ *     std::cout << "Line:" << e.at().line() << std::endl;
+ *     std::cout << "Function:" << e.at().function() << std::endl;
  *     throw;
  *   }
  * } catch(const std::exception& e) {
@@ -165,7 +165,7 @@
  * Assume, we have to create a new category of %Dimbo exceptions under
  * Dimbo::Foo namespace.
  * \snippet new_exception.cpp Namespaces_Start
- * 
+ *
  * Now we define within our namespace a new class, which will be used as a
  * beginning of our branch and will fund a base for our new exceptions.
  * \snippet new_exception.cpp Exception
@@ -174,16 +174,16 @@
  * We have no default constructor in Dimbo::Foo::Exception. This is, because
  * the base class  Dimbo::Exception has private default constructor (it's not
  * default-constructible). The reason is to force developers to initialize each
- * exception at very beginning with the information about the exception 
+ * exception at very beginning with the information about the exception
  * origin (source file name, line number, function name). A special class
  * Dimbo::Src_At keeps this information encapsulated and macro \ref DIMBO_HERE
  * is provided to facilitate exception initialization.
  *
- * We'll use intermediate template class Dimbo::Standardized_Exception 
+ * We'll use intermediate template class Dimbo::Standardized_Exception
  * to glue each newly defined exception with selected standard exception.
  * The template has three parameters. First one is the name of a base class,
  * that we want to use (the branch). Second parameter is a placeholder for the
- * name of a standard exception class that will be attached to our exception 
+ * name of a standard exception class that will be attached to our exception
  * (it may be for exampe std::exception, or std::logic_error). Third template
  * parameter defines what type of argument must be provided to the constructor
  * of StdClass. For known standard exceptions, the type is computed by
@@ -204,7 +204,7 @@
  *
  * The output from above program will be as follows
  * \verbatim
-   user@host:$ ./new_exception 
+   user@host:$ ./new_exception
    foo exception: src/lib/dimbo/examples/new_exception/new_exception.cpp:134:Exception1 domain error
    std exception: Exception1 domain error
    foo exception: src/lib/dimbo/examples/new_exception/new_exception.cpp:150:std::bad_alloc

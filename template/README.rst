@@ -8,7 +8,7 @@ source file creation.
 
 Files within subdirectories are usually used by maintainer scripts. For example,
 files from ``template/addclass/`` are used by ``bin/addclass`` script. Don't
-use them to create sources by hand. 
+use them to create sources by hand.
 
 Other files are used to create new sources by hand (by copying the file to a
 desired location and changing its name). There is a list of such templates:

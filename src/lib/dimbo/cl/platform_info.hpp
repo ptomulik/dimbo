@@ -1,16 +1,16 @@
 /*
  * @COPYRIGHT@
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
  * to deal in the Software without restriction, including without limitation
  * the rights to use, copy, modify, merge, publish, distribute, sublicense,
  * and/or sell copies of the Software, and to permit persons to whom the
  * Software is furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,9 +22,9 @@
 
 // dimbo/cl/platform_info.hpp
 
-/** // doc: dimbo/cl/platform_info.hpp {{{ 
+/** // doc: dimbo/cl/platform_info.hpp {{{
  * \file dimbo/cl/platform_info.hpp
- * 
+ *
  * This file contains definition of Dimbo::Cl::Platform_Info class, which
  * encapsulates several parameters retrieved from OpenCL platfrom.
  */ // }}}
@@ -50,13 +50,13 @@ namespace Cl {
  * \ingroup Dimbo_Cl_Platform
  * \brief Encapsulates parameters retrieved from OpenCL platfrom.
  *
- * An object of type Platform_Info keeps the result of composite query to 
+ * An object of type Platform_Info keeps the result of composite query to
  * a single OpenCL platform. It may be used, for example, to pass that
  * information between comuters, serialize it or write it to a stream.
  * It also keeps a copy of recently used Platform_Query object to remember
  * which parameters were obtained from OpenCL platform and are actually valid.
  */ // }}}
-class Platform_Info 
+class Platform_Info
 {
 public:
 // FIXME: replace with more verbose constant, e.g. DIMBO_USE_BOOST_SERIALIZATION
@@ -179,7 +179,7 @@ private:
   {
     using boost::serialization::make_nvp;
     ar & make_nvp("last_query", _last_query);
-    ar & make_nvp("id", _id); 
+    ar & make_nvp("id", _id);
     ar & make_nvp("profile", _profile);
     ar & make_nvp("version", _version);
     ar & make_nvp("name", _name);
