@@ -401,8 +401,8 @@ public:
   void insert(iterator pos, size_type n, value_type const& val)
   {
     difference_type i = pos - this->begin();
-    this->_obs.insert(this->_obs.begin() + i, ob_value_type(val));
-    this->_ids.insert(this->_ids.begin() + i, id_value_type(val));
+    this->_obs.insert(this->_obs.begin() + i, n, ob_value_type(val));
+    this->_ids.insert(this->_ids.begin() + i, n, id_value_type(val));
   }
   /** // doc: insert() const {{{
    * \todo Write documentation

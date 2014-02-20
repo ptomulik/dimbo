@@ -20,10 +20,21 @@
 
 Import('env')
 
+import re
+
 # Default compilation flags for all subdirs
-env.Append( CXXFLAGS = '-g -O2' )
-env.Append( CXXFLAGS = '-Werror -Wall -Wextra' )
-env.Append( CXXFLAGS = '-ansi -std=c++0x -pedantic' )
+env.Append( CCFLAGS = '-g' )
+if re.match(r'^(yes|true|1)$', env.get('DIMBO_ENABLE_GCOV','no'), re.I):
+    env.Append( CCFLAGS = '-O0 -ftest-coverage -fprofile-arcs' )
+    env.Append( LIBS = 'gcov' )
+    env.Append( LINKFLAGS = '-coverage' )
+else:
+    env.Append( CCFLAGS = '-O2' )
+
+env.Append( CCFLAGS = '-Werror -Wall -Wextra -pedantic' )
+env.Append( CFLAGS = '-ansi -std=c1x' )
+env.Append( CXXFLAGS = '-ansi -std=c++0x' )
+
 
 subdirs = [ 'lib', 'app' ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]

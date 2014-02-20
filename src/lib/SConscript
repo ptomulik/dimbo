@@ -21,6 +21,7 @@
 Import('env')
 
 from distutils import sysconfig
+import re
 
 cpppath = [
     '#%s' % env.Dir('.').path
@@ -66,15 +67,25 @@ swigpy_cpppath = [
 
 swigpy_cflags = env.get('CFLAGS',[]) + [
     '-Wno-unused-parameter',
-    '-Wno-maybe-uninitialized',
     '-Wno-deprecated-declarations'
 ]
+if re.match(r'gcc$',env.get('CC')):
+    swigpy_cflags += [ '-Wno-maybe-uninitialized' ]
+elif re.match(r'clang$',env.get('CC')):
+    swigpy_cflags += [ '-Wno-deprecated-register',
+                       '-Wno-sometimes-uninitialized',
+                       '-Wno-c++11-narrowing' ]
 
 swigpy_cxxflags = env.get('CXXFLAGS',[]) + [
     '-Wno-unused-parameter',
-    '-Wno-maybe-uninitialized',
     '-Wno-deprecated-declarations'
 ]
+if re.match(r'g\+\+$',env.get('CXX')):
+    swigpy_cxxflags += [ '-Wno-maybe-uninitialized' ]
+elif re.match(r'clang\+\+$',env.get('CXX')):
+    swigpy_cxxflags += [ '-Wno-deprecated-register',
+                         '-Wno-sometimes-uninitialized',
+                         '-Wno-c++11-narrowing' ]
 
 swigpy_libpath = [
     '$LIBPATH'

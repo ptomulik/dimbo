@@ -21,13 +21,21 @@
 
 Import('env')
 
-oN = ['-O0', '-O1', '-O2', '-O3' ]
-cxxfxtra =  [ '-O0', '-fprofile-arcs', '-ftest-coverage' ]
-cxxflags = [ f for f in env.get('CXXFLAGS',[]) if f not in oN  ] + cxxfxtra
-libs = env.get('LIBS',[]) + [ 'gcov' ]
-linkflags = env.get('LINKFLAGS',[]) + [ '-coverage' ]
+## import re
 
-env = env.Clone( CXXFLAGS = cxxflags, LIBS = libs, LINKFLAGS = linkflags )
+##oN = ['-O0', '-O1', '-O2', '-O3' ]
+##cxxfxtra =  [ '-O0', '-fprofile-arcs', '-ftest-coverage' ]
+##cxxflags = [ f for f in env.get('CXXFLAGS',[]) if f not in oN  ] + cxxfxtra
+
+##libs = env.get('LIBS',[])
+##linkflags = env.get('LINKFLAGS',[])
+
+## if re.match(r'^(yes|true|1)$', env.get('DIMBO_ENABLE_GCOV','no'), re.I):
+##    libs += [ 'gcov' ]
+##    linkflags += [ '-coverage' ]
+
+
+##env = env.Clone( LIBS = libs, LINKFLAGS = linkflags )
 
 scripts = env.Glob('*/SConscript')
 SConscript(scripts, exports = ['env'])
