@@ -27,10 +27,9 @@ import SCons.Util
 # If provided, the default values will be replaced with corresponding values
 # from OS environment.
 env.Append( CCFLAGS = '-g' )
-if re.match(r'^(yes|true|1)$', env.get('DIMBO_ENABLE_GCOV','no'), re.I):
-    env.Append( CCFLAGS = '-O0 -ftest-coverage -fprofile-arcs' )
-    env.Append( LIBS = 'gcov' )
-    env.Append( LINKFLAGS = '-coverage' )
+if re.match(r'^(yes|true|1)$', env.subst('$DIMBO_ENABLE_GCOV'), re.I):
+    env.Append( CCFLAGS = '-O0 --coverage' )
+    env.Append( LINKFLAGS = '--coverage' )
 else:
     env.Append( CCFLAGS = '-O2' )
 env.Append( CCFLAGS = '-Werror -Wall -Wextra -pedantic' )
