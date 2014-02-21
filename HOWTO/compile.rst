@@ -10,8 +10,12 @@ bindings under ``build/`` directory. Note, that it does not create the API
 documentation.
 
 You may set several environment variables to change compilator, compilation
-flags and other options. For example, you may use clang_ compiler instead of
-the default one (gcc)::
+flags and other options.
+
+HOWTO: Compile with clang compiler
+``````````````````````````````````
+
+You may use clang_ compiler instead of the default one (gcc)::
 
     CC=clang CXX=clang++ scons
 
@@ -40,7 +44,7 @@ HOWTO: Clean API documentation
 ``````````````````````````````
 
 To clean API documentation files created with ``scons api-doc``, go to the top
-level source directory and type:
+level source directory and type::
 
     scons -c api-doc
 
