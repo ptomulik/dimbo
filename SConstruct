@@ -37,10 +37,11 @@ env = Environment(tools =  [ 'default'
                   ENV = os.environ )
 
 # Mapping OS Environment variables to SCons construction variables
+# Here we shall process only variables that are known to be strings.
 for var in ['CC', 'CXX', 'LINK', 'SHCC', 'SHCXX', 'SHLINK',
             'DIMBO_ENABLE_GCOV']:
     try:
-        env.Replace(**{var : SCons.Util.CLVar(env['ENV'][var])})
+        env.Replace(**{var : env['ENV'][var]})
     except KeyError:
         pass
 
