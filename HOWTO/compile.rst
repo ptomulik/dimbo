@@ -9,8 +9,14 @@ The above command creates all libraries, executables and external language
 bindings under ``build/`` directory. Note, that it does not create the API
 documentation.
 
+HOWTO: Change compilation flags
+```````````````````````````````
+
 You may set several environment variables to change compilator, compilation
-flags and other options.
+flags and other options. For example, you may change flags for C and C++
+compiler::
+
+    CCFLAGS='-g -O2' CXXFLAGS='-std=c++11' CFLAGS='' scons
 
 HOWTO: Compile with clang compiler
 ``````````````````````````````````
