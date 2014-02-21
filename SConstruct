@@ -19,6 +19,7 @@
 # SOFTWARE
 
 import os
+import SCons.Util
 
 def BuildVariant(env, variant_dir, src_dir, duplicate = 0, **kw):
     SConscript( '%s/SConscript' % variant_dir, exports = ['env'] )
@@ -36,29 +37,10 @@ env = Environment(tools =  [ 'default'
                   ENV = os.environ )
 
 # Mapping OS Environment variables to SCons construction variables
-env_variables = {
-    # Programs/tools
-    'AR'                : 'AR',
-    'AS'                : 'AS',
-    'CC'                : 'CC',
-    'CXX'               : 'CXX',
-    'CPP'               : 'CPP',
-    # Flags to program/tools
-    'ARFLAGS'           : 'ARFLAGS',
-    'ASFLAGS'           : 'ASFLAGS',
-    'ASPPFLAGS'         : 'ASPPFLAGS',
-    'CCFLAGS'           : 'CCFLAGS',
-    'CFLAGS'            : 'CFLAGS',
-    'CPPFLAGS'          : 'CPPFLAGS',
-    'CPPPATH'           : 'CPPPATH',
-    'CXXFLAGS'          : 'CXXFLAGS',
-    # Our local construction variables
-    'DIMBO_ENABLE_GCOV' : 'DIMBO_ENABLE_GCOV'
-}
-
-for (evar,cvar) in env_variables.iteritems():
+for var in ['CC', 'CXX', 'LINK', 'SHCC', 'SHCXX', 'SHLINK',
+            'DIMBO_ENABLE_GCOV']:
     try:
-        env[cvar] = env['ENV'][evar]
+        env.Replace(**{var : SCons.Util.CLVar(env['ENV'][var])})
     except KeyError:
         pass
 

@@ -21,8 +21,11 @@
 Import('env')
 
 import re
+import SCons.Util
 
-# Default compilation flags for all subdirs
+# Determine compilator and linker flags, additional libraries etc.
+# If provided, the default values will be replaced with corresponding values
+# from OS environment.
 env.Append( CCFLAGS = '-g' )
 if re.match(r'^(yes|true|1)$', env.get('DIMBO_ENABLE_GCOV','no'), re.I):
     env.Append( CCFLAGS = '-O0 -ftest-coverage -fprofile-arcs' )
@@ -30,11 +33,17 @@ if re.match(r'^(yes|true|1)$', env.get('DIMBO_ENABLE_GCOV','no'), re.I):
     env.Append( LINKFLAGS = '-coverage' )
 else:
     env.Append( CCFLAGS = '-O2' )
-
 env.Append( CCFLAGS = '-Werror -Wall -Wextra -pedantic' )
-env.Append( CFLAGS = '-ansi -std=c1x' )
 env.Append( CXXFLAGS = '-ansi -std=c++0x' )
+env.Append( CFLAGS = '-ansi -std=c1x' )
 
+# Replace default flags with user-specified ones (OS environment).
+for var in [ 'CCFLAGS', 'CXXFLAGS', 'CFLAGS', 'LINKFLAGS', 'LIBS',
+             'SHCXXFLAGS', 'SHCFLAGS', 'SHLINKFLAGS' ]:
+    try:
+        env.Replace( **{ var: SCons.Util.CLVar(env['ENV'][var]) } )
+    except KeyError:
+        pass
 
 subdirs = [ 'lib', 'app' ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]
