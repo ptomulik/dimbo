@@ -30,6 +30,10 @@
 #define DIMBO_STD_STRING_MOD_HPP_INCLUDED
 
 #include <string>
+/* The following include is a workaround for swig 2.0.x + gcc. At some point I
+ * was unable to compile due to an "‘offsetof’ was not declared in this scope"
+ * error. (Pawel Tomulik) */
+# include <cstddef>
 
 #endif /* DIMBO_STD_STRING_MOD_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
