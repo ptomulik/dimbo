@@ -11,7 +11,7 @@ HOWTO: Code coverage
 ``````````````````````````
 
 Code coverage needs code instrumentation. We use gcov_ for that. By default the
-code is compiled with gcov_ diabled. To enable it, set an environment variable
+code is compiled with gcov_ disabled. To enable it, set an environment variable
 ``DIMBO_ENABLE_GCOV``::
 
     DIMBO_ENABLE_GCOV=YES scons check
