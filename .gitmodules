@@ -16,3 +16,6 @@
 [submodule "lib/scons-gnu-build"]
 	path = lib/scons-gnu-build
 	url = git://github.com/ptomulik/scons-gnu-build.git
+[submodule "site_scons/site_tools/gcccov"]
+	path = site_scons/site_tools/gcccov
+	url = git://github.com/ptomulik/scons-tool-gcccov.git
