@@ -27,14 +27,17 @@ def BuildVariant(env, variant_dir, src_dir, duplicate = 0, **kw):
 EnsureSConsVersion(2,2)
 env = Environment(tools =  [ 'default'
                            , 'cxxtest'
-                           , 'textfile'
-                           , 'gettext'
                            , 'doxyfile'
                            , 'doxygen'
+                           , 'gcccov'
+                           , 'gettext'
                            , 'protoc'
                            , 'swig'
-                           , 'swigpy' ],
+                           , 'swigpy'
+                           , 'textfile'],
                   ENV = os.environ )
+
+env.GCovInjectObjectEmitters()
 
 # Mapping OS Environment variables to SCons construction variables
 # Here we shall process only variables that are known to be strings.
