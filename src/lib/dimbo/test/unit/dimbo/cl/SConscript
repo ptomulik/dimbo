@@ -20,7 +20,10 @@
 # SOFTWARE
 
 Import('env')
-env.CxxTest('cl_test',env.Glob('*.t.h'))
+env.CxxTest('cl_test', env.Glob('*.t.h'), LIBS = ['dimbo_cl','OpenCL'], 
+            CXXTEST_LIBPATH = ['../../../../cl'],
+            CXXTEST_TARGET = 'check-dimbo-cl')
+env.Alias('check', ['check-dimbo-cl'])
 
 # Local Variables:
 # # tab-width:4

@@ -38,7 +38,7 @@ env = Environment(tools =  [ 'default'
 
 # Mapping OS Environment variables to SCons construction variables
 # Here we shall process only variables that are known to be strings.
-for var in ['CC', 'CXX', 'LINK', 'SHCC', 'SHCXX', 'SHLINK',
+for var in ['CC', 'CXX', 'LINK', 'SHCC', 'SHCXX', 'SHLINK', 'GCOV',
             'DIMBO_ENABLE_GCOV']:
     try:
         env.Replace(**{var : env['ENV'][var]})
@@ -66,8 +66,12 @@ for v in variants:
 SConscript( 'src/SConscript.i18n', exports = ['env'] )
 
 # Global targets
+#
+# API Documentation
 api_doc = env.AlwaysBuild(env.Alias('api-doc'))
 env.Depends(api_doc, env.Glob('bin/doxy*'))
+# The check target (CxxTest)
+env.AlwaysBuild(env.Alias('check'))
 
 # Local Variables:
 # # tab-width:4
