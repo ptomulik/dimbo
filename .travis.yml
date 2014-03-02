@@ -1,0 +1,29 @@
+language: cpp
+compiler:
+  - gcc
+  - clang
+before_install:
+  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu quantal main universe multiverse'
+  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu raring main universe multiverse'
+  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu saucy main universe multiverse'
+  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu trusty main universe multiverse'
+  - sudo apt-get update
+install:
+  - sudo apt-get --no-install-recommends -y install g++
+  - sudo apt-get --no-install-recommends -y install clang
+  - sudo apt-get --no-install-recommends -y install cxxtest
+  - sudo apt-get --no-install-recommends -y install scons
+  - sudo apt-get --no-install-recommends -y install swig
+  - sudo apt-get --no-install-recommends -y install nvidia-opencl-dev
+  - sudo apt-get --no-install-recommends -y install libboost-dev
+  - sudo apt-get --no-install-recommends -y install libprotobuf-dev protobuf-compiler
+  - sudo pip install cpp-coveralls --use-mirrors
+before_script:
+  - $CXX --version
+  - $CXX -dumpversion
+script:
+  - DIMBO_ENABLE_GCOV=YES scons check
+after_success:
+  - coveralls -b . -r . -e .git -e HOWTO -e lib -e bin -e .sconf_temp -e site_scons -e template -e valgrind -e /usr
+after_failure:
+  - test -f config.log && cat config.log

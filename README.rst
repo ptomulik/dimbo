@@ -1,6 +1,14 @@
 DIMBO - Software for distributed simulation of multibody systems
 ================================================================
 
+.. image:: https://travis-ci.org/ptomulik/dimbo.png?branch=master
+    :target: https://travis-ci.org/ptomulik/dimbo
+
+.. image:: https://coveralls.io/repos/ptomulik/dimbo/badge.png?branch=master
+   :target: https://coveralls.io/r/ptomulik/dimbo?branch=master
+
+
+
 Welcome to the DIMBO development tree.
 
 START
