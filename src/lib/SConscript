@@ -65,27 +65,30 @@ swigpy_cpppath = [
     sysconfig.get_python_inc()
 ]
 
-swigpy_cflags = env.get('CFLAGS',[]) + [
-    '-Wno-unused-parameter',
-    '-Wno-deprecated-declarations'
-]
+# Swig 2.x and older (may) need these flags
+swigpy_cflags = env.get('CFLAGS',[])
+swigpy_cxxflags = env.get('CXXFLAGS',[])
 if re.match(r'gcc$',env.get('CC')):
-    swigpy_cflags += [ '-Wno-maybe-uninitialized' ]
-elif re.match(r'clang$',env.get('CC')):
-    swigpy_cflags += [ '-Wno-deprecated-register',
-                       '-Wno-sometimes-uninitialized',
-                       '-Wno-c++11-narrowing' ]
-
-swigpy_cxxflags = env.get('CXXFLAGS',[]) + [
-    '-Wno-unused-parameter',
-    '-Wno-deprecated-declarations'
-]
+    swigpy_cflags += [
+        '-Wno-maybe-uninitialized', # FIXME: introduced in gcc 4.8
+        '-Wno-unused-parameter',
+        '-Wno-deprecated-declarations'
+    ]
 if re.match(r'g\+\+$',env.get('CXX')):
-    swigpy_cxxflags += [ '-Wno-maybe-uninitialized' ]
-elif re.match(r'clang\+\+$',env.get('CXX')):
-    swigpy_cxxflags += [ '-Wno-deprecated-register',
-                         '-Wno-sometimes-uninitialized',
-                         '-Wno-c++11-narrowing' ]
+    swigpy_cxxflags += [
+        '-Wno-maybe-uninitialized', # FIXME: introduced in gcc 4.8
+        '-Wno-unused-parameter',
+        '-Wno-deprecated-declarations'
+    ]
+if not re.match(r'^[3-9]\.', env.subst('$SWIGVERSION')):
+    if re.match(r'clang$',env.get('CC')):
+        swigpy_cflags += [ '-Wno-deprecated-register',
+                           '-Wno-sometimes-uninitialized',
+                           '-Wno-c++11-narrowing' ]
+    if re.match(r'clang\+\+$',env.get('CXX')):
+        swigpy_cxxflags += [ '-Wno-deprecated-register',
+                             '-Wno-sometimes-uninitialized',
+                             '-Wno-c++11-narrowing' ]
 
 swigpy_libpath = [
     '$LIBPATH'
