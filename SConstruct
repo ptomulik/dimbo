@@ -25,7 +25,7 @@ from SConsGnu import CCChecks
 EnsureSConsVersion(2,2)
 
 # initialize new environment.
-env = Environment( ENV = os.environ )
+env = Environment( )
 env.Tool('gettext')
 
 SConscript('SConscript.cli', exports = ['env'])
@@ -35,19 +35,21 @@ SConscript('SConscript.cli', exports = ['env'])
 for var in ['CC', 'CXX', 'LINK', 'SHCC', 'SHCXX', 'SHLINK', 'GCOV',
             'DIMBO_ENABLE_GCOV']:
     try:
-        env.Replace(**{var : env['ENV'][var]})
+        env.Replace(**{var : os.environ[var]})
     except KeyError:
         pass
 
 # Recheck for C/C++ compiler versions as CC/CXX could change
 conf = env.Configure()
 conf.AddTests(CCChecks.Tests())
-env['CCVERSION'] = conf.CheckCCVersion()
-env['CXXVERSION'] = conf.CheckCXXVersion()
-if env.get('CC','').endswith('clang'):
-    env['CC_WNO_DEPRECATED_REGISTER'] = conf.TryCompileWO(CCFLAGS=['-Wno-deprecated-register'])
-if env.get('CXX','').endswith('clang++'):
-    env['CXX_WNO_DEPRECATED_REGISTER'] = conf.TryCompileWO(CCFLAGS=['-Wno-deprecated-register'])
+conf.env['CCVERSION'] = conf.CheckCCVersion()
+conf.env['CXXVERSION'] = conf.CheckCXXVersion()
+if conf.env.get('CC','').endswith('clang'):
+    ccflags = ['-Wall','-Werror','-Wextra','-Wno-deprecated-register']
+    env['CC_HAS_WNO_DEPRECATED_REGISTER'] = conf.TryCompileWO(CCFLAGS=ccflags)
+if conf.env.get('CXX','').endswith('clang++'):
+    ccflags = ['-Wall','-Werror','-Wextra','-Wno-deprecated-register']
+    env['CXX_HAS_WNO_DEPRECATED_REGISTER'] = conf.TryCompileWO(CCFLAGS=ccflags)
 env = conf.Finish()
 
 # Variant directories

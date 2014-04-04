@@ -21,6 +21,7 @@
 Import('env')
 
 import re
+import os
 import SCons.Util
 
 env.Tool('cxxtest')
@@ -54,7 +55,7 @@ env.Append( CFLAGS = '-ansi -std=c1x' )
 for var in [ 'CCFLAGS', 'CXXFLAGS', 'CFLAGS', 'LINKFLAGS', 'LIBS',
              'SHCXXFLAGS', 'SHCFLAGS', 'SHLINKFLAGS' ]:
     try:
-        env.Replace( **{ var: SCons.Util.CLVar(env['ENV'][var]) } )
+        env.Replace( **{ var: SCons.Util.CLVar(os.environ[var]) } )
     except KeyError:
         pass
 
