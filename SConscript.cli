@@ -19,8 +19,8 @@
 # SOFTWARE
 
 from SCons.Util import CLVar
-from SConsGnuBuild.GVars import GVarDeclsU
-from SConsGnuBuild import GDirVars
+from SConsGnu.GVars import GVarDeclsU
+from SConsGnu import GDirVars
 
 Import(['env'])
 
