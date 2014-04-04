@@ -100,9 +100,9 @@ swigpy_libpath = [
 env.Append( SWIGPY_SWIGPATH = swigpy_swigpath )
 env.Append( SWIGPY_SWIGPATH = [ '/usr/include' ])
 env.Append( SWIGPY_SWIGFLAGS = swigpy_swigflags )
-env.Append( SWIGPY_CPPPATH = swigpy_cpppath)
-env.Append( SWIGPY_CFLAGS = swigpy_cflags)
-env.Append( SWIGPY_CXXFLAGS = swigpy_cxxflags)
+env.Append( SWIGPY_CPPPATH = swigpy_cpppath )
+env.Append( SWIGPY_CFLAGS = swigpy_cflags )
+env.Append( SWIGPY_CXXFLAGS = swigpy_cxxflags )
 env.Append( SWIGPY_LIBPATH = swigpy_libpath )
 
 

@@ -27,3 +27,4 @@ after_success:
   - coveralls -b . -r . -e .git -e HOWTO -e lib -e bin -e .sconf_temp -e site_scons -e template -e valgrind -e /usr
 after_failure:
   - test -f config.log && cat config.log
+  - test -f src/lib/dimbo/config.log && cat src/lib/dimbo/config.log

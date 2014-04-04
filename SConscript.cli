@@ -21,6 +21,7 @@
 from SCons.Util import CLVar
 from SConsGnu.GVars import GVarDeclsU
 from SConsGnu import GDirVars
+from SConsGnu import CCVars
 
 Import(['env'])
 
@@ -30,35 +31,39 @@ variables = Variables('.scons_variables')
 ##############################################################################
 # Declaring GVar variables for the project
 ##############################################################################
-env['GVAR_DECLARATIONS'] = GVarDeclsU(
-    CCFLAGS  = { 'env_key' : 'GNUBLD_CCFLAGS' 
+env['GDECLS'] = GVarDeclsU(
+    CCFLAGS  = { 'env_key' : 'CCFLAGS' 
                , 'var_key' : 'CCFLAGS'
                , 'default' : env.get('CCFLAGS', CLVar())
                , 'converter' : CLVar 
                , 'help' : 'Compilation flags used by C and C++ compilers.' },
-    CFLAGS   = { 'env_key' : 'GNUBLD_CFLAGS' 
+    CFLAGS   = { 'env_key' : 'CFLAGS' 
                , 'var_key' : 'CFLAGS'
                , 'default' : env.get('CFLAGS', CLVar())
                , 'converter' : CLVar 
                , 'help' : 'Additional compilation flags for C compiler.' },
-    CXXFLAGS = { 'env_key' : 'GNUBLD_CXXFLAGS' 
+    CXXFLAGS = { 'env_key' : 'CXXFLAGS' 
                , 'var_key' : 'CXXFLAGS'
                , 'default' : env.get('CXXFLAGS', CLVar())
                , 'converter' : CLVar
                , 'help' : 'Additional compilation flags for C++ compiler.' }
 )
-env['GVAR_DECLARATIONS'].update(GDirVars.DeclareGVars())
+env['GDECLS'].update(GDirVars.DeclareGVars())
+#env['GDECLS'].update(CCVars.DeclareGVars(name_filter = ['CCVERSION', 'CXXVERSION']))
 ##############################################################################
 
 SConscript('src/SConscript.cli', exports = ['env'])
+
 
 ##############################################################################
 # Commit GVar declarations, update environment with their values and save them
 # to .scons_variables file.
 ##############################################################################
-gvars = env['GVAR_DECLARATIONS'].Commit(env, variables, True)
-gvars.UpdateEnvironment(env, variables, True)
-gvars.SaveVariables(variables, '.scons_variables', env)
+env['GVARS'] = env['GDECLS'].Commit(env, variables, True)
+env['GVARS'].UpdateEnvironment(env, variables, True)
+env['GVARS'].SaveVariables(variables, '.scons_variables', env)
+
+del(env['GDECLS']) # they're no longer needed
 
 ##############################################################################
 # Additional --help-variables option to list available CLI variables.
@@ -66,7 +71,7 @@ gvars.SaveVariables(variables, '.scons_variables', env)
 AddOption( '--help-variables', dest='help_variables', action='store_true',
            help='print help for CLI variables' )
 if GetOption('help_variables'):
-    print gvars.GenerateVariablesHelpText(variables, env)
+    print env['GVARS'].GenerateVariablesHelpText(variables, env, True)
     Exit(0)
 ##############################################################################
 

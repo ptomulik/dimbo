@@ -23,7 +23,8 @@ Import('env')
 ## --------------------------------------------------------------------------
 ## NOTE: THIS PART (CONFIG CODE) MUST GO BEFORE THE NORMAL BUILD CODE
 if not env.GetOption('clean') and not env.GetOption('help'):
-    conf = Configure(env, config_h = 'config.h')
+    log = env.File('config.log').abspath
+    conf = Configure(env, conf_dir = '.sconf_temp', log_file=log, config_h = 'config.h')
     SConscript('SConscript.conf', exports = ['conf'])
     env = conf.Finish()
 ## --------------------------------------------------------------------------

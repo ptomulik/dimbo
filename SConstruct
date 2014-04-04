@@ -19,6 +19,7 @@
 # SOFTWARE
 
 import os
+from SConsGnu import CCChecks
 
 # gettext tool is available on 2.2 and later.
 EnsureSConsVersion(2,2)
@@ -37,6 +38,12 @@ for var in ['CC', 'CXX', 'LINK', 'SHCC', 'SHCXX', 'SHLINK', 'GCOV',
         env.Replace(**{var : env['ENV'][var]})
     except KeyError:
         pass
+
+conf = env.Configure()
+conf.AddTests(CCChecks.Tests())
+env['CCVERSION'] = conf.CheckCCVersion()
+env['CXXVERSION'] = conf.CheckCXXVersion()
+env = conf.Finish()
 
 # Variant directories
 variants = [
