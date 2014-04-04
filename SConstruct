@@ -39,10 +39,15 @@ for var in ['CC', 'CXX', 'LINK', 'SHCC', 'SHCXX', 'SHLINK', 'GCOV',
     except KeyError:
         pass
 
+# Recheck for C/C++ compiler versions as CC/CXX could change
 conf = env.Configure()
 conf.AddTests(CCChecks.Tests())
 env['CCVERSION'] = conf.CheckCCVersion()
 env['CXXVERSION'] = conf.CheckCXXVersion()
+if env.get('CC','').endswith('clang'):
+    env[CC_WNO_DEPRECATED_REGISTER] = conf.TryCompileWO(CCFLAGS=['-Wno-deprecated-register'])
+if env.get('CXX','').endswith('clang++'):
+    env[CXX_WNO_DEPRECATED_REGISTER] = conf.TryCompileWO(CCFLAGS=['-Wno-deprecated-register'])
 env = conf.Finish()
 
 # Variant directories

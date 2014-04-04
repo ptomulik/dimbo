@@ -82,13 +82,20 @@ if re.match(r'g\+\+$',env.get('CXX')):
     ]
 if not re.match(r'^[3-9]\.', env.subst('$SWIGVERSION')):
     if re.match(r'clang$',env.get('CC')):
-        swigpy_cflags += [ '-Wno-deprecated-register',
-                           '-Wno-sometimes-uninitialized',
+        swigpy_cflags += [ '-Wno-sometimes-uninitialized',
                            '-Wno-c++11-narrowing' ]
+        if env.get('CC_WNO_DEPRECATED_REGISTER'):
+            swigpy_cflags += [ '-Wno-deprecated-register' ]
+        else:
+            swigpy_cflags += [ '-Wno-deprecated' ]
+
     if re.match(r'clang\+\+$',env.get('CXX')):
-        swigpy_cxxflags += [ '-Wno-deprecated-register',
-                             '-Wno-sometimes-uninitialized',
+        swigpy_cxxflags += [ '-Wno-sometimes-uninitialized',
                              '-Wno-c++11-narrowing' ]
+        if env.get('CXX_WNO_DEPRECATED_REGISTER'):
+            swigpy_cxxflags += [ '-Wno-deprecated-register' ]
+        else:
+            swigpy_cxxflags += [ '-Wno-deprecated' ]
 
 swigpy_libpath = [
     '$LIBPATH'
