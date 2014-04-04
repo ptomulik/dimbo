@@ -45,9 +45,9 @@ conf.AddTests(CCChecks.Tests())
 env['CCVERSION'] = conf.CheckCCVersion()
 env['CXXVERSION'] = conf.CheckCXXVersion()
 if env.get('CC','').endswith('clang'):
-    env[CC_WNO_DEPRECATED_REGISTER] = conf.TryCompileWO(CCFLAGS=['-Wno-deprecated-register'])
+    env['CC_WNO_DEPRECATED_REGISTER'] = conf.TryCompileWO(CCFLAGS=['-Wno-deprecated-register'])
 if env.get('CXX','').endswith('clang++'):
-    env[CXX_WNO_DEPRECATED_REGISTER] = conf.TryCompileWO(CCFLAGS=['-Wno-deprecated-register'])
+    env['CXX_WNO_DEPRECATED_REGISTER'] = conf.TryCompileWO(CCFLAGS=['-Wno-deprecated-register'])
 env = conf.Finish()
 
 # Variant directories
