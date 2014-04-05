@@ -19,3 +19,9 @@
 [submodule "site_scons/site_tools/gcccov"]
 	path = site_scons/site_tools/gcccov
 	url = git://github.com/ptomulik/scons-tool-gcccov.git
+[submodule "site_scons/site_tools/clang++"]
+	path = site_scons/site_tools/clang++
+	url = git://github.com/ptomulik/scons-tool-clangpp.git
+[submodule "site_scons/site_tools/clang"]
+	path = site_scons/site_tools/clang
+	url = git://github.com/ptomulik/scons-tool-clang.git
