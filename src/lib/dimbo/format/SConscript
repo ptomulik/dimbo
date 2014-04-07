@@ -29,7 +29,7 @@ libdimbo_format = env.StaticLibrary(
             , 'cl/platform_layer_info.cpp' ]
 )
 
-env.Install("#/preinst/usr/lib", libdimbo_format)
+env.Install('${libdir}', libdimbo_format)
 
 # TODO: Install
 

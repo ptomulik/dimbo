@@ -66,36 +66,37 @@ swigpy_cpppath = [
 ]
 
 # Swig 2.x and older (may) need these flags
-swigpy_cflags = env.get('CFLAGS',[])
-swigpy_cxxflags = env.get('CXXFLAGS',[])
-if re.match(r'gcc$',env.get('CC')):
+swigpy_cflags = env.get('CFLAGS',[])[:]
+swigpy_cxxflags = env.get('CXXFLAGS',[])[:]
+
+swigver = tuple([int(n) for n in env.subst('$SWIGVERSION').split('.')])
+if re.match(r'gcc$',env.subst('$CC')):
     swigpy_cflags += [
         '-Wno-maybe-uninitialized', # FIXME: introduced in gcc 4.8
         '-Wno-unused-parameter',
         '-Wno-deprecated-declarations'
     ]
-if re.match(r'g\+\+$',env.get('CXX')):
+elif re.match(r'clang$',env.subst('$CC')):
+    if env['CC_HAS_FLAG']['-Wdeprecated-declarations']:
+        swigpy_cflags += [ '-Wno-deprecated-declarations' ]
+    if env['CC_HAS_FLAG']['-Wunused-parameter']:
+        swigpy_cflags += [ '-Wno-unused-parameter' ]
+    if (swigver < (3,)) and env['CC_HAS_FLAG']['-Wdeprecated-register']:
+            swigpy_cflags += [ '-Wno-deprecated-register' ]
+
+if re.match(r'g\+\+$',env.subst('$CXX')):
     swigpy_cxxflags += [
         '-Wno-maybe-uninitialized', # FIXME: introduced in gcc 4.8
         '-Wno-unused-parameter',
         '-Wno-deprecated-declarations'
     ]
-if not re.match(r'^[3-9]\.', env.subst('$SWIGVERSION')):
-    if re.match(r'clang$',env.get('CC')):
-        swigpy_cflags += [ '-Wno-sometimes-uninitialized',
-                           '-Wno-c++11-narrowing' ]
-        if env.get('CC_HAS_WNO_DEPRECATED_REGISTER'):
+elif re.match(r'clang\+\+$',env.subst('$CXX')):
+    if env['CXX_HAS_FLAG']['-Wdeprecated-declarations']:
+        swigpy_cxxflags += [ '-Wno-deprecated-declarations' ]
+    if env['CXX_HAS_FLAG']['-Wunused-parameter']:
+        swigpy_cxxflags += [ '-Wno-unused-parameter' ]
+    if (swigver < (3,)) and env['CXX_HAS_FLAG']['-Wdeprecated-register']:
             swigpy_cflags += [ '-Wno-deprecated-register' ]
-        else:
-            swigpy_cflags += [ '-Wno-deprecated' ]
-
-    if re.match(r'clang\+\+$',env.get('CXX')):
-        swigpy_cxxflags += [ '-Wno-sometimes-uninitialized',
-                             '-Wno-c++11-narrowing' ]
-        if env.get('CXX_HAS_WNO_DEPRECATED_REGISTER'):
-            swigpy_cxxflags += [ '-Wno-deprecated-register' ]
-        else:
-            swigpy_cxxflags += [ '-Wno-deprecated' ]
 
 swigpy_libpath = [
     '$LIBPATH'

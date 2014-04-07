@@ -1,5 +1,4 @@
-# @COPYRIGHT@
-#
+# @COPYRIGHT@ #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
@@ -35,8 +34,12 @@ modules = [
 ]
 # Build modules
 modfiles = env.SwigPyModule(modules, **overrides)
-instfiles =  [m for m in modfiles if not str(m).endswith('.cc')] + [init_py]
-Install('#preinst/usr/lib/python/dist-packages/dimbo/std', instfiles)
+instfiles =  [m for m in modfiles if not str(m).endswith('.cc')] + init_py
+# FIXME: this is only for now, elaborate what should be the destination path,
+#        also the python packages should be compiled when installed, later on
+#        a plain user can't do this (root owns the directory with installed
+#        *.py files)
+env.Install('${libdir}/python/dist-packages/dimbo/std', instfiles)
 
 
 # Local Variables:

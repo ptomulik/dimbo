@@ -34,7 +34,7 @@ clinfo = env.Program( target = 'dimbo-clinfo'
                                 , '../../lib/dimbo/format'
                                 , '../../lib/dimbo/cl' ])
 
-env.Install("#/preinst/usr/bin", clinfo)
+env.Install('${bindir}', clinfo)
 
 # Local Variables:
 # # tab-width:4

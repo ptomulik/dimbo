@@ -32,7 +32,7 @@ libdimbo_clinfo = env.SharedLibrary(
             , 'create_query.cpp'
             , 'main.cpp' ] )
 
-env.Install("#/preinst/usr/lib", libdimbo_clinfo)
+env.Install('${libdir}', libdimbo_clinfo)
 
 subdirs = [ 'po' ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]

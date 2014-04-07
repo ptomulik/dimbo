@@ -19,6 +19,7 @@
 # SOFTWARE
 
 Import('env')
+
 subdirs = [ 'lib' ]
 scripts = [ '%s/SConscript.i18n' % s for s in subdirs ]
 SConscript( scripts, exports = ['env'] )

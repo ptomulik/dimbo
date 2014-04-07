@@ -1,15 +1,15 @@
 # @COPYRIGHT@
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,54 +19,44 @@
 # SOFTWARE
 
 import os
-from SConsGnu import CCChecks
 
 # gettext tool is available on 2.2 and later.
 EnsureSConsVersion(2,2)
 
+#############################################################################
 # initialize new environment.
 env = Environment( )
+#############################################################################
+
+#############################################################################
+# Define variant directory
+#############################################################################
+AddOption('--variant-dir', type='string', default='build', metavar='DIR',
+          help='SCons variant directory (a.k.a build dir)')
+variant = { 'variant_dir' : env.GetOption('variant_dir'),
+            'src_dir' : 'src',
+            'duplicate' : 0,
+            'exports' : { 'env' : env } }
+# Sconsign file goes to variant directory
+env.SConsignFile(os.path.join(variant['variant_dir'], '.sconsign'))
+#############################################################################
+
+#############################################################################
+# Tools used by both, SConscript and SConscript.i18
 env.Tool('gettext')
+#############################################################################
 
-SConscript('SConscript.cli', exports = ['env'])
+#############################################################################
+# Build in variant directory
+SConscript( 'src/SConscript', **variant )
+#############################################################################
 
-# Mapping OS Environment variables to SCons construction variables
-# Here we shall process only variables that are known to be strings.
-for var in ['CC', 'CXX', 'LINK', 'SHCC', 'SHCXX', 'SHLINK', 'GCOV',
-            'DIMBO_ENABLE_GCOV']:
-    try:
-        env.Replace(**{var : os.environ[var]})
-    except KeyError:
-        pass
-
-# Recheck for C/C++ compiler versions as CC/CXX could change
-conf = env.Configure()
-conf.AddTests(CCChecks.Tests())
-conf.env['CCVERSION'] = conf.CheckCCVersion()
-conf.env['CXXVERSION'] = conf.CheckCXXVersion()
-if conf.env.get('CC','').endswith('clang'):
-    ccflags = ['-Wall','-Werror','-Wextra','-Wno-deprecated-register']
-    env['CC_HAS_WNO_DEPRECATED_REGISTER'] = conf.TryCompileWO(CCFLAGS=ccflags)
-if conf.env.get('CXX','').endswith('clang++'):
-    ccflags = ['-Wall','-Werror','-Wextra','-Wno-deprecated-register']
-    env['CXX_HAS_WNO_DEPRECATED_REGISTER'] = conf.TryCompileWO(CCFLAGS=ccflags)
-env = conf.Finish()
-
-# Variant directories
-variants = [
-  { 'variant_dir' : 'build', 
-    'src_dir' : 'src', 
-    'duplicate' : 0,
-    'exports' : { 'env' : env.Clone() } }
-]
-
-for v in variants:
-    SConscript('src/SConscript', **v)
-
-# Builds independent on variants.
+#############################################################################
+# Build in source directory
 SConscript( 'src/SConscript.i18n', exports = ['env'] )
+#############################################################################
 
-
+#############################################################################
 # Global targets
 #
 # API Documentation
@@ -74,6 +64,7 @@ api_doc = env.AlwaysBuild(env.Alias('api-doc'))
 env.Depends(api_doc, env.Glob('bin/doxy*'))
 # The check target (CxxTest)
 env.AlwaysBuild(env.Alias('check'))
+#############################################################################
 
 # Local Variables:
 # # tab-width:4

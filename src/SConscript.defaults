@@ -18,37 +18,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
 
-Import(['env'])
+# Determine compiler and linker flags, additional libraries etc.
+# If provided, the default values will be replaced with corresponding values
+# from OS environment.
 
-# "Generate" __init__.py
-init_py = env.Substfile(['__init__.py.in'], SUBST_DICT = {})
-# Generate python modules with swig
-overrides = {
-    'SWIGPY_LIBS'       : ['dimbo_cl', 'dimbo_format', 'OpenCL'],
-    'SWIGPY_LIBPATH'    : ['../../../cl', '../../../format'],
-}
-modules = [
-    'opencl1_0',
-    'opencl1_1',
-    'opencl1_2',
-    'opencl2_0',
-    'opencl_mod',
-    'exception_mod',
-    'platform_mod',
-    'platform_info_mod',
-    'context_mod',
-    'program_mod'
-]
-# Build modules
-modfiles = env.SwigPyModule(modules, **overrides)
-instfiles =  [m for m in modfiles if not str(m).endswith('.cc')] + init_py
+Import('env')
 
+from SCons.Util import CLVar
 
-# FIXME: this is only for now, elaborate what should be the destination path,
-#        also the python packages should be compiled when installed, later on
-#        a plain user can't do this (root owns the directory with installed
-#        *.py files)
-env.Install('${libdir}/python/dist-packages/dimbo/cl', instfiles)
+#############################################################################
+# Default flags
+#############################################################################
+env.Replace( CCFLAGS =  CLVar('-g -O2') )
+env.Replace( CXXFLAGS = CLVar('-ansi -std=c++0x -Werror -Wall -Wextra -pedantic') )
+env.Replace( CFLAGS = CLVar('-ansi -std=c1x -Werror -Wall -Wextra -pedantic') )
+env.Replace( LINKFLAGS = CLVar() )
+#############################################################################
 
 # Local Variables:
 # # tab-width:4
