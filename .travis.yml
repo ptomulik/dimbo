@@ -26,9 +26,11 @@ before_script:
 script:
   - DIMBO_ENABLE_GCOV=YES scons check
 after_success:
-  - coveralls -b . -r . -e .git -e HOWTO -e lib -e bin -e build/.sconf_temp 
-              -e build/lib/dimbo/.sconf_temp -e site_scons -e template 
-              -e valgrind -e /usr
+  - GCOV=gcov-`$CXX -dumpversion | sed -e 's/^\([0-9]\+\.[0-9]\+\).*$/\1/'`
+  - which $GCOV || GCOV="gcov"
+  - coveralls --gcov $GCOV -b . -r . -e .git -e HOWTO -e lib -e bin 
+              -e build/.sconf_temp -e build/lib/dimbo/.sconf_temp -e site_scons
+              -e template -e valgrind -e /usr
 after_failure:
   - test -f config.log && cat config.log
   - test -f src/lib/dimbo/config.log && cat src/lib/dimbo/config.log
