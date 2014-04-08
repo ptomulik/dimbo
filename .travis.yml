@@ -28,6 +28,7 @@ script:
 after_success:
   - GCOV=gcov-`$CXX -dumpversion | sed -e 's/^\([0-9]\+\.[0-9]\+\).*$/\1/'`
   - which $GCOV || GCOV="gcov"
+  - echo $GCOV
   - coveralls --gcov $GCOV -b . -r . -e .git -e HOWTO -e lib -e bin 
               -e build/.sconf_temp -e build/lib/dimbo/.sconf_temp -e site_scons
               -e template -e valgrind -e /usr
