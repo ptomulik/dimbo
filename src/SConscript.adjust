@@ -54,27 +54,26 @@ if re.match(r'^(yes|true|1)$', env.subst('$DIMBO_ENABLE_GCOV'), re.I):
     cc = CanonCC(env)
     cxx = CanonCXX(env)
     # Workaround for clang bug: http://llvm.org/bugs/show_bug.cgi?id=15953
-    if env.get('DIMBO_ENABLE_GCOV'):
-        if cc == 'clang':
-            if env['CCVERSION'].split('.')[0:2] == ['3','3']:
-                target =  QueryCCTarget(env)
-                if target:
-                    try:
-                        cpu, vendor, system  = target.split('-')
-                        kernel = system
-                    except ValueError:
-                        cpu, vendor, kernel, system  = target.split('-')
-                    lib = 'clang_rt.profile-%s' % cpu
-                    libf = 'lib%s.a' % lib
-                    # Add known locations for other OSes
-                    paths = [ '/usr/lib/llvm-3.3/lib/clang/3.3/lib/%s' % kernel ]
-                    try:
-                        # find existing file libclang_rt.profile-<arch>.a
-                        path = next(p for p in paths if os.path.exists(os.path.join(p,libf)))
-                        env.AppendUnique(LIBS = [lib])
-                        env.AppendUnique(LIBPATH = [path])
-                    except StopIteration:
-                        pass
+    if cc == 'clang':
+        if env['CCVERSION'].split('.')[0:2] == ['3','3']:
+            target =  QueryCCTarget(env)
+            if target:
+                try:
+                    cpu, vendor, system  = target.split('-')
+                    kernel = system
+                except ValueError:
+                    cpu, vendor, kernel, system  = target.split('-')
+                lib = 'clang_rt.profile-%s' % cpu
+                libf = 'lib%s.a' % lib
+                # Add known locations for other OSes
+                paths = [ '/usr/lib/llvm-3.3/lib/clang/3.3/lib/%s' % kernel ]
+                try:
+                    # find existing file libclang_rt.profile-<arch>.a
+                    path = next(p for p in paths if os.path.exists(os.path.join(p,libf)))
+                    env.AppendUnique(LIBS = [lib])
+                    env.AppendUnique(LIBPATH = [path])
+                except StopIteration:
+                    pass
 #############################################################################
 
 # Local Variables:
