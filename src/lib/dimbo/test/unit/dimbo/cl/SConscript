@@ -20,8 +20,13 @@
 # SOFTWARE
 
 Import('env')
-env.CxxTest('cl_test', env.Glob('*.t.h'), LIBS = ['dimbo_cl','OpenCL'], 
-            CXXTEST_LIBPATH = ['../../../../cl'],
+
+from SCons.Util import CLVar
+
+libs = env.get('LIBS', CLVar()) + [ 'dimbo_cl', 'OpenCL' ]
+libpath = env.get('LIBPATH', CLVar()) + ['../../../../cl']
+env.CxxTest('cl_test', env.Glob('*.t.h'), LIBS = libs,
+            CXXTEST_LIBPATH = libpath,
             CXXTEST_TARGET = 'check-dimbo-cl')
 env.Alias('check', ['check-dimbo-cl'])
 

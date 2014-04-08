@@ -20,19 +20,25 @@
 
 Import('env')
 
-clinfo = env.Program( target = 'dimbo-clinfo'
-                    , source = [ 'main.cpp' ]
-                    , LIBS = [ 'dimbo_clinfo'
-                             , 'dimbo_app'
-                             , 'dimbo_format'
-                             , 'dimbo_cl'
-                             , 'boost_program_options'
-                             , 'boost_serialization'
-                             , 'OpenCL.so' ]
-                    , LIBPATH = [ '../../lib/dimbo/app'
-                                , '../../lib/dimbo/app/clinfo'
-                                , '../../lib/dimbo/format'
-                                , '../../lib/dimbo/cl' ])
+from SCons.Util import CLVar
+
+libs = env.get('LIBS', CLVar()) + [
+    'dimbo_clinfo'
+  , 'dimbo_app'
+  , 'dimbo_format'
+  , 'dimbo_cl'
+  , 'boost_program_options'
+  , 'boost_serialization'
+  , 'OpenCL.so'
+]
+libpath = env.get('LIBPATH', CLVar()) + [
+    '../../lib/dimbo/app'
+  , '../../lib/dimbo/app/clinfo'
+  , '../../lib/dimbo/format'
+  , '../../lib/dimbo/cl'
+]
+
+clinfo = env.Program( 'dimbo-clinfo', 'main.cpp', LIBS=libs, LIBPATH=libpath)
 
 env.Install('${bindir}', clinfo)
 

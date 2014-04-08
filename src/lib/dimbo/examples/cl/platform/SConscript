@@ -20,8 +20,11 @@
 
 Import('env')
 
+from SCons.Util import CLVar
+
 libs = ['dimbo_cl','dimbo_format','OpenCL']
 lpath = ['../../../cl', '../../../format']
+
 env.Program(['cl_platform1'], ['cl_platform1.cpp'], LIBS = libs, LIBPATH = lpath)
 env.Program(['cl_platform2'], ['cl_platform2.cpp'], LIBS = libs, LIBPATH = lpath)
 env.Program(['cl_platform3'], ['cl_platform3.cpp'], LIBS = libs, LIBPATH = lpath)

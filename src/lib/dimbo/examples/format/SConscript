@@ -20,8 +20,13 @@
 
 Import('env')
 
-env.Program(['autosep1'], ['autosep1.cpp'], LIBS = ['dimbo_format'], LIBPATH = ['../../format'] )
-env.Program(['autosep2'], ['autosep2.cpp'], LIBS = ['dimbo_format'], LIBPATH = ['../../format'] )
+from SCons.Util import CLVar
+
+libs = env.get('LIBS', CLVar()) + ['dimbo_format']
+libpath = env.get('LIBPATH', CLVar()) + ['../../format']
+
+env.Program(['autosep1'], ['autosep1.cpp'], LIBS = libs, LIBPATH = libpath )
+env.Program(['autosep2'], ['autosep2.cpp'], LIBS = libs, LIBPATH = libpath )
 
 # Local Variables:
 # # tab-width:4

@@ -69,8 +69,9 @@ gvars = decls.Commit(env, variables, True)
 osenv = munge_os_environ(os.environ)
 # FIXME: in fact, variables should be saved only on demand ('configure' target)
 #        so by default filename should be None
-gvars.Postprocess(env, variables, True, osenv, filename='.scons.variables')
+new = gvars.Postprocess(env, variables, True, osenv, filename='.scons.variables')
 env['GVARS'] = gvars.EnvProxy(env) # so we can do env['GVARS']['XYZ'].
+env['CHANGED_VARIABLES'] = new
 ##############################################################################
 
 ##############################################################################
