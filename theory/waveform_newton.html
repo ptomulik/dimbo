@@ -6,9 +6,18 @@ sidenav: theory
 ---
 
 <div id="home">
+  <h2>Contents</h2>
   <p>
-  In what follows we approach a problem of solving an initial value problem
-  with differential-algebraic equations (DAEs). In most general form DAEs are
+    <ul>
+      <li><a href="#general-formulation">General formulation</a></li>
+      <li><a href="#general-algorithm">General algorithm</a></li>
+      <li><a href="#mechanical-systems">Mechanical systems</a></li>
+    </ul>
+  </p>
+  <h2 id="general-formulation">General formulation</h2>
+  <p>
+  In what follows we make an attempt to solve an initial value problem with
+  differential-algebraic equations (DAEs). In most general form DAEs are
   written as
   <table width="100%">
     <tr>
@@ -66,16 +75,16 @@ sidenav: theory
       </td>
     </tr>
   </table>
+  The symbol <math><mo>&#x2131;</mo><mo>&rsquo;</mo></math> is the Fréchet
+  derivative of <math><mo>&#x2131;</mo></math>.
   </p>
 
   <p>
-  The symbol <math><mo>&#x2131;</mo><mo>&rsquo;</mo></math> is a Fretchet
-  derivative of <math><mo>&#x2131;</mo></math>. This functional iteration may
-  be written back in terms of functions 
+  This functional iteration may be written back in terms of functions 
   <math><mi mathvariant="bold">F</mi></math>,
   <math><mi mathvariant="bold">y</mi></math>,
   and <math><mi mathvariant="bold">&delta;</mi></math> (we drop iteration index
-  for brevity)
+  <math><mi>η-1</mi></math> for brevity)
   <table width="100%">
     <tr>
       <td>
@@ -91,13 +100,14 @@ sidenav: theory
   </p>
 
   <p>
-  The above equation is a linearized DAE problem. It preserves structural
-  properties such as Hessenberg form/size and thus the differential index. It
-  still needs a DAE integrator to be solved.
+  Equation (4) is a linearized DAE problem. It preserves structural properties
+  such as Hessenberg form/size and thus the differential index. Finally, it
+  needs a DAE integrator to be solved.
   </p>
 
+  <h2 id="general-algorithm">General algorithm</h2>
   <p>
-  Computational procedure may be decomposed into few stages.
+  The computational process may be decomposed into few stages.
   <ol>
     <li>Determine
         <math>
@@ -130,7 +140,8 @@ sidenav: theory
         at discrete mesh <math><msub><mi>t</mi><mi>k</mi></msub></math>.
     </li>
     <li>
-      Form interpolating polynomials (waveforms) to represent
+      Interpolate discrete waveforms from point 1. to generate continuous
+      functions 
       <math>
         <mi mathvariant="bold">F</mi>
       </math>,
@@ -153,7 +164,6 @@ sidenav: theory
           </mrow>
         </msub>
       </math>
-      as a continuous functions.
     </li>
     <li>
     Solve (4) with a suitable DAE integrator, use interpolated coefficients.
@@ -167,14 +177,140 @@ sidenav: theory
   Step 1. may be performed in parallel on a number of processors. If we have
   <math><mi>N</mi></math> equations in
   <math><mi mathvariant="bold">F</mi></math> and <math><mi>K</mi></math>
-  timesteps <math><msub><mi>t</mi><mi>k</mi></msub></math>, then up to
+  time-steps <math><msub><mi>t</mi><mi>k</mi></msub></math>, then up to
   <math><mi>N</mi><op>·</op><mi>K</mi></math> processors may be used in
   parallel to evaluate <math><mi mathvariant="bold">F</mi></math>. Jacobians
-  are even better, they can deploy up to
+  are even "better" in this regard, as they can involve up to
   <math><msup><mi>N</mi><mi>2</mi></msup><op>·</op><mi>K</mi></math> CPUs.
   </p>
   <p>
-  In step 2, at least <math><mi>N</mi></math> CPUs may be employed.
+  In step 2, <math><mi>N</mi></math> CPUs may be involved for 
+  <math><mi mathvariant="bold">F</mi></math> and
+  <math><msup><mi>N</mi><mi>2</mi></msup></math> for Jacobians.
+  </p>
+
+  <h2 id="mechanical-systems">Mechanical Systems</h2>
+
+  <p>
+  Mechanical systems are described mostly by Index-3 DAEs (Newton-Euler,
+  Lagrange, etc.). For our purposes, we'll write them in the following form:
+  <table width="100%">
+    <tr>
+      <td>
+        <div class="equation">
+        {% include theory/waveform_newton/eq0005.html %}
+        </div>
+      </td>
+      <td width="4em">
+        (5)
+      </td>
+    </tr>
+  </table>
+  </p>
+
+  <p>
+  We assume, that the equations
+  <math><mi mathvariant="bold">Φ</mi>=<mi mathvariant="bold">0</mi></math>
+  and multipliers <math><mi mathvariant="bold">λ</mi></math> represent only
+  constraints between subsystems. Internal constraints are handled internally
+  by subsystem solvers.
+  </p>
+  <p>
+  Subsystem solvers are just procedures represented here by
+  <math><mi mathvariant="bold">f</mi></math> which accept current time
+  <math><mi>t</mi></math> and state
+  <math><mi mathvariant="bold">v</mi><mo>,</mo><mi mathvariant="bold">q</mi></math> 
+  as arguments and evaluate subsystem accelerations
+  <math><mover><mi mathvariant="bold">v</mi><mo>.</mo></mover></math>. They
+  also accept a handle to function
+  <math>
+    <mi mathvariant="bold">e</mi>
+    <mo>(</mo>
+      <mi>t</mi><mo>,</mo>
+      <mi mathvariant="bold">v</mi><mo>,</mo>
+      <mi mathvariant="bold">q</mi>
+    <mo>)</mo></math>
+  used to evaluates external forces acting on subsystems. To add constraints
+  between subsystems we include in
+  <math><mi mathvariant="bold">e</mi></math> also the constraint reactions, so
+  we simply define <math><mi mathvariant="bold">e</mi></math> as
+  <table width="100%">
+    <tr>
+      <td>
+        <div class="equation">
+        {% include theory/waveform_newton/eq0006.html %}
+        </div>
+      </td>
+      <td width="4em">
+        (6)
+      </td>
+    </tr>
+  </table>
+  </p>
+
+  <p>
+  If constraints between subsystems are frictionless, then
+  <table width="100%">
+    <tr>
+      <td>
+        <div class="equation">
+        {% include theory/waveform_newton/eq0007.html %}
+        </div>
+      </td>
+      <td width="4em">
+        (7)
+      </td>
+    </tr>
+  </table>
+  </p>
+
+  <p>
+  In this setup, the waveform-Newton iteration (4) involves the following DAEs
+  <table width="100%">
+    <tr>
+      <td>
+        <div class="equation">
+        {% include theory/waveform_newton/eq0008.html %}
+        </div>
+      </td>
+      <td width="4em">
+        (8)
+      </td>
+    </tr>
+  </table>
+  </p>
+  <p>
+  If we set
+  <math>
+    <mi mathvariant="bold">y</mi>
+    <mo>=</mo>
+    <msup>
+      <mrow>
+      <mo>[</mo>
+        <mi mathvariant="bold">v</mi><mo>,</mo>
+        <mi mathvariant="bold">q</mi><mo>,</mo>
+        <mi mathvariant="bold">λ</mi>
+      <mo>]</mo>
+      </mrow>
+      <mi>T</mi>
+    </msup>
+  </math>
+  and
+  <math>
+    <mi mathvariant="bold">δ</mi>
+    <mo>=</mo>
+    <msup>
+      <mrow>
+      <mo>[</mo>
+        <mi mathvariant="bold">δv</mi><mo>,</mo>
+        <mi mathvariant="bold">δq</mi><mo>,</mo>
+        <mi mathvariant="bold">δλ</mi>
+      <mo>]</mo>
+      </mrow>
+      <mi>T</mi>
+    </msup>
+  </math>
+  then standard update (4) completes the job.
   </p>
 </div>
 <!-- vim: set syntax=liquid: -->
