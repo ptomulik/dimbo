@@ -179,8 +179,6 @@ sidenav: theory
   parallel to evaluate <math><mi mathvariant="bold">F</mi></math>. Jacobians
   are even "better" in this regard, as they can involve up to
   <math><msup><mi>N</mi><mi>2</mi></msup><op>·</op><mi>K</mi></math> CPUs.
-  </p>
-  <p>
   In step 2, <math><mi>N</mi></math> CPUs may be involved for 
   <math><mi mathvariant="bold">F</mi></math> and
   <math><msup><mi>N</mi><mi>2</mi></msup></math> for Jacobians.
@@ -190,7 +188,8 @@ sidenav: theory
 
   <p>
   Mechanical systems are described mostly by Index-3 DAEs (Newton-Euler,
-  Lagrange, etc.). For our purposes, we'll write them in the following form:
+  Lagrange, etc.). For our purposes, we'll write the following problem
+  representing a set of subsystems coupled by constraints:
   <table width="100%">
     <tr>
       <td>
@@ -210,27 +209,64 @@ sidenav: theory
   <math><mi mathvariant="bold">Φ</mi>=<mi mathvariant="bold">0</mi></math>
   and multipliers <math><mi mathvariant="bold">λ</mi></math> represent only
   constraints between subsystems. Internal constraints are handled internally
-  by subsystem solvers.
+  by subsystem solvers. As a corner case one may consider single bodies to play
+  role of subsystems, in which case there is no internal constraints to handle
+  (as long, as we use independent coordinates to describe single body, e.g. in
+  2-D). The equations (5) may then appear to be the classical Newton-Euler
+  ones, for example.
   </p>
   <p>
-  Subsystem solvers are just procedures represented here by
-  <math><mi mathvariant="bold">f</mi></math> which accept current time
-  <math><mi>t</mi></math> and state
-  <math><mi mathvariant="bold">v</mi><mo>,</mo><mi mathvariant="bold">q</mi></math> 
-  as arguments and evaluate subsystem accelerations
-  <math><mover><mi mathvariant="bold">v</mi><mo>.</mo></mover></math>. They
-  also accept a handle to function
+  Subsystem solvers are just procedures represented here by functions
+  <math>
+    <mi mathvariant="bold">f</mi>
+    <mo>(</mo>
+      <mi>t</mi><mo>,</mo>
+      <mi mathvariant="bold">v</mi><mo>,</mo>
+      <mi mathvariant="bold">q</mi><mo>;</mo>
+      <mi mathvariant="bold">e</mi>
+    <mo>)</mo>
+  </math>
+  and
+  <math>
+    <mi mathvariant="bold">g</mi>
+    <mo>(</mo>
+      <mi>t</mi><mo>,</mo>
+      <mi mathvariant="bold">v</mi><mo>,</mo>
+      <mi mathvariant="bold">q</mi><mo></mo>
+    <mo>)</mo>
+  </math>
+  which evaluate subsystem
+  accelerations
+  <math>
+    <mover>
+      <mi mathvariant="bold">v</mi>
+      <mo>.</mo>
+    </mover>
+  </math>
+  and velocities
+  <math>
+    <mover>
+      <mi mathvariant="bold">q</mi>
+      <mo>.</mo>
+    </mover>
+  </math>.
+  The function <math><mi mathvariant="bold">f</mi></math> accepts a handle to
+  function
   <math>
     <mi mathvariant="bold">e</mi>
     <mo>(</mo>
       <mi>t</mi><mo>,</mo>
       <mi mathvariant="bold">v</mi><mo>,</mo>
       <mi mathvariant="bold">q</mi>
-    <mo>)</mo></math>
-  used to evaluate external forces acting on subsystems. To add constraints
-  between subsystems we include in
-  <math><mi mathvariant="bold">e</mi></math> also the constraint reactions, so
-  we simply define <math><mi mathvariant="bold">e</mi></math> as
+    <mo>)</mo>
+  </math>
+  used to evaluate external forces acting on subsystems (including interactions
+  between subsystems). To add constraints between subsystems we have to
+  incorporate into
+  <math>
+    <mi mathvariant="bold">e</mi>
+  </math>
+  also the constraint reactions &mdash; we substitute
   <table width="100%">
     <tr>
       <td>
@@ -259,10 +295,20 @@ sidenav: theory
       </td>
     </tr>
   </table>
+  where 
+  <math>
+    <mover>
+      <mi mathvariant="bold">h</mi>
+      <mo>¯</mo>
+    </mover>
+  </math>
+  represents forces other than constraint reactions applied externally to
+  subsystems.
   </p>
 
   <p>
-  In this setup, the waveform-Newton iteration (4) involves the following DAEs
+  In this setup, the linear DAEs in the waveform-Newton iteration (4) have the
+  following particular form
   <table width="100%">
     <tr>
       <td>
@@ -275,6 +321,26 @@ sidenav: theory
       </td>
     </tr>
   </table>
+  with
+  <math>
+    <msup>
+      <mi mathvariant="bold">δv</mi>
+      <mi>η</mi>
+    </msup>
+  </math>,
+  <math>
+    <msup>
+      <mi mathvariant="bold">δq</mi>
+      <mi>η</mi>
+    </msup>
+  </math>,
+  <math>
+    <msup>
+      <mi mathvariant="bold">δλ</mi>
+      <mi>η</mi>
+    </msup>
+  </math>
+  being the unknown functions.
   </p>
   <p>
   If we set
@@ -307,7 +373,348 @@ sidenav: theory
       <mi>T</mi>
     </msup>
   </math>
-  then standard update (4) completes the algorithm.
+  then standard update 
+  <math>
+    <msup>
+      <mi mathvariant="bold">y</mi>
+      <mi>η</mi>
+    </msup>
+    <mop>=</mop>
+    <mi mathvariant="bold">y</mi>
+    <mop>+</mop>
+    <msup>
+      <mi mathvariant="bold">δ</mi>
+      <mi>η</mi>
+    </msup>
+  </math> 
+  completes the algorithm.
+  </p>
+
+  <h3>Technical note for GPU/OpenCL</h3>
+  <p>
+  As the core OpenCL 1.x does not support function pointers (callbacks), it's
+  not possible to define an OpenCL-based subsystem which would accept a handle
+  to custom function 
+  <math>
+    <mi mathvariant="bold">e</mi>
+    <mo>(</mo>
+      <mi>t</mi><mo>,</mo>
+      <mi mathvariant="bold">v</mi><mo>,</mo>
+      <mi mathvariant="bold">q</mi>
+    <mo>)</mo>
+  </math>.
+  For OpenCL implementations we thus assume
+  <math>
+    <mi mathvariant="bold">e</mi>
+  </math>
+  to be called by a wrapper, and then its value being passed to
+  <math>
+    <mi mathvariant="bold">f</mi>
+  </math>.
+  This approach is just a rearrangement of function calls and shall not alter
+  the results &mdash; as long as the original function
+  <math>
+    <mi mathvariant="bold">f</mi>
+  </math>
+  calls the custom function 
+  <math>
+    <mi mathvariant="bold">e</mi>
+  </math>
+  only once an with the exactly same arguments
+  <math>
+    <mi>t</mi><mo>,</mo>
+    <mi mathvariant="bold">v</mi><mo>,</mo>
+    <mi mathvariant="bold">q</mi><mo>,</mo>
+  </math>
+  as their own. This is common situation, but if it's not possible, then the
+  function
+  <math>
+    <mi mathvariant="bold">f</mi>
+  </math>
+  can't be longer used as a black box.
+  </p>
+
+  <h3>Evaluating coefficients</h3>
+  
+  <p>
+  Here we try to explain a method used to evaluate coefficients appearing in
+  the first two equations of (8). We assume that the function
+  <math>
+    <mi mathvariant="bold">f</mi>
+  </math>
+  is a kind of black-box. All the derivatives appearing in the first two
+  equations of (8) will be determined by a finite-difference method.
+  </p>
+
+  <p>
+  One feature of the waveform-Newton method is that all the functions and
+  coefficients in (4) may be treated as functions of single variable
+  <math>
+    <mi>t</mi>
+  </math>,
+  so we have, for example,
+  <math>
+    <mo>(</mo>
+      <msub>
+        <mi mathvariant="bold">f</mi>
+        <mi mathvariant="bold">e</mi>
+      </msub>
+      <msub>
+        <mi mathvariant="bold">h</mi>
+        <mi mathvariant="bold">λ</mi>
+      </msub>
+    <mo>)</mo>
+    <mo>(</mo>
+      <mi>t</mi>
+    <mo>)</mo>
+  </math>,
+  <math>
+    <msub>
+      <mi mathvariant="bold">f</mi>
+      <mi mathvariant="bold">v</mi>
+    </msub>
+    <mo>(</mo>
+      <mi>t</mi>
+    <mo>)</mo>
+  </math>,
+  <math>
+    <mo>(</mo>
+      <msub>
+        <mi mathvariant="bold">f</mi>
+        <mi mathvariant="bold">e</mi>
+      </msub>
+      <msub>
+        <mi mathvariant="bold">h</mi>
+        <mi mathvariant="bold">v</mi>
+      </msub>
+    <mo>)</mo>
+    <mo>(</mo>
+      <mi>t</mi>
+    <mo>)</mo>
+  </math>,
+  <math>
+    <msub>
+      <mi mathvariant="bold">f</mi>
+      <mi mathvariant="bold">q</mi>
+    </msub>
+    <mo>(</mo>
+      <mi>t</mi>
+    <mo>)</mo>
+  </math>,
+  <math>
+    <mo>(</mo>
+      <msub>
+        <mi mathvariant="bold">f</mi>
+        <mi mathvariant="bold">e</mi>
+      </msub>
+      <msub>
+        <mi mathvariant="bold">h</mi>
+        <mi mathvariant="bold">q</mi>
+      </msub>
+    <mo>)</mo>
+    <mo>(</mo>
+      <mi>t</mi>
+    <mo>)</mo>
+  </math>,
+  etc.. At a single point <math><mi>t</mi></math> these matrices may be
+  evaluated column-by-column with a finite-difference method. Taking forward
+  differences as an example, the expressions for <math><mi>j</mi></math>'th
+  column are given as
+  <table width="100%">
+    <tr>
+      <td>
+        <div class="equation">
+        {% include theory/waveform_newton/eq0009.html %}
+        </div>
+      </td>
+      <td width="4em">
+        (9)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="equation">
+        {% include theory/waveform_newton/eq0010.html %}
+        </div>
+      </td>
+      <td width="4em">
+        (10)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="equation">
+        {% include theory/waveform_newton/eq0011.html %}
+        </div>
+      </td>
+      <td width="4em">
+        (11)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="equation">
+        {% include theory/waveform_newton/eq0012.html %}
+        </div>
+      </td>
+      <td width="4em">
+        (12)
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="equation">
+        {% include theory/waveform_newton/eq0013.html %}
+        </div>
+      </td>
+      <td width="4em">
+        (13)
+      </td>
+    </tr>
+  </table>
+  where 
+  <math>
+    <msub>
+      <mi mathvariant="bold">u</mi>
+      <mi>j</mi>
+    </msub>
+  </math>
+  is the <math><mi>j</mi></math>'th unit vector.
+  </p>
+
+  <p>
+  Derivatives w.r.t.
+  <math>
+    <mi mathvariant="bold">v</mi>
+  </math>
+  and 
+  <math>
+    <mi mathvariant="bold">q</mi>
+  </math>
+  are evaluated by just perturbing either
+  <math>
+    <mi mathvariant="bold">v</mi>
+  </math>
+  or
+  <math>
+    <mi mathvariant="bold">q</mi>
+  </math>
+  and evaluating
+  <math>
+    <mi mathvariant="bold">f</mi>
+  </math>
+  or
+  <math>
+    <mi mathvariant="bold">g</mi>
+  </math>.
+  For 
+  <math>
+    <mi mathvariant="bold">G</mi>
+  </math>
+  we need to define perturbed function of the external forces
+  <table width="100%">
+    <tr>
+      <td>
+        <div class="equation">
+        {% include theory/waveform_newton/eq0014.html %}
+        </div>
+      </td>
+      <td width="4em">
+        (14)
+      </td>
+    </tr>
+  </table>
+  and then
+  <table width="100%">
+    <tr>
+      <td>
+        <div class="equation">
+        {% include theory/waveform_newton/eq0015.html %}
+        </div>
+      </td>
+      <td width="4em">
+        (15)
+      </td>
+    </tr>
+  </table>
+  </p>
+
+  <h3>Technical note on the function of external forces</h3>
+  <p>
+    We assume that traditional solvers require a function
+    <math>
+      <mi mathvariant="bold">e</mi>
+      <mrow>
+        <mo>(</mo>
+          <mrow>
+            <mi>t</mi>
+            <mo>,</mo>
+            <mi mathvariant="bold">v</mi>
+            <mo>,</mo>
+            <mi mathvariant="bold">q</mi>
+          </mrow>
+        <mo>)</mo>
+      </mrow>
+    </math>
+    which returns external forces acting on system. This is an entry point,
+    where we can smuggle also reactions between subsystems. To achieve this,
+    we may simply wrap
+    <math>
+      <mi mathvariant="bold">e</mi>
+    </math>
+    with another functional object, which adds the reaction forces. Using a
+    fictitious mixed python-matlab pseudo-code I would express this as:
+  </p>
+  <p>
+    <pre>
+      class WrapH:
+        def __init__(self,h,lambda):
+          self.h = h
+          self.lambda = lambda
+        def __call__(self, t, v, q):
+          return self.h(t,v,q, lambda(t))
+    </pre>
+    The <tt>WrapH</tt> object may be then passed to solver in place of the
+    function of external forces &mdash; an appropriate code would look like:
+    <pre>
+      # evaluate accelerations due to external forces and lambda
+      dv = f(t,v(t),q(t),WrapH(h,lambda))</pre>
+  </p>
+  <p>
+    We may use the same wrapper to implement external forces with perturbed
+    <math>
+      <mi>λ</mi>
+    </math>.
+    For this, we just have to wrap <tt>lambda</tt> function with a wrapper which
+    implements adds the perturbation:
+    <pre>
+      class Perturb:
+        def __init__(self, fun, delta, j):
+          self.fun = fun
+          self.delta = delta
+          self.j = j
+        def __call__(self, t):
+          # u(j) is assumed to be j'th unit vector
+          return self.fun(t) + delta * u(self.j)</pre>
+    and then
+    <pre>
+      G(:,j) = (  f(t,v(t),q(t),WrapH(h,Perturb(lambda,delta,j)))
+                - f(t,v(t),q(t),WrapH(h,lambda))  )/delta</pre>
+  </p>
+  <p>
+    On OpenCL, where we can't pass around handles to functions, we must
+    rearrange the above pseudo-code, such that first all the reactions are
+    evaluated and then passed to
+    <math>
+      <mi mathvariant="bold">f</mi>
+    </math>.
+    We simply have
+    <pre>
+      dv = f(t,v(t),q(t),h(t,v(t),q(t),lambda(t)))</pre>
+    and
+    <pre>
+      G(:,j) = (  f(t,v(t),q(t), h(t,v(t),q(t),lambda(t) + delta*u(j)))
+                - f(t,v(t),q(t), h(t,v(t),q(t),lambda(t)))  )/delta</pre>
   </p>
 </div>
 <!-- vim: set syntax=liquid: -->
