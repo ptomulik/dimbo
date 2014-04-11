@@ -657,8 +657,8 @@ sidenav: theory
       </mrow>
     </math>
     which returns external forces acting on system. This is an entry point,
-    where we can smuggle also reactions between subsystems. To achieve this,
-    we may simply wrap
+    where we can smuggle also reactions forces induced by constraints between
+    subsystems. To achieve this, we may simply wrap
     <math>
       <mi mathvariant="bold">e</mi>
     </math>
@@ -685,8 +685,8 @@ sidenav: theory
     <math>
       <mi>λ</mi>
     </math>.
-    For this, we just have to wrap <tt>lambda</tt> function with a wrapper which
-    implements adds the perturbation:
+    For this, we just have to wrap <tt>lambda</tt> function with a wrapper
+    which applies the perturbation:
     <pre>
       class Perturb:
         def __init__(self, fun, delta, j):
