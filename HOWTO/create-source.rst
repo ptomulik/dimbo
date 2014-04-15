@@ -6,7 +6,7 @@ If you wish to create fully-equipped C++ class module, see
 
 If you wish to create a new source file, do your best to use one of the
 templates stored under ``template/`` directory. For example, to create new
-C++ header do:
+C++ header do::
 
     cp template/unit.hpp src/lib/dimbo/myheader.hpp
 

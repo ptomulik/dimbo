@@ -12,18 +12,18 @@ documentation.
 HOWTO: Change compilation flags
 ```````````````````````````````
 
-You may set several environment variables to change compilator, compilation
+You may set several command-line variables to change compilator, compilation
 flags and other options. For example, you may change flags for C and C++
 compiler::
 
-    CCFLAGS='-g -O2' CXXFLAGS='-std=c++11' CFLAGS='' scons
+    scons CCFLAGS='-g -O2' CXXFLAGS='-std=c++11' CFLAGS=''
 
 HOWTO: Compile with clang compiler
 ``````````````````````````````````
 
 You may use clang_ compiler instead of the default one (gcc)::
 
-    CC=clang CXX=clang++ scons
+    scons CC=clang CXX=clang++
 
 HOWTO: Clean DIMBO project
 ``````````````````````````
@@ -34,7 +34,7 @@ To clean-out source tree go to the top-level source directory and type::
 
 You may also wish to delete ``build/`` directory and scons cache files::
 
-    rm -r build/ .scon*
+    rm -r build/
 
 HOWTO: Compile API documentation
 ````````````````````````````````

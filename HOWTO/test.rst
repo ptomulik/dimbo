@@ -11,10 +11,10 @@ HOWTO: Code coverage
 ``````````````````````````
 
 Code coverage needs code instrumentation. We use gcov_ for that. By default the
-code is compiled with gcov_ disabled. To enable it, set an environment variable
-``DIMBO_ENABLE_GCOV``::
+code is compiled with gcov_ disabled. To enable it, set the command-line
+variable ``DIMBO_ENABLE_GCOV``::
 
-    DIMBO_ENABLE_GCOV=YES scons check
+    scons check DIMBO_ENABLE_GCOV=YES 
 
 This adds extra flags to ``CCFLAGS``, ``LDFLAGS`` and modifies ``LIBS`` SCons
 construction variables.

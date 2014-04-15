@@ -1,8 +1,9 @@
 HOWTO: Add class to src/lib hierarchy
 `````````````````````````````````````
 
-A new class unit (``.hpp`` + ``.cpp`` + ``.proto`` + ``.swg``) might be
-added as follows:
+A new class unit (``.hpp`` + ``.cpp`` + ``.proto`` + ``.swg`` + unit test)
+might be added as follows::
+
 
     ./bin/addclass "Fully::Qualified::Class::Name"
 
@@ -22,7 +23,7 @@ These files are generated from templates:
 - ``template/class.proto.in``,
 - ``template/class.swg.in``.
 
-There are also additional options to the addclass script. Type:
+There are also additional options to the addclass script. Type::
 
     ./bin/addclass --help
 

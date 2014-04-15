@@ -7,9 +7,10 @@ things, we use scons_ `gettext tool`_, which is first included in version
 ``2.2.0`` of scons.
 
 .. note::
-   You need at least version ``2.2.1`` of scons to mainain translations
-   properly. The version ``2.2.0`` has a bug, and is not usable for projects
-   with multiple ``po/`` directories.
+
+    You need at least version ``2.2.1`` of scons to mainain translations
+    properly. The version ``2.2.0`` has a bug, and is not usable for projects
+    with multiple ``po/`` directories.
 
 Translations are keept in files located under ``po/`` subdirectories in several
 places of the project, for example ``src/lib/dimbo/app/clinfo/po/`` contains
@@ -45,16 +46,16 @@ in source directory and **should be commited back** to source repository.
 
 The typical translator's activities are:
 
-- update particular ``.po`` file, e.g. ``src/lib/dimbo/app/clinfo/po/pl.po``:
+- update particular ``.po`` file, e.g. ``src/lib/dimbo/app/clinfo/po/pl.po``::
 
       scons src/lib/dimbo/app/clinfo/po/pl.po
 
-- update all translation files in project:
+- update all translation files in project::
 
       scons po-update
 
 - initialize new target language (new ``.po`` file), e.g. add "pl" language to
-  ``src/lib/dimbo/app/clinfo/po/``:
+  ``src/lib/dimbo/app/clinfo/po/``::
     
       echo "pl" >> src/lib/dimbo/app/clinfo/po/LINGUAS
       scons po-update
@@ -69,13 +70,13 @@ Typical maintainer/developer activities:
   files for given subpackage should be listed in ``POTFILES.in``,
 - updating ``messages.pot`` files in project (e.g. after changing the content
   of ``POTFILES.in`` or after modifying internationalized strings in source
-  files):
+  files)::
 
         scons pot-update
 
 .. _gettext:  http://www.gnu.org/software/gettext/
 .. _scons:    http://scons.org/
-.. _gettext tool: http://scons.org/doc/HTML/scons-user/a9600.html#t-gettext
+.. _gettext tool: http://scons.org/doc/production/HTML/scons-user.html#chap-gettext
 .. _poedit:   http://www.poedit.net/
 
 .. <!--- vim: set expandtab tabstop=2 shiftwidth=2 syntax=rst: -->
