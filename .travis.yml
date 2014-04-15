@@ -3,11 +3,13 @@ compiler:
   - gcc
   - clang
 before_install:
-  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu quantal main universe multiverse'
-  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu raring main universe multiverse'
-  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu saucy main universe multiverse'
-  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu trusty main universe multiverse'
-  - sudo apt-get update
+  - lsb_release -c
+  - lsb_release -r
+  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu quantal main universe multiverse restricted'
+  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu raring main universe multiverse restricted'
+  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu saucy main universe multiverse restricted'
+  - sudo apt-add-repository 'deb http://archive.ubuntu.com/ubuntu trusty main universe multiverse restricted'
+  - sudo apt-get -y update
 install:
   - sudo apt-get --no-install-recommends -y install g++
   - sudo apt-get --no-install-recommends -y install clang
@@ -24,16 +26,18 @@ before_script:
   - $CXX --version
   - $CXX -dumpversion
 script:
-  - DIMBO_ENABLE_GCOV=YES scons check
+  - scons check DIMBO_ENABLE_GCOV=YES 
 after_success:
     GCOV=gcov-`$CXX -dumpversion | sed -e 's/^\([0-9]\+\.[0-9]\+\).*$/\1/'`;
     which $GCOV || GCOV="";
     echo $GCOV;
     if [ ! -z "$GCOV" ]; then
       coveralls --gcov $GCOV -b . -r . -e .git -e HOWTO -e lib -e bin 
-                  -e build/.sconf_temp -e build/lib/dimbo/.sconf_temp -e site_scons
-                  -e template -e valgrind -e /usr;
+                  -e src/app -e build/app -e build/.sconf_temp 
+                  -e build/lib/dimbo/.sconf_temp
+                  -e src/lib/dimbo/doc -e src/lib/dimbo/test
+                  -e site_scons -e template -e valgrind -e /usr;
     fi
 after_failure:
-  - test -f config.log && cat config.log
+  - test -f src/config.log && cat src/config.log
   - test -f src/lib/dimbo/config.log && cat src/lib/dimbo/config.log
