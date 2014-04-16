@@ -20,40 +20,12 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/cl/cl_errors/decl_exception_ctor_what.hpp
-
-/** // doc: dimbo/cl/cl_errors/decl_exception_ctor_what.hpp {{{
- * \file dimbo/cl/cl_errors/decl_exception_ctor_what.hpp
+/** // doc: dimbo/cl/cl_mock.cpp {{{
+ * \file dimbo/cl/cl_mock.cpp
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_CL_DECL_EXCEPTION_CL_CTOR_WHAT_HPP_INCLUDED
-#define DIMBO_CL_DECL_EXCEPTION_CL_CTOR_WHAT_HPP_INCLUDED
+#define CXXTEST_MOCK_REAL_SOURCE_FILE
+#include <dimbo/cl/cl_mock.h>
 
-#include <dimbo/cl/cl_error_no.hpp>
-#include <dimbo/cl/cl_error.hpp>
-#include <dimbo/standardized_exception.hpp>
-#include <dimbo/src_at.hpp>
-#include <string>
-#include <dimbo/cl/cl.h>
-
-/** // {{{
- * \todo Write documentation
- */ // }}}
-#define DIMBO_CL_DECL_EXCEPTION_CL_CTOR_WHAT(__clcode,__what,__stdexcpt) \
-template<> \
-  class Cl_Error_No<__clcode> \
-    : public Dimbo::Standardized_Exception<Dimbo::Cl::Cl_Error, __stdexcpt> \
-  { \
-  public: \
-    Cl_Error_No(Dimbo::Src_At const& at) throw() \
-      : Standardized_Exception(at, std::string("Dimbo.Cl: " __what)){ } \
-    Cl_Error_No(Cl_Error_No const& e) throw() \
-      : Standardized_Exception(e) { }  \
-    virtual ~Cl_Error_No() throw() { } \
-    virtual cl_int cl_error() const throw() \
-    { return __clcode; } \
-  };
-
-#endif /* DIMBO_CL_DECL_EXCEPTION_CL_CTOR_WHAT_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

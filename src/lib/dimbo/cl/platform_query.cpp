@@ -27,7 +27,7 @@
  * @todo Write documentation
  */ // }}}
 #include <dimbo/cl/platform_query.hpp>
-#include <CL/cl.h>
+#include <dimbo/cl/cl.h>
 
 namespace Dimbo {
 namespace Cl {
@@ -69,6 +69,17 @@ select_none()
   this -> select_vendor(false);
   this -> select_extensions(false);
 }
+
+bool operator== (Platform_Query const& a, Platform_Query const& b)
+{
+  return  (a.id_selected() == b.id_selected()) &&
+          (a.profile_selected() == b.profile_selected()) &&
+          (a.version_selected() == b.version_selected()) &&
+          (a.name_selected() == b.name_selected()) &&
+          (a.vendor_selected() == b.vendor_selected()) &&
+          (a.extensions_selected() == b.extensions_selected());
+}
+
 } /* namespace Cl */
 } /* namespace Dimbo */
 // vim: set expandtab tabstop=2 shiftwidth=2:

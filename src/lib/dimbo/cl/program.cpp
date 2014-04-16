@@ -82,7 +82,7 @@ _set_id(cl_program id, bool retain_new, bool release_old)
     {
       if(release_old)
         {
-          cl_int err = clReleaseProgram(this->id());
+          cl_int err = T::clReleaseProgram(this->id());
           switch(err)
             {
               case CL_SUCCESS: break;
@@ -93,7 +93,7 @@ _set_id(cl_program id, bool retain_new, bool release_old)
       this->_id = id;
       if(retain_new)
         {
-          cl_int err = clRetainProgram(this->_id);
+          cl_int err = T::clRetainProgram(this->_id);
           switch(err)
             {
               case CL_SUCCESS: break;
@@ -223,7 +223,7 @@ get_program_info(cl_program id, cl_program_info name,
                  size_t* value_size_ret)
   throw( DIMBO_CL_GET_PROGRAM_INFO_EXCEPTIONS )
 {
-  cl_int err = clGetProgramInfo(id, name, value_size, value, value_size_ret);
+  cl_int err = T::clGetProgramInfo(id, name, value_size, value, value_size_ret);
   switch(err)
     {
       case CL_SUCCESS:          break;

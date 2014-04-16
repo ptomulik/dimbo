@@ -39,7 +39,7 @@
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/nvp.hpp>
 #endif
-//#include <CL/cl.h>
+//#include <dimbo/cl/cl.h>
 
 #include <dimbo/protobuf/cl/platform_info.pb.h>
 
@@ -69,7 +69,7 @@ public:
    */ // }}}
   Platform_Info();
   /** // doc: Platform_Info() {{{
-   * \brief Platform query constructor.
+   * \brief Constructor with custom Platform and Platform_Query.
    *
    * \param platform
    *    Platform proxy object to be used to query target OpenCL platform.
@@ -77,11 +77,11 @@ public:
    *    Platform_Query object which defines what parameters should be
    *    retrieved.
    *
-   * This constructor allows you to create Platform_Info object and query the
-   * OpenCL \c platform for parameters at once. The optional \c query parameter
-   * says, which parameters should be retrieved from OpenCL. The copy of the \c
-   * query object is retained in this Platform_Info object and may be retrieved
-   * with last_query().
+   * This constructor creates Platform_Info object querying the OpenCL \c
+   * platform for parameters. The optional \c query parameter defines which
+   * parameters should be retrieved from OpenCL. The copy of the \c query
+   * object is retained in this Platform_Info object and may be retrieved with
+   * last_query().
    */ // }}}
   Platform_Info( Platform const& platform
                , Platform_Query const& query = Platform_Query());

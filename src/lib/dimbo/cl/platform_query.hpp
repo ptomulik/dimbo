@@ -195,6 +195,8 @@ private:
   // }}}
 };
 
+bool operator==(Platform_Query const&, Platform_Query const&);
+
 } /* namespace Cl */
 } /* namespace Dimbo */
 

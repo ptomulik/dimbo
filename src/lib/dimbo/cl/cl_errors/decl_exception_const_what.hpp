@@ -33,7 +33,7 @@
 #include <dimbo/cl/cl_error.hpp>
 #include <dimbo/standardized_exception.hpp>
 #include <dimbo/src_at.hpp>
-#include <CL/cl.h>
+#include <dimbo/cl/cl.h>
 
 /** // {{{
  * \todo Write documentation

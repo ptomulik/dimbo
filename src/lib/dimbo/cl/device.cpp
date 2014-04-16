@@ -529,8 +529,8 @@ get_device_info(  cl_device_id device,
                   size_t* param_value_size_ret)
   throw( DIMBO_CL_GET_DEVICE_INFO_EXCEPTIONS )
 {
-  cl_int err = clGetDeviceInfo(device, param_name, param_value_size,
-                               param_value, param_value_size_ret);
+  cl_int err = T::clGetDeviceInfo(device, param_name, param_value_size,
+                                  param_value, param_value_size_ret);
   switch(err)
     {
       case CL_SUCCESS:            break;

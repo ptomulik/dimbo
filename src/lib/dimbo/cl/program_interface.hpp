@@ -29,7 +29,7 @@
 #ifndef DIMBO_CL_PROGRAM_INTERFACE_HPP_INCLUDED
 #define DIMBO_CL_PROGRAM_INTERFACE_HPP_INCLUDED
 
-#include <CL/cl.h>
+#include <dimbo/cl/cl.h>
 #include <vector>
 #include <string>
 #include <boost/shared_array.hpp>

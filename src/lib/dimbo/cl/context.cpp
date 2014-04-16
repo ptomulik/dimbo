@@ -69,7 +69,7 @@ _set_id(cl_context ctx, bool retain_new, bool release_old)
     {
       if(release_old)
         {
-          cl_int err = clReleaseContext(this->get_valid_ctx());
+          cl_int err = T::clReleaseContext(this->get_valid_ctx());
           switch(err)
             {
               case CL_SUCCESS: break;
@@ -80,7 +80,7 @@ _set_id(cl_context ctx, bool retain_new, bool release_old)
       this->_ctx = ctx;
       if(retain_new)
         {
-          cl_int err = clRetainContext(this->_ctx);
+          cl_int err = T::clRetainContext(this->_ctx);
           switch(err)
             {
               case CL_SUCCESS: break;
@@ -246,7 +246,7 @@ get_context_info(cl_context ctx, cl_context_info name,
                  size_t* value_size_ret)
   throw( DIMBO_CL_GET_CONTEXT_INFO_EXCEPTIONS )
 {
-  cl_int err = clGetContextInfo(ctx, name, value_size, value, value_size_ret);
+  cl_int err = T::clGetContextInfo(ctx, name, value_size, value, value_size_ret);
   switch(err)
     {
       case CL_SUCCESS:          break;
@@ -267,8 +267,8 @@ create_context(const cl_context_properties* properties,
 {
   cl_int err;
   cl_context ctx;
-  ctx = clCreateContext(properties, num_devices, devices, pfn_notify,
-                        user_data, &err);
+  ctx = T::clCreateContext(properties, num_devices, devices, pfn_notify,
+                           user_data, &err);
   switch(err)
     {
       case CL_SUCCESS:              break;
@@ -293,8 +293,8 @@ create_context_from_type(const cl_context_properties* properties,
 {
   cl_int err;
   cl_context ctx;
-  ctx = clCreateContextFromType(properties, device_type, pfn_notify, user_data,
-                                &err);
+  ctx = T::clCreateContextFromType(properties, device_type, pfn_notify,
+                                   user_data, &err);
   switch(err)
     {
       case CL_SUCCESS:              break;

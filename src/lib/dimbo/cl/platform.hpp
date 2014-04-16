@@ -42,7 +42,7 @@
 #include <vector>
 
 /* OpenCL header */
-#include <CL/cl.h>
+#include <dimbo/cl/cl.h>
 
 namespace Dimbo {
 namespace Cl {
@@ -90,7 +90,7 @@ namespace Cl {
  * This is lightweight object, in fact it carries only \c cl_platform_id
  * identifier.
  *
- * \note The class has no virtual destructor to not bloat the objects with
+ * \note The class has non-virtual destructor to not bloat the objects with
  *       virtual tables.
  *
  */ // }}}

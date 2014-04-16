@@ -33,7 +33,7 @@
 #define DIMBO_CL_CONTEXT_PROPERTIES_HPP_INCLUDED
 
 //#include <dimbo/protobuf/cl/context_properties.pb.h>
-#include <CL/cl.h>
+#include <dimbo/cl/cl.h>
 #include <dimbo/cl/platform.hpp>
 #include <dimbo/cl/exceptions/invalid_argument.hpp>
 #include <dimbo/cl/exceptions/length_error.hpp>

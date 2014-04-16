@@ -28,7 +28,7 @@
 #ifndef DIMBO_CL_CL_ERROR_NO_HPP_INCLUDED
 #define DIMBO_CL_CL_ERROR_NO_HPP_INCLUDED
 
-#include <CL/cl.h>
+#include <dimbo/cl/cl.h>
 
 namespace Dimbo {
 namespace Cl {

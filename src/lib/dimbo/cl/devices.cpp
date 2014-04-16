@@ -49,8 +49,8 @@ get_device_ids(cl_platform_id platform, cl_device_type device_type,
                cl_uint num_entries, cl_device_id* devices, cl_uint* num_devices)
   throw( DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS )
 {
-  cl_int err = clGetDeviceIDs(platform, device_type, num_entries, devices,
-                              num_devices);
+  cl_int err = T::clGetDeviceIDs(platform, device_type, num_entries, devices,
+                                 num_devices);
   switch(err)
     {
       case CL_SUCCESS: break;

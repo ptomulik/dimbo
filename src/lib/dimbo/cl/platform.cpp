@@ -122,8 +122,8 @@ get_platform_info(  cl_platform_id platform,
                     size_t* param_value_size_ret)
   throw( DIMBO_CL_GET_PLATFORM_INFO_EXCEPTIONS )
 {
-  cl_int err = clGetPlatformInfo(platform, param_name, param_value_size,
-                                 param_value, param_value_size_ret);
+  cl_int err = T::clGetPlatformInfo(platform, param_name, param_value_size,
+                                    param_value, param_value_size_ret);
   switch(err)
     {
       case CL_SUCCESS:            break;

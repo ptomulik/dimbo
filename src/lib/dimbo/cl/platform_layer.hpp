@@ -31,7 +31,7 @@
 
 #include <dimbo/cl/platforms.hpp>
 #include <dimbo/cl/devices.hpp>
-#include <CL/cl.h>
+#include <dimbo/cl/cl.h>
 #include <set>
 #include <map>
 #include <vector>

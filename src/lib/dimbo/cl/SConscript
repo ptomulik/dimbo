@@ -20,30 +20,32 @@
 
 Import('env')
 
-libdimbo_cl = env.SharedLibrary(
-  target = 'libdimbo_cl',
-  source = [
-    'exception.cpp'
-  , 'cl_error.cpp'
-  , 'cl_error_no.cpp'
-  , 'platform.cpp'
-  , 'platforms.cpp'
-  , 'platform_info.cpp'
-  , 'platform_query.cpp'
-  , 'device.cpp'
-  , 'devices.cpp'
-  , 'device_info.cpp'
-  , 'device_query.cpp'
-  , 'platform_layer.cpp'
-  , 'platform_layer_info.cpp'
-  , 'program.cpp'
-  #, 'program_source.cpp'
-  , 'context.cpp'
-  , 'context_properties.cpp'
-  ]
-)
+source = [
+'exception.cpp'
+, 'cl_error.cpp'
+, 'cl_error_no.cpp'
+, 'platform.cpp'
+, 'platforms.cpp'
+, 'platform_info.cpp'
+, 'platform_query.cpp'
+, 'device.cpp'
+, 'devices.cpp'
+, 'device_info.cpp'
+, 'device_query.cpp'
+, 'platform_layer.cpp'
+, 'platform_layer_info.cpp'
+, 'program.cpp'
+#, 'program_source.cpp'
+, 'context.cpp'
+, 'context_properties.cpp'
+]
 
-env.Install('${libdir}', libdimbo_cl)
+lib = env.SharedLibrary('libdimbo_cl', source + ['cl_real.cpp'])
+env.Install('${libdir}', lib)
+
+test = env.SharedLibrary('libdimbo_cl_test', source + ['cl_mock.cpp'])
+env.Ignore('.', test)
+
 
 # Local Variables:
 # # tab-width:4

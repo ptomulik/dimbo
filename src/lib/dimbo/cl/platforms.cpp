@@ -45,11 +45,11 @@ get_num_platforms()
 /* ------------------------------------------------------------------------ */
 void
 get_platform_ids( cl_uint num_entries,
-                       cl_platform_id* platforms,
-                       cl_uint* num_platforms)
+                  cl_platform_id* platforms,
+                  cl_uint* num_platforms )
   throw( DIMBO_CL_GET_PLATFORM_IDS_EXCEPTIONS )
 {
-  cl_int err = clGetPlatformIDs(num_entries,platforms,num_platforms);
+  cl_int err = T::clGetPlatformIDs(num_entries,platforms,num_platforms);
   switch(err)
     {
       case CL_SUCCESS:            break;
