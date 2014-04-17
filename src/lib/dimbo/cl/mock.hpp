@@ -20,14 +20,14 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/cl/cl_mock.h
+// dimbo/cl/mock.hpp
 
-/** // doc: dimbo/cl/cl_mock.h {{{
- * \file dimbo/cl/cl_mock.h
+/** // doc: dimbo/cl/mock.hpp {{{
+ * \file dimbo/cl/mock.hpp
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_CL_CL_MOCK_H_INCLUDED
-#define DIMBO_CL_CL_MOCK_H_INCLUDED
+#ifndef DIMBO_CL_MOCK_HPP_INCLUDED
+#define DIMBO_CL_MOCK_HPP_INCLUDED
 
 #include <CL/cl.h>
 #include <cxxtest/Mock.h>
@@ -100,6 +100,8 @@ CXXTEST_MOCK_GLOBAL(cl_int, clGetProgramInfo,
 CXXTEST_MOCK_GLOBAL(cl_int, clRetainProgram, (cl_program program), (program));
 CXXTEST_MOCK_GLOBAL(cl_int, clReleaseProgram, (cl_program program), (program));
 
-#endif /* DIMBO_CL_CL_MOCK_H_INCLUDED */
+#include <dimbo/cl/mocks/nohw.hpp>
+
+#endif /* DIMBO_CL_MOCK_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

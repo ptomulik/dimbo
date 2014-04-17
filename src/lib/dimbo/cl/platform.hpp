@@ -42,7 +42,7 @@
 #include <vector>
 
 /* OpenCL header */
-#include <dimbo/cl/cl.h>
+#include <dimbo/cl/cl.hpp>
 
 namespace Dimbo {
 namespace Cl {

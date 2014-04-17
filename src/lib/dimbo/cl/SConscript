@@ -40,10 +40,10 @@ source = [
 , 'context_properties.cpp'
 ]
 
-lib = env.SharedLibrary('libdimbo_cl', source + ['cl_real.cpp'])
+lib = env.SharedLibrary('libdimbo_cl', source + ['real.cpp'])
 env.Install('${libdir}', lib)
 
-test = env.SharedLibrary('libdimbo_cl_test', source + ['cl_mock.cpp'])
+test = env.SharedLibrary('libdimbo_cl_test', source + ['mock.cpp'])
 env.Ignore('.', test)
 
 

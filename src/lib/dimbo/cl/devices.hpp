@@ -40,7 +40,7 @@
 #include <dimbo/cl/cl_errors/cl_invalid_value.hpp>
 #include <dimbo/cl/cl_errors/cl_out_of_host_memory.hpp>
 #include <dimbo/cl/cl_errors/cl_out_of_resources.hpp>
-#include <dimbo/cl/cl.h>
+#include <dimbo/cl/cl.hpp>
 
 namespace Dimbo {
 namespace Cl {

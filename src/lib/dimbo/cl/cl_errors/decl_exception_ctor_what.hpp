@@ -34,7 +34,7 @@
 #include <dimbo/standardized_exception.hpp>
 #include <dimbo/src_at.hpp>
 #include <string>
-#include <dimbo/cl/cl.h>
+#include <dimbo/cl/cl.hpp>
 
 /** // {{{
  * \todo Write documentation

@@ -22,17 +22,23 @@
 Import(['env'])
 
 doxyfile = env.Doxyfile(
-    INPUT               = '..',
-    RECURSIVE           = True,
-    PROJECT_NAME        = "Dimbo Libraries",
-    PROJECT_NUMBER      = '0.1.0',
-    PROJECT_BRIEF       = 'Libraries that are part of Dimbo package',
-    OUTPUT_DIRECTORY    = '.',
-    STRIP_FROM_PATH     = '../../../..',
-    STRIP_FROM_INC_PATH = '../..',
-    EXAMPLE_PATH        = '../examples',
-    FILTER_PATTERNS     = { '*.cpp' : env.File('#bin/doxycppfilter'),
-                          '*.hpp' : env.File('#bin/doxycppfilter') }
+    INPUT                   = '..',
+    RECURSIVE               = True,
+    PROJECT_NAME            = "Dimbo Libraries",
+    PROJECT_NUMBER          = '0.1.0',
+    PROJECT_BRIEF           = 'Libraries that are part of Dimbo package',
+    OUTPUT_DIRECTORY        = '.',
+    STRIP_FROM_PATH         = '../../../..',
+    STRIP_FROM_INC_PATH     = '../..',
+    EXAMPLE_PATH            = '../examples',
+    FILTER_PATTERNS         = { '*.cpp' : env.File('#bin/doxycppfilter'),
+                                '*.hpp' : env.File('#bin/doxycppfilter'),
+                                '*.h' : env.File('#bin/doxycppfilter') },
+    FILTER_SOURCE_FILES     = True,
+    FILTER_SOURCE_PATTERNS  = { '*.cpp' : env.File('#bin/doxycppfilter'),
+                                '*.hpp' : env.File('#bin/doxycppfilter'),
+                                '*.h' : env.File('#bin/doxycppfilter') },
+    PREDEFINED              = 'DOXYGEN=1'
 )
 
 doc = env.Doxygen(doxyfile)

@@ -33,38 +33,6 @@
 #include <dimbo/cl/platform_info.hpp>
 
 namespace Dimbo { namespace Cl { class Platform_Info_TestSuite; } }
-namespace Dimbo { namespace Cl { class clGetPlatformInfo_Mock; } }
-
-
-class Dimbo::Cl::clGetPlatformInfo_Mock
-  : public T::Base_clGetPlatformInfo
-{
-public:
-  cl_platform_id last_platform_id;
-  clGetPlatformInfo_Mock()
-    : last_platform_id(reinterpret_cast<cl_platform_id>(0))
-  {
-  }
-
-  /* Implementation of clGetPlatformInfo() that does not return anything */
-  cl_int clGetPlatformInfo(cl_platform_id platform, cl_platform_info param_name,
-                           size_t param_value_size, void* param_value,
-                           size_t* param_value_size_ret)
-  {
-    this->last_platform_id = platform;
-    (void)param_name; // prevent "unused parameter" warning
-    if(param_value != NULL && param_value_size > 0)
-      {
-        /* At least for OpenCL 1.0, all the returned types are char[] */
-        *(static_cast<char*>(param_value)) = 0;
-      }
-    if(param_value_size_ret != NULL)
-      {
-        *param_value_size_ret = 1;
-      }
-    return 0;
-  }
-};
 
 /** // doc: class Dimbo::Cl::Platform_Info_TestSuite {{{
  * \brief Unit tests for Dimbo::Cl::Platform_Info class
@@ -119,16 +87,15 @@ public:
   /** // doc: test_ctor_1() {{{
    * \brief Test Platform_Info(platform) constructor call.
    */ // }}}
-  void test_ctor_1( )
-  {
-    const cl_platform_id id = reinterpret_cast<cl_platform_id>(0x1234ul);
-    clGetPlatformInfo_Mock mock;
-    Platform platform(id);
-    Platform_Info info(platform); // this queries platfrom info
-    TS_ASSERT_EQUALS(info.id(), 0x1234ul);
-    TS_ASSERT_EQUALS(info.last_query(), Platform_Query());
-    TS_ASSERT_EQUALS(mock.last_platform_id, id);
-  }
+//  void test_ctor_1( )
+//  {
+//    const cl_platform_id id = reinterpret_cast<cl_platform_id>(0x1234ul);
+//    T::NoHw_clGetPlatformInfo mock;
+//    Platform platform(id);
+//    Platform_Info info(platform); // this queries platfrom info
+//    TS_ASSERT_EQUALS(info.id(), 0x1234ul);
+//    TS_ASSERT_EQUALS(info.last_query(), Platform_Query());
+//  }
 };
 
 #endif /* DIMBO_CL_PLATFORM_INFO_T_H_INCLUDED */

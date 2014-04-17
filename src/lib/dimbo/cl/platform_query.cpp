@@ -27,7 +27,7 @@
  * @todo Write documentation
  */ // }}}
 #include <dimbo/cl/platform_query.hpp>
-#include <dimbo/cl/cl.h>
+#include <dimbo/cl/cl.hpp>
 
 namespace Dimbo {
 namespace Cl {

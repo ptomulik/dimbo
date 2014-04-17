@@ -31,7 +31,7 @@
 
 /* Dimbo includes */
 #include <dimbo/cl/exception.hpp>
-#include <dimbo/cl/cl.h>
+#include <dimbo/cl/cl.hpp>
 
 namespace Dimbo {
 /** // {{{

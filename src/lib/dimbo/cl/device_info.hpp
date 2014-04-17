@@ -41,7 +41,7 @@
 # include <boost/serialization/nvp.hpp>
 # include <boost/serialization/vector.hpp>
 #endif
-#include <dimbo/cl/cl.h>
+#include <dimbo/cl/cl.hpp>
 #include <vector>
 
 namespace Dimbo {

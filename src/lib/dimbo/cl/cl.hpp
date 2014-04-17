@@ -26,11 +26,11 @@
  * \file dimbo/cl/cl.hpp
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_CL_CL_H_INCLUDED
-#define DIMBO_CL_CL_H_INCLUDED
+#ifndef DIMBO_CL_CL_HPP_INCLUDED
+#define DIMBO_CL_CL_HPP_INCLUDED
 
-#include <dimbo/cl/cl_mock.h>
+#include <dimbo/cl/mock.hpp>
 
-#endif /* DIMBO_CL_CL_H_INCLUDED */
+#endif /* DIMBO_CL_CL_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

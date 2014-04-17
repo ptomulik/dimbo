@@ -29,7 +29,7 @@ libpath = env.get('LIBPATH', CLVar()) + ['../../../../cl']
 defs = env.get('CPPDEFINES', {}).copy()
 defs.update({'DIMBO_COMPILING_TEST' : 1})
 
-env.CxxTest('cl_test', env.Glob('*.t.h') + env.Glob('*_mock.cpp'),
+env.CxxTest('cl_test', env.Glob('*.t.h'),
             LIBS = libs,
             CXXTEST_LIBPATH = libpath,
             CXXTEST_TARGET = 'check-dimbo-cl')

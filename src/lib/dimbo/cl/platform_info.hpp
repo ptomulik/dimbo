@@ -39,7 +39,7 @@
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/nvp.hpp>
 #endif
-//#include <dimbo/cl/cl.h>
+//#include <dimbo/cl/cl.hpp>
 
 #include <dimbo/protobuf/cl/platform_info.pb.h>
 
