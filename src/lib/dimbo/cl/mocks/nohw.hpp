@@ -25,10 +25,38 @@
 /** // doc: dimbo/cl/mocks/nohw.hpp {{{
  * \file dimbo/cl/mocks/nohw.hpp
  *
- * This file implements OpenCL mocks which emulate a situation when there is no
+ * This file implements OpenCL mocks emulating the situation when there is no
  * OpenCL hardware around. It means, the number of OpenCL platforms is zero,
  * and most of the queries just return CL_INVALID_PLATFORM, CL_INVALID_DEVICE
- * error or such.
+ * error or such (see documentation of particular mocks for details).
+ *
+ * The implementation is created only when the \c CXXTEST_MOCK_TEST_SOURCE_FILE
+ * constant is defined,
+ *
+ * **Example**:
+ * 
+ * The following code is an excerpt from unit test for
+ * dimbo/cl/platform_info.cpp module. It uses the mock for clGetPlatformInfo, 
+ * that is the T::NoHw_clGetPlatformInfo mock.
+ *
+ * \code
+ * #include <cxxtest/TestSuite.h>
+ * #include <dimbo/platform_info.hpp>
+ * namespace Dimbo { namespace Cl { class Platform_Info_TestSuite; } }
+ * class Dimbo::Cl::Platform_Info_TestSuite : public CxxTest::TestSuite
+ * {
+ * public:
+ *    // ...
+ *    void test_ctor_nohw( )
+ *    {
+ *      T::NoHw_clGetPlatformInfo mock;
+ *      Platform platform(reinterpret_cast<cl_platform_id>(0x1234ul));
+ *      TS_ASSERT_THROWS(Platform_Info info(platform), Dimbo::Cl::Cl_Error_No<CL_INVALID_PLATFORM>)
+ *    }
+ * };
+ * \endcode
+ *
+ *
  */ // }}}
 #ifndef DIMBO_CL_MOCKS_NOHW_HPP_INCLUDED
 #define DIMBO_CL_MOCKS_NOHW_HPP_INCLUDED
@@ -40,7 +68,7 @@ namespace T {
 /** // doc: NoHw_clGetPlatformIDs {{{
  * \brief Default mock for clGetPlatformIDs OpenCL function.
  *
- * Does not return any IDs, that is behaves as there were no OpenCL platforms.
+ * Does not return any IDs - it behaves as there were no OpenCL platforms.
  */ // }}}
 class NoHw_clGetPlatformIDs
   : public T::Base_clGetPlatformIDs
@@ -49,8 +77,8 @@ class NoHw_clGetPlatformIDs
                           cl_uint *num_platforms);
 };
 
-/** // doc: NoHw_clGetPlatfromInfo {{{
- * \brief Default mock for clGetPlatfromInfo OpenCL function.
+/** // doc: NoHw_clGetPlatformInfo {{{
+ * \brief Default mock for clGetPlatformInfo OpenCL function.
  *
  * The mock just returns @c CL_INVALID_PLATFORM error.
  */ // }}}
@@ -149,7 +177,7 @@ clGetPlatformIDs(cl_uint num_entries, cl_platform_id* platforms,
     {
       *num_platforms = 0;
     }
-  return 0;
+  return CL_SUCCESS;
 }
 
 cl_int NoHw_clGetPlatformInfo::

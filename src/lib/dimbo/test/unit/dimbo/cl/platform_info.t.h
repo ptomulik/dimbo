@@ -84,18 +84,74 @@ public:
     empty.select_none();
     TS_ASSERT_EQUALS(Platform_Info().last_query(), empty);
   }
-  /** // doc: test_ctor_1() {{{
-   * \brief Test Platform_Info(platform) constructor call.
+  /** // doc: test_ctor() {{{
+   * \brief Test Platform_Info's default constructor.
    */ // }}}
-//  void test_ctor_1( )
-//  {
-//    const cl_platform_id id = reinterpret_cast<cl_platform_id>(0x1234ul);
-//    T::NoHw_clGetPlatformInfo mock;
-//    Platform platform(id);
-//    Platform_Info info(platform); // this queries platfrom info
-//    TS_ASSERT_EQUALS(info.id(), 0x1234ul);
-//    TS_ASSERT_EQUALS(info.last_query(), Platform_Query());
-//  }
+  void test_ctor( )
+  {
+    Platform_Info info;
+    Platform_Query query;
+    query.select_none();
+
+    TS_ASSERT_EQUALS(info.id(),0);
+    TS_ASSERT_EQUALS(info.profile(),"");
+    TS_ASSERT_EQUALS(info.version(),"");
+    TS_ASSERT_EQUALS(info.name(),"");
+    TS_ASSERT_EQUALS(info.vendor(),"");
+    TS_ASSERT_EQUALS(info.extensions(),"");
+    TS_ASSERT_EQUALS(info.last_query(), query);
+  }
+  /** // doc: test_ctor_nohw() {{{
+   * \brief Test Platform_Info(platform) constructor call.
+   *
+   * Ensures that the Platform_Info(platform) throws appropriate exception
+   * when **platform** refers to an inexistent OpenCL platform.
+   */ // }}}
+  void test_ctor_nohw( )
+  {
+    T::NoHw_clGetPlatformInfo mock;
+    Platform platform(reinterpret_cast<cl_platform_id>(0x1234ul));
+    TS_ASSERT_THROWS(Platform_Info info(platform),
+                     Dimbo::Cl::Cl_Error_No<CL_INVALID_PLATFORM>)
+  }
+  /** // doc: test_ctor_newton_cpu() {{{
+   * \brief Test Platform_Info(platform) constructor call.
+   *
+   * Ensures that the constructor initializes the Platform_Info instance with
+   * correct values.
+   */ // }}}
+  void test_ctor_newton_cpu()
+  {
+    T::Newton_clGetPlatformInfo mock;
+    cl_platform_id id = T::Newton_clGetPlatformIDs::platforms[0];
+    Platform platform(reinterpret_cast<cl_platform_id>(id));
+    Platform_Info info(platform);
+    TS_ASSERT_EQUALS(info.profile(),"FULL_PROFILE");
+    TS_ASSERT_EQUALS(info.version(),"OpenCL 1.2 AMD-APP (1348.4)");
+    TS_ASSERT_EQUALS(info.name(),"AMD Accelerated Parallel Processing");
+    TS_ASSERT_EQUALS(info.vendor(),"Advanced Micro Devices, Inc.");
+    TS_ASSERT_EQUALS(info.extensions(),"cl_khr_icd cl_amd_event_callback cl_amd_offline_devices");
+    TS_ASSERT_EQUALS(info.last_query(), Platform_Query());
+  }
+  /** // doc: test_ctor_newton_gpu() {{{
+   * \brief Test Platform_Info(platform) constructor call.
+   *
+   * Ensures that the constructor initializes the Platform_Info instance with
+   * correct values.
+   */ // }}}
+  void test_ctor_newton_gpu()
+  {
+    T::Newton_clGetPlatformInfo mock;
+    cl_platform_id id = T::Newton_clGetPlatformIDs::platforms[1];
+    Platform platform(reinterpret_cast<cl_platform_id>(id));
+    Platform_Info info(platform);
+    TS_ASSERT_EQUALS(info.profile(),"FULL_PROFILE");
+    TS_ASSERT_EQUALS(info.version(),"OpenCL 1.1 CUDA 4.2.1");
+    TS_ASSERT_EQUALS(info.name(),"NVIDIA CUDA");
+    TS_ASSERT_EQUALS(info.vendor(),"NVIDIA Corporation");
+    TS_ASSERT_EQUALS(info.extensions(),"cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll");
+    TS_ASSERT_EQUALS(info.last_query(), Platform_Query());
+  }
 };
 
 #endif /* DIMBO_CL_PLATFORM_INFO_T_H_INCLUDED */

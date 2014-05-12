@@ -24,7 +24,11 @@
 
 /** // doc: dimbo/cl/mock.hpp {{{
  * \file dimbo/cl/mock.hpp
- * \todo Write documentation
+ *
+ * \brief CxxTest mocks for OpenCL functions.
+ *
+ * This file declares OpenCL mocks for CxxTest-based unit tests. Particular
+ * implementations are provided by headers found in dimbo/cl/mocks/ directory.
  */ // }}}
 #ifndef DIMBO_CL_MOCK_HPP_INCLUDED
 #define DIMBO_CL_MOCK_HPP_INCLUDED
@@ -101,6 +105,7 @@ CXXTEST_MOCK_GLOBAL(cl_int, clRetainProgram, (cl_program program), (program));
 CXXTEST_MOCK_GLOBAL(cl_int, clReleaseProgram, (cl_program program), (program));
 
 #include <dimbo/cl/mocks/nohw.hpp>
+#include <dimbo/cl/mocks/newton.hpp>
 
 #endif /* DIMBO_CL_MOCK_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
