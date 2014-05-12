@@ -307,6 +307,10 @@ clGetPlatformInfo(cl_platform_id platform, cl_platform_info param_name,
     }
 
   int pi = Newton_clGetPlatformIDs::find(platform);
+  if(pi == -1)
+    {
+      return CL_INVALID_PLATFORM;
+    }
 
   switch(param_name)
   {
