@@ -13,8 +13,9 @@ before_install:
 install:
   - sudo apt-get --no-install-recommends -y install g++
   - sudo apt-get --no-install-recommends -y install clang
-  - (clang --version | grep 'clang version 3\.3') &&
-    sudo apt-get --no-install-recommends -y install libclang-common-3.3-dev
+  - if (clang --version | grep 'clang version 3\.3'); then
+      sudo apt-get --no-install-recommends -y install libclang-common-3.3-dev;
+    fi
   - sudo apt-get --no-install-recommends -y install cxxtest
   - sudo apt-get --no-install-recommends -y install scons
   - sudo apt-get --no-install-recommends -y install swig
