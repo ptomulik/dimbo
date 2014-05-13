@@ -332,6 +332,11 @@ write_global_mem_size(Ostream& os, Dimbo::Cl::Device_Info const& dev)
   return (os << dev.global_mem_size());
 }
 template<class Ostream> static Ostream&
+write_max_constant_buffer_size(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  return (os << dev.max_constant_buffer_size());
+}
+template<class Ostream> static Ostream&
 write_max_constant_args(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 {
   return (os << dev.max_constant_args());
@@ -615,6 +620,10 @@ write(Ostream& os, Dimbo::Cl::Device_Info const& dev, int ind)
   if(query.global_mem_size_selected()) {
     os << as << pre << "Global Mem Size ..............: ";
     write_global_mem_size(os, dev);
+  }
+  if(query.max_constant_buffer_size_selected()) {
+    os << as << pre << "Max Constant Buffer Size .....: ";
+    write_max_constant_buffer_size(os, dev);
   }
   if(query.max_constant_args_selected()) {
     os << as << pre << "Max Constant Args ............: ";

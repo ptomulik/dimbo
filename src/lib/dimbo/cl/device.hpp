@@ -529,6 +529,13 @@ public:
   cl_ulong get_global_mem_size() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
+   * \brief Get \c CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE information.
+   * \return Max size in bytes of a constant buffer allocation. The minimum
+   *         value is 64KB.
+   */ // }}}
+  cl_ulong get_max_constant_buffer_size() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
    * \brief Get \c CL_DEVICE_MAX_CONSTANT_ARGS information.
    * \return Max number of arguments declared with the \c __constant qualifier
    *    in a kernel. The minimum value is 8.

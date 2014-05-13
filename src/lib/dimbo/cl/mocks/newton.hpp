@@ -154,6 +154,7 @@ public:
   static cl_uint const global_mem_cacheline_size[3];
   static cl_ulong const global_mem_cache_size[3];
   static cl_ulong const global_mem_size[3];
+  static cl_ulong const max_constant_buffer_size[3];
   static cl_uint const max_constant_args[3];
   static cl_device_local_mem_type const local_mem_type[3];
   static cl_ulong const local_mem_size[3];
@@ -561,6 +562,9 @@ global_mem_cache_size[3] = { 32768ul, 0, 0 };
 // CL_DEVICE_GLOBAL_MEM_SIZE
 cl_ulong const Newton_clGetDeviceInfo::
 global_mem_size[3] = { 16856764416ul, 4294770688ul, 4294770688ul };
+// CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE
+cl_ulong const Newton_clGetDeviceInfo::
+max_constant_buffer_size[3] = { 65536, 65536, 65536 };
 // CL_DEVICE_MAX_CONSTANT_ARGS
 cl_uint const Newton_clGetDeviceInfo::
 max_constant_args[3] = { 8, 9, 9 };
@@ -838,6 +842,10 @@ clGetDeviceInfo(cl_device_id device, cl_device_info param_name,
         ptr = &global_mem_size[di];
         size = sizeof(cl_ulong);
         break;
+      case CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE:
+        ptr = &max_constant_buffer_size[di];
+        size = sizeof(cl_ulong);
+        break;
       case CL_DEVICE_MAX_CONSTANT_ARGS:
         ptr = &max_constant_args[di];
         size = sizeof(cl_uint);
@@ -845,6 +853,7 @@ clGetDeviceInfo(cl_device_id device, cl_device_info param_name,
       case CL_DEVICE_LOCAL_MEM_TYPE:
         ptr = &local_mem_type[di];
         size = sizeof(cl_device_local_mem_type);
+        break;
       case CL_DEVICE_LOCAL_MEM_SIZE:
         ptr = &local_mem_size[di];
         size = sizeof(cl_ulong);

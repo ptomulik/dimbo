@@ -361,6 +361,13 @@ public:
   {
     return this->_select_global_mem_size;
   }
+  /** // doc: max_constant_buffer_size_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool max_constant_buffer_size_selected() const
+  {
+    return this->_select_max_constant_buffer_size;
+  }
   /** // doc: max_constant_args_selected() {{{
    * \todo Write documentation
    */ //  }}}
@@ -783,6 +790,13 @@ public:
   {
     this->_select_global_mem_size = flag;
   }
+  /** // doc: select_max_constant_buffer_size() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_max_constant_buffer_size(bool flag = true)
+  {
+    this->_select_max_constant_buffer_size = flag;
+  }
   /** // doc: select_max_constant_args() {{{
    * \todo Write documentation
    */ //  }}}
@@ -966,6 +980,7 @@ private:
     ar & make_nvp("select_global_mem_cacheline_size", _select_global_mem_cacheline_size);
     ar & make_nvp("select_global_mem_cache_size", _select_global_mem_cache_size);
     ar & make_nvp("select_global_mem_size", _select_global_mem_size);
+    ar & make_nvp("select_max_constant_buffer_size", _select_max_constant_buffer_size);
     ar & make_nvp("select_max_constant_args", _select_max_constant_args);
     ar & make_nvp("select_local_mem_type", _select_local_mem_type);
     ar & make_nvp("select_local_mem_size", _select_local_mem_size);
@@ -1032,6 +1047,7 @@ private:
   bool _select_global_mem_cacheline_size;
   bool _select_global_mem_cache_size;
   bool _select_global_mem_size;
+  bool _select_max_constant_buffer_size;
   bool _select_max_constant_args;
   bool _select_local_mem_type;
   bool _select_local_mem_size;

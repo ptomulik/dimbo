@@ -85,6 +85,7 @@ select_all()
   this -> select_global_mem_cacheline_size(true);
   this -> select_global_mem_cache_size(true);
   this -> select_global_mem_size(true);
+  this -> select_max_constant_buffer_size(true);
   this -> select_max_constant_args(true);
   this -> select_local_mem_type(true);
   this -> select_local_mem_size(true);
@@ -151,6 +152,7 @@ select_none()
   this -> select_global_mem_cacheline_size(false);
   this -> select_global_mem_cache_size(false);
   this -> select_global_mem_size(false);
+  this -> select_max_constant_buffer_size(false);
   this -> select_max_constant_args(false);
   this -> select_local_mem_type(false);
   this -> select_local_mem_size(false);

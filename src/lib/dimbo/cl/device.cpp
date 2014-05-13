@@ -372,6 +372,13 @@ get_global_mem_size() const
   return _get_pod_info<cl_ulong>(*this, CL_DEVICE_GLOBAL_MEM_SIZE);
 }
 /* ------------------------------------------------------------------------ */
+cl_ulong Device::
+get_max_constant_buffer_size() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_ulong>(*this, CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE);
+}
+/* ------------------------------------------------------------------------ */
 cl_uint Device::
 get_max_constant_args() const
   throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )

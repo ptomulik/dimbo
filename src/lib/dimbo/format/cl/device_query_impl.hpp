@@ -131,6 +131,8 @@ write(Ostream& os, Dimbo::Cl::Device_Query const& query, int ind)
   write_bool(os, query.global_mem_cache_size_selected());
   os << as << pre << "Global Mem Size ..............: ";
   write_bool(os, query.global_mem_size_selected());
+  os << as << pre << "Max Constant Buffer Size .....: ";
+  write_bool(os, query.max_constant_buffer_size_selected());
   os << as << pre << "Max Constant Args ............: ";
   write_bool(os, query.max_constant_args_selected());
   os << as << pre << "Local Mem Type ...............: ";

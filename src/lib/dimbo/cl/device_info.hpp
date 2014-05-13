@@ -386,6 +386,13 @@ public:
   /** // {{{
    * \todo Write documentation
    */ // }}}
+  cl_ulong max_constant_buffer_size() const
+  {
+    return this->_max_constant_buffer_size;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
   cl_uint max_constant_args() const
   {
     return this->_max_constant_args;
@@ -569,6 +576,7 @@ private:
     ar & make_nvp("global_mem_cacheline_size", _global_mem_cacheline_size);
     ar & make_nvp("global_mem_cache_size", _global_mem_cache_size);
     ar & make_nvp("global_mem_size", _global_mem_size);
+    ar & make_nvp("max_constant_buffer_size", _max_constant_buffer_size);
     ar & make_nvp("max_constant_args", _max_constant_args);
     ar & make_nvp("local_mem_type", _local_mem_type);
     ar & make_nvp("local_mem_size", _local_mem_size);
@@ -638,6 +646,7 @@ private:
   cl_uint _global_mem_cacheline_size;
   cl_ulong _global_mem_cache_size;
   cl_ulong _global_mem_size;
+  cl_uint _max_constant_buffer_size;
   cl_uint _max_constant_args;
   cl_device_local_mem_type _local_mem_type;
   cl_ulong _local_mem_size;

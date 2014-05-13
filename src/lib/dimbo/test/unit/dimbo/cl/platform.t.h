@@ -41,7 +41,7 @@ class Dimbo::Cl::Platform_TestSuite : public CxxTest::TestSuite
 {
 public:
   /** // doc: test_ctor_default() {{{
-   * \brief Ensure that by default id() == NULL.
+   * \brief Ensure that id() == NULL by default.
    */ // }}}
   void test_ctor_default( )
   {
@@ -169,14 +169,14 @@ public:
     TS_ASSERT_THROWS(p.get_info(0, 0, NULL, &size), Dimbo::Cl::Cl_Error_No<CL_INVALID_VALUE>);
   }
   /** // doc: test_get_info_1() {{{
-   * \brief Test get_info(CL_PLATFORM_PROFILE, 1, &value, NULL).
+   * \brief Test get_info(CL_PLATFORM_PROFILE, 1, value, NULL).
    */ // }}}
   void test_get_info_1( )
   {
     T::Newton_clGetPlatformInfo mock;
     Platform p(T::Newton_clGetPlatformIDs::platforms[0]);
     char value[1];
-    TS_ASSERT_THROWS(p.get_info(CL_PLATFORM_PROFILE, 1, &value, NULL), Dimbo::Cl::Cl_Error_No<CL_INVALID_VALUE>);
+    TS_ASSERT_THROWS(p.get_info(CL_PLATFORM_PROFILE, 1, value, NULL), Dimbo::Cl::Cl_Error_No<CL_INVALID_VALUE>);
   }
   /** // doc: test_get_info_profile_0() {{{
    * \brief Test get_info(CL_PLATFORM_PROFILE, 0, NULL, &size).
@@ -197,7 +197,7 @@ public:
     T::Newton_clGetPlatformInfo mock;
     Platform p(T::Newton_clGetPlatformIDs::platforms[0]);
     char value[13];
-    p.get_info(CL_PLATFORM_PROFILE, sizeof(value), &value, NULL);
+    p.get_info(CL_PLATFORM_PROFILE, sizeof(value), value, NULL);
     TS_ASSERT_EQUALS(value, "FULL_PROFILE");
   }
   /** // doc: test_get_info_version_0() {{{
@@ -219,7 +219,7 @@ public:
     T::Newton_clGetPlatformInfo mock;
     Platform p(T::Newton_clGetPlatformIDs::platforms[0]);
     char value[28];
-    p.get_info(CL_PLATFORM_VERSION, sizeof(value), &value, NULL);
+    p.get_info(CL_PLATFORM_VERSION, sizeof(value), value, NULL);
     TS_ASSERT_EQUALS(value, "OpenCL 1.2 AMD-APP (1348.4)");
   }
   /** // doc: test_get_info_name_0() {{{
@@ -241,7 +241,7 @@ public:
     T::Newton_clGetPlatformInfo mock;
     Platform p(T::Newton_clGetPlatformIDs::platforms[0]);
     char value[36];
-    p.get_info(CL_PLATFORM_NAME, sizeof(value), &value, NULL);
+    p.get_info(CL_PLATFORM_NAME, sizeof(value), value, NULL);
     TS_ASSERT_EQUALS(value, "AMD Accelerated Parallel Processing");
   }
   /** // doc: test_get_info_vendor_0() {{{
@@ -263,7 +263,7 @@ public:
     T::Newton_clGetPlatformInfo mock;
     Platform p(T::Newton_clGetPlatformIDs::platforms[0]);
     char value[29];
-    p.get_info(CL_PLATFORM_VENDOR, sizeof(value), &value, NULL);
+    p.get_info(CL_PLATFORM_VENDOR, sizeof(value), value, NULL);
     TS_ASSERT_EQUALS(value, "Advanced Micro Devices, Inc.");
   }
   /** // doc: test_get_info_extensions_0() {{{
@@ -285,7 +285,7 @@ public:
     T::Newton_clGetPlatformInfo mock;
     Platform p(T::Newton_clGetPlatformIDs::platforms[0]);
     char value[56];
-    p.get_info(CL_PLATFORM_EXTENSIONS, sizeof(value), &value, NULL);
+    p.get_info(CL_PLATFORM_EXTENSIONS, sizeof(value), value, NULL);
     TS_ASSERT_EQUALS(value, "cl_khr_icd cl_amd_event_callback cl_amd_offline_devices");
   }
   /** // doc: test_get_profile_1() {{{

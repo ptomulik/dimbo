@@ -93,6 +93,7 @@ clear()
   this -> _global_mem_cacheline_size = 0;
   this -> _global_mem_cache_size = 0;
   this -> _global_mem_size = 0;
+  this -> _max_constant_buffer_size = 0;
   this -> _max_constant_args = 0;
   this -> _local_mem_type = 0;
   this -> _local_mem_size = 0;
@@ -243,6 +244,9 @@ query(Device const& device, Device_Query const& query)
   }
   if(query.global_mem_size_selected()) {
     this->_global_mem_size = device.get_global_mem_size();
+  }
+  if(query.max_constant_buffer_size_selected()) {
+    this->_max_constant_buffer_size = device.get_max_constant_buffer_size();
   }
   if(query.max_constant_args_selected()) {
     this->_max_constant_args = device.get_max_constant_args();
