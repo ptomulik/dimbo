@@ -109,19 +109,19 @@ public:
   {
     return this->_select_max_work_item_dimensions;
   }
-  /** // doc: max_work_item_sizes_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool max_work_item_sizes_selected() const
-  {
-    return this->_select_max_work_item_sizes;
-  }
   /** // doc: max_work_group_size_selected() {{{
    * \todo Write documentation
    */ //  }}}
   bool max_work_group_size_selected() const
   {
     return this->_select_max_work_group_size;
+  }
+  /** // doc: max_work_item_sizes_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool max_work_item_sizes_selected() const
+  {
+    return this->_select_max_work_item_sizes;
   }
   /** // doc: preferred_vector_width_char_selected() {{{
    * \todo Write documentation
@@ -164,62 +164,6 @@ public:
   bool preferred_vector_width_double_selected() const
   {
     return this->_select_preferred_vector_width_double;
-  }
-  /** // doc: preferred_vector_width_half_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool preferred_vector_width_half_selected() const
-  {
-    return this->_select_preferred_vector_width_half;
-  }
-  /** // doc: native_vector_width_char_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool native_vector_width_char_selected() const
-  {
-    return this->_select_native_vector_width_char;
-  }
-  /** // doc: native_vector_width_short_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool native_vector_width_short_selected() const
-  {
-    return this->_select_native_vector_width_short;
-  }
-  /** // doc: native_vector_width_int_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool native_vector_width_int_selected() const
-  {
-    return this->_select_native_vector_width_int;
-  }
-  /** // doc: native_vector_width_long_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool native_vector_width_long_selected() const
-  {
-    return this->_select_native_vector_width_long;
-  }
-  /** // doc: native_vector_width_float_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool native_vector_width_float_selected() const
-  {
-    return this->_select_native_vector_width_float;
-  }
-  /** // doc: native_vector_width_double_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool native_vector_width_double_selected() const
-  {
-    return this->_select_native_vector_width_double;
-  }
-  /** // doc: native_vector_width_half_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool native_vector_width_half_selected() const
-  {
-    return this->_select_native_vector_width_half;
   }
   /** // doc: max_clock_frequency_selected() {{{
    * \todo Write documentation
@@ -396,13 +340,6 @@ public:
   {
     return this->_select_error_correction_support;
   }
-  /** // doc: host_unified_memory_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool host_unified_memory_selected() const
-  {
-    return this->_select_host_unified_memory;
-  }
   /** // doc: profiling_timer_resolution_selected() {{{
    * \todo Write documentation
    */ //  }}}
@@ -445,13 +382,6 @@ public:
   {
     return this->_select_queue_properties;
   }
-  /** // doc: platform_id_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool platform_id_selected() const
-  {
-    return this->_select_platform_id;
-  }
   /** // doc: name_selected() {{{
    * \todo Write documentation
    */ //  }}}
@@ -487,19 +417,89 @@ public:
   {
     return this->_select_version;
   }
-  /** // doc: opencl_c_version_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool opencl_c_version_selected() const
-  {
-    return this->_select_opencl_c_version;
-  }
   /** // doc: extensions_selected() {{{
    * \todo Write documentation
    */ //  }}}
   bool extensions_selected() const
   {
     return this->_select_extensions;
+  }
+  /** // doc: platform_id_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool platform_id_selected() const
+  {
+    return this->_select_platform_id;
+  }
+  /** // doc: preferred_vector_width_half_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool preferred_vector_width_half_selected() const
+  {
+    return this->_select_preferred_vector_width_half;
+  }
+  /** // doc: host_unified_memory_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool host_unified_memory_selected() const
+  {
+    return this->_select_host_unified_memory;
+  }
+  /** // doc: native_vector_width_char_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool native_vector_width_char_selected() const
+  {
+    return this->_select_native_vector_width_char;
+  }
+  /** // doc: native_vector_width_short_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool native_vector_width_short_selected() const
+  {
+    return this->_select_native_vector_width_short;
+  }
+  /** // doc: native_vector_width_int_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool native_vector_width_int_selected() const
+  {
+    return this->_select_native_vector_width_int;
+  }
+  /** // doc: native_vector_width_long_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool native_vector_width_long_selected() const
+  {
+    return this->_select_native_vector_width_long;
+  }
+  /** // doc: native_vector_width_float_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool native_vector_width_float_selected() const
+  {
+    return this->_select_native_vector_width_float;
+  }
+  /** // doc: native_vector_width_double_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool native_vector_width_double_selected() const
+  {
+    return this->_select_native_vector_width_double;
+  }
+  /** // doc: native_vector_width_half_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool native_vector_width_half_selected() const
+  {
+    return this->_select_native_vector_width_half;
+  }
+  /** // doc: opencl_c_version_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool opencl_c_version_selected() const
+  {
+    return this->_select_opencl_c_version;
   }
   // }}}
   // selectors {{{
@@ -538,19 +538,19 @@ public:
   {
     this->_select_max_work_item_dimensions = flag;
   }
-  /** // doc: select_max_work_item_sizes() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_max_work_item_sizes(bool flag = true)
-  {
-    this->_select_max_work_item_sizes = flag;
-  }
   /** // doc: select_max_work_group_size() {{{
    * \todo Write documentation
    */ //  }}}
   void select_max_work_group_size(bool flag = true)
   {
     this->_select_max_work_group_size = flag;
+  }
+  /** // doc: select_max_work_item_sizes() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_max_work_item_sizes(bool flag = true)
+  {
+    this->_select_max_work_item_sizes = flag;
   }
   /** // doc: select_preferred_vector_width_char() {{{
    * \todo Write documentation
@@ -593,62 +593,6 @@ public:
   void select_preferred_vector_width_double(bool flag = true)
   {
     this->_select_preferred_vector_width_double = flag;
-  }
-  /** // doc: select_preferred_vector_width_half() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_preferred_vector_width_half(bool flag = true)
-  {
-    this->_select_preferred_vector_width_half = flag;
-  }
-  /** // doc: select_native_vector_width_char() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_native_vector_width_char(bool flag = true)
-  {
-    this->_select_native_vector_width_char = flag;
-  }
-  /** // doc: select_native_vector_width_short() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_native_vector_width_short(bool flag = true)
-  {
-    this->_select_native_vector_width_short = flag;
-  }
-  /** // doc: select_native_vector_width_int() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_native_vector_width_int(bool flag = true)
-  {
-    this->_select_native_vector_width_int = flag;
-  }
-  /** // doc: select_native_vector_width_long() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_native_vector_width_long(bool flag = true)
-  {
-    this->_select_native_vector_width_long = flag;
-  }
-  /** // doc: select_native_vector_width_float() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_native_vector_width_float(bool flag = true)
-  {
-    this->_select_native_vector_width_float = flag;
-  }
-  /** // doc: select_native_vector_width_double() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_native_vector_width_double(bool flag = true)
-  {
-    this->_select_native_vector_width_double = flag;
-  }
-  /** // doc: select_native_vector_width_half() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_native_vector_width_half(bool flag = true)
-  {
-    this->_select_native_vector_width_half = flag;
   }
   /** // doc: select_max_clock_frequency() {{{
    * \todo Write documentation
@@ -825,13 +769,6 @@ public:
   {
     this->_select_error_correction_support = flag;
   }
-  /** // doc: select_host_unified_memory() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_host_unified_memory(bool flag = true)
-  {
-    this->_select_host_unified_memory = flag;
-  }
   /** // doc: select_profiling_timer_resolution() {{{
    * \todo Write documentation
    */ //  }}}
@@ -874,13 +811,6 @@ public:
   {
     this->_select_queue_properties = flag;
   }
-  /** // doc: select_platform_id() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_platform_id(bool flag = true)
-  {
-    this->_select_platform_id = flag;
-  }
   /** // doc: select_name() {{{
    * \todo Write documentation
    */ //  }}}
@@ -916,19 +846,89 @@ public:
   {
     this->_select_version = flag;
   }
-  /** // doc: select_opencl_c_version() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_opencl_c_version(bool flag = true)
-  {
-    this->_select_opencl_c_version = flag;
-  }
   /** // doc: select_extensions() {{{
    * \todo Write documentation
    */ //  }}}
   void select_extensions(bool flag = true)
   {
     this->_select_extensions = flag;
+  }
+  /** // doc: select_platform_id() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_platform_id(bool flag = true)
+  {
+    this->_select_platform_id = flag;
+  }
+  /** // doc: select_preferred_vector_width_half() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_preferred_vector_width_half(bool flag = true)
+  {
+    this->_select_preferred_vector_width_half = flag;
+  }
+  /** // doc: select_host_unified_memory() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_host_unified_memory(bool flag = true)
+  {
+    this->_select_host_unified_memory = flag;
+  }
+  /** // doc: select_native_vector_width_char() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_native_vector_width_char(bool flag = true)
+  {
+    this->_select_native_vector_width_char = flag;
+  }
+  /** // doc: select_native_vector_width_short() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_native_vector_width_short(bool flag = true)
+  {
+    this->_select_native_vector_width_short = flag;
+  }
+  /** // doc: select_native_vector_width_int() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_native_vector_width_int(bool flag = true)
+  {
+    this->_select_native_vector_width_int = flag;
+  }
+  /** // doc: select_native_vector_width_long() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_native_vector_width_long(bool flag = true)
+  {
+    this->_select_native_vector_width_long = flag;
+  }
+  /** // doc: select_native_vector_width_float() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_native_vector_width_float(bool flag = true)
+  {
+    this->_select_native_vector_width_float = flag;
+  }
+  /** // doc: select_native_vector_width_double() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_native_vector_width_double(bool flag = true)
+  {
+    this->_select_native_vector_width_double = flag;
+  }
+  /** // doc: select_native_vector_width_half() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_native_vector_width_half(bool flag = true)
+  {
+    this->_select_native_vector_width_half = flag;
+  }
+  /** // doc: select_opencl_c_version() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_opencl_c_version(bool flag = true)
+  {
+    this->_select_opencl_c_version = flag;
   }
   // }}}
 private:
@@ -944,22 +944,14 @@ private:
     ar & make_nvp("select_vendor_id", _select_vendor_id);
     ar & make_nvp("select_max_compute_units", _select_max_compute_units);
     ar & make_nvp("select_max_work_item_dimensions", _select_max_work_item_dimensions);
-    ar & make_nvp("select_max_work_item_sizes", _select_max_work_item_sizes);
     ar & make_nvp("select_max_work_group_size", _select_max_work_group_size);
+    ar & make_nvp("select_max_work_item_sizes", _select_max_work_item_sizes);
     ar & make_nvp("select_preferred_vector_width_char", _select_preferred_vector_width_char);
     ar & make_nvp("select_preferred_vector_width_short", _select_preferred_vector_width_short);
     ar & make_nvp("select_preferred_vector_width_int", _select_preferred_vector_width_int);
     ar & make_nvp("select_preferred_vector_width_long", _select_preferred_vector_width_long);
     ar & make_nvp("select_preferred_vector_width_float", _select_preferred_vector_width_float);
     ar & make_nvp("select_preferred_vector_width_double", _select_preferred_vector_width_double);
-    ar & make_nvp("select_preferred_vector_width_half", _select_preferred_vector_width_half);
-    ar & make_nvp("select_native_vector_width_char", _select_native_vector_width_char);
-    ar & make_nvp("select_native_vector_width_short", _select_native_vector_width_short);
-    ar & make_nvp("select_native_vector_width_int", _select_native_vector_width_int);
-    ar & make_nvp("select_native_vector_width_long", _select_native_vector_width_long);
-    ar & make_nvp("select_native_vector_width_float", _select_native_vector_width_float);
-    ar & make_nvp("select_native_vector_width_double", _select_native_vector_width_double);
-    ar & make_nvp("select_native_vector_width_half", _select_native_vector_width_half);
     ar & make_nvp("select_max_clock_frequency", _select_max_clock_frequency);
     ar & make_nvp("select_address_bits", _select_address_bits);
     ar & make_nvp("select_max_mem_alloc_size", _select_max_mem_alloc_size);
@@ -985,21 +977,29 @@ private:
     ar & make_nvp("select_local_mem_type", _select_local_mem_type);
     ar & make_nvp("select_local_mem_size", _select_local_mem_size);
     ar & make_nvp("select_error_correction_support", _select_error_correction_support);
-    ar & make_nvp("select_host_unified_memory", _select_host_unified_memory);
     ar & make_nvp("select_profiling_timer_resolution", _select_profiling_timer_resolution);
     ar & make_nvp("select_endian_little", _select_endian_little);
     ar & make_nvp("select_available", _select_available);
     ar & make_nvp("select_compiler_available", _select_compiler_available);
     ar & make_nvp("select_execution_capabilities", _select_execution_capabilities);
     ar & make_nvp("select_queue_properties", _select_queue_properties);
-    ar & make_nvp("select_platform_id", _select_platform_id);
     ar & make_nvp("select_name", _select_name);
     ar & make_nvp("select_vendor", _select_vendor);
     ar & make_nvp("select_driver_version", _select_driver_version);
     ar & make_nvp("select_profile", _select_profile);
     ar & make_nvp("select_version", _select_version);
-    ar & make_nvp("select_opencl_c_version", _select_opencl_c_version);
     ar & make_nvp("select_extensions", _select_extensions);
+    ar & make_nvp("select_platform_id", _select_platform_id);
+    ar & make_nvp("select_preferred_vector_width_half", _select_preferred_vector_width_half);
+    ar & make_nvp("select_host_unified_memory", _select_host_unified_memory);
+    ar & make_nvp("select_native_vector_width_char", _select_native_vector_width_char);
+    ar & make_nvp("select_native_vector_width_short", _select_native_vector_width_short);
+    ar & make_nvp("select_native_vector_width_int", _select_native_vector_width_int);
+    ar & make_nvp("select_native_vector_width_long", _select_native_vector_width_long);
+    ar & make_nvp("select_native_vector_width_float", _select_native_vector_width_float);
+    ar & make_nvp("select_native_vector_width_double", _select_native_vector_width_double);
+    ar & make_nvp("select_native_vector_width_half", _select_native_vector_width_half);
+    ar & make_nvp("select_opencl_c_version", _select_opencl_c_version);
     // }}}
   }
 #endif
@@ -1011,22 +1011,14 @@ private:
   bool _select_vendor_id;
   bool _select_max_compute_units;
   bool _select_max_work_item_dimensions;
-  bool _select_max_work_item_sizes;
   bool _select_max_work_group_size;
+  bool _select_max_work_item_sizes;
   bool _select_preferred_vector_width_char;
   bool _select_preferred_vector_width_short;
   bool _select_preferred_vector_width_int;
   bool _select_preferred_vector_width_long;
   bool _select_preferred_vector_width_float;
   bool _select_preferred_vector_width_double;
-  bool _select_preferred_vector_width_half;
-  bool _select_native_vector_width_char;
-  bool _select_native_vector_width_short;
-  bool _select_native_vector_width_int;
-  bool _select_native_vector_width_long;
-  bool _select_native_vector_width_float;
-  bool _select_native_vector_width_double;
-  bool _select_native_vector_width_half;
   bool _select_max_clock_frequency;
   bool _select_address_bits;
   bool _select_max_mem_alloc_size;
@@ -1052,21 +1044,29 @@ private:
   bool _select_local_mem_type;
   bool _select_local_mem_size;
   bool _select_error_correction_support;
-  bool _select_host_unified_memory;
   bool _select_profiling_timer_resolution;
   bool _select_endian_little;
   bool _select_available;
   bool _select_compiler_available;
   bool _select_execution_capabilities;
   bool _select_queue_properties;
-  bool _select_platform_id;
   bool _select_name;
   bool _select_vendor;
   bool _select_driver_version;
   bool _select_profile;
   bool _select_version;
-  bool _select_opencl_c_version;
   bool _select_extensions;
+  bool _select_platform_id;
+  bool _select_preferred_vector_width_half;
+  bool _select_host_unified_memory;
+  bool _select_native_vector_width_char;
+  bool _select_native_vector_width_short;
+  bool _select_native_vector_width_int;
+  bool _select_native_vector_width_long;
+  bool _select_native_vector_width_float;
+  bool _select_native_vector_width_double;
+  bool _select_native_vector_width_half;
+  bool _select_opencl_c_version;
   // }}}
 };
 

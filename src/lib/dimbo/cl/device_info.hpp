@@ -134,16 +134,16 @@ public:
   /** // {{{
    * \todo Write documentation
    */ // }}}
-  std::vector<size_t> max_work_item_sizes() const
+  size_t max_work_group_size() const
   {
-    return this->_max_work_item_sizes;
+    return this->_max_work_group_size;
   }
   /** // {{{
    * \todo Write documentation
    */ // }}}
-  size_t max_work_group_size() const
+  std::vector<size_t> max_work_item_sizes() const
   {
-    return this->_max_work_group_size;
+    return this->_max_work_item_sizes;
   }
   /** // {{{
    * \todo Write documentation
@@ -186,62 +186,6 @@ public:
   cl_uint preferred_vector_width_double() const
   {
     return this->_preferred_vector_width_double;
-  }
-  /** // {{{
-   * \todo Write documentation
-   */ // }}}
-  cl_uint preferred_vector_width_half() const
-  {
-    return this->_preferred_vector_width_half;
-  }
-  /** // {{{
-   * \todo Write documentation
-   */ // }}}
-  cl_uint native_vector_width_char() const
-  {
-    return this->_native_vector_width_char;
-  }
-  /** // {{{
-   * \todo Write documentation
-   */ // }}}
-  cl_uint native_vector_width_short() const
-  {
-    return this->_native_vector_width_short;
-  }
-  /** // {{{
-   * \todo Write documentation
-   */ // }}}
-  cl_uint native_vector_width_int() const
-  {
-    return this->_native_vector_width_int;
-  }
-  /** // {{{
-   * \todo Write documentation
-   */ // }}}
-  cl_uint native_vector_width_long() const
-  {
-    return this->_native_vector_width_long;
-  }
-  /** // {{{
-   * \todo Write documentation
-   */ // }}}
-  cl_uint native_vector_width_float() const
-  {
-    return this->_native_vector_width_float;
-  }
-  /** // {{{
-   * \todo Write documentation
-   */ // }}}
-  cl_uint native_vector_width_double() const
-  {
-    return this->_native_vector_width_double;
-  }
-  /** // {{{
-   * \todo Write documentation
-   */ // }}}
-  cl_uint native_vector_width_half() const
-  {
-    return this->_native_vector_width_half;
   }
   /** // {{{
    * \todo Write documentation
@@ -421,13 +365,6 @@ public:
   /** // {{{
    * \todo Write documentation
    */ // }}}
-  cl_bool host_unified_memory() const
-  {
-    return this->_host_unified_memory;
-  }
-  /** // {{{
-   * \todo Write documentation
-   */ // }}}
   size_t profiling_timer_resolution() const
   {
     return this->_profiling_timer_resolution;
@@ -470,13 +407,6 @@ public:
   /** // {{{
    * \todo Write documentation
    */ // }}}
-  unsigned long platform_id() const
-  {
-    return this->_platform_id;
-  }
-  /** // {{{
-   * \todo Write documentation
-   */ // }}}
   std::string const& name() const
   {
     return this->_name;
@@ -512,16 +442,86 @@ public:
   /** // {{{
    * \todo Write documentation
    */ // }}}
-  std::string const& opencl_c_version() const
+  std::string const& extensions() const
   {
-    return this->_opencl_c_version;
+    return this->_extensions;
   }
   /** // {{{
    * \todo Write documentation
    */ // }}}
-  std::string const& extensions() const
+  unsigned long platform_id() const
   {
-    return this->_extensions;
+    return this->_platform_id;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_uint preferred_vector_width_half() const
+  {
+    return this->_preferred_vector_width_half;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_bool host_unified_memory() const
+  {
+    return this->_host_unified_memory;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_uint native_vector_width_char() const
+  {
+    return this->_native_vector_width_char;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_uint native_vector_width_short() const
+  {
+    return this->_native_vector_width_short;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_uint native_vector_width_int() const
+  {
+    return this->_native_vector_width_int;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_uint native_vector_width_long() const
+  {
+    return this->_native_vector_width_long;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_uint native_vector_width_float() const
+  {
+    return this->_native_vector_width_float;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_uint native_vector_width_double() const
+  {
+    return this->_native_vector_width_double;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_uint native_vector_width_half() const
+  {
+    return this->_native_vector_width_half;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  std::string const& opencl_c_version() const
+  {
+    return this->_opencl_c_version;
   }
   // }}}
 private:
@@ -533,29 +533,21 @@ private:
     // {{{
     using boost::serialization::make_nvp;
     ar & make_nvp("last_query", _last_query);
-    // FIXME: cl_platform_id is a pointer to incomplete type
+    // FIXME: cl_device_id is a pointer to incomplete type
     //        must workaround it somehow
     //ar & make_nvp("id", _id);
     ar & make_nvp("type", _type);
     ar & make_nvp("vendor_id", _vendor_id);
     ar & make_nvp("max_compute_units", _max_compute_units);
     ar & make_nvp("max_work_item_dimensions", _max_work_item_dimensions);
-    ar & make_nvp("max_work_item_sizes", _max_work_item_sizes);
     ar & make_nvp("max_work_group_size", _max_work_group_size);
+    ar & make_nvp("max_work_item_sizes", _max_work_item_sizes);
     ar & make_nvp("preferred_vector_width_char", _preferred_vector_width_char);
     ar & make_nvp("preferred_vector_width_short", _preferred_vector_width_short);
     ar & make_nvp("preferred_vector_width_int", _preferred_vector_width_int);
     ar & make_nvp("preferred_vector_width_long", _preferred_vector_width_long);
     ar & make_nvp("preferred_vector_width_float", _preferred_vector_width_float);
     ar & make_nvp("preferred_vector_width_double", _preferred_vector_width_double);
-    ar & make_nvp("preferred_vector_width_half", _preferred_vector_width_half);
-    ar & make_nvp("native_vector_width_char", _native_vector_width_char);
-    ar & make_nvp("native_vector_width_short", _native_vector_width_short);
-    ar & make_nvp("native_vector_width_int", _native_vector_width_int);
-    ar & make_nvp("native_vector_width_long", _native_vector_width_long);
-    ar & make_nvp("native_vector_width_float", _native_vector_width_float);
-    ar & make_nvp("native_vector_width_double", _native_vector_width_double);
-    ar & make_nvp("native_vector_width_half", _native_vector_width_half);
     ar & make_nvp("max_clock_frequency", _max_clock_frequency);
     ar & make_nvp("address_bits", _address_bits);
     ar & make_nvp("max_mem_alloc_size", _max_mem_alloc_size);
@@ -581,24 +573,32 @@ private:
     ar & make_nvp("local_mem_type", _local_mem_type);
     ar & make_nvp("local_mem_size", _local_mem_size);
     ar & make_nvp("error_correction_support", _error_correction_support);
-    ar & make_nvp("host_unified_memory", _host_unified_memory);
     ar & make_nvp("profiling_timer_resolution", _profiling_timer_resolution);
     ar & make_nvp("endian_little", _endian_little);
     ar & make_nvp("available", _available);
     ar & make_nvp("compiler_available", _compiler_available);
     ar & make_nvp("execution_capabilities", _execution_capabilities);
     ar & make_nvp("queue_properties", _queue_properties);
-    // FIXME: cl_platform_id is a pointer to incomplete type
-    //        must workaround it somehow
-    //ar & make_nvp("platform_id", _platform_id);
     ar & make_nvp("name", _name);
     ar & make_nvp("vendor", _vendor);
     ar & make_nvp("driver_version", _driver_version);
     ar & make_nvp("profile", _profile);
     ar & make_nvp("version", _version);
-    ar & make_nvp("opencl_c_version", _opencl_c_version);
     ar & make_nvp("extensions", _extensions);
+    // FIXME: cl_platform_id is a pointer to incomplete type
+    //        must workaround it somehow
+    //ar & make_nvp("platform_id", _platform_id);
     // }}}
+    ar & make_nvp("preferred_vector_width_half", _preferred_vector_width_half);
+    ar & make_nvp("host_unified_memory", _host_unified_memory);
+    ar & make_nvp("native_vector_width_char", _native_vector_width_char);
+    ar & make_nvp("native_vector_width_short", _native_vector_width_short);
+    ar & make_nvp("native_vector_width_int", _native_vector_width_int);
+    ar & make_nvp("native_vector_width_long", _native_vector_width_long);
+    ar & make_nvp("native_vector_width_float", _native_vector_width_float);
+    ar & make_nvp("native_vector_width_double", _native_vector_width_double);
+    ar & make_nvp("native_vector_width_half", _native_vector_width_half);
+    ar & make_nvp("opencl_c_version", _opencl_c_version);
   }
 #endif
 private:
@@ -610,22 +610,14 @@ private:
   cl_uint _vendor_id;
   cl_uint _max_compute_units;
   cl_uint _max_work_item_dimensions;
-  std::vector<size_t> _max_work_item_sizes;
   size_t _max_work_group_size;
+  std::vector<size_t> _max_work_item_sizes;
   cl_uint _preferred_vector_width_char;
   cl_uint _preferred_vector_width_short;
   cl_uint _preferred_vector_width_int;
   cl_uint _preferred_vector_width_long;
   cl_uint _preferred_vector_width_float;
   cl_uint _preferred_vector_width_double;
-  cl_uint _preferred_vector_width_half;
-  cl_uint _native_vector_width_char;
-  cl_uint _native_vector_width_short;
-  cl_uint _native_vector_width_int;
-  cl_uint _native_vector_width_long;
-  cl_uint _native_vector_width_float;
-  cl_uint _native_vector_width_double;
-  cl_uint _native_vector_width_half;
   cl_uint _max_clock_frequency;
   cl_uint _address_bits;
   cl_ulong _max_mem_alloc_size;
@@ -651,21 +643,29 @@ private:
   cl_device_local_mem_type _local_mem_type;
   cl_ulong _local_mem_size;
   cl_bool _error_correction_support;
-  cl_bool _host_unified_memory;
   size_t _profiling_timer_resolution;
   cl_bool _endian_little;
   cl_bool _available;
   cl_bool _compiler_available;
   cl_device_exec_capabilities _execution_capabilities;
   cl_command_queue_properties _queue_properties;
-  unsigned long _platform_id;
   std::string  _name;
   std::string  _vendor;
   std::string  _driver_version;
   std::string  _profile;
   std::string  _version;
-  std::string  _opencl_c_version;
   std::string  _extensions;
+  unsigned long _platform_id;
+  cl_uint _preferred_vector_width_half;
+  cl_bool _host_unified_memory;
+  cl_uint _native_vector_width_char;
+  cl_uint _native_vector_width_short;
+  cl_uint _native_vector_width_int;
+  cl_uint _native_vector_width_long;
+  cl_uint _native_vector_width_float;
+  cl_uint _native_vector_width_double;
+  cl_uint _native_vector_width_half;
+  std::string  _opencl_c_version;
   // }}}
 };
 

@@ -79,6 +79,12 @@ namespace Cl {
  * \ingroup Dimbo_Cl_Platform
  * \brief Proxy object to access OpenCL device information.
  *
+ * \note The class has no virtual destructor to not bloat the objects with
+ *       virtual tables.
+ *
+ * This is lightweight object, in fact it carries only \c cl_device_id
+ * identifier.
+ *
  * This class provides access to OpenCL device information equivalent to
  * that offered by OpenCL's \c clGetDeviceInfo() function. Compared to
  * \c clGetDeviceInfo() it has simplified usage and replaces error codes
@@ -86,12 +92,85 @@ namespace Cl {
  * (see Dimbo::Cl::Cl_Error). It also uses std::string and std::vector instead
  * of raw \c char* buffers and other C pointers.
  *
- * This is lightweight object, in fact it carries only \c cl_device_id
- * identifier.
+ * Depending on the OpenCL version, the following device info may be queried:
  *
- * \note The class has no virtual destructor to not bloat the objects with
- *       virtual tables.
- *
+ * | MACRO                                                | 1.0     | 1.1     | 1.2     |
+ * | ---------------------------------------------------- | ------- | ------- | ------- |
+ * | CL_DEVICE_TYPE                                       | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_VENDOR_ID                                  | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MAX_COMPUTE_UNITS                          | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS                   | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MAX_WORK_GROUP_SIZE                        | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MAX_WORK_ITEM_SIZES                        | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR                | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT               | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT                 | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_LONG                | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_FLOAT               | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE              | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MAX_CLOCK_FREQUENCY                        | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_ADDRESS_BITS                               | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MAX_READ_IMAGE_ARGS                        | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MAX_WRITE_IMAGE_ARGS                       | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MAX_MEM_ALLOC_SIZE                         | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_IMAGE2D_MAX_WIDTH                          | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_IMAGE2D_MAX_HEIGHT                         | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_IMAGE3D_MAX_WIDTH                          | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_IMAGE3D_MAX_HEIGHT                         | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_IMAGE3D_MAX_DEPTH                          | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_IMAGE_SUPPORT                              | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MAX_PARAMETER_SIZE                         | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MAX_SAMPLERS                               | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MEM_BASE_ADDR_ALIGN                        | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MIN_DATA_TYPE_ALIGN_SIZE                   | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_SINGLE_FP_CONFIG                           | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_GLOBAL_MEM_CACHE_TYPE                      | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_GLOBAL_MEM_CACHELINE_SIZE                  | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_GLOBAL_MEM_CACHE_SIZE                      | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_GLOBAL_MEM_SIZE                            | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE                   | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_MAX_CONSTANT_ARGS                          | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_LOCAL_MEM_TYPE                             | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_LOCAL_MEM_SIZE                             | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_ERROR_CORRECTION_SUPPORT                   | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_PROFILING_TIMER_RESOLUTION                 | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_ENDIAN_LITTLE                              | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_AVAILABLE                                  | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_COMPILER_AVAILABLE                         | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_EXECUTION_CAPABILITIES                     | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_QUEUE_PROPERTIES                           | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_NAME                                       | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_VENDOR                                     | &radic; | &radic; | &radic; |
+ * | CL_DRIVER_VERSION                                    | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_PROFILE                                    | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_VERSION                                    | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_EXTENSIONS                                 | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_PLATFORM                                   | &radic; | &radic; | &radic; |
+ * | CL_DEVICE_DOUBLE_FP_CONFIG                           |         |         | &radic; |
+ * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF                |         | &radic; | &radic; |
+ * | CL_DEVICE_HOST_UNIFIED_MEMORY                        |         | &radic; | &radic; |
+ * | CL_DEVICE_NATIVE_VECTOR_WIDTH_CHAR                   |         | &radic; | &radic; |
+ * | CL_DEVICE_NATIVE_VECTOR_WIDTH_SHORT                  |         | &radic; | &radic; |
+ * | CL_DEVICE_NATIVE_VECTOR_WIDTH_INT                    |         | &radic; | &radic; |
+ * | CL_DEVICE_NATIVE_VECTOR_WIDTH_LONG                   |         | &radic; | &radic; |
+ * | CL_DEVICE_NATIVE_VECTOR_WIDTH_FLOAT                  |         | &radic; | &radic; |
+ * | CL_DEVICE_NATIVE_VECTOR_WIDTH_DOUBLE                 |         | &radic; | &radic; |
+ * | CL_DEVICE_NATIVE_VECTOR_WIDTH_HALF                   |         | &radic; | &radic; |
+ * | CL_DEVICE_OPENCL_C_VERSION                           |         | &radic; | &radic; |
+ * | CL_DEVICE_LINKER_AVAILABLE                           |         |         | &radic; |
+ * | CL_DEVICE_BUILT_IN_KERNELS                           |         |         | &radic; |
+ * | CL_DEVICE_IMAGE_MAX_BUFFER_SIZE                      |         |         | &radic; |
+ * | CL_DEVICE_IMAGE_MAX_ARRAY_SIZE                       |         |         | &radic; |
+ * | CL_DEVICE_PARENT_DEVICE                              |         |         | &radic; |
+ * | CL_DEVICE_PARTITION_MAX_SUB_DEVICES                  |         |         | &radic; |
+ * | CL_DEVICE_PARTITION_PROPERTIES                       |         |         | &radic; |
+ * | CL_DEVICE_PARTITION_AFFINITY_DOMAIN                  |         |         | &radic; |
+ * | CL_DEVICE_PARTITION_TYPE                             |         |         | &radic; |
+ * | CL_DEVICE_REFERENCE_COUNT                            |         |         | &radic; |
+ * | CL_DEVICE_PREFERRED_INTEROP_USER_SYNC                |         |         | &radic; |
+ * | CL_DEVICE_PRINTF_BUFFER_SIZE                         |         |         | &radic; |
+ * | CL_DEVICE_IMAGE_PITCH_ALIGNMENT                      |         |         | &radic; |
+ * | CL_DEVICE_IMAGE_BASE_ADDRESS_ALIGNMENT               |         |         | &radic; |
  */ // }}}
 class Device
 {
@@ -249,6 +328,13 @@ public:
   cl_uint get_max_work_item_dimensions() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
+   * \brief Get \c CL_DEVICE_MAX_WORK_GROUP_SIZE information.
+   * \return Maximum number of work-items in a work-group executing a kernel
+   *    using the data parallel execution model. The minimum value is \c 1.
+   */ // }}}
+  size_t get_max_work_group_size() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
    * \brief Get \c CL_DEVICE_MAX_WORK_ITEM_SIZES information.
    * \return Maximum number of work-items that can be specified in each
    *    dimension of the work-group to \c clEnqueueNDRangeKernel. Returns \c n
@@ -259,13 +345,6 @@ public:
   std::vector<size_t> get_max_work_item_sizes() const
     throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
          , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
-   * \brief Get \c CL_DEVICE_MAX_WORK_GROUP_SIZE information.
-   * \return Maximum number of work-items in a work-group executing a kernel
-   *    using the data parallel execution model. The minimum value is \c 1.
-   */ // }}}
-  size_t get_max_work_group_size() const
-    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Get \c CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR information.
    * \return Preferred native vector width size for built-in \c char scalar
@@ -313,63 +392,6 @@ public:
    *    \c double elements that can be stored in the vector.
    */ // }}}
   cl_uint get_preferred_vector_width_double() const
-    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
-   * \brief Get \c CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF information.
-   * \return Preferred native vector width size for built-in \c half scalar
-   *    when put halfo vector. The vector width is defined as the number of
-   *    \c half elements that can be stored in the vector.
-   */ // }}}
-  cl_uint get_preferred_vector_width_half() const
-    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
-   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_CHAR information.
-   * \return Returns the native ISA vector width. The vector width is defined
-   *    as the number of scalar elements that can be stored in the vector.
-   */ // }}}
-  cl_uint get_native_vector_width_char() const
-    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
-   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_SHORT information.
-   * \return Returns the native ISA vector width. The vector width is defined
-   *    as the number of scalar elements that can be stored in the vector.
-   */ // }}}
-  cl_uint get_native_vector_width_short() const
-    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
-   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_INT information.
-   * \return Returns the native ISA vector width. The vector width is defined
-   *    as the number of scalar elements that can be stored in the vector.
-   */ // }}}
-  cl_uint get_native_vector_width_int() const
-    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
-   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_LONG information.
-   * \return Returns the native ISA vector width. The vector width is defined
-   *    as the number of scalar elements that can be stored in the vector.
-   */ // }}}
-  cl_uint get_native_vector_width_long() const
-    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
-   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_FLOAT information.
-   * \return Returns the native ISA vector width. The vector width is defined
-   *    as the number of scalar elements that can be stored in the vector.
-   */ // }}}
-  cl_uint get_native_vector_width_float() const
-    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
-   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_DOUBLE information.
-   * \return Returns the native ISA vector width. The vector width is defined
-   *    as the number of scalar elements that can be stored in the vector.
-   */ // }}}
-  cl_uint get_native_vector_width_double() const
-    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
-   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_HALF information.
-   * \return Returns the native ISA vector width. The vector width is defined
-   *    as the number of scalar elements that can be stored in the vector.
-   */ // }}}
-  cl_uint get_native_vector_width_half() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Get \c CL_DEVICE_MAX_CLOCK_FREQUENCY information.
@@ -565,13 +587,6 @@ public:
   cl_bool get_error_correction_support() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
-   * \brief Get \c CL_DEVICE_HOST_UNIFIED_MEMORY information.
-   * \return \c CL_TRUE if the device and the host have a unified memory
-   *    subsystem; \c CL_FALSE otherwise
-   */ // }}}
-  cl_bool get_host_unified_memory() const
-    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
    * \brief Get \c CL_DEVICE_PROFILING_TIMER_RESOLUTION information.
    * \return Describes the resolution of device timer. This is measured in
    *    nanoseconds.
@@ -633,12 +648,6 @@ public:
   cl_command_queue_properties get_queue_properties() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
-   * \brief Get \c CL_DEVICE_PLATFORM information.
-   * \return ID of the platform associated with this device.
-   */ // }}}
-  cl_platform_id get_platform_id() const
-    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
    * \brief Get \c CL_DEVICE_NAME information.
    * \return %Device name string.
    */ // }}}
@@ -688,6 +697,86 @@ public:
     throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
          , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
+   * \brief Get \c CL_DEVICE_EXTENSIONS information.
+   * \return Returns a space-separated list of extension names.
+   *
+   * The list of extension names returned is defined by OpenCL standard and
+   * depends on OpenCL version.
+   */ // }}}
+  std::string get_extensions() const
+    throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
+         , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_PLATFORM information.
+   * \return ID of the platform associated with this device.
+   */ // }}}
+  cl_platform_id get_platform_id() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF information.
+   * \return Preferred native vector width size for built-in \c half scalar
+   *    when put halfo vector. The vector width is defined as the number of
+   *    \c half elements that can be stored in the vector.
+   */ // }}}
+  cl_uint get_preferred_vector_width_half() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_HOST_UNIFIED_MEMORY information.
+   * \return \c CL_TRUE if the device and the host have a unified memory
+   *    subsystem; \c CL_FALSE otherwise
+   */ // }}}
+  cl_bool get_host_unified_memory() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_CHAR information.
+   * \return Returns the native ISA vector width. The vector width is defined
+   *    as the number of scalar elements that can be stored in the vector.
+   */ // }}}
+  cl_uint get_native_vector_width_char() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_SHORT information.
+   * \return Returns the native ISA vector width. The vector width is defined
+   *    as the number of scalar elements that can be stored in the vector.
+   */ // }}}
+  cl_uint get_native_vector_width_short() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_INT information.
+   * \return Returns the native ISA vector width. The vector width is defined
+   *    as the number of scalar elements that can be stored in the vector.
+   */ // }}}
+  cl_uint get_native_vector_width_int() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_LONG information.
+   * \return Returns the native ISA vector width. The vector width is defined
+   *    as the number of scalar elements that can be stored in the vector.
+   */ // }}}
+  cl_uint get_native_vector_width_long() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_FLOAT information.
+   * \return Returns the native ISA vector width. The vector width is defined
+   *    as the number of scalar elements that can be stored in the vector.
+   */ // }}}
+  cl_uint get_native_vector_width_float() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_DOUBLE information.
+   * \return Returns the native ISA vector width. The vector width is defined
+   *    as the number of scalar elements that can be stored in the vector.
+   */ // }}}
+  cl_uint get_native_vector_width_double() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_NATIVE_VECTOR_WIDTH_HALF information.
+   * \return Returns the native ISA vector width. The vector width is defined
+   *    as the number of scalar elements that can be stored in the vector.
+   */ // }}}
+  cl_uint get_native_vector_width_half() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
    * \brief Get \c CL_DEVICE_OPENCL_C_VERSION information.
    * \return OpenCL C version string.
    *
@@ -696,16 +785,6 @@ public:
    * <verbatim>OpenCL<space>C<space><major_version.minor_version><space><vendor-specific information></verbatim>
    */ // }}}
   std::string get_opencl_c_version() const
-    throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
-         , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
-   * \brief Get \c CL_DEVICE_EXTENSIONS information.
-   * \return Returns a space-separated list of extension names.
-   *
-   * The list of extension names returned is defined by OpenCL standard and
-   * depends on OpenCL version.
-   */ // }}}
-  std::string get_extensions() const
     throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
          , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{

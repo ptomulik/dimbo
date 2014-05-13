@@ -118,19 +118,19 @@ get_max_work_item_dimensions() const
   return _get_pod_info<cl_uint>(*this, CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS);
 }
 /* ------------------------------------------------------------------------ */
+size_t Device::
+get_max_work_group_size() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<size_t>(*this, CL_DEVICE_MAX_WORK_GROUP_SIZE);
+}
+/* ------------------------------------------------------------------------ */
 std::vector<size_t> Device::
 get_max_work_item_sizes() const
   throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
        , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
 {
   return _get_vec_info<size_t>(*this, CL_DEVICE_MAX_WORK_ITEM_SIZES);
-}
-/* ------------------------------------------------------------------------ */
-size_t Device::
-get_max_work_group_size() const
-  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_pod_info<size_t>(*this, CL_DEVICE_MAX_WORK_GROUP_SIZE);
 }
 /* ------------------------------------------------------------------------ */
 cl_uint Device::
@@ -173,62 +173,6 @@ get_preferred_vector_width_double() const
   throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
 {
   return _get_pod_info<cl_uint>(*this, CL_DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE);
-}
-/* ------------------------------------------------------------------------ */
-cl_uint Device::
-get_preferred_vector_width_half() const
-  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_pod_info<cl_uint>(*this, CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF);
-}
-/* ------------------------------------------------------------------------ */
-cl_uint Device::
-get_native_vector_width_char() const
-  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_CHAR);
-}
-/* ------------------------------------------------------------------------ */
-cl_uint Device::
-get_native_vector_width_short() const
-  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_SHORT);
-}
-/* ------------------------------------------------------------------------ */
-cl_uint Device::
-get_native_vector_width_int() const
-  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_INT);
-}
-/* ------------------------------------------------------------------------ */
-cl_uint Device::
-get_native_vector_width_long() const
-  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_LONG);
-}
-/* ------------------------------------------------------------------------ */
-cl_uint Device::
-get_native_vector_width_float() const
-  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_FLOAT);
-}
-/* ------------------------------------------------------------------------ */
-cl_uint Device::
-get_native_vector_width_double() const
-  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_DOUBLE);
-}
-/* ------------------------------------------------------------------------ */
-cl_uint Device::
-get_native_vector_width_half() const
-  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_HALF);
 }
 /* ------------------------------------------------------------------------ */
 cl_uint Device::
@@ -408,13 +352,6 @@ get_error_correction_support() const
   return _get_pod_info<cl_bool>(*this, CL_DEVICE_ERROR_CORRECTION_SUPPORT);
 }
 /* ------------------------------------------------------------------------ */
-cl_bool Device::
-get_host_unified_memory() const
-  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_pod_info<cl_bool>(*this, CL_DEVICE_HOST_UNIFIED_MEMORY);
-}
-/* ------------------------------------------------------------------------ */
 size_t Device::
 get_profiling_timer_resolution() const
   throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
@@ -459,13 +396,6 @@ get_queue_properties() const
     CL_DEVICE_QUEUE_PROPERTIES);
 }
 /* ------------------------------------------------------------------------ */
-cl_platform_id Device::
-get_platform_id() const
-  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_pod_info<cl_platform_id>(*this, CL_DEVICE_PLATFORM);
-}
-/* ------------------------------------------------------------------------ */
 std::string Device::
 get_name() const
   throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
@@ -507,19 +437,89 @@ get_version() const
 }
 /* ------------------------------------------------------------------------ */
 std::string Device::
-get_opencl_c_version() const
-  throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
-       , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_string_info(*this, CL_DEVICE_OPENCL_C_VERSION);
-}
-/* ------------------------------------------------------------------------ */
-std::string Device::
 get_extensions() const
   throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
        , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
 {
   return _get_string_info(*this, CL_DEVICE_EXTENSIONS);
+}
+/* ------------------------------------------------------------------------ */
+cl_platform_id Device::
+get_platform_id() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_platform_id>(*this, CL_DEVICE_PLATFORM);
+}
+/* ------------------------------------------------------------------------ */
+cl_uint Device::
+get_preferred_vector_width_half() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_uint>(*this, CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF);
+}
+/* ------------------------------------------------------------------------ */
+cl_bool Device::
+get_host_unified_memory() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_bool>(*this, CL_DEVICE_HOST_UNIFIED_MEMORY);
+}
+/* ------------------------------------------------------------------------ */
+cl_uint Device::
+get_native_vector_width_char() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_CHAR);
+}
+/* ------------------------------------------------------------------------ */
+cl_uint Device::
+get_native_vector_width_short() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_SHORT);
+}
+/* ------------------------------------------------------------------------ */
+cl_uint Device::
+get_native_vector_width_int() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_INT);
+}
+/* ------------------------------------------------------------------------ */
+cl_uint Device::
+get_native_vector_width_long() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_LONG);
+}
+/* ------------------------------------------------------------------------ */
+cl_uint Device::
+get_native_vector_width_float() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_FLOAT);
+}
+/* ------------------------------------------------------------------------ */
+cl_uint Device::
+get_native_vector_width_double() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_DOUBLE);
+}
+/* ------------------------------------------------------------------------ */
+cl_uint Device::
+get_native_vector_width_half() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_uint>(*this, CL_DEVICE_NATIVE_VECTOR_WIDTH_HALF);
+}
+/* ------------------------------------------------------------------------ */
+std::string Device::
+get_opencl_c_version() const
+  throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
+       , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_string_info(*this, CL_DEVICE_OPENCL_C_VERSION);
 }
 /* ------------------------------------------------------------------------ */
 } /* namespace Cl */

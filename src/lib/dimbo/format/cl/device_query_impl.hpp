@@ -59,10 +59,10 @@ write(Ostream& os, Dimbo::Cl::Device_Query const& query, int ind)
   write_bool(os, query.max_compute_units_selected());
   os << as << pre << "Max Work Item Dimensions .....: ";
   write_bool(os, query.max_work_item_dimensions_selected());
-  os << as << pre << "Max Work Item Sizes ..........: ";
-  write_bool(os, query.max_work_item_sizes_selected());
   os << as << pre << "Max Work Group Size ..........: ";
   write_bool(os, query.max_work_group_size_selected());
+  os << as << pre << "Max Work Item Sizes ..........: ";
+  write_bool(os, query.max_work_item_sizes_selected());
   os << as << pre << "Preferred Vector Width Char ..: ";
   write_bool(os, query.preferred_vector_width_char_selected());
   os << as << pre << "Preferred Vector Width Short .: ";
