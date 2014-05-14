@@ -189,20 +189,6 @@ get_address_bits() const
   return _get_pod_info<cl_uint>(*this, CL_DEVICE_ADDRESS_BITS);
 }
 /* ------------------------------------------------------------------------ */
-cl_ulong Device::
-get_max_mem_alloc_size() const
-  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_pod_info<cl_ulong>(*this, CL_DEVICE_MAX_MEM_ALLOC_SIZE);
-}
-/* ------------------------------------------------------------------------ */
-cl_bool Device::
-get_image_support() const
-  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
-{
-  return _get_pod_info<cl_bool>(*this, CL_DEVICE_IMAGE_SUPPORT);
-}
-/* ------------------------------------------------------------------------ */
 cl_uint Device::
 get_max_read_image_args() const
   throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
@@ -215,6 +201,13 @@ get_max_write_image_args() const
   throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
 {
   return _get_pod_info<cl_uint>(*this, CL_DEVICE_MAX_WRITE_IMAGE_ARGS);
+}
+/* ------------------------------------------------------------------------ */
+cl_ulong Device::
+get_max_mem_alloc_size() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_ulong>(*this, CL_DEVICE_MAX_MEM_ALLOC_SIZE);
 }
 /* ------------------------------------------------------------------------ */
 size_t Device::
@@ -252,11 +245,11 @@ get_image3d_max_depth() const
   return _get_pod_info<size_t>(*this, CL_DEVICE_IMAGE3D_MAX_DEPTH);
 }
 /* ------------------------------------------------------------------------ */
-cl_uint Device::
-get_max_samplers() const
+cl_bool Device::
+get_image_support() const
   throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
 {
-  return _get_pod_info<cl_uint>(*this, CL_DEVICE_MAX_SAMPLERS);
+  return _get_pod_info<cl_bool>(*this, CL_DEVICE_IMAGE_SUPPORT);
 }
 /* ------------------------------------------------------------------------ */
 size_t Device::
@@ -264,6 +257,13 @@ get_max_parameter_size() const
   throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
 {
   return _get_pod_info<size_t>(*this, CL_DEVICE_MAX_PARAMETER_SIZE);
+}
+/* ------------------------------------------------------------------------ */
+cl_uint Device::
+get_max_samplers() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_uint>(*this, CL_DEVICE_MAX_SAMPLERS);
 }
 /* ------------------------------------------------------------------------ */
 cl_uint Device::
@@ -451,6 +451,13 @@ get_platform_id() const
   return _get_pod_info<cl_platform_id>(*this, CL_DEVICE_PLATFORM);
 }
 /* ------------------------------------------------------------------------ */
+cl_device_fp_config Device::
+get_double_fp_config() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_device_fp_config>(*this, CL_DEVICE_DOUBLE_FP_CONFIG);
+}
+/* ------------------------------------------------------------------------ */
 cl_uint Device::
 get_preferred_vector_width_half() const
   throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
@@ -520,6 +527,107 @@ get_opencl_c_version() const
        , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
 {
   return _get_string_info(*this, CL_DEVICE_OPENCL_C_VERSION);
+}
+/* ------------------------------------------------------------------------ */
+cl_bool Device::
+get_linker_available() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_bool>(*this, CL_DEVICE_LINKER_AVAILABLE);
+}
+/* ------------------------------------------------------------------------ */
+std::string Device::
+get_built_in_kernels() const
+  throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
+       , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_string_info(*this, CL_DEVICE_BUILT_IN_KERNELS);
+}
+/* ------------------------------------------------------------------------ */
+size_t Device::
+get_image_max_buffer_size() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<size_t>(*this, CL_DEVICE_IMAGE_MAX_BUFFER_SIZE);
+}
+/* ------------------------------------------------------------------------ */
+size_t Device::
+get_image_max_array_size() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<size_t>(*this, CL_DEVICE_IMAGE_MAX_ARRAY_SIZE);
+}
+/* ------------------------------------------------------------------------ */
+cl_device_id Device::
+get_parent_device_id() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_device_id>(*this, CL_DEVICE_PARENT_DEVICE);
+}
+/* ------------------------------------------------------------------------ */
+cl_uint Device::
+get_partition_max_sub_devices() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_uint>(*this, CL_DEVICE_PARTITION_MAX_SUB_DEVICES);
+}
+/* ------------------------------------------------------------------------ */
+std::vector<cl_device_partition_property> Device::
+get_partition_properties() const
+  throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
+       , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_vec_info<cl_device_partition_property>(*this, CL_DEVICE_PARTITION_PROPERTIES);
+}
+/* ------------------------------------------------------------------------ */
+cl_device_affinity_domain Device::
+get_partition_affinity_domain() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_device_affinity_domain>(*this, CL_DEVICE_PARTITION_AFFINITY_DOMAIN);
+}
+/* ------------------------------------------------------------------------ */
+std::vector<cl_device_partition_property> Device::
+get_partition_type() const
+  throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
+       , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_vec_info<cl_device_partition_property>(*this, CL_DEVICE_PARTITION_TYPE);
+}
+/* ------------------------------------------------------------------------ */
+cl_uint Device::
+get_reference_count() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_uint>(*this, CL_DEVICE_REFERENCE_COUNT);
+}
+/* ------------------------------------------------------------------------ */
+cl_bool Device::
+get_preferred_interop_user_sync() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_bool>(*this, CL_DEVICE_PREFERRED_INTEROP_USER_SYNC);
+}
+/* ------------------------------------------------------------------------ */
+size_t Device::
+get_printf_buffer_size() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<size_t>(*this, CL_DEVICE_PRINTF_BUFFER_SIZE);
+}
+/* ------------------------------------------------------------------------ */
+cl_uint Device::
+get_image_pitch_alignment() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_uint>(*this, CL_DEVICE_IMAGE_PITCH_ALIGNMENT);
+}
+/* ------------------------------------------------------------------------ */
+cl_uint Device::
+get_image_base_address_alignment() const
+  throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS )
+{
+  return _get_pod_info<cl_uint>(*this, CL_DEVICE_IMAGE_BASE_ADDRESS_ALIGNMENT);
 }
 /* ------------------------------------------------------------------------ */
 } /* namespace Cl */

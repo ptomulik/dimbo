@@ -92,85 +92,87 @@ namespace Cl {
  * (see Dimbo::Cl::Cl_Error). It also uses std::string and std::vector instead
  * of raw \c char* buffers and other C pointers.
  *
- * Depending on the OpenCL version, the following device info may be queried:
+ * Depending on the OpenCL version, the following device info may be queried.
+ * If you ask for an info that is not supported by the queried device, an
+ * exception (Dimbo::Cl::Cl_Error_No<CL_INVALID_VALUE>) will be thrown.
  *
- * | MACRO                                                | 1.0     | 1.1     | 1.2     |
- * | ---------------------------------------------------- | ------- | ------- | ------- |
- * | CL_DEVICE_TYPE                                       | &radic; | &radic; | &radic; |
- * | CL_DEVICE_VENDOR_ID                                  | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MAX_COMPUTE_UNITS                          | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS                   | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MAX_WORK_GROUP_SIZE                        | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MAX_WORK_ITEM_SIZES                        | &radic; | &radic; | &radic; |
- * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR                | &radic; | &radic; | &radic; |
- * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT               | &radic; | &radic; | &radic; |
- * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT                 | &radic; | &radic; | &radic; |
- * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_LONG                | &radic; | &radic; | &radic; |
- * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_FLOAT               | &radic; | &radic; | &radic; |
- * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE              | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MAX_CLOCK_FREQUENCY                        | &radic; | &radic; | &radic; |
- * | CL_DEVICE_ADDRESS_BITS                               | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MAX_READ_IMAGE_ARGS                        | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MAX_WRITE_IMAGE_ARGS                       | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MAX_MEM_ALLOC_SIZE                         | &radic; | &radic; | &radic; |
- * | CL_DEVICE_IMAGE2D_MAX_WIDTH                          | &radic; | &radic; | &radic; |
- * | CL_DEVICE_IMAGE2D_MAX_HEIGHT                         | &radic; | &radic; | &radic; |
- * | CL_DEVICE_IMAGE3D_MAX_WIDTH                          | &radic; | &radic; | &radic; |
- * | CL_DEVICE_IMAGE3D_MAX_HEIGHT                         | &radic; | &radic; | &radic; |
- * | CL_DEVICE_IMAGE3D_MAX_DEPTH                          | &radic; | &radic; | &radic; |
- * | CL_DEVICE_IMAGE_SUPPORT                              | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MAX_PARAMETER_SIZE                         | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MAX_SAMPLERS                               | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MEM_BASE_ADDR_ALIGN                        | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MIN_DATA_TYPE_ALIGN_SIZE                   | &radic; | &radic; | &radic; |
- * | CL_DEVICE_SINGLE_FP_CONFIG                           | &radic; | &radic; | &radic; |
- * | CL_DEVICE_GLOBAL_MEM_CACHE_TYPE                      | &radic; | &radic; | &radic; |
- * | CL_DEVICE_GLOBAL_MEM_CACHELINE_SIZE                  | &radic; | &radic; | &radic; |
- * | CL_DEVICE_GLOBAL_MEM_CACHE_SIZE                      | &radic; | &radic; | &radic; |
- * | CL_DEVICE_GLOBAL_MEM_SIZE                            | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE                   | &radic; | &radic; | &radic; |
- * | CL_DEVICE_MAX_CONSTANT_ARGS                          | &radic; | &radic; | &radic; |
- * | CL_DEVICE_LOCAL_MEM_TYPE                             | &radic; | &radic; | &radic; |
- * | CL_DEVICE_LOCAL_MEM_SIZE                             | &radic; | &radic; | &radic; |
- * | CL_DEVICE_ERROR_CORRECTION_SUPPORT                   | &radic; | &radic; | &radic; |
- * | CL_DEVICE_PROFILING_TIMER_RESOLUTION                 | &radic; | &radic; | &radic; |
- * | CL_DEVICE_ENDIAN_LITTLE                              | &radic; | &radic; | &radic; |
- * | CL_DEVICE_AVAILABLE                                  | &radic; | &radic; | &radic; |
- * | CL_DEVICE_COMPILER_AVAILABLE                         | &radic; | &radic; | &radic; |
- * | CL_DEVICE_EXECUTION_CAPABILITIES                     | &radic; | &radic; | &radic; |
- * | CL_DEVICE_QUEUE_PROPERTIES                           | &radic; | &radic; | &radic; |
- * | CL_DEVICE_NAME                                       | &radic; | &radic; | &radic; |
- * | CL_DEVICE_VENDOR                                     | &radic; | &radic; | &radic; |
- * | CL_DRIVER_VERSION                                    | &radic; | &radic; | &radic; |
- * | CL_DEVICE_PROFILE                                    | &radic; | &radic; | &radic; |
- * | CL_DEVICE_VERSION                                    | &radic; | &radic; | &radic; |
- * | CL_DEVICE_EXTENSIONS                                 | &radic; | &radic; | &radic; |
- * | CL_DEVICE_PLATFORM                                   | &radic; | &radic; | &radic; |
- * | CL_DEVICE_DOUBLE_FP_CONFIG                           |         |         | &radic; |
- * | CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF                |         | &radic; | &radic; |
- * | CL_DEVICE_HOST_UNIFIED_MEMORY                        |         | &radic; | &radic; |
- * | CL_DEVICE_NATIVE_VECTOR_WIDTH_CHAR                   |         | &radic; | &radic; |
- * | CL_DEVICE_NATIVE_VECTOR_WIDTH_SHORT                  |         | &radic; | &radic; |
- * | CL_DEVICE_NATIVE_VECTOR_WIDTH_INT                    |         | &radic; | &radic; |
- * | CL_DEVICE_NATIVE_VECTOR_WIDTH_LONG                   |         | &radic; | &radic; |
- * | CL_DEVICE_NATIVE_VECTOR_WIDTH_FLOAT                  |         | &radic; | &radic; |
- * | CL_DEVICE_NATIVE_VECTOR_WIDTH_DOUBLE                 |         | &radic; | &radic; |
- * | CL_DEVICE_NATIVE_VECTOR_WIDTH_HALF                   |         | &radic; | &radic; |
- * | CL_DEVICE_OPENCL_C_VERSION                           |         | &radic; | &radic; |
- * | CL_DEVICE_LINKER_AVAILABLE                           |         |         | &radic; |
- * | CL_DEVICE_BUILT_IN_KERNELS                           |         |         | &radic; |
- * | CL_DEVICE_IMAGE_MAX_BUFFER_SIZE                      |         |         | &radic; |
- * | CL_DEVICE_IMAGE_MAX_ARRAY_SIZE                       |         |         | &radic; |
- * | CL_DEVICE_PARENT_DEVICE                              |         |         | &radic; |
- * | CL_DEVICE_PARTITION_MAX_SUB_DEVICES                  |         |         | &radic; |
- * | CL_DEVICE_PARTITION_PROPERTIES                       |         |         | &radic; |
- * | CL_DEVICE_PARTITION_AFFINITY_DOMAIN                  |         |         | &radic; |
- * | CL_DEVICE_PARTITION_TYPE                             |         |         | &radic; |
- * | CL_DEVICE_REFERENCE_COUNT                            |         |         | &radic; |
- * | CL_DEVICE_PREFERRED_INTEROP_USER_SYNC                |         |         | &radic; |
- * | CL_DEVICE_PRINTF_BUFFER_SIZE                         |         |         | &radic; |
- * | CL_DEVICE_IMAGE_PITCH_ALIGNMENT                      |         |         | &radic; |
- * | CL_DEVICE_IMAGE_BASE_ADDRESS_ALIGNMENT               |         |         | &radic; |
+ * | METHOD                                  | INFO                                    | 1.0     | 1.1     | 1.2     |
+ * | --------------------------------------- | --------------------------------------- | ------- | ------- | ------- |
+ * | get_type()                              | CL_DEVICE_TYPE                          | &radic; | &radic; | &radic; |
+ * | get_vendor_id()                         | CL_DEVICE_VENDOR_ID                     | &radic; | &radic; | &radic; |
+ * | get_max_compute_units()                 | CL_DEVICE_MAX_COMPUTE_UNITS             | &radic; | &radic; | &radic; |
+ * | get_max_work_item_dimensions()          | CL_DEVICE_MAX_WORK_ITEM_DIMENSIONS      | &radic; | &radic; | &radic; |
+ * | get_max_work_group_size()               | CL_DEVICE_MAX_WORK_GROUP_SIZE           | &radic; | &radic; | &radic; |
+ * | get_max_work_item_sizes()               | CL_DEVICE_MAX_WORK_ITEM_SIZES           | &radic; | &radic; | &radic; |
+ * | get_preferred_vector_width_char()       | CL_DEVICE_PREFERRED_VECTOR_WIDTH_CHAR   | &radic; | &radic; | &radic; |
+ * | get_preferred_vector_width_short()      | CL_DEVICE_PREFERRED_VECTOR_WIDTH_SHORT  | &radic; | &radic; | &radic; |
+ * | get_preferred_vector_width_int()        | CL_DEVICE_PREFERRED_VECTOR_WIDTH_INT    | &radic; | &radic; | &radic; |
+ * | get_preferred_vector_width_long()       | CL_DEVICE_PREFERRED_VECTOR_WIDTH_LONG   | &radic; | &radic; | &radic; |
+ * | get_preferred_vector_width_float()      | CL_DEVICE_PREFERRED_VECTOR_WIDTH_FLOAT  | &radic; | &radic; | &radic; |
+ * | get_preferred_vector_width_double()     | CL_DEVICE_PREFERRED_VECTOR_WIDTH_DOUBLE | &radic; | &radic; | &radic; |
+ * | get_max_clock_frequency()               | CL_DEVICE_MAX_CLOCK_FREQUENCY           | &radic; | &radic; | &radic; |
+ * | get_address_bits()                      | CL_DEVICE_ADDRESS_BITS                  | &radic; | &radic; | &radic; |
+ * | get_max_read_image_args()               | CL_DEVICE_MAX_READ_IMAGE_ARGS           | &radic; | &radic; | &radic; |
+ * | get_max_write_image_args()              | CL_DEVICE_MAX_WRITE_IMAGE_ARGS          | &radic; | &radic; | &radic; |
+ * | get_max_mem_alloc_size()                | CL_DEVICE_MAX_MEM_ALLOC_SIZE            | &radic; | &radic; | &radic; |
+ * | get_image2d_max_width()                 | CL_DEVICE_IMAGE2D_MAX_WIDTH             | &radic; | &radic; | &radic; |
+ * | get_image2d_max_height()                | CL_DEVICE_IMAGE2D_MAX_HEIGHT            | &radic; | &radic; | &radic; |
+ * | get_image3d_max_width()                 | CL_DEVICE_IMAGE3D_MAX_WIDTH             | &radic; | &radic; | &radic; |
+ * | get_image3d_max_height()                | CL_DEVICE_IMAGE3D_MAX_HEIGHT            | &radic; | &radic; | &radic; |
+ * | get_image3d_max_depth()                 | CL_DEVICE_IMAGE3D_MAX_DEPTH             | &radic; | &radic; | &radic; |
+ * | get_image_support()                     | CL_DEVICE_IMAGE_SUPPORT                 | &radic; | &radic; | &radic; |
+ * | get_max_parameter_size()                | CL_DEVICE_MAX_PARAMETER_SIZE            | &radic; | &radic; | &radic; |
+ * | get_max_samplers()                      | CL_DEVICE_MAX_SAMPLERS                  | &radic; | &radic; | &radic; |
+ * | get_mem_base_addr_align()               | CL_DEVICE_MEM_BASE_ADDR_ALIGN           | &radic; | &radic; | &radic; |
+ * | get_min_data_type_align_size()          | CL_DEVICE_MIN_DATA_TYPE_ALIGN_SIZE      | &radic; | &radic; | &radic; |
+ * | get_single_fp_config()                  | CL_DEVICE_SINGLE_FP_CONFIG              | &radic; | &radic; | &radic; |
+ * | get_global_mem_cache_type()             | CL_DEVICE_GLOBAL_MEM_CACHE_TYPE         | &radic; | &radic; | &radic; |
+ * | get_global_mem_cacheline_size()         | CL_DEVICE_GLOBAL_MEM_CACHELINE_SIZE     | &radic; | &radic; | &radic; |
+ * | get_global_mem_cache_size()             | CL_DEVICE_GLOBAL_MEM_CACHE_SIZE         | &radic; | &radic; | &radic; |
+ * | get_global_mem_size()                   | CL_DEVICE_GLOBAL_MEM_SIZE               | &radic; | &radic; | &radic; |
+ * | get_max_constant_buffer_size()          | CL_DEVICE_MAX_CONSTANT_BUFFER_SIZE      | &radic; | &radic; | &radic; |
+ * | get_max_constant_args()                 | CL_DEVICE_MAX_CONSTANT_ARGS             | &radic; | &radic; | &radic; |
+ * | get_local_mem_type()                    | CL_DEVICE_LOCAL_MEM_TYPE                | &radic; | &radic; | &radic; |
+ * | get_local_mem_size()                    | CL_DEVICE_LOCAL_MEM_SIZE                | &radic; | &radic; | &radic; |
+ * | get_error_correction_support()          | CL_DEVICE_ERROR_CORRECTION_SUPPORT      | &radic; | &radic; | &radic; |
+ * | get_profiling_timer_resolution()        | CL_DEVICE_PROFILING_TIMER_RESOLUTION    | &radic; | &radic; | &radic; |
+ * | get_endian_little()                     | CL_DEVICE_ENDIAN_LITTLE                 | &radic; | &radic; | &radic; |
+ * | get_available()                         | CL_DEVICE_AVAILABLE                     | &radic; | &radic; | &radic; |
+ * | get_compiler_available()                | CL_DEVICE_COMPILER_AVAILABLE            | &radic; | &radic; | &radic; |
+ * | get_execution_capabilities()            | CL_DEVICE_EXECUTION_CAPABILITIES        | &radic; | &radic; | &radic; |
+ * | get_queue_properties()                  | CL_DEVICE_QUEUE_PROPERTIES              | &radic; | &radic; | &radic; |
+ * | get_name()                              | CL_DEVICE_NAME                          | &radic; | &radic; | &radic; |
+ * | get_vendor()                            | CL_DEVICE_VENDOR                        | &radic; | &radic; | &radic; |
+ * | get_driver_version()                    | CL_DRIVER_VERSION                       | &radic; | &radic; | &radic; |
+ * | get_profile()                           | CL_DEVICE_PROFILE                       | &radic; | &radic; | &radic; |
+ * | get_version()                           | CL_DEVICE_VERSION                       | &radic; | &radic; | &radic; |
+ * | get_extensions()                        | CL_DEVICE_EXTENSIONS                    | &radic; | &radic; | &radic; |
+ * | get_platform_id()                       | CL_DEVICE_PLATFORM                      | &radic; | &radic; | &radic; |
+ * | get_double_fp_config()                  | CL_DEVICE_DOUBLE_FP_CONFIG              |         |         | &radic; |
+ * | get_preferred_vector_width_half()       | CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF   |         | &radic; | &radic; |
+ * | get_host_unified_memory()               | CL_DEVICE_HOST_UNIFIED_MEMORY           |         | &radic; | &radic; |
+ * | get_native_vector_width_char()          | CL_DEVICE_NATIVE_VECTOR_WIDTH_CHAR      |         | &radic; | &radic; |
+ * | get_native_vector_width_short()         | CL_DEVICE_NATIVE_VECTOR_WIDTH_SHORT     |         | &radic; | &radic; |
+ * | get_native_vector_width_int()           | CL_DEVICE_NATIVE_VECTOR_WIDTH_INT       |         | &radic; | &radic; |
+ * | get_native_vector_width_long()          | CL_DEVICE_NATIVE_VECTOR_WIDTH_LONG      |         | &radic; | &radic; |
+ * | get_native_vector_width_float()         | CL_DEVICE_NATIVE_VECTOR_WIDTH_FLOAT     |         | &radic; | &radic; |
+ * | get_native_vector_width_double()        | CL_DEVICE_NATIVE_VECTOR_WIDTH_DOUBLE    |         | &radic; | &radic; |
+ * | get_native_vector_width_half()          | CL_DEVICE_NATIVE_VECTOR_WIDTH_HALF      |         | &radic; | &radic; |
+ * | get_opencl_c_version()                  | CL_DEVICE_OPENCL_C_VERSION              |         | &radic; | &radic; |
+ * | get_linker_available()                  | CL_DEVICE_LINKER_AVAILABLE              |         |         | &radic; |
+ * | get_built_in_kernels()                  | CL_DEVICE_BUILT_IN_KERNELS              |         |         | &radic; |
+ * | get_image_max_buffer_size()             | CL_DEVICE_IMAGE_MAX_BUFFER_SIZE         |         |         | &radic; |
+ * | get_image_max_array_size()              | CL_DEVICE_IMAGE_MAX_ARRAY_SIZE          |         |         | &radic; |
+ * | get_parent_device_id()                  | CL_DEVICE_PARENT_DEVICE                 |         |         | &radic; |
+ * | get_partition_max_sub_devices()         | CL_DEVICE_PARTITION_MAX_SUB_DEVICES     |         |         | &radic; |
+ * | get_partition_properties()              | CL_DEVICE_PARTITION_PROPERTIES          |         |         | &radic; |
+ * | get_partition_affinity_domain()         | CL_DEVICE_PARTITION_AFFINITY_DOMAIN     |         |         | &radic; |
+ * | get_partition_type()                    | CL_DEVICE_PARTITION_TYPE                |         |         | &radic; |
+ * | get_reference_count()                   | CL_DEVICE_REFERENCE_COUNT               |         |         | &radic; |
+ * | get_preferred_interop_user_sync()       | CL_DEVICE_PREFERRED_INTEROP_USER_SYNC   |         |         | &radic; |
+ * | get_printf_buffer_size()                | CL_DEVICE_PRINTF_BUFFER_SIZE            |         |         | &radic; |
+ * | get_image_pitch_alignment()             | CL_DEVICE_IMAGE_PITCH_ALIGNMENT         |         |         | &radic; |
+ * | get_image_base_address_alignment()      | CL_DEVICE_IMAGE_BASE_ADDRESS_ALIGNMENT  |         |         | &radic; |
  */ // }}}
 class Device
 {
@@ -407,20 +409,6 @@ public:
   cl_uint get_address_bits() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
-   * \brief Get \c CL_DEVICE_MAX_MEM_ALLOC_SIZE information.
-   * \return Max size of memory object allocation in bytes. The minimum value
-   *    is max (1/4th of CL_DEVICE_GLOBAL_MEM_SIZE, 128*1024*1024)
-   */ // }}}
-  cl_ulong get_max_mem_alloc_size() const
-    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
-   * \brief Get \c CL_DEVICE_IMAGE_SUPPORT information.
-   * \return CL_TRUE if images are supported by the OpenCL device and CL_FALSE
-   *    otherwise.
-   */ // }}}
-  cl_bool get_image_support() const
-    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
-  /** // {{{
    * \brief Get \c CL_DEVICE_MAX_READ_IMAGE_ARGS information.
    * \return Max number of simultaneous image objects that can be read by a
    *    kernel. The minimum value is 128 if \c CL_DEVICE_IMAGE_SUPPORT is
@@ -435,6 +423,13 @@ public:
    * \c CL_TRUE.
    */ // }}}
   cl_uint get_max_write_image_args() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_MAX_MEM_ALLOC_SIZE information.
+   * \return Max size of memory object allocation in bytes. The minimum value
+   *    is max (1/4th of CL_DEVICE_GLOBAL_MEM_SIZE, 128*1024*1024)
+   */ // }}}
+  cl_ulong get_max_mem_alloc_size() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Get \c CL_DEVICE_IMAGE2D_MAX_WIDTH information.
@@ -472,11 +467,11 @@ public:
   size_t get_image3d_max_depth() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
-   * \brief Get \c CL_DEVICE_MAX_SAMPLERS information.
-   * \return Maximum number of samplers that can be used in a kernel. The
-   *    minimum value is 16 if \c CL_DEVICE_IMAGE_SUPPORT is \c CL_TRUE.
+   * \brief Get \c CL_DEVICE_IMAGE_SUPPORT information.
+   * \return CL_TRUE if images are supported by the OpenCL device and CL_FALSE
+   *    otherwise.
    */ // }}}
-  cl_uint get_max_samplers() const
+  cl_bool get_image_support() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Get \c CL_DEVICE_MAX_PARAMETER_SIZE information.
@@ -485,6 +480,13 @@ public:
    *    128 arguments can be passed to a kernel.
    */ // }}}
   size_t get_max_parameter_size() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_MAX_SAMPLERS information.
+   * \return Maximum number of samplers that can be used in a kernel. The
+   *    minimum value is 16 if \c CL_DEVICE_IMAGE_SUPPORT is \c CL_TRUE.
+   */ // }}}
+  cl_uint get_max_samplers() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Get \c CL_DEVICE_MEM_BASE_ADDR_ALIGN information.
@@ -713,6 +715,12 @@ public:
   cl_platform_id get_platform_id() const
     throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
+   * \brief Get \c CL_DEVICE_PLATFORM information.
+   * \return ID of the platform associated with this device.
+   */ // }}}
+  cl_device_fp_config get_double_fp_config() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
    * \brief Get \c CL_DEVICE_PREFERRED_VECTOR_WIDTH_HALF information.
    * \return Preferred native vector width size for built-in \c half scalar
    *    when put halfo vector. The vector width is defined as the number of
@@ -787,6 +795,143 @@ public:
   std::string get_opencl_c_version() const
     throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
          , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_LINKER_AVAILABLE information.
+   * \return \c CL_FALSE if the implementation does not have a linker available.
+   *         \c CL_TRUE if the linker is available.
+   *
+   * This can be \c CL_FALSE for the embedded platform profile only. Must be 
+   * \c CL_TRUE if \c CL_DEVICE_COMPILER_AVAILABLE is \c CL_TRUE.
+   */ // }}}
+  cl_bool get_linker_available() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_BUILT_IN_KERNELS information.
+   * \return A semi-colon separated list of built-in kernels supported by the
+   *         device. An empty string is returned if no built-in kernels are
+   *         supported by the device.
+   */ // }}}
+  std::string get_built_in_kernels() const
+    throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
+         , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_IMAGE_MAX_BUFFER_SIZE information.
+   * \return Max number of pixels for a 1D image created from a buffer object.
+   *         The minimum value is 2048 if \c CL_DEVICE_IMAGE_SUPPORT is 
+   *         \c CL_TRUE.
+   *    nanoseconds.
+   */ // }}}
+  size_t get_image_max_buffer_size() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_IMAGE_MAX_ARRAY_SIZE information.
+   * \return Max number of images in a 1D or 2D image array.
+   *
+   *  The minimum value is 256 if \c CL_DEVICE_IMAGE_SUPPORT is \c CL_TRUE.
+   */ // }}}
+  size_t get_image_max_array_size() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_PARAENT_DEVICE information.
+   * \return Returns the \c cl_device_id of the parent device to which this
+   *         sub-device belongs. If *device* is a root-level device, a NULL
+   *         value is returned.
+   */ // }}}
+  cl_device_id get_parent_device_id() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_PARTITION_MAX_SUBDEVICES information.
+   */ // }}}
+  cl_uint get_partition_max_sub_devices() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_PARTITION_PROPERTIES information.
+   * \return The list of partition types supported by *device*.
+   *
+   * The return is a vector of \c cl_device_partition_property values drawn
+   * from the following list:
+   * 
+   * - CL_DEVICE_PARTITION_EQUALLY,
+   * - CL_DEVICE_PARTITION_BY_COUNTS,
+   * - CL_DEVICE_PARTITION_BY_AFFINITY_DO_MAIN
+   *
+   * If the device does not support any partition types, a value of 0 will be
+   * returned.
+   */ // }}}
+  std::vector<cl_device_partition_property> get_partition_properties() const
+    throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
+         , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_PARTITION_AFFINITY_DOMAIN information.
+   * \return The list of supported affinity domains for partitioning the
+   *         *device* using \c CL_DEVICE_PARTITION_BY_AFFINITY_DO_MAIN.
+   *
+   * This is a bit-field that describes one or more of the folowing values:
+   * - CL_AFFINITY_DOMAIN_NUMA
+   * - CL_AFFINITY_DOMAIN_L4_CACHE
+   * - CL_AFFINITY_DOMAIN_L3_CACHE
+   * - CL_AFFINITY_DOMAIN_L2_CACHE
+   * - CL_AFFINITY_DOMAIN_L1_CACHE
+   * - CL_AFFINITY_DOMAIN_NEXT_PARTITIONABLE
+   *
+   * If the device does not support any affinity domains, a value of 0 will be
+   * returned.
+   */ // }}}
+  cl_device_affinity_domain get_partition_affinity_domain() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_PARTITION_TYPE information.
+   * \return The properties argument specified in \c clCreateSubDevices if
+   *         *device* is a sub-device.
+   *
+   * If *device* is not a sub-device, implementation may either return a
+   * *param_value_size_ret* of 0 i.e. thare is no partition type associated
+   * with device or can return a propertu value of 0 (where 9 is used to
+   * terminate the partition property list) in the memory that *param_value*
+   * points to.
+   */ // }}}
+  std::vector<cl_device_partition_property> get_partition_type() const
+    throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
+         , DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_REFERENCE_COUNT information.
+   * \return The *device* reference count.
+   *
+   * If the device is a root-level device, a reference count of one is
+   * returned.
+   */ // }}}
+  cl_uint get_reference_count() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_PREFERRED_INTEROP_USER_SYNC information.
+   * \return \c CL_TRUE if the device's preference is for the user to be
+   *         responsible for synchronization, when sharing  memory objects
+   *         between OpenCL and other APIs sucha s DirectX, \c CL_FALSE if the
+   *         device/implementation has a performant path for performing
+   *         synchronization.
+   */ // }}}
+  cl_bool get_preferred_interop_user_sync() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_PRINTF_BUFFER_SIZE information.
+   * \return Maximum size of the internal buffer that holds the output of
+   *         printf calls from a kernel. The minimum value for the FULL profile
+   *         is 1 MB.
+   *
+   *  The minimum value is 256 if \c CL_DEVICE_IMAGE_SUPPORT is \c CL_TRUE.
+   */ // }}}
+  size_t get_printf_buffer_size() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_IMAGE_PITCH_ALIGNMENT information.
+   */ // }}}
+  cl_uint get_image_pitch_alignment() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
+  /** // {{{
+   * \brief Get \c CL_DEVICE_IMAGE_BASE_ADDRESS_ALIGNMENT information.
+   */ // }}}
+  cl_uint get_image_base_address_alignment() const
+    throw( DIMBO_CL_DEVICE_GET_INFO_EXCEPTIONS );
   /** // {{{
    * \brief Equal-to overloade operator.
    */ // }}}

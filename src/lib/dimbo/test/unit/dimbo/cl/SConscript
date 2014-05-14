@@ -23,7 +23,7 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = env.get('LIBS', CLVar()) + [ 'dimbo_cl_test', 'OpenCL' ] 
+libs = env.get('LIBS', CLVar()) + [ 'dimbo_cl_test', 'OpenCL', 'boost_regex' ] 
 libpath = env.get('LIBPATH', CLVar()) + ['../../../../cl']
 
 defs = env.get('CPPDEFINES', {}).copy()

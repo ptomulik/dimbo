@@ -271,6 +271,16 @@ write_image3d_max_depth(Ostream& os, Dimbo::Cl::Device_Info const& dev)
   return (os << dev.image3d_max_depth());
 }
 template<class Ostream> static Ostream&
+write_image_max_buffer_size(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  return (os << dev.image_max_buffer_size());
+}
+template<class Ostream> static Ostream&
+write_image_max_array_size(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  return (os << dev.image_max_array_size());
+}
+template<class Ostream> static Ostream&
 write_max_samplers(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 {
   return (os << dev.max_samplers());
@@ -293,7 +303,7 @@ write_min_data_type_align_size(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 template<class Ostream> static Ostream&
 write_single_fp_config(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 {
-  static const Bit<cl_device_fp_config> nvp[7] =
+  static const Bit<cl_device_fp_config> nvp[8] =
     {
       {"Denorm", CL_FP_DENORM},
       {"Inf & Quiet NaN", CL_FP_INF_NAN},
@@ -301,9 +311,26 @@ write_single_fp_config(Ostream& os, Dimbo::Cl::Device_Info const& dev)
       {"Round to Zero", CL_FP_ROUND_TO_ZERO},
       {"Round to Inf", CL_FP_ROUND_TO_INF},
       {"FMA", CL_FP_FMA},
-      {"Soft Float", CL_FP_SOFT_FLOAT}
+      {"Soft Float", CL_FP_SOFT_FLOAT},
+      {"Correctly Rounded Divide SQRT", CL_FP_CORRECTLY_ROUNDED_DIVIDE_SQRT}
     };
   return write_bits(os, nvp, dev.single_fp_config());
+}
+template<class Ostream> static Ostream&
+write_double_fp_config(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  static const Bit<cl_device_fp_config> nvp[8] =
+    {
+      {"Denorm", CL_FP_DENORM},
+      {"Inf & Quiet NaN", CL_FP_INF_NAN},
+      {"Round to Nearest Even", CL_FP_ROUND_TO_NEAREST},
+      {"Round to Zero", CL_FP_ROUND_TO_ZERO},
+      {"Round to Inf", CL_FP_ROUND_TO_INF},
+      {"FMA", CL_FP_FMA},
+      {"Soft Float", CL_FP_SOFT_FLOAT},
+      {"Correctly Rounded Divide SQRT", CL_FP_CORRECTLY_ROUNDED_DIVIDE_SQRT}
+    };
+  return write_bits(os, nvp, dev.double_fp_config());
 }
 template<class Ostream> static Ostream&
 write_global_mem_cache_type(Ostream& os, Dimbo::Cl::Device_Info const& dev)
@@ -387,6 +414,11 @@ write_compiler_available(Ostream& os, Dimbo::Cl::Device_Info const& dev)
   return write_bool(os, dev.compiler_available());
 }
 template<class Ostream> static Ostream&
+write_linker_available(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  return write_bool(os, dev.linker_available());
+}
+template<class Ostream> static Ostream&
 write_execution_capabilities(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 {
   static const Bit<cl_device_exec_capabilities> nvp[2] =
@@ -445,6 +477,72 @@ template<class Ostream> static Ostream&
 write_extensions(Ostream& os, Dimbo::Cl::Device_Info const& dev)
 {
   return (os << dev.extensions());
+}
+template<class Ostream> static Ostream&
+write_built_in_kernels(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  return (os << dev.built_in_kernels());
+}
+template<class Ostream> static Ostream&
+write_parent_device_id(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  return (os << dev.parent_device_id());
+}
+template<class Ostream> static Ostream&
+write_partition_max_sub_devices(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  return (os << dev.partition_max_sub_devices());
+}
+template<class Ostream> static Ostream&
+write_partition_properties(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  // FIXME: this is not ideal, we should print symbolic names, not numbers here
+  return (os << dev.partition_properties());
+}
+template<class Ostream> static Ostream&
+write_partition_affinity_domain(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  static const Bit<cl_device_affinity_domain> nvp[6] =
+    {
+      {"Numa", CL_DEVICE_AFFINITY_DOMAIN_NUMA},
+      {"L4 Cache", CL_DEVICE_AFFINITY_DOMAIN_L4_CACHE},
+      {"L3 Cache", CL_DEVICE_AFFINITY_DOMAIN_L3_CACHE},
+      {"L2 Cache", CL_DEVICE_AFFINITY_DOMAIN_L2_CACHE},
+      {"L1 Cache", CL_DEVICE_AFFINITY_DOMAIN_L1_CACHE},
+      {"Next Partitionable", CL_DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE},
+    };
+  return write_bits(os, nvp, dev.partition_affinity_domain());
+}
+template<class Ostream> static Ostream&
+write_partition_type(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  // FIXME: this is not ideal, we should print symbolic names, not numbers here
+  return (os << dev.partition_type());
+}
+template<class Ostream> static Ostream&
+write_reference_count(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  return (os << dev.reference_count());
+}
+template<class Ostream> static Ostream&
+write_preferred_interop_user_sync(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  return (os << dev.preferred_interop_user_sync());
+}
+template<class Ostream> static Ostream&
+write_printf_buffer_size(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  return (os << dev.printf_buffer_size());
+}
+template<class Ostream> static Ostream&
+write_image_pitch_alignment(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  return (os << dev.image_pitch_alignment());
+}
+template<class Ostream> static Ostream&
+write_image_base_address_alignment(Ostream& os, Dimbo::Cl::Device_Info const& dev)
+{
+  return (os << dev.image_base_address_alignment());
 }
 
 namespace Dimbo {
@@ -585,6 +683,14 @@ write(Ostream& os, Dimbo::Cl::Device_Info const& dev, int ind)
     os << as << pre << "Image3d Max Depth ............: ";
     write_image3d_max_depth(os, dev);
   }
+  if(query.image_max_buffer_size_selected()) {
+    os << as << pre << "Image Max Buffer Size ........: ";
+    write_image_max_buffer_size(os, dev);
+  }
+  if(query.image_max_array_size_selected()) {
+    os << as << pre << "Image Max Array Size  ........: ";
+    write_image_max_array_size(os, dev);
+  }
   if(query.max_samplers_selected()) {
     os << as << pre << "Max Samplers .................: ";
     write_max_samplers(os, dev);
@@ -661,6 +767,10 @@ write(Ostream& os, Dimbo::Cl::Device_Info const& dev, int ind)
     os << as << pre << "Compiler Available ...........: ";
     write_compiler_available(os, dev);
   }
+  if(query.linker_available_selected()) {
+    os << as << pre << "Linker Available .............: ";
+    write_linker_available(os, dev);
+  }
   if(query.execution_capabilities_selected()) {
     os << as << pre << "Execution Capabilities .......: ";
     write_execution_capabilities(os, dev);
@@ -700,6 +810,50 @@ write(Ostream& os, Dimbo::Cl::Device_Info const& dev, int ind)
   if(query.extensions_selected()) {
     os << as << pre << "Extensions ...................: ";
     write_extensions(os, dev);
+  }
+  if(query.built_in_kernels_selected()) {
+    os << as << pre << "Built in Kernels .............: ";
+    write_built_in_kernels(os, dev);
+  }
+  if(query.parent_device_id_selected()) {
+    os << as << pre << "Parent Device ................: ";
+    write_parent_device_id(os, dev);
+  }
+  if(query.partition_max_sub_devices_selected()) {
+    os << as << pre << "Partition Max SubDevices .....: ";
+    write_partition_max_sub_devices(os, dev);
+  }
+  if(query.partition_properties_selected()) {
+    os << as << pre << "Partition Properties .........: ";
+    write_partition_properties(os, dev);
+  }
+  if(query.partition_affinity_domain_selected()) {
+    os << as << pre << "Partition Affinity Domain ....: ";
+    write_partition_affinity_domain(os, dev);
+  }
+  if(query.partition_type_selected()) {
+    os << as << pre << "Partition Type ...............: ";
+    write_partition_type(os, dev);
+  }
+  if(query.reference_count_selected()) {
+    os << as << pre << "Reference Count ..............: ";
+    write_reference_count(os, dev);
+  }
+  if(query.preferred_interop_user_sync_selected()) {
+    os << as << pre << "Preferred Interop User Sync ..: ";
+    write_preferred_interop_user_sync(os, dev);
+  }
+  if(query.printf_buffer_size_selected()) {
+    os << as << pre << "Printf Buffer Size ...........: ";
+    write_printf_buffer_size(os, dev);
+  }
+  if(query.image_pitch_alignment_selected()) {
+    os << as << pre << "Image Pitch Alignment ........: ";
+    write_image_pitch_alignment(os, dev);
+  }
+  if(query.image_base_address_alignment_selected()) {
+    os << as << pre << "Image Base Address Alignment .: ";
+    write_image_base_address_alignment(os, dev);
   }
   return os;
 }

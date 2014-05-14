@@ -113,6 +113,10 @@ write(Ostream& os, Dimbo::Cl::Device_Query const& query, int ind)
   write_bool(os, query.image3d_max_height_selected());
   os << as << pre << "Image3d Max Depth ............: ";
   write_bool(os, query.image3d_max_depth_selected());
+  os << as << pre << "Image Max Buffer Size ........: ";
+  write_bool(os, query.image_max_buffer_size_selected());
+  os << as << pre << "Image Max Array Size .........: ";
+  write_bool(os, query.image_max_array_size_selected());
   os << as << pre << "Max Samplers .................: ";
   write_bool(os, query.max_samplers_selected());
   os << as << pre << "Max Parameter Size ...........: ";
@@ -123,6 +127,8 @@ write(Ostream& os, Dimbo::Cl::Device_Query const& query, int ind)
   write_bool(os, query.min_data_type_align_size_selected());
   os << as << pre << "Single Prec. Floating Pt Caps : ";
   write_bool(os, query.single_fp_config_selected());
+  os << as << pre << "Double Prec. Floating Pt Caps : ";
+  write_bool(os, query.double_fp_config_selected());
   os << as << pre << "Global Mem Cache Type ........: ";
   write_bool(os, query.global_mem_cache_type_selected());
   os << as << pre << "Global Mem Cacheline Size ....: ";
@@ -151,6 +157,8 @@ write(Ostream& os, Dimbo::Cl::Device_Query const& query, int ind)
   write_bool(os, query.available_selected());
   os << as << pre << "Compiler Available ...........: ";
   write_bool(os, query.compiler_available_selected());
+  os << as << pre << "Linker Available .............: ";
+  write_bool(os, query.linker_available_selected());
   os << as << pre << "Execution Capabilities .......: ";
   write_bool(os, query.execution_capabilities_selected());
   os << as << pre << "Queue Properties .............: ";
@@ -171,6 +179,28 @@ write(Ostream& os, Dimbo::Cl::Device_Query const& query, int ind)
   write_bool(os, query.opencl_c_version_selected());
   os << as << pre << "Extensions ...................: ";
   write_bool(os, query.extensions_selected());
+  os << as << pre << "Built in Kernels .............: ";
+  write_bool(os, query.built_in_kernels_selected());
+  os << as << pre << "Parent Device ................: ";
+  write_bool(os, query.parent_device_id_selected());
+  os << as << pre << "Partition Max SubDevices .....: ";
+  write_bool(os, query.partition_max_sub_devices_selected());
+  os << as << pre << "Partition Properties .........: ";
+  write_bool(os, query.partition_properties_selected());
+  os << as << pre << "Partition Affinity Domain ....: ";
+  write_bool(os, query.partition_affinity_domain_selected());
+  os << as << pre << "Partition Type ...............: ";
+  write_bool(os, query.partition_type_selected());
+  os << as << pre << "Reference Count ..............: ";
+  write_bool(os, query.reference_count_selected());
+  os << as << pre << "Preferred Interop User Sync ..: ";
+  write_bool(os, query.preferred_interop_user_sync_selected());
+  os << as << pre << "Printf Buffer Size ...........: ";
+  write_bool(os, query.printf_buffer_size_selected());
+  os << as << pre << "Image Pitch Alignment ........: ";
+  write_bool(os, query.image_pitch_alignment_selected());
+  os << as << pre << "Image Base Address Alignment .: ";
+  write_bool(os, query.image_base_address_alignment_selected());
   return os;
 }
 

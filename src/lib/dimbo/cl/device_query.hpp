@@ -179,20 +179,6 @@ public:
   {
     return this->_select_address_bits;
   }
-  /** // doc: max_mem_alloc_size_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool max_mem_alloc_size_selected() const
-  {
-    return this->_select_max_mem_alloc_size;
-  }
-  /** // doc: image_support_selected() {{{
-   * \todo Write documentation
-   */ //  }}}
-  bool image_support_selected() const
-  {
-    return this->_select_image_support;
-  }
   /** // doc: max_read_image_args_selected() {{{
    * \todo Write documentation
    */ //  }}}
@@ -206,6 +192,13 @@ public:
   bool max_write_image_args_selected() const
   {
     return this->_select_max_write_image_args;
+  }
+  /** // doc: max_mem_alloc_size_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool max_mem_alloc_size_selected() const
+  {
+    return this->_select_max_mem_alloc_size;
   }
   /** // doc: image2d_max_width_selected() {{{
    * \todo Write documentation
@@ -242,12 +235,12 @@ public:
   {
     return this->_select_image3d_max_depth;
   }
-  /** // doc: max_samplers_selected() {{{
+  /** // doc: image_support_selected() {{{
    * \todo Write documentation
    */ //  }}}
-  bool max_samplers_selected() const
+  bool image_support_selected() const
   {
-    return this->_select_max_samplers;
+    return this->_select_image_support;
   }
   /** // doc: max_parameter_size_selected() {{{
    * \todo Write documentation
@@ -255,6 +248,13 @@ public:
   bool max_parameter_size_selected() const
   {
     return this->_select_max_parameter_size;
+  }
+  /** // doc: max_samplers_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool max_samplers_selected() const
+  {
+    return this->_select_max_samplers;
   }
   /** // doc: mem_base_addr_align_selected() {{{
    * \todo Write documentation
@@ -431,6 +431,13 @@ public:
   {
     return this->_select_platform_id;
   }
+  /** // doc: double_fp_config_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool double_fp_config_selected() const
+  {
+    return this->_select_double_fp_config;
+  }
   /** // doc: preferred_vector_width_half_selected() {{{
    * \todo Write documentation
    */ //  }}}
@@ -500,6 +507,104 @@ public:
   bool opencl_c_version_selected() const
   {
     return this->_select_opencl_c_version;
+  }
+  /** // doc: linker_available_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool linker_available_selected() const
+  {
+    return this->_select_linker_available;
+  }
+  /** // doc: built_in_kernels_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool built_in_kernels_selected() const
+  {
+    return this->_select_built_in_kernels;
+  }
+  /** // doc: image_max_buffer_size_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool image_max_buffer_size_selected() const
+  {
+    return this->_select_image_max_buffer_size;
+  }
+  /** // doc: image_max_array_size_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool image_max_array_size_selected() const
+  {
+    return this->_select_image_max_array_size;
+  }
+  /** // doc: parent_device_id_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool parent_device_id_selected() const
+  {
+    return this->_select_parent_device_id;
+  }
+  /** // doc: partition_max_sub_devices_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool partition_max_sub_devices_selected() const
+  {
+    return this->_select_partition_max_sub_devices;
+  }
+  /** // doc: partition_properties_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool partition_properties_selected() const
+  {
+    return this->_select_partition_properties;
+  }
+  /** // doc: partition_affinity_domain_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool partition_affinity_domain_selected() const
+  {
+    return this->_select_partition_affinity_domain;
+  }
+  /** // doc: partition_type_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool partition_type_selected() const
+  {
+    return this->_select_partition_type;
+  }
+  /** // doc: reference_count_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool reference_count_selected() const
+  {
+    return this->_select_reference_count;
+  }
+  /** // doc: preferred_interop_user_sync_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool preferred_interop_user_sync_selected() const
+  {
+    return this->_select_preferred_interop_user_sync;
+  }
+  /** // doc: printf_buffer_size_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool printf_buffer_size_selected() const
+  {
+    return this->_select_printf_buffer_size;
+  }
+  /** // doc: image_pitch_alignment_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool image_pitch_alignment_selected() const
+  {
+    return this->_select_image_pitch_alignment;
+  }
+  /** // doc: image_base_address_alignment_selected() {{{
+   * \todo Write documentation
+   */ //  }}}
+  bool image_base_address_alignment_selected() const
+  {
+    return this->_select_image_base_address_alignment;
   }
   // }}}
   // selectors {{{
@@ -608,20 +713,6 @@ public:
   {
     this->_select_address_bits = flag;
   }
-  /** // doc: select_max_mem_alloc_size() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_max_mem_alloc_size(bool flag = true)
-  {
-    this->_select_max_mem_alloc_size = flag;
-  }
-  /** // doc: select_image_support() {{{
-   * \todo Write documentation
-   */ //  }}}
-  void select_image_support(bool flag = true)
-  {
-    this->_select_image_support = flag;
-  }
   /** // doc: select_max_read_image_args() {{{
    * \todo Write documentation
    */ //  }}}
@@ -635,6 +726,13 @@ public:
   void select_max_write_image_args(bool flag = true)
   {
     this->_select_max_write_image_args = flag;
+  }
+  /** // doc: select_max_mem_alloc_size() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_max_mem_alloc_size(bool flag = true)
+  {
+    this->_select_max_mem_alloc_size = flag;
   }
   /** // doc: select_image2d_max_width() {{{
    * \todo Write documentation
@@ -671,12 +769,12 @@ public:
   {
     this->_select_image3d_max_depth = flag;
   }
-  /** // doc: select_max_samplers() {{{
+  /** // doc: select_image_support() {{{
    * \todo Write documentation
    */ //  }}}
-  void select_max_samplers(bool flag = true)
+  void select_image_support(bool flag = true)
   {
-    this->_select_max_samplers = flag;
+    this->_select_image_support = flag;
   }
   /** // doc: select_max_parameter_size() {{{
    * \todo Write documentation
@@ -684,6 +782,13 @@ public:
   void select_max_parameter_size(bool flag = true)
   {
     this->_select_max_parameter_size = flag;
+  }
+  /** // doc: select_max_samplers() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_max_samplers(bool flag = true)
+  {
+    this->_select_max_samplers = flag;
   }
   /** // doc: select_mem_base_addr_align() {{{
    * \todo Write documentation
@@ -860,6 +965,13 @@ public:
   {
     this->_select_platform_id = flag;
   }
+  /** // doc: select_double_fp_config() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_double_fp_config(bool flag = true)
+  {
+    this->_select_double_fp_config = flag;
+  }
   /** // doc: select_preferred_vector_width_half() {{{
    * \todo Write documentation
    */ //  }}}
@@ -930,6 +1042,104 @@ public:
   {
     this->_select_opencl_c_version = flag;
   }
+  /** // doc: select_linker_available() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_linker_available(bool flag = true)
+  {
+    this->_select_linker_available = flag;
+  }
+  /** // doc: select_built_in_kernels() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_built_in_kernels(bool flag = true)
+  {
+    this->_select_built_in_kernels = flag;
+  }
+  /** // doc: select_image_max_buffer_size() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_image_max_buffer_size(bool flag = true)
+  {
+    this->_select_image_max_buffer_size = flag;
+  }
+  /** // doc: select_image_max_array_size() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_image_max_array_size(bool flag = true)
+  {
+    this->_select_image_max_array_size = flag;
+  }
+  /** // doc: select_parent_device_id() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_parent_device_id(bool flag = true)
+  {
+    this->_select_parent_device_id = flag;
+  }
+  /** // doc: select_partition_max_sub_devices() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_partition_max_sub_devices(bool flag = true)
+  {
+    this->_select_partition_max_sub_devices = flag;
+  }
+  /** // doc: select_partition_properties() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_partition_properties(bool flag = true)
+  {
+    this->_select_partition_properties = flag;
+  }
+  /** // doc: select_partition_affinity_domain() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_partition_affinity_domain(bool flag = true)
+  {
+    this->_select_partition_affinity_domain = flag;
+  }
+  /** // doc: select_partition_type() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_partition_type(bool flag = true)
+  {
+    this->_select_partition_type = flag;
+  }
+  /** // doc: select_reference_count() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_reference_count(bool flag = true)
+  {
+    this->_select_reference_count = flag;
+  }
+  /** // doc: select_preferred_interop_user_sync() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_preferred_interop_user_sync(bool flag = true)
+  {
+    this->_select_preferred_interop_user_sync = flag;
+  }
+  /** // doc: select_printf_buffer_size() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_printf_buffer_size(bool flag = true)
+  {
+    this->_select_printf_buffer_size = flag;
+  }
+  /** // doc: select_image_pitch_alignment() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_image_pitch_alignment(bool flag = true)
+  {
+    this->_select_image_pitch_alignment = flag;
+  }
+  /** // doc: select_image_base_address_alignment() {{{
+   * \todo Write documentation
+   */ //  }}}
+  void select_image_base_address_alignment(bool flag = true)
+  {
+    this->_select_image_base_address_alignment = flag;
+  }
   // }}}
 private:
 #ifndef SWIG // FIXME: provide more verbose constant name
@@ -954,17 +1164,17 @@ private:
     ar & make_nvp("select_preferred_vector_width_double", _select_preferred_vector_width_double);
     ar & make_nvp("select_max_clock_frequency", _select_max_clock_frequency);
     ar & make_nvp("select_address_bits", _select_address_bits);
-    ar & make_nvp("select_max_mem_alloc_size", _select_max_mem_alloc_size);
-    ar & make_nvp("select_image_support", _select_image_support);
     ar & make_nvp("select_max_read_image_args", _select_max_read_image_args);
     ar & make_nvp("select_max_write_image_args", _select_max_write_image_args);
+    ar & make_nvp("select_max_mem_alloc_size", _select_max_mem_alloc_size);
     ar & make_nvp("select_image2d_max_width", _select_image2d_max_width);
     ar & make_nvp("select_image2d_max_height", _select_image2d_max_height);
     ar & make_nvp("select_image3d_max_width", _select_image3d_max_width);
     ar & make_nvp("select_image3d_max_height", _select_image3d_max_height);
     ar & make_nvp("select_image3d_max_depth", _select_image3d_max_depth);
-    ar & make_nvp("select_max_samplers", _select_max_samplers);
+    ar & make_nvp("select_image_support", _select_image_support);
     ar & make_nvp("select_max_parameter_size", _select_max_parameter_size);
+    ar & make_nvp("select_max_samplers", _select_max_samplers);
     ar & make_nvp("select_mem_base_addr_align", _select_mem_base_addr_align);
     ar & make_nvp("select_min_data_type_align_size", _select_min_data_type_align_size);
     ar & make_nvp("select_single_fp_config", _select_single_fp_config);
@@ -990,6 +1200,7 @@ private:
     ar & make_nvp("select_version", _select_version);
     ar & make_nvp("select_extensions", _select_extensions);
     ar & make_nvp("select_platform_id", _select_platform_id);
+    ar & make_nvp("select_double_fp_config", _select_double_fp_config);
     ar & make_nvp("select_preferred_vector_width_half", _select_preferred_vector_width_half);
     ar & make_nvp("select_host_unified_memory", _select_host_unified_memory);
     ar & make_nvp("select_native_vector_width_char", _select_native_vector_width_char);
@@ -1000,6 +1211,10 @@ private:
     ar & make_nvp("select_native_vector_width_double", _select_native_vector_width_double);
     ar & make_nvp("select_native_vector_width_half", _select_native_vector_width_half);
     ar & make_nvp("select_opencl_c_version", _select_opencl_c_version);
+    ar & make_nvp("select_linker_available", _select_linker_available);
+    ar & make_nvp("select_built_in_kernels", _select_built_in_kernels);
+    ar & make_nvp("select_image_max_buffer_size", _select_image_max_buffer_size);
+    ar & make_nvp("select_image_max_array_size", _select_image_max_array_size);
     // }}}
   }
 #endif
@@ -1021,17 +1236,17 @@ private:
   bool _select_preferred_vector_width_double;
   bool _select_max_clock_frequency;
   bool _select_address_bits;
-  bool _select_max_mem_alloc_size;
-  bool _select_image_support;
   bool _select_max_read_image_args;
   bool _select_max_write_image_args;
+  bool _select_max_mem_alloc_size;
   bool _select_image2d_max_width;
   bool _select_image2d_max_height;
   bool _select_image3d_max_width;
   bool _select_image3d_max_height;
   bool _select_image3d_max_depth;
-  bool _select_max_samplers;
+  bool _select_image_support;
   bool _select_max_parameter_size;
+  bool _select_max_samplers;
   bool _select_mem_base_addr_align;
   bool _select_min_data_type_align_size;
   bool _select_single_fp_config;
@@ -1057,6 +1272,7 @@ private:
   bool _select_version;
   bool _select_extensions;
   bool _select_platform_id;
+  bool _select_double_fp_config;
   bool _select_preferred_vector_width_half;
   bool _select_host_unified_memory;
   bool _select_native_vector_width_char;
@@ -1067,6 +1283,20 @@ private:
   bool _select_native_vector_width_double;
   bool _select_native_vector_width_half;
   bool _select_opencl_c_version;
+  bool _select_linker_available;
+  bool _select_built_in_kernels;
+  bool _select_image_max_buffer_size;
+  bool _select_image_max_array_size;
+  bool _select_parent_device_id;
+  bool _select_partition_max_sub_devices;
+  bool _select_partition_properties;
+  bool _select_partition_affinity_domain;
+  bool _select_partition_type;
+  bool _select_reference_count;
+  bool _select_preferred_interop_user_sync;
+  bool _select_printf_buffer_size;
+  bool _select_image_pitch_alignment;
+  bool _select_image_base_address_alignment;
   // }}}
 };
 

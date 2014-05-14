@@ -29,6 +29,7 @@ libs = env.get('LIBS', CLVar()) + [
   , 'dimbo_cl'
   , 'boost_program_options'
   , 'boost_serialization'
+  , 'boost_regex'
   , 'OpenCL.so'
 ]
 libpath = env.get('LIBPATH', CLVar()) + [

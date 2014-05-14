@@ -44,6 +44,7 @@ Device_Query::
 Device_Query& Device_Query::
 select_all()
 {
+  this->select_none();
   this -> select_id(true);
   this -> select_type(true);
   this -> select_vendor_id(true);
@@ -59,17 +60,17 @@ select_all()
   this -> select_preferred_vector_width_double(true);
   this -> select_max_clock_frequency(true);
   this -> select_address_bits(true);
-  this -> select_max_mem_alloc_size(true);
-  this -> select_image_support(true);
   this -> select_max_read_image_args(true);
   this -> select_max_write_image_args(true);
+  this -> select_max_mem_alloc_size(true);
   this -> select_image2d_max_width(true);
   this -> select_image2d_max_height(true);
   this -> select_image3d_max_width(true);
   this -> select_image3d_max_height(true);
   this -> select_image3d_max_depth(true);
-  this -> select_max_samplers(true);
+  this -> select_image_support(true);
   this -> select_max_parameter_size(true);
+  this -> select_max_samplers(true);
   this -> select_mem_base_addr_align(true);
   this -> select_min_data_type_align_size(true);
   this -> select_single_fp_config(true);
@@ -96,6 +97,7 @@ select_all()
   this -> select_version(true);
   this -> select_extensions(true);
   this -> select_platform_id(true);
+  this -> select_double_fp_config(true);
   this -> select_preferred_vector_width_half(true);
   this -> select_native_vector_width_char(true);
   this -> select_native_vector_width_short(true);
@@ -105,6 +107,20 @@ select_all()
   this -> select_native_vector_width_double(true);
   this -> select_native_vector_width_half(true);
   this -> select_opencl_c_version(true);
+  this -> select_linker_available(true);
+  this -> select_built_in_kernels(true);
+  this -> select_image_max_buffer_size(true);
+  this -> select_image_max_array_size(true);
+  this -> select_parent_device_id(true);
+  this -> select_partition_max_sub_devices(true);
+  this -> select_partition_properties(true);
+  this -> select_partition_affinity_domain(true);
+  this -> select_partition_type(true);
+  this -> select_reference_count(true);
+  this -> select_preferred_interop_user_sync(true);
+  this -> select_printf_buffer_size(true);
+  this -> select_image_pitch_alignment(true);
+  this -> select_image_base_address_alignment(true);
   return *this;
 }
 
@@ -126,17 +142,17 @@ select_none()
   this -> select_preferred_vector_width_double(false);
   this -> select_max_clock_frequency(false);
   this -> select_address_bits(false);
-  this -> select_max_mem_alloc_size(false);
-  this -> select_image_support(false);
   this -> select_max_read_image_args(false);
   this -> select_max_write_image_args(false);
+  this -> select_max_mem_alloc_size(false);
   this -> select_image2d_max_width(false);
   this -> select_image2d_max_height(false);
   this -> select_image3d_max_width(false);
   this -> select_image3d_max_height(false);
   this -> select_image3d_max_depth(false);
-  this -> select_max_samplers(false);
+  this -> select_image_support(false);
   this -> select_max_parameter_size(false);
+  this -> select_max_samplers(false);
   this -> select_mem_base_addr_align(false);
   this -> select_min_data_type_align_size(false);
   this -> select_single_fp_config(false);
@@ -163,6 +179,7 @@ select_none()
   this -> select_version(false);
   this -> select_extensions(false);
   this -> select_platform_id(false);
+  this -> select_double_fp_config(false);
   this -> select_preferred_vector_width_half(false);
   this -> select_native_vector_width_char(false);
   this -> select_native_vector_width_short(false);
@@ -172,6 +189,20 @@ select_none()
   this -> select_native_vector_width_double(false);
   this -> select_native_vector_width_half(false);
   this -> select_opencl_c_version(false);
+  this -> select_linker_available(false);
+  this -> select_built_in_kernels(false);
+  this -> select_image_max_buffer_size(false);
+  this -> select_image_max_array_size(false);
+  this -> select_parent_device_id(false);
+  this -> select_partition_max_sub_devices(false);
+  this -> select_partition_properties(false);
+  this -> select_partition_affinity_domain(false);
+  this -> select_partition_type(false);
+  this -> select_reference_count(false);
+  this -> select_preferred_interop_user_sync(false);
+  this -> select_printf_buffer_size(false);
+  this -> select_image_pitch_alignment(false);
+  this -> select_image_base_address_alignment(false);
   return *this;
 }
 

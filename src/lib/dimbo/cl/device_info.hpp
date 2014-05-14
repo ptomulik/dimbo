@@ -204,20 +204,6 @@ public:
   /** // {{{
    * \todo Write documentation
    */ // }}}
-  cl_ulong max_mem_alloc_size() const
-  {
-    return this->_max_mem_alloc_size;
-  }
-  /** // {{{
-   * \todo Write documentation
-   */ // }}}
-  cl_bool image_support() const
-  {
-    return this->_image_support;
-  }
-  /** // {{{
-   * \todo Write documentation
-   */ // }}}
   cl_uint max_read_image_args() const
   {
     return this->_max_read_image_args;
@@ -228,6 +214,13 @@ public:
   cl_uint max_write_image_args() const
   {
     return this->_max_write_image_args;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_ulong max_mem_alloc_size() const
+  {
+    return this->_max_mem_alloc_size;
   }
   /** // {{{
    * \todo Write documentation
@@ -267,9 +260,9 @@ public:
   /** // {{{
    * \todo Write documentation
    */ // }}}
-  cl_uint max_samplers() const
+  cl_bool image_support() const
   {
-    return this->_max_samplers;
+    return this->_image_support;
   }
   /** // {{{
    * \todo Write documentation
@@ -277,6 +270,13 @@ public:
   size_t max_parameter_size() const
   {
     return this->_max_parameter_size;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_uint max_samplers() const
+  {
+    return this->_max_samplers;
   }
   /** // {{{
    * \todo Write documentation
@@ -456,6 +456,13 @@ public:
   /** // {{{
    * \todo Write documentation
    */ // }}}
+  cl_device_fp_config double_fp_config() const
+  {
+    return this->_double_fp_config;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
   cl_uint preferred_vector_width_half() const
   {
     return this->_preferred_vector_width_half;
@@ -523,6 +530,104 @@ public:
   {
     return this->_opencl_c_version;
   }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_bool linker_available() const
+  {
+    return this->_linker_available;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  std::string const& built_in_kernels() const
+  {
+    return this->_built_in_kernels;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  size_t image_max_buffer_size() const
+  {
+    return this->_image_max_buffer_size;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  size_t image_max_array_size() const
+  {
+    return this->_image_max_array_size;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  unsigned long parent_device_id() const
+  {
+    return reinterpret_cast<unsigned long>(this->_parent_device_id);
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_uint partition_max_sub_devices() const
+  {
+    return this->_partition_max_sub_devices;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  std::vector<cl_device_partition_property> partition_properties() const
+  {
+    return this->_partition_properties;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_device_affinity_domain partition_affinity_domain() const
+  {
+    return this->_partition_affinity_domain;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  std::vector<cl_device_partition_property> partition_type() const
+  {
+    return this->_partition_type;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_uint reference_count() const
+  {
+    return this->_reference_count;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_bool preferred_interop_user_sync() const
+  {
+    return this->_preferred_interop_user_sync;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  size_t printf_buffer_size() const
+  {
+    return this->_printf_buffer_size;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_uint image_pitch_alignment() const
+  {
+    return this->_image_pitch_alignment;
+  }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  cl_uint image_base_address_alignment() const
+  {
+    return this->_image_base_address_alignment;
+  }
   // }}}
 private:
 #ifndef SWIG // FIXME: provide more verbose constant name
@@ -550,17 +655,17 @@ private:
     ar & make_nvp("preferred_vector_width_double", _preferred_vector_width_double);
     ar & make_nvp("max_clock_frequency", _max_clock_frequency);
     ar & make_nvp("address_bits", _address_bits);
-    ar & make_nvp("max_mem_alloc_size", _max_mem_alloc_size);
-    ar & make_nvp("image_support", _image_support);
     ar & make_nvp("max_read_image_args", _max_read_image_args);
     ar & make_nvp("max_write_image_args", _max_write_image_args);
+    ar & make_nvp("max_mem_alloc_size", _max_mem_alloc_size);
     ar & make_nvp("image2d_max_width", _image2d_max_width);
     ar & make_nvp("image2d_max_height", _image2d_max_height);
     ar & make_nvp("image3d_max_width", _image3d_max_width);
     ar & make_nvp("image3d_max_height", _image3d_max_height);
     ar & make_nvp("image3d_max_depth", _image3d_max_depth);
-    ar & make_nvp("max_samplers", _max_samplers);
+    ar & make_nvp("image_support", _image_support);
     ar & make_nvp("max_parameter_size", _max_parameter_size);
+    ar & make_nvp("max_samplers", _max_samplers);
     ar & make_nvp("mem_base_addr_align", _mem_base_addr_align);
     ar & make_nvp("min_data_type_align_size", _min_data_type_align_size);
     ar & make_nvp("single_fp_config", _single_fp_config);
@@ -588,7 +693,7 @@ private:
     // FIXME: cl_platform_id is a pointer to incomplete type
     //        must workaround it somehow
     //ar & make_nvp("platform_id", _platform_id);
-    // }}}
+    ar & make_nvp("double_fp_config", _double_fp_config);
     ar & make_nvp("preferred_vector_width_half", _preferred_vector_width_half);
     ar & make_nvp("host_unified_memory", _host_unified_memory);
     ar & make_nvp("native_vector_width_char", _native_vector_width_char);
@@ -599,6 +704,23 @@ private:
     ar & make_nvp("native_vector_width_double", _native_vector_width_double);
     ar & make_nvp("native_vector_width_half", _native_vector_width_half);
     ar & make_nvp("opencl_c_version", _opencl_c_version);
+    ar & make_nvp("linker_available", _linker_available);
+    ar & make_nvp("built_in_kernels", _built_in_kernels);
+    ar & make_nvp("image_max_buffer_size", _image_max_buffer_size);
+    ar & make_nvp("image_max_array_size", _image_max_array_size);
+    // FIXME: cl_device_id is a pointer to incomplete type
+    //        must workaround it somehow
+    //ar & make_nvp("parent_device_id", _parent_device_id);
+    ar & make_nvp("partition_max_sub_devices", _partition_max_sub_devices);
+    ar & make_nvp("partition_properties", _partition_properties);
+    ar & make_nvp("partition_affinity_domain", _partition_affinity_domain);
+    ar & make_nvp("partition_type", _partition_type);
+    ar & make_nvp("reference_count", _reference_count);
+    ar & make_nvp("preferred_interop_user_sync", _preferred_interop_user_sync);
+    ar & make_nvp("printf_buffer_size", _printf_buffer_size);
+    ar & make_nvp("image_pitch_alignment", _image_pitch_alignment);
+    ar & make_nvp("image_base_address_alignment", _image_base_address_alignment);
+    // }}}
   }
 #endif
 private:
@@ -620,17 +742,17 @@ private:
   cl_uint _preferred_vector_width_double;
   cl_uint _max_clock_frequency;
   cl_uint _address_bits;
-  cl_ulong _max_mem_alloc_size;
-  cl_bool _image_support;
   cl_uint _max_read_image_args;
   cl_uint _max_write_image_args;
+  cl_ulong _max_mem_alloc_size;
   size_t _image2d_max_width;
   size_t _image2d_max_height;
   size_t _image3d_max_width;
   size_t _image3d_max_height;
   size_t _image3d_max_depth;
-  cl_uint _max_samplers;
+  cl_bool _image_support;
   size_t _max_parameter_size;
+  cl_uint _max_samplers;
   cl_uint _mem_base_addr_align;
   cl_uint _min_data_type_align_size;
   cl_device_fp_config _single_fp_config;
@@ -656,6 +778,7 @@ private:
   std::string  _version;
   std::string  _extensions;
   unsigned long _platform_id;
+  cl_device_fp_config _double_fp_config;
   cl_uint _preferred_vector_width_half;
   cl_bool _host_unified_memory;
   cl_uint _native_vector_width_char;
@@ -666,6 +789,20 @@ private:
   cl_uint _native_vector_width_double;
   cl_uint _native_vector_width_half;
   std::string  _opencl_c_version;
+  cl_bool _linker_available;
+  std::string  _built_in_kernels;
+  size_t _image_max_buffer_size;
+  size_t _image_max_array_size;
+  unsigned long _parent_device_id;
+  cl_uint _partition_max_sub_devices;
+  std::vector<cl_device_partition_property> _partition_properties;
+  cl_device_affinity_domain _partition_affinity_domain;
+  std::vector<cl_device_partition_property> _partition_type;
+  cl_uint _reference_count;
+  cl_bool _preferred_interop_user_sync;
+  size_t _printf_buffer_size;
+  cl_uint _image_pitch_alignment;
+  cl_uint _image_base_address_alignment;
   // }}}
 };
 

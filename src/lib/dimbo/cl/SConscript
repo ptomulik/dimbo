@@ -21,7 +21,7 @@
 Import('env')
 
 source = [
-'exception.cpp'
+  'exception.cpp'
 , 'cl_error.cpp'
 , 'cl_error_no.cpp'
 , 'platform.cpp'

@@ -22,7 +22,7 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = ['dimbo_cl','dimbo_format','OpenCL']
+libs = ['dimbo_cl','dimbo_format','OpenCL', 'boost_regex']
 lpath = ['../../../cl', '../../../format']
 
 env.Program(['cl_platform1'], ['cl_platform1.cpp'], LIBS = libs, LIBPATH = lpath)
