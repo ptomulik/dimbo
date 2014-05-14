@@ -174,6 +174,21 @@ public:
   static char const* const version[3];
   static char const* const opencl_c_version[3];
   static char const* const extensions[3];
+  static cl_device_fp_config const double_fp_config[1];
+  static cl_bool const linker_available[1];
+  static char const* const built_in_kernels[1];
+  static size_t const image_max_buffer_size[1];
+  static size_t const image_max_array_size[1];
+  static cl_device_id const parent_device_id[1];
+  static cl_uint const partition_max_sub_devices[1];
+  static std::vector<cl_device_partition_property> const partition_properties[1];
+  static cl_device_affinity_domain const partition_affinity_domain[1];
+  static std::vector<cl_device_partition_property> const partition_type[1];
+  static cl_uint const reference_count[1];
+  static cl_bool const preferred_interop_user_sync[1];
+  static size_t const printf_buffer_size[1];
+  static cl_uint const image_pitch_alignment[1];
+  static cl_uint const image_base_address_alignment[1];
 };
 
 //CXXTEST_MOCK_GLOBAL(cl_context, clCreateContext,
@@ -509,7 +524,7 @@ cl_ulong const Newton_clGetDeviceInfo::
 max_mem_alloc_size[3] = { 4214191104ul, 1073692672ul, 1073692672ul};
 // CL_DEVICE_IMAGE_SUPPORT
 cl_bool const Newton_clGetDeviceInfo::
-image_support[3] = { 1, 1, 1};
+image_support[3] = { CL_TRUE, CL_TRUE, CL_TRUE};
 // CL_DEVICE_MAX_READ_IMAGE_ARGS
 cl_uint const Newton_clGetDeviceInfo::
 max_read_image_args[3] = { 128, 128, 128 };
@@ -576,22 +591,22 @@ cl_ulong const Newton_clGetDeviceInfo::
 local_mem_size[3] = { 32768, 16384, 16384 };
 // CL_DEVICE_ERROR_CORRECTION_SUPPORT
 cl_bool const Newton_clGetDeviceInfo::
-error_correction_support[3] = { 0, 0, 0 };
+error_correction_support[3] = { CL_FALSE, CL_FALSE, CL_FALSE };
 // CL_DEVICE_HOST_UNIFIED_MEMORY
 cl_bool const Newton_clGetDeviceInfo::
-host_unified_memory[3] = { 1, 0, 0 };
+host_unified_memory[3] = { CL_TRUE, CL_FALSE, CL_FALSE };
 // CL_DEVICE_PROFILING_TIMER_RESOLUTION
 size_t const Newton_clGetDeviceInfo::
 profiling_timer_resolution[3] = { 1, 1000, 1000 };
 // CL_DEVICE_ENDIAN_LITTLE
 cl_bool const Newton_clGetDeviceInfo::
-endian_little[3] = { 1, 1, 1 };
+endian_little[3] = { CL_TRUE, CL_TRUE, CL_TRUE };
 // CL_DEVICE_AVAILABLE
 cl_bool const Newton_clGetDeviceInfo::
-available[3] = { 1, 1, 1 };
+available[3] = { CL_TRUE, CL_TRUE, CL_TRUE };
 // CL_DEVICE_COMPILER_AVAILABLE
 cl_bool const Newton_clGetDeviceInfo::
-compiler_available[3] = { 1, 1, 1 };
+compiler_available[3] = { CL_TRUE, CL_TRUE, CL_TRUE };
 // CL_DEVICE_EXECUTION_CAPABILITIES
 cl_device_exec_capabilities const Newton_clGetDeviceInfo::
 execution_capabilities[3] = { 
@@ -662,6 +677,40 @@ extensions[3] = {
   "cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll  cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_fp6",
   "cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll  cl_khr_global_int32_base_atomics cl_khr_global_int32_extended_atomics cl_khr_local_int32_base_atomics cl_khr_local_int32_extended_atomics cl_khr_fp6"
 };
+cl_device_fp_config const Newton_clGetDeviceInfo::double_fp_config[1] = {
+  CL_FP_DENORM | CL_FP_INF_NAN | CL_FP_ROUND_TO_NEAREST | CL_FP_ROUND_TO_ZERO | CL_FP_ROUND_TO_INF | CL_FP_FMA
+};
+cl_bool const Newton_clGetDeviceInfo::linker_available[1] = { CL_FALSE };
+char const* const Newton_clGetDeviceInfo::built_in_kernels[1] = { "" };
+size_t const Newton_clGetDeviceInfo::image_max_buffer_size[1] = { 65536 };
+size_t const Newton_clGetDeviceInfo::image_max_array_size[1] = { 2048 };
+cl_device_id const Newton_clGetDeviceInfo::parent_device_id[1] = { NULL };
+cl_uint const Newton_clGetDeviceInfo::partition_max_sub_devices[1] = { 16 };
+static cl_device_partition_property const _pprops0[3] = {
+  CL_DEVICE_PARTITION_EQUALLY,
+  CL_DEVICE_PARTITION_BY_COUNTS,
+  CL_DEVICE_PARTITION_BY_AFFINITY_DOMAIN 
+};
+std::vector<cl_device_partition_property> const Newton_clGetDeviceInfo::
+partition_properties[1] = {
+  std::vector<cl_device_partition_property>(_pprops0, _pprops0+3)
+};
+cl_device_affinity_domain const Newton_clGetDeviceInfo::
+partition_affinity_domain[1] = {
+      CL_DEVICE_AFFINITY_DOMAIN_L3_CACHE
+    | CL_DEVICE_AFFINITY_DOMAIN_L2_CACHE
+    | CL_DEVICE_AFFINITY_DOMAIN_L1_CACHE
+    | CL_DEVICE_AFFINITY_DOMAIN_NEXT_PARTITIONABLE
+};
+std::vector<cl_device_partition_property> const Newton_clGetDeviceInfo::
+partition_type[1] = {
+  std::vector<cl_device_partition_property>() 
+};
+cl_uint const Newton_clGetDeviceInfo::reference_count[1] = { 1 };
+cl_bool const Newton_clGetDeviceInfo::preferred_interop_user_sync[1] = { CL_TRUE };
+size_t const Newton_clGetDeviceInfo::printf_buffer_size[1] = { 65536 };
+cl_uint const Newton_clGetDeviceInfo::image_pitch_alignment[1] = { 0 };
+cl_uint const Newton_clGetDeviceInfo::image_base_address_alignment[1] = { 0 };
 //////////////////////////////////////////////////////////////////////////////
 
 
@@ -921,6 +970,96 @@ clGetDeviceInfo(cl_device_id device, cl_device_info param_name,
       case CL_DEVICE_EXTENSIONS:
         ptr = extensions[di];
         size = std::strlen(reinterpret_cast<char const*>(ptr)) + 1;
+        break;
+      case CL_DEVICE_DOUBLE_FP_CONFIG:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &double_fp_config[di];
+        size = sizeof(cl_device_fp_config);
+        break;
+      case CL_DEVICE_LINKER_AVAILABLE:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &linker_available[di];
+        size = sizeof(cl_bool);
+        break;
+      case CL_DEVICE_BUILT_IN_KERNELS:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = built_in_kernels[di];
+        size = std::strlen(reinterpret_cast<char const*>(ptr)) + 1;
+        break;
+      case CL_DEVICE_IMAGE_MAX_BUFFER_SIZE:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &image_max_buffer_size[di];
+        size = sizeof(size_t);
+        break;
+      case CL_DEVICE_IMAGE_MAX_ARRAY_SIZE:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &image_max_array_size[di];
+        size = sizeof(size_t);
+        break;
+      case CL_DEVICE_PARENT_DEVICE:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &parent_device_id[di];
+        size = sizeof(cl_device_id);
+        break;
+      case CL_DEVICE_PARTITION_MAX_SUB_DEVICES:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &partition_max_sub_devices[di];
+        size = sizeof(cl_uint);
+        break;
+      case CL_DEVICE_PARTITION_PROPERTIES:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &partition_properties[di].front();
+        size = partition_properties[di].size() * sizeof(cl_device_partition_property);
+        break;
+      case CL_DEVICE_PARTITION_AFFINITY_DOMAIN:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &partition_affinity_domain[di];
+        size = sizeof(cl_device_affinity_domain);
+        break;
+      case CL_DEVICE_PARTITION_TYPE:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &partition_type[di].front();
+        size = partition_type[di].size() * sizeof(cl_device_partition_property);
+        break;
+      case CL_DEVICE_REFERENCE_COUNT:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &reference_count[di];
+        size = sizeof(cl_uint);
+        break;
+      case CL_DEVICE_PREFERRED_INTEROP_USER_SYNC:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &preferred_interop_user_sync[di];
+        size = sizeof(cl_bool);
+        break;
+      case CL_DEVICE_PRINTF_BUFFER_SIZE:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &printf_buffer_size[di];
+        size = sizeof(size_t);
+        break;
+      case CL_DEVICE_IMAGE_PITCH_ALIGNMENT:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &image_pitch_alignment[di];
+        size = sizeof(cl_uint);
+        break;
+      case CL_DEVICE_IMAGE_BASE_ADDRESS_ALIGNMENT:
+        if(di > 0)
+          return CL_INVALID_VALUE;
+        ptr = &image_base_address_alignment[di];
+        size = sizeof(cl_uint);
         break;
       default:
         return CL_INVALID_VALUE;

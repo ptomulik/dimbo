@@ -711,6 +711,10 @@ write(Ostream& os, Dimbo::Cl::Device_Info const& dev, int ind)
     os << as << pre << "Single Prec. Floating Pt Caps : ";
     write_single_fp_config(os, dev);
   }
+  if(query.double_fp_config_selected()) {
+    os << as << pre << "Double Prec. Floating Pt Caps : ";
+    write_double_fp_config(os, dev);
+  }
   if(query.global_mem_cache_type_selected()) {
     os << as << pre << "Global Mem Cache Type ........: ";
     write_global_mem_cache_type(os, dev);
