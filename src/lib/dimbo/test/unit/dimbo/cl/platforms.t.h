@@ -81,6 +81,23 @@ public:
     TS_ASSERT_EQUALS(static_cast<Platform>(p[0]).id(), T::Newton_clGetPlatformIDs::platforms[0]);
     TS_ASSERT_EQUALS(static_cast<Platform>(p[1]).id(), T::Newton_clGetPlatformIDs::platforms[1]);
   }
+  /** // doc: test_get_platform_ids_zero_num_entries() {{{
+   * \brief Test get_platform_ids() - array version with num_entries == 0.
+   */ // }}}
+  void test_get_platform_ids_zero_num_entries( )
+  {
+    T::Newton_clGetPlatformIDs mock;
+    cl_platform_id ids[2];
+    TS_ASSERT_THROWS(get_platform_ids(0, ids, NULL), Cl_Error_No<CL_INVALID_VALUE>);
+  }
+  /** // doc: test_get_platform_ids_nulls() {{{
+   * \brief Test get_platform_ids() - array version num_platforms == NULL and platforms == NULL.
+   */ // }}}
+  void test_get_platform_ids_nulls( )
+  {
+    T::Newton_clGetPlatformIDs mock;
+    TS_ASSERT_THROWS(get_platform_ids(2, NULL, NULL), Cl_Error_No<CL_INVALID_VALUE>);
+  }
 // sorry, but this may irritate OOM instead of throw bad_alloc
 //  /** // doc: test_get_platform_ids_negsize() {{{
 //   * \brief Test get_platform_ids() in a situation when clGetPlatformIDs()
