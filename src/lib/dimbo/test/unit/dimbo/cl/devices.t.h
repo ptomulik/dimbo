@@ -111,6 +111,48 @@ public:
     TS_ASSERT_EQUALS(devices[0], T::Newton_clGetDeviceIDs::devices[1]);
     TS_ASSERT_EQUALS(devices[1], T::Newton_clGetDeviceIDs::devices[2]);
   }
+  /** // doc: test_get_devices_1() {{{
+   * \brief Test get_devices() on Newton.
+   */ // }}}
+  void test_get_devices_1( )
+  {
+    T::Newton_clGetDeviceIDs mock;
+    cl_platform_id p = T::Newton_clGetPlatformIDs::platforms[0];
+    Devices devices(get_devices(p, CL_DEVICE_TYPE_ALL));
+    TS_ASSERT_EQUALS(((Device)devices[0]).id(), T::Newton_clGetDeviceIDs::devices[0]);
+  }
+  /** // doc: test_get_devices_2() {{{
+   * \brief Test get_devices() on Newton.
+   */ // }}}
+  void test_get_devices_2( )
+  {
+    T::Newton_clGetDeviceIDs mock;
+    cl_platform_id p = T::Newton_clGetPlatformIDs::platforms[1];
+    Devices devices(get_devices(p, CL_DEVICE_TYPE_ALL));
+    TS_ASSERT_EQUALS(((Device)devices[0]).id(), T::Newton_clGetDeviceIDs::devices[1]);
+    TS_ASSERT_EQUALS(((Device)devices[1]).id(), T::Newton_clGetDeviceIDs::devices[2]);
+  }
+  /** // doc: test_get_devices_3() {{{
+   * \brief Test get_devices() on Newton.
+   */ // }}}
+  void test_get_devices_3( )
+  {
+    T::Newton_clGetDeviceIDs mock;
+    Platform p(T::Newton_clGetPlatformIDs::platforms[0]);
+    Devices devices(get_devices(p, CL_DEVICE_TYPE_ALL));
+    TS_ASSERT_EQUALS(((Device)devices[0]).id(), T::Newton_clGetDeviceIDs::devices[0]);
+  }
+  /** // doc: test_get_devices_4() {{{
+   * \brief Test get_devices() on Newton.
+   */ // }}}
+  void test_get_devices_4( )
+  {
+    T::Newton_clGetDeviceIDs mock;
+    Platform p(T::Newton_clGetPlatformIDs::platforms[1]);
+    Devices devices(get_devices(p, CL_DEVICE_TYPE_ALL));
+    TS_ASSERT_EQUALS(((Device)devices[0]).id(), T::Newton_clGetDeviceIDs::devices[1]);
+    TS_ASSERT_EQUALS(((Device)devices[1]).id(), T::Newton_clGetDeviceIDs::devices[2]);
+  }
   /** // doc: test_invalid_platform() {{{
    * \brief Test get_xxx() functions in a situation when clGetDeviceIDs returns
    *        CL_INVALID_PLATFORM.
@@ -180,13 +222,6 @@ public:
     T::ErrRet_clGetDeviceIDs mock(-0x3456);
     TS_ASSERT_THROWS(get_num_devices(NULL,0),Other_Cl_Error);
     TS_ASSERT_THROWS(get_device_ids(NULL,0),Other_Cl_Error);
-  }
-  /** // doc: test_foo() {{{
-   * \todo Write documentation
-   */ // }}}
-  void test_foo( )
-  {
-    TS_ASSERT(true);
   }
 };
 
