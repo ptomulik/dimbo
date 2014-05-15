@@ -36,6 +36,7 @@ after_success:
       coveralls --gcov $GCOV -b . -r . -e .git -e HOWTO -e lib -e bin 
                   -e src/app -e build/app -e build/.sconf_temp 
                   -e build/lib/dimbo/.sconf_temp
+                  -e src/lib/dimbo/cl/cl_errors 
                   -e src/lib/dimbo/doc -e src/lib/dimbo/test
                   -e site_scons -e template -e valgrind -e /usr;
     fi
