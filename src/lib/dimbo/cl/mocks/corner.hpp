@@ -67,53 +67,37 @@ class NegSize_clGetDeviceInfo
                            size_t param_value_size, void* param_value,
                            size_t* param_value_size_ret);
 };
-/** // doc: OutOfResources_clGetPlatformInfo {{{
+/** // doc: ErrRet_clGetPlatformInfo {{{
  * \brief Mock for clGetPlatformInfo OpenCL function.
  *
- * Always returns CL_OUT_OF_RESOURCES.
+ * Does nothing except it returns a custom code defined by user.
  */ // }}}
-class OutOfResources_clGetPlatformInfo
+class ErrRet_clGetPlatformInfo
   : public T::Base_clGetPlatformInfo
 {
+  cl_int _err;
   cl_int clGetPlatformInfo(cl_platform_id platform, cl_platform_info param_name,
                            size_t param_value_size, void* param_value,
                            size_t* param_value_size_ret);
+public:
+  ErrRet_clGetPlatformInfo();
+  ErrRet_clGetPlatformInfo(cl_int err);
 };
-/** // doc: OutOfResources_clGetDeviceInfo {{{
+/** // doc: ErrRet_clGetDeviceInfo {{{
  * \brief Mock for clGetDeviceInfo OpenCL function.
  *
- * Always returns CL_OUT_OF_RESOURCES.
+ * Does nothing except it returns a custom code defined by user.
  */ // }}}
-class OutOfResources_clGetDeviceInfo
+class ErrRet_clGetDeviceInfo
   : public T::Base_clGetDeviceInfo
 {
+  cl_int _err;
   cl_int clGetDeviceInfo(cl_device_id device, cl_device_info param_name,
                            size_t param_value_size, void* param_value,
                            size_t* param_value_size_ret);
-};
-/** // doc: OutOfHostMemory_clGetPlatformInfo {{{
- * \brief Mock for clGetPlatformInfo OpenCL function.
- *
- * Always returns OUT_OF_HOST_MEMORY.
- */ // }}}
-class OutOfHostMemory_clGetPlatformInfo
-  : public T::Base_clGetPlatformInfo
-{
-  cl_int clGetPlatformInfo(cl_platform_id platform, cl_platform_info param_name,
-                           size_t param_value_size, void* param_value,
-                           size_t* param_value_size_ret);
-};
-/** // doc: OutOfHostMemory_clGetDeviceInfo {{{
- * \brief Mock for clGetDeviceInfo OpenCL function.
- *
- * Always returns OUT_OF_HOST_MEMORY.
- */ // }}}
-class OutOfHostMemory_clGetDeviceInfo
-  : public T::Base_clGetDeviceInfo
-{
-  cl_int clGetDeviceInfo(cl_device_id device, cl_device_info param_name,
-                           size_t param_value_size, void* param_value,
-                           size_t* param_value_size_ret);
+public:
+  ErrRet_clGetDeviceInfo();
+  ErrRet_clGetDeviceInfo(cl_int err);
 };
 } /* namespace T */
 #endif /* CXXTEST_MOCK_TEST_SOURCE_FILE || ... */
@@ -154,7 +138,7 @@ clGetDeviceInfo(cl_device_id device, cl_device_info param_name,
   return CL_SUCCESS;
 }
 
-cl_int OutOfResources_clGetPlatformInfo::
+cl_int ErrRet_clGetPlatformInfo::
 clGetPlatformInfo(cl_platform_id platform, cl_platform_info param_name,
                   size_t param_value_size, void* param_value,
                   size_t* param_value_size_ret)
@@ -164,10 +148,20 @@ clGetPlatformInfo(cl_platform_id platform, cl_platform_info param_name,
   (void)param_value_size;     /* prevent 'unused parameter' warning */
   (void)param_value;          /* prevent 'unused parameter' warning */
   (void)param_value_size_ret; /* prevent 'unused parameter' warning */
-  return CL_OUT_OF_RESOURCES;
+  return this->_err;
+}
+ErrRet_clGetPlatformInfo::
+ErrRet_clGetPlatformInfo() 
+  : _err(0)
+{ 
+}
+ErrRet_clGetPlatformInfo::
+ErrRet_clGetPlatformInfo(cl_int err)
+  : _err(err)
+{
 }
 
-cl_int OutOfResources_clGetDeviceInfo::
+cl_int ErrRet_clGetDeviceInfo::
 clGetDeviceInfo(cl_device_id device, cl_device_info param_name,
                   size_t param_value_size, void* param_value,
                   size_t* param_value_size_ret)
@@ -177,33 +171,17 @@ clGetDeviceInfo(cl_device_id device, cl_device_info param_name,
   (void)param_value_size;     /* prevent 'unused parameter' warning */
   (void)param_value;          /* prevent 'unused parameter' warning */
   (void)param_value_size_ret; /* prevent 'unused parameter' warning */
-  return CL_OUT_OF_RESOURCES;
+  return this->_err;
 }
-
-cl_int OutOfHostMemory_clGetPlatformInfo::
-clGetPlatformInfo(cl_platform_id platform, cl_platform_info param_name,
-                  size_t param_value_size, void* param_value,
-                  size_t* param_value_size_ret)
-{
-  (void)platform;             /* prevent 'unused parameter' warning */
-  (void)param_name;           /* prevent 'unused parameter' warning */
-  (void)param_value_size;     /* prevent 'unused parameter' warning */
-  (void)param_value;          /* prevent 'unused parameter' warning */
-  (void)param_value_size_ret; /* prevent 'unused parameter' warning */
-  return CL_OUT_OF_HOST_MEMORY;
+ErrRet_clGetDeviceInfo::
+ErrRet_clGetDeviceInfo() 
+  : _err(0)
+{ 
 }
-
-cl_int OutOfHostMemory_clGetDeviceInfo::
-clGetDeviceInfo(cl_device_id device, cl_device_info param_name,
-                  size_t param_value_size, void* param_value,
-                  size_t* param_value_size_ret)
+ErrRet_clGetDeviceInfo::
+ErrRet_clGetDeviceInfo(cl_int err)
+  : _err(err)
 {
-  (void)device;               /* prevent 'unused parameter' warning */
-  (void)param_name;           /* prevent 'unused parameter' warning */
-  (void)param_value_size;     /* prevent 'unused parameter' warning */
-  (void)param_value;          /* prevent 'unused parameter' warning */
-  (void)param_value_size_ret; /* prevent 'unused parameter' warning */
-  return CL_OUT_OF_HOST_MEMORY;
 }
 } /* namespace T */
 #endif /* CXXTEST_MOCK_TEST_SOURCE_FILE */

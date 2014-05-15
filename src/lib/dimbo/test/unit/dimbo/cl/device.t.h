@@ -4135,7 +4135,7 @@ public:
    */ // }}}
   void test_out_of_resources( )
   {
-    T::OutOfResources_clGetDeviceInfo mock;
+    T::ErrRet_clGetDeviceInfo mock(CL_OUT_OF_RESOURCES);
     Device d(reinterpret_cast<cl_device_id>(0x34556ul));
     TS_ASSERT_THROWS(d.get_type(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
     TS_ASSERT_THROWS(d.get_vendor_id(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
@@ -4213,7 +4213,7 @@ public:
    */ // }}}
   void test_out_of_host_memory( )
   {
-    T::OutOfHostMemory_clGetDeviceInfo mock;
+    T::ErrRet_clGetDeviceInfo mock(CL_OUT_OF_HOST_MEMORY);
     Device d(reinterpret_cast<cl_device_id>(0x34556ul));
     TS_ASSERT_THROWS(d.get_type(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
     TS_ASSERT_THROWS(d.get_vendor_id(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
@@ -4285,6 +4285,84 @@ public:
     TS_ASSERT_THROWS(d.get_printf_buffer_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
     TS_ASSERT_THROWS(d.get_image_pitch_alignment(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
     TS_ASSERT_THROWS(d.get_image_base_address_alignment(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+  }
+  /** // doc: test_out_of_host_memory() {{{
+   * \brief Test get_xxx() methods in a situation when clGetDeviceInfo returns unknown error.
+   */ // }}}
+  void test_other_error( )
+  {
+    T::ErrRet_clGetDeviceInfo mock(-0x432534);
+    Device d(reinterpret_cast<cl_device_id>(0x34556ul));
+    TS_ASSERT_THROWS(d.get_type(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_vendor_id(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_max_compute_units(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_max_work_item_dimensions(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_max_work_group_size(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_max_work_item_sizes(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_char(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_short(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_int(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_long(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_float(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_double(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_max_clock_frequency(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_address_bits(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_max_read_image_args(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_max_write_image_args(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_max_mem_alloc_size(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_image2d_max_width(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_image2d_max_height(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_image3d_max_width(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_image3d_max_height(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_image3d_max_depth(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_image_support(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_max_parameter_size(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_mem_base_addr_align(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_min_data_type_align_size(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_single_fp_config(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_global_mem_cache_type(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_global_mem_cacheline_size(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_global_mem_cache_size(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_global_mem_size(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_error_correction_support(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_profiling_timer_resolution(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_endian_little(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_available(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_compiler_available(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_execution_capabilities(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_queue_properties(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_name(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_vendor(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_driver_version(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_profile(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_version(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_extensions(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_platform_id(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_double_fp_config(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_half(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_host_unified_memory(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_native_vector_width_char(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_native_vector_width_short(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_native_vector_width_int(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_native_vector_width_long(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_native_vector_width_float(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_native_vector_width_double(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_native_vector_width_half(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_opencl_c_version(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_linker_available(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_built_in_kernels(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_image_max_buffer_size(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_image_max_array_size(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_parent_device_id(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_partition_max_sub_devices(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_partition_properties(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_partition_affinity_domain(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_partition_type(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_reference_count(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_preferred_interop_user_sync(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_printf_buffer_size(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_image_pitch_alignment(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(d.get_image_base_address_alignment(), Dimbo::Cl::Other_Cl_Error);
   }
 };
 
