@@ -333,6 +333,45 @@ public:
     Platform p(T::Newton_clGetPlatformIDs::platforms[0]);
     TS_ASSERT_EQUALS(p.get_extensions(), "cl_khr_icd cl_amd_event_callback cl_amd_offline_devices");
   }
+  /** // doc: test_negsize() {{{
+   * \brief Test get_xxx() methods in a situation when clGetPlatformInfo returns negative string size.
+   */ // }}}
+  void test_negsize( )
+  {
+    T::NegSize_clGetPlatformInfo mock;
+    Platform p(reinterpret_cast<cl_platform_id>(0x34556ul));
+    TS_ASSERT_THROWS(p.get_profile(), DIMBO_CL_EXCEPTION(Bad_Alloc));
+    TS_ASSERT_THROWS(p.get_version(), DIMBO_CL_EXCEPTION(Bad_Alloc));
+    TS_ASSERT_THROWS(p.get_name(), DIMBO_CL_EXCEPTION(Bad_Alloc));
+    TS_ASSERT_THROWS(p.get_vendor(), DIMBO_CL_EXCEPTION(Bad_Alloc));
+    TS_ASSERT_THROWS(p.get_extensions(), DIMBO_CL_EXCEPTION(Bad_Alloc));
+  }
+  /** // doc: test_out_of_host_memory() {{{
+   * \brief Test get_xxx() methods in a situation when clGetPlatformInfo returns CL_OUT_OF_HOST_MEMORY.
+   */ // }}}
+  void test_out_of_host_memory( )
+  {
+    T::ErrRet_clGetPlatformInfo mock(CL_OUT_OF_HOST_MEMORY);
+    Platform p(reinterpret_cast<cl_platform_id>(0x34556ul));
+    TS_ASSERT_THROWS(p.get_profile(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(p.get_version(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(p.get_name(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(p.get_vendor(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(p.get_extensions(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+  }
+  /** // doc: test_out_of_host_memory() {{{
+   * \brief Test get_xxx() methods in a situation when clGetPlatformInfo returns unknown error.
+   */ // }}}
+  void test_other_error( )
+  {
+    T::ErrRet_clGetPlatformInfo mock(-0x432534);
+    Platform p(reinterpret_cast<cl_platform_id>(0x34556ul));
+    TS_ASSERT_THROWS(p.get_profile(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(p.get_version(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(p.get_name(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(p.get_vendor(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(p.get_extensions(), Dimbo::Cl::Other_Cl_Error);
+  }
 };
 
 #endif /* DIMBO_CL_PLATFORM_T_H_INCLUDED */
