@@ -149,6 +149,14 @@ public:
     Platform p(reinterpret_cast<cl_platform_id>(0x1234ul));
     TS_ASSERT_EQUALS(p.get_valid_id(),reinterpret_cast<cl_platform_id>(0x1234ul));
   }
+  /** // doc: test_get_platform_info_null_id() {{{
+   * \brief Test get_platform_info(CL_PLATFORM_PROFILE, ...) on platform object having wrong id.
+   */ // }}}
+  void test_get_platform_info_null_id( )
+  {
+    T::Newton_clGetPlatformInfo mock;
+    TS_ASSERT_THROWS(Dimbo::Cl::get_platform_info(NULL,CL_PLATFORM_PROFILE, 0, NULL, NULL), Dimbo::Cl::Cl_Error_No<CL_INVALID_PLATFORM>);
+  }
   /** // doc: test_get_info_wrong_id() {{{
    * \brief Test get_info(CL_PLATFORM_PROFILE, ...) on platform object having wrong id.
    */ // }}}
