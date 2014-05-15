@@ -39,6 +39,7 @@
 #if defined(CXXTEST_MOCK_TEST_SOURCE_FILE) || defined(CXXTEST_FLAGS) \
   || defined(CXXTEST_RUNNING) || defined(DOXYGEN)
 namespace T {
+#if 0
 /** // doc: SizeRet_clGetPlatformIDs {{{
  * \brief Mock for clGetPlatformIDs OpenCL function.
  *
@@ -92,6 +93,7 @@ public:
   SizeRet_clGetDeviceInfo();
   SizeRet_clGetDeviceInfo(size_t size);
 };
+#endif
 /** // doc: ErrRet_clGetPlatformIDs {{{
  * \brief Mock for clGetPlatformIDs OpenCL function.
  *
@@ -165,7 +167,7 @@ public:
 /* Mock class implementations */
 #if defined(CXXTEST_MOCK_TEST_SOURCE_FILE)
 namespace T {
-
+#if 0
 cl_int SizeRet_clGetPlatformIDs::
 clGetPlatformIDs(cl_uint num_entries, cl_platform_id* platforms,
                  cl_uint* num_platforms)
@@ -240,6 +242,7 @@ SizeRet_clGetDeviceInfo(size_t size)
   : _size(size)
 {
 }
+#endif
 
 cl_int ErrRet_clGetPlatformIDs::
 clGetPlatformIDs(cl_uint num_entries, cl_platform_id* platforms,
