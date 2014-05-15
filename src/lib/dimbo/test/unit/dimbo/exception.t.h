@@ -40,26 +40,59 @@ namespace Dimbo { class Exception_TestSuite; }
  */ // }}}
 class Dimbo::Exception_TestSuite : public CxxTest::TestSuite
 {
+  struct Base_Exception : public Exception
+    {
+      Base_Exception(Src_At const& at) : Exception(at) { }
+    };
+  class Test_Exception 
+    : public Standardized_Exception<Base_Exception, std::domain_error>
+    {
+    public:
+      Test_Exception(Src_At const& at)
+        : Standardized_Exception(at, "Test exception") { }
+    };
 public:
-  /** // doc: test_new_exception() {{{
+  /** // doc: test_1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_new_exception( )
+  void test_1( )
   {
-    struct Base_Exception : public Exception
-      {
-        Base_Exception(Src_At const& at) : Exception(at) { }
-      };
-    class Test_Exception 
-      : public Standardized_Exception<Base_Exception, std::domain_error>
-      {
-      public:
-        Test_Exception(Src_At const& at)
-          : Standardized_Exception(at, "Test exception") { }
-      };
     TS_ASSERT_THROWS(throw Test_Exception(DIMBO_HERE), Test_Exception const&);
+  }
+  /** // doc: test_2() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_2( )
+  {
     TS_ASSERT_THROWS(throw Test_Exception(DIMBO_HERE), Exception const&);
+  }
+  /** // doc: test_3() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_3( )
+  {
     TS_ASSERT_THROWS(throw Test_Exception(DIMBO_HERE), std::domain_error const&);
+  }
+  /** // doc: test_4() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_4( )
+  {
+    TS_ASSERT_EQUALS(Test_Exception(DIMBO_HERE).at().file(), DIMBO_HERE.file());
+  }
+  /** // doc: test_4() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_5( )
+  {
+    TS_ASSERT_EQUALS(Test_Exception(DIMBO_HERE).at().line(), DIMBO_HERE.line());
+  }
+  /** // doc: test_4() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_6( )
+  {
+    TS_ASSERT_EQUALS(Test_Exception(DIMBO_HERE).at().function(), DIMBO_HERE.function());
   }
 };
 
