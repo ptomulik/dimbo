@@ -106,6 +106,7 @@ CXXTEST_MOCK_GLOBAL(cl_int, clReleaseProgram, (cl_program program), (program));
 
 #include <dimbo/cl/mocks/nohw.hpp>
 #include <dimbo/cl/mocks/newton.hpp>
+#include <dimbo/cl/mocks/corner.hpp>
 
 #endif /* DIMBO_CL_MOCK_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

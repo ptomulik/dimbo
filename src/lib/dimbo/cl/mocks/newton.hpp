@@ -42,6 +42,20 @@
  *   - Device 0 (Tesla C1060): 0x2479c80
  *   - Device 1 (Tesla C1060): 0x2479cf0
  *
+ *  **Example**:
+ *  
+ *  The following is a unit test for Dimbo::Cl::Device::get_vendor_id()
+ *  which calls clGetDeviceInfo().
+ *
+ *  \code
+ *  void test_get_vendor_id()
+ *  {
+ *    T::Newton_clGetDeviceInfo mock;
+ *    Device d(T::Newton_clGetDeviceIDs::devices[1]);
+ *    TS_ASSERT_EQUALS(d.get_vendor_id(), 0x10de); // "NVIDIA Corporation"
+ *  }
+ *  \endcode
+ *
  */ // }}}
 #ifndef DIMBO_CL_MOCKS_NEWTON_HPP_INCLUDED
 #define DIMBO_CL_MOCKS_NEWTON_HPP_INCLUDED

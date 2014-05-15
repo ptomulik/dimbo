@@ -158,6 +158,42 @@ public:
     Device d(reinterpret_cast<cl_device_id>(0x34556ul));
     TS_ASSERT_THROWS(d.get_info(CL_DEVICE_PROFILE, 0, NULL, NULL), Dimbo::Cl::Cl_Error_No<CL_INVALID_DEVICE>);
   }
+  /** // doc: test_get_name_negsize() {{{
+   * \brief Test get_name(CL_DEVICE_PROFILE, ...) in a situation when clGetDeviceInfo returns negative string size.
+   */ // }}}
+  void test_get_name_negsize( )
+  {
+    T::NegSize_clGetDeviceInfo mock;
+    Device d(reinterpret_cast<cl_device_id>(0x34556ul));
+    TS_ASSERT_THROWS(d.get_name(), DIMBO_CL_EXCEPTION(Bad_Alloc));
+  }
+  /** // doc: test_get_name_negsize() {{{
+   * \brief Test get_name(CL_DEVICE_PROFILE, ...) in a situation when clGetDeviceInfo returns negative string size.
+   */ // }}}
+  void test_get_max_work_item_sizes_negsize( )
+  {
+    T::NegSize_clGetDeviceInfo mock;
+    Device d(reinterpret_cast<cl_device_id>(0x34556ul));
+    TS_ASSERT_THROWS(d.get_max_work_item_sizes(), DIMBO_CL_EXCEPTION(Bad_Alloc));
+  }
+  /** // doc: test_get_name_out_of_resources() {{{
+   * \brief Test get_name(CL_DEVICE_PROFILE, ...) in a situation when clGetDeviceInfo returns negative string size.
+   */ // }}}
+  void test_get_name_out_of_resources( )
+  {
+    T::OutOfResources_clGetDeviceInfo mock;
+    Device d(reinterpret_cast<cl_device_id>(0x34556ul));
+    TS_ASSERT_THROWS(d.get_name(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+  }
+  /** // doc: test_get_name_out_of_host_memory() {{{
+   * \brief Test get_name(CL_DEVICE_PROFILE, ...) in a situation when clGetDeviceInfo returns negative string size.
+   */ // }}}
+  void test_get_name_out_of_host_memory( )
+  {
+    T::OutOfHostMemory_clGetDeviceInfo mock;
+    Device d(reinterpret_cast<cl_device_id>(0x34556ul));
+    TS_ASSERT_THROWS(d.get_name(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+  }
   /** // doc: test_get_info_0() {{{
    * \brief Test get_info(0, ...).
    */ // }}}
