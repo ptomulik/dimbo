@@ -111,8 +111,7 @@ public:
   {
     T::NoHw_clGetPlatformInfo mock;
     Platform platform(reinterpret_cast<cl_platform_id>(0x1234ul));
-    TS_ASSERT_THROWS(Platform_Info info(platform),
-                     Dimbo::Cl::Cl_Error_No<CL_INVALID_PLATFORM>)
+    TS_ASSERT_THROWS(Platform_Info info(platform),Cl_Error_No<CL_INVALID_PLATFORM>)
   }
   /** // doc: test_ctor_newton_cpu() {{{
    * \brief Test Platform_Info(platform) constructor call.

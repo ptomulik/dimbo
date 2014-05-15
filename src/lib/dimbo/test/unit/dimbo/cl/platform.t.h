@@ -155,7 +155,7 @@ public:
   void test_get_platform_info_null_id( )
   {
     T::Newton_clGetPlatformInfo mock;
-    TS_ASSERT_THROWS(Dimbo::Cl::get_platform_info(NULL,CL_PLATFORM_PROFILE, 0, NULL, NULL), Dimbo::Cl::Cl_Error_No<CL_INVALID_PLATFORM>);
+    TS_ASSERT_THROWS(get_platform_info(NULL,CL_PLATFORM_PROFILE, 0, NULL, NULL), Cl_Error_No<CL_INVALID_PLATFORM>);
   }
   /** // doc: test_get_info_wrong_id() {{{
    * \brief Test get_info(CL_PLATFORM_PROFILE, ...) on platform object having wrong id.
@@ -164,7 +164,7 @@ public:
   {
     T::Newton_clGetPlatformInfo mock;
     Platform p(reinterpret_cast<cl_platform_id>(0x34556ul));
-    TS_ASSERT_THROWS(p.get_info(CL_PLATFORM_PROFILE, 0, NULL, NULL), Dimbo::Cl::Cl_Error_No<CL_INVALID_PLATFORM>);
+    TS_ASSERT_THROWS(p.get_info(CL_PLATFORM_PROFILE, 0, NULL, NULL), Cl_Error_No<CL_INVALID_PLATFORM>);
   }
   /** // doc: test_get_info_0() {{{
    * \brief Test get_info(0, ...).
@@ -174,7 +174,7 @@ public:
     T::Newton_clGetPlatformInfo mock;
     Platform p(T::Newton_clGetPlatformIDs::platforms[0]);
     size_t size;
-    TS_ASSERT_THROWS(p.get_info(0, 0, NULL, &size), Dimbo::Cl::Cl_Error_No<CL_INVALID_VALUE>);
+    TS_ASSERT_THROWS(p.get_info(0, 0, NULL, &size), Cl_Error_No<CL_INVALID_VALUE>);
   }
   /** // doc: test_get_info_1() {{{
    * \brief Test get_info(CL_PLATFORM_PROFILE, 1, value, NULL).
@@ -184,7 +184,7 @@ public:
     T::Newton_clGetPlatformInfo mock;
     Platform p(T::Newton_clGetPlatformIDs::platforms[0]);
     char value[1];
-    TS_ASSERT_THROWS(p.get_info(CL_PLATFORM_PROFILE, 1, value, NULL), Dimbo::Cl::Cl_Error_No<CL_INVALID_VALUE>);
+    TS_ASSERT_THROWS(p.get_info(CL_PLATFORM_PROFILE, 1, value, NULL), Cl_Error_No<CL_INVALID_VALUE>);
   }
   /** // doc: test_get_info_profile_0() {{{
    * \brief Test get_info(CL_PLATFORM_PROFILE, 0, NULL, &size).
@@ -361,11 +361,11 @@ public:
   {
     T::ErrRet_clGetPlatformInfo mock(CL_OUT_OF_HOST_MEMORY);
     Platform p(reinterpret_cast<cl_platform_id>(0x34556ul));
-    TS_ASSERT_THROWS(p.get_profile(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
-    TS_ASSERT_THROWS(p.get_version(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
-    TS_ASSERT_THROWS(p.get_name(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
-    TS_ASSERT_THROWS(p.get_vendor(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
-    TS_ASSERT_THROWS(p.get_extensions(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(p.get_profile(), Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(p.get_version(), Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(p.get_name(), Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(p.get_vendor(), Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(p.get_extensions(), Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
   }
   /** // doc: test_out_of_host_memory() {{{
    * \brief Test get_xxx() methods in a situation when clGetPlatformInfo returns unknown error.
@@ -374,11 +374,11 @@ public:
   {
     T::ErrRet_clGetPlatformInfo mock(-0x432534);
     Platform p(reinterpret_cast<cl_platform_id>(0x34556ul));
-    TS_ASSERT_THROWS(p.get_profile(), Dimbo::Cl::Other_Cl_Error);
-    TS_ASSERT_THROWS(p.get_version(), Dimbo::Cl::Other_Cl_Error);
-    TS_ASSERT_THROWS(p.get_name(), Dimbo::Cl::Other_Cl_Error);
-    TS_ASSERT_THROWS(p.get_vendor(), Dimbo::Cl::Other_Cl_Error);
-    TS_ASSERT_THROWS(p.get_extensions(), Dimbo::Cl::Other_Cl_Error);
+    TS_ASSERT_THROWS(p.get_profile(), Other_Cl_Error);
+    TS_ASSERT_THROWS(p.get_version(), Other_Cl_Error);
+    TS_ASSERT_THROWS(p.get_name(), Other_Cl_Error);
+    TS_ASSERT_THROWS(p.get_vendor(), Other_Cl_Error);
+    TS_ASSERT_THROWS(p.get_extensions(), Other_Cl_Error);
   }
 };
 

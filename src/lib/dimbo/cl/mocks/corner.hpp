@@ -39,6 +39,19 @@
 #if defined(CXXTEST_MOCK_TEST_SOURCE_FILE) || defined(CXXTEST_FLAGS) \
   || defined(CXXTEST_RUNNING) || defined(DOXYGEN)
 namespace T {
+/** // doc: NegSize_clGetPlatformIDs {{{
+ * \brief Mock for clGetPlatformIDs OpenCL function.
+ *
+ * When queried for the size of a string data being returned, the mock returns
+ * a negative value. It's intended to cause the std::bad_alloc to be raised in
+ * a calling code.
+ */ // }}}
+class NegSize_clGetPlatformIDs
+  : public T::Base_clGetPlatformIDs
+{
+  cl_int clGetPlatformIDs(cl_uint num_entries, cl_platform_id* platforms,
+                          cl_uint* num_platforms);
+};
 /** // doc: NegSize_clGetPlatformInfo {{{
  * \brief Mock for clGetPlatformInfo OpenCL function.
  *
@@ -67,6 +80,23 @@ class NegSize_clGetDeviceInfo
                            size_t param_value_size, void* param_value,
                            size_t* param_value_size_ret);
 };
+/** // doc: ErrRet_clGetPlatformIDs {{{
+ * \brief Mock for clGetPlatformIDs OpenCL function.
+ *
+ * When queried for the size of a string data being returned, the mock returns
+ * a negative value. It's intended to cause the std::bad_alloc to be raised in
+ * a calling code.
+ */ // }}}
+class ErrRet_clGetPlatformIDs
+  : public T::Base_clGetPlatformIDs
+{
+  cl_int _err;
+  cl_int clGetPlatformIDs(cl_uint num_entries, cl_platform_id* platforms,
+                          cl_uint* num_platforms);
+public:
+  ErrRet_clGetPlatformIDs();
+  ErrRet_clGetPlatformIDs(cl_int err);
+};
 /** // doc: ErrRet_clGetPlatformInfo {{{
  * \brief Mock for clGetPlatformInfo OpenCL function.
  *
@@ -82,6 +112,24 @@ class ErrRet_clGetPlatformInfo
 public:
   ErrRet_clGetPlatformInfo();
   ErrRet_clGetPlatformInfo(cl_int err);
+};
+/** // doc: ErrRet_clGetDeviceIDs {{{
+ * \brief Mock for clGetDeviceIDs OpenCL function.
+ *
+ * When queried for the size of a string data being returned, the mock returns
+ * a negative value. It's intended to cause the std::bad_alloc to be raised in
+ * a calling code.
+ */ // }}}
+class ErrRet_clGetDeviceIDs
+  : public T::Base_clGetDeviceIDs
+{
+  cl_int _err;
+  cl_int clGetDeviceIDs(cl_platform_id platform, cl_device_type device_type,
+                        cl_uint num_entries, cl_device_id* devices,
+                        cl_uint* num_devices);
+public:
+  ErrRet_clGetDeviceIDs();
+  ErrRet_clGetDeviceIDs(cl_int err);
 };
 /** // doc: ErrRet_clGetDeviceInfo {{{
  * \brief Mock for clGetDeviceInfo OpenCL function.
@@ -106,6 +154,19 @@ public:
 #if defined(CXXTEST_MOCK_TEST_SOURCE_FILE)
 namespace T {
 
+cl_int NegSize_clGetPlatformIDs::
+clGetPlatformIDs(cl_uint num_entries, cl_platform_id* platforms,
+                 cl_uint* num_platforms)
+{
+  (void) num_entries;         /* prevent 'unused parameter' warning */
+  (void) platforms;           /* prevent 'unused parameter' warning */
+  if(num_platforms)
+    {
+      *num_platforms = -1;
+    }
+  return CL_SUCCESS;
+}
+
 cl_int NegSize_clGetPlatformInfo::
 clGetPlatformInfo(cl_platform_id platform, cl_platform_info param_name,
                   size_t param_value_size, void* param_value,
@@ -117,7 +178,7 @@ clGetPlatformInfo(cl_platform_id platform, cl_platform_info param_name,
   (void)param_value;          /* prevent 'unused parameter' warning */
   if(param_value_size_ret)
     {
-      *param_value_size_ret = -16;
+      *param_value_size_ret = -1;
     }
   return CL_SUCCESS;
 }
@@ -133,9 +194,29 @@ clGetDeviceInfo(cl_device_id device, cl_device_info param_name,
   (void)param_value;          /* prevent 'unused parameter' warning */
   if(param_value_size_ret)
     {
-      *param_value_size_ret = -16;
+      *param_value_size_ret = -1;
     }
   return CL_SUCCESS;
+}
+
+cl_int ErrRet_clGetPlatformIDs::
+clGetPlatformIDs(cl_uint num_entries, cl_platform_id* platforms,
+                 cl_uint* num_platforms)
+{
+  (void) num_entries;         /* prevent 'unused parameter' warning */
+  (void) platforms;           /* prevent 'unused parameter' warning */
+  (void) num_platforms;       /* prevent 'unused parameter' warning */
+  return this->_err;
+}
+ErrRet_clGetPlatformIDs::
+ErrRet_clGetPlatformIDs() 
+  : _err(0)
+{ 
+}
+ErrRet_clGetPlatformIDs::
+ErrRet_clGetPlatformIDs(cl_int err)
+  : _err(err)
+{
 }
 
 cl_int ErrRet_clGetPlatformInfo::
@@ -157,6 +238,29 @@ ErrRet_clGetPlatformInfo()
 }
 ErrRet_clGetPlatformInfo::
 ErrRet_clGetPlatformInfo(cl_int err)
+  : _err(err)
+{
+}
+
+cl_int ErrRet_clGetDeviceIDs::
+clGetDeviceIDs(cl_platform_id platform, cl_device_type device_type,
+               cl_uint num_entries, cl_device_id* devices,
+               cl_uint* num_devices)
+{
+  (void) platform;            /* prevent 'unused parameter' warning */
+  (void) device_type;         /* prevent 'unused parameter' warning */
+  (void) num_entries;         /* prevent 'unused parameter' warning */
+  (void) devices;             /* prevent 'unused parameter' warning */
+  (void) num_devices;         /* prevent 'unused parameter' warning */
+  return this->_err;
+}
+ErrRet_clGetDeviceIDs::
+ErrRet_clGetDeviceIDs() 
+  : _err(0)
+{ 
+}
+ErrRet_clGetDeviceIDs::
+ErrRet_clGetDeviceIDs(cl_int err)
   : _err(err)
 {
 }

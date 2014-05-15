@@ -39,11 +39,11 @@ class Dimbo::Cl::Cl_Error_TestSuite : public CxxTest::TestSuite
 {
 public:
   void test_is_derived_from_exception(void)
-  { TS_ASSERT((std::is_base_of<Dimbo::Cl::Exception, Dimbo::Cl::Cl_Error>::value)); }
+  { TS_ASSERT((std::is_base_of<Dimbo::Cl::Exception, Cl_Error>::value)); }
   void test_has_virtual_destructor(void)
-  { TS_ASSERT((std::has_virtual_destructor<Dimbo::Cl::Cl_Error>::value)); }
+  { TS_ASSERT((std::has_virtual_destructor<Cl_Error>::value)); }
   void test_is_abstract(void)
-  { TS_ASSERT((std::is_abstract<Dimbo::Cl::Cl_Error>::value)); }
+  { TS_ASSERT((std::is_abstract<Cl_Error>::value)); }
 };
 
 #endif /* DIMBO_CL_CL_ERROR_T_H_INCLUDED */

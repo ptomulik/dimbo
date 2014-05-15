@@ -46,9 +46,9 @@ class Dimbo::Cl::Cl_Error_No_TestSuite : public CxxTest::TestSuite
 {
 public:
   void test_is_default_constructible(void)
-  { TS_ASSERT((std::is_default_constructible<Dimbo::Cl::Cl_Error_No<0> >::value)); }
+  { TS_ASSERT((std::is_default_constructible<Cl_Error_No<0> >::value)); }
   void test_is_copy_constructible(void)
-  { TS_ASSERT((std::is_copy_constructible<Dimbo::Cl::Cl_Error_No<0> >::value)); }
+  { TS_ASSERT((std::is_copy_constructible<Cl_Error_No<0> >::value)); }
 };
 
 #endif /* DIMBO_CL_CL_ERROR_NO_T_H_INCLUDED */
