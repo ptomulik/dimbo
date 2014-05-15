@@ -75,7 +75,11 @@ get_device_ids(cl_platform_id platform, cl_device_type device_type)
       if(ids.size() > 0)
         get_device_ids(platform, device_type, ids.size(), &ids[0], NULL);
       return ids;
-    } catch(std::bad_alloc const& e) { DIMBO_CL_THROW(Bad_Alloc); }
+    } catch(Dimbo::Cl::Exception const&) {
+      /* rethrow OpenCL exceptions because catch(std::bad_alloc ..) would
+       * catch also CL_OUT_OF_HOST_MEMORY etc. */
+      throw;
+    } catch(std::bad_alloc const&) { DIMBO_CL_THROW(Bad_Alloc); }
 }
 /* ------------------------------------------------------------------------ */
 Devices
@@ -86,7 +90,7 @@ get_devices(cl_platform_id platform, cl_device_type device_type)
 {
   try {
     return Devices(get_device_ids(platform, device_type));
-  } catch (std::bad_alloc const& e) {
+  } catch (std::bad_alloc const&) {
     DIMBO_CL_THROW(Bad_Alloc);
   }
 }

@@ -128,6 +128,7 @@ class Newton_clGetDeviceInfo
                          size_t param_value_size, void* param_value,
                          size_t* param_value_size_ret);
 public:
+  static bool const is_default[3];
   static cl_device_type const type[3];
   static cl_uint const vendor_id[3];
   static cl_uint const max_compute_units[3];
@@ -425,8 +426,10 @@ clGetDeviceIDs(cl_platform_id platform, cl_device_type device_type,
 
   switch(device_type)
   {
+    case CL_DEVICE_TYPE_CPU:
     case CL_DEVICE_TYPE_GPU:
     case CL_DEVICE_TYPE_ACCELERATOR:
+    case CL_DEVICE_TYPE_CUSTOM:
     case CL_DEVICE_TYPE_DEFAULT:
     case CL_DEVICE_TYPE_ALL:
       break;
@@ -437,18 +440,24 @@ clGetDeviceIDs(cl_platform_id platform, cl_device_type device_type,
   cl_uint i2 = 0;
   for(cl_uint i = 0; i < Newton_clGetDeviceIDs::num_devices; ++i)
     {
-      cl_device_type type = Newton_clGetDeviceInfo::type[i];
-      if(device_type == CL_DEVICE_TYPE_ALL || device_type == type)
+      if(Newton_clGetDeviceInfo::platform[i] == platform)
         {
-          if(devices)
+          bool is_default = Newton_clGetDeviceInfo::is_default[i];
+          cl_device_type type = Newton_clGetDeviceInfo::type[i];
+          if((device_type == CL_DEVICE_TYPE_ALL) ||
+             (device_type == CL_DEVICE_TYPE_DEFAULT && is_default) ||
+             (device_type != CL_DEVICE_TYPE_DEFAULT && device_type == type))
             {
-              if(i2 >= num_entries)
+              if(devices)
                 {
-                  return CL_INVALID_VALUE;
+                  if(i2 >= num_entries)
+                    {
+                      return CL_INVALID_VALUE;
+                    }
+                  devices[i2] = Newton_clGetDeviceIDs::devices[i];
                 }
-              devices[i2] = Newton_clGetDeviceIDs::devices[i];
+              ++i2;
             }
-          ++i2;
         }
     }
 
@@ -462,12 +471,14 @@ clGetDeviceIDs(cl_platform_id platform, cl_device_type device_type,
       *num_devices = i2;
     }
 
-  return CL_INVALID_PLATFORM;
+  return CL_SUCCESS;
 }
 
 
 ///////////////// Values for clGetDeviceInfo /////////////////////////////////
 // CL_DEVICE_TYPE
+bool const Newton_clGetDeviceInfo::
+is_default[3] = { true, true, false };
 cl_device_type const Newton_clGetDeviceInfo::
 type[3] = { CL_DEVICE_TYPE_CPU, CL_DEVICE_TYPE_GPU, CL_DEVICE_TYPE_GPU };
 // CL_DEVICE_VENDOR_ID
