@@ -158,42 +158,6 @@ public:
     Device d(reinterpret_cast<cl_device_id>(0x34556ul));
     TS_ASSERT_THROWS(d.get_info(CL_DEVICE_PROFILE, 0, NULL, NULL), Dimbo::Cl::Cl_Error_No<CL_INVALID_DEVICE>);
   }
-  /** // doc: test_get_name_negsize() {{{
-   * \brief Test get_name(CL_DEVICE_PROFILE, ...) in a situation when clGetDeviceInfo returns negative string size.
-   */ // }}}
-  void test_get_name_negsize( )
-  {
-    T::NegSize_clGetDeviceInfo mock;
-    Device d(reinterpret_cast<cl_device_id>(0x34556ul));
-    TS_ASSERT_THROWS(d.get_name(), DIMBO_CL_EXCEPTION(Bad_Alloc));
-  }
-  /** // doc: test_get_name_negsize() {{{
-   * \brief Test get_name(CL_DEVICE_PROFILE, ...) in a situation when clGetDeviceInfo returns negative string size.
-   */ // }}}
-  void test_get_max_work_item_sizes_negsize( )
-  {
-    T::NegSize_clGetDeviceInfo mock;
-    Device d(reinterpret_cast<cl_device_id>(0x34556ul));
-    TS_ASSERT_THROWS(d.get_max_work_item_sizes(), DIMBO_CL_EXCEPTION(Bad_Alloc));
-  }
-  /** // doc: test_get_name_out_of_resources() {{{
-   * \brief Test get_name(CL_DEVICE_PROFILE, ...) in a situation when clGetDeviceInfo returns negative string size.
-   */ // }}}
-  void test_get_name_out_of_resources( )
-  {
-    T::OutOfResources_clGetDeviceInfo mock;
-    Device d(reinterpret_cast<cl_device_id>(0x34556ul));
-    TS_ASSERT_THROWS(d.get_name(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
-  }
-  /** // doc: test_get_name_out_of_host_memory() {{{
-   * \brief Test get_name(CL_DEVICE_PROFILE, ...) in a situation when clGetDeviceInfo returns negative string size.
-   */ // }}}
-  void test_get_name_out_of_host_memory( )
-  {
-    T::OutOfHostMemory_clGetDeviceInfo mock;
-    Device d(reinterpret_cast<cl_device_id>(0x34556ul));
-    TS_ASSERT_THROWS(d.get_name(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
-  }
   /** // doc: test_get_info_0() {{{
    * \brief Test get_info(0, ...).
    */ // }}}
@@ -4147,6 +4111,180 @@ public:
     T::Newton_clGetDeviceInfo mock;
     Device d(T::Newton_clGetDeviceIDs::devices[1]);
     TS_ASSERT_THROWS(d.get_image_base_address_alignment(), Dimbo::Cl::Cl_Error_No<CL_INVALID_VALUE>);
+  }
+  /** // doc: test_get_name_negsize() {{{
+   * \brief Test get_name(CL_DEVICE_PROFILE, ...) in a situation when clGetDeviceInfo returns negative string size.
+   */ // }}}
+  void test_get_name_negsize( )
+  {
+    T::NegSize_clGetDeviceInfo mock;
+    Device d(reinterpret_cast<cl_device_id>(0x34556ul));
+    TS_ASSERT_THROWS(d.get_name(), DIMBO_CL_EXCEPTION(Bad_Alloc));
+  }
+  /** // doc: test_get_name_negsize() {{{
+   * \brief Test get_name(CL_DEVICE_PROFILE, ...) in a situation when clGetDeviceInfo returns negative string size.
+   */ // }}}
+  void test_get_max_work_item_sizes_negsize( )
+  {
+    T::NegSize_clGetDeviceInfo mock;
+    Device d(reinterpret_cast<cl_device_id>(0x34556ul));
+    TS_ASSERT_THROWS(d.get_max_work_item_sizes(), DIMBO_CL_EXCEPTION(Bad_Alloc));
+  }
+  /** // doc: test_out_of_resources() {{{
+   * \brief Test get_xxx() methods in a situation when clGetDeviceInfo returns CL_OUT_OF_RESOURCES.
+   */ // }}}
+  void test_out_of_resources( )
+  {
+    T::OutOfResources_clGetDeviceInfo mock;
+    Device d(reinterpret_cast<cl_device_id>(0x34556ul));
+    TS_ASSERT_THROWS(d.get_type(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_vendor_id(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_max_compute_units(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_max_work_item_dimensions(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_max_work_group_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_max_work_item_sizes(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_char(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_short(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_int(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_long(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_float(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_double(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_max_clock_frequency(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_address_bits(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_max_read_image_args(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_max_write_image_args(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_max_mem_alloc_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_image2d_max_width(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_image2d_max_height(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_image3d_max_width(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_image3d_max_height(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_image3d_max_depth(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_image_support(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_max_parameter_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_mem_base_addr_align(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_min_data_type_align_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_single_fp_config(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_global_mem_cache_type(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_global_mem_cacheline_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_global_mem_cache_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_global_mem_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_error_correction_support(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_profiling_timer_resolution(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_endian_little(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_available(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_compiler_available(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_execution_capabilities(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_queue_properties(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_name(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_vendor(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_driver_version(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_profile(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_version(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_extensions(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_platform_id(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_double_fp_config(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_half(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_host_unified_memory(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_char(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_short(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_int(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_long(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_float(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_double(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_half(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_opencl_c_version(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_linker_available(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_built_in_kernels(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_image_max_buffer_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_image_max_array_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_parent_device_id(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_partition_max_sub_devices(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_partition_properties(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_partition_affinity_domain(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_partition_type(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_reference_count(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_preferred_interop_user_sync(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_printf_buffer_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_image_pitch_alignment(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(d.get_image_base_address_alignment(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_RESOURCES>);
+  }
+  /** // doc: test_out_of_host_memory() {{{
+   * \brief Test get_xxx() methods in a situation when clGetDeviceInfo returns CL_OUT_OF_HOST_MEMORY.
+   */ // }}}
+  void test_out_of_host_memory( )
+  {
+    T::OutOfHostMemory_clGetDeviceInfo mock;
+    Device d(reinterpret_cast<cl_device_id>(0x34556ul));
+    TS_ASSERT_THROWS(d.get_type(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_vendor_id(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_max_compute_units(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_max_work_item_dimensions(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_max_work_group_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_max_work_item_sizes(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_char(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_short(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_int(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_long(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_float(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_double(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_max_clock_frequency(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_address_bits(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_max_read_image_args(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_max_write_image_args(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_max_mem_alloc_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_image2d_max_width(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_image2d_max_height(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_image3d_max_width(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_image3d_max_height(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_image3d_max_depth(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_image_support(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_max_parameter_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_mem_base_addr_align(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_min_data_type_align_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_single_fp_config(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_global_mem_cache_type(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_global_mem_cacheline_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_global_mem_cache_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_global_mem_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_error_correction_support(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_profiling_timer_resolution(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_endian_little(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_available(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_compiler_available(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_execution_capabilities(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_queue_properties(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_name(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_vendor(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_driver_version(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_profile(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_version(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_extensions(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_platform_id(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_double_fp_config(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_preferred_vector_width_half(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_host_unified_memory(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_char(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_short(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_int(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_long(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_float(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_double(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_native_vector_width_half(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_opencl_c_version(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_linker_available(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_built_in_kernels(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_image_max_buffer_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_image_max_array_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_parent_device_id(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_partition_max_sub_devices(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_partition_properties(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_partition_affinity_domain(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_partition_type(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_reference_count(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_preferred_interop_user_sync(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_printf_buffer_size(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_image_pitch_alignment(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(d.get_image_base_address_alignment(), Dimbo::Cl::Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
   }
 };
 
