@@ -65,6 +65,7 @@ public:
   }
   /** // doc: test_select_profile() {{{
    * \todo Write documentation
+   * \brief Test select_profile() method.
    */ // }}}
   void test_select_profile( )
   {
@@ -76,6 +77,7 @@ public:
   }
   /** // doc: test_select_version() {{{
    * \todo Write documentation
+   * \brief Test select_version() method.
    */ // }}}
   void test_select_version( )
   {
@@ -86,7 +88,7 @@ public:
     TS_ASSERT(q.version_selected());
   }
   /** // doc: test_select_vendor() {{{
-   * \todo Write documentation
+   * \brief Test select_vendor() method.
    */ // }}}
   void test_select_vendor( )
   {
@@ -97,7 +99,7 @@ public:
     TS_ASSERT(q.vendor_selected());
   }
   /** // doc: test_select_extensions() {{{
-   * \todo Write documentation
+   * \brief Test select_extensions() method.
    */ // }}}
   void test_select_extensions( )
   {
