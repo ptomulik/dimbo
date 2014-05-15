@@ -104,7 +104,6 @@ CXXTEST_MOCK_GLOBAL(cl_int, clGetProgramInfo,
 CXXTEST_MOCK_GLOBAL(cl_int, clRetainProgram, (cl_program program), (program));
 CXXTEST_MOCK_GLOBAL(cl_int, clReleaseProgram, (cl_program program), (program));
 
-#include <dimbo/cl/mocks/nohw.hpp>
 #include <dimbo/cl/mocks/newton.hpp>
 #include <dimbo/cl/mocks/corner.hpp>
 

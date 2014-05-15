@@ -101,15 +101,15 @@ public:
     TS_ASSERT_EQUALS(info.extensions(),"");
     TS_ASSERT_EQUALS(info.last_query(), query);
   }
-  /** // doc: test_ctor_nohw() {{{
+  /** // doc: test_ctor_invalid_platform() {{{
    * \brief Test Platform_Info(platform) constructor call.
    *
    * Ensures that the Platform_Info(platform) throws appropriate exception
    * when **platform** refers to an inexistent OpenCL platform.
    */ // }}}
-  void test_ctor_nohw( )
+  void test_ctor_invalid_platform( )
   {
-    T::NoHw_clGetPlatformInfo mock;
+    T::ErrRet_clGetPlatformInfo mock(CL_INVALID_PLATFORM);
     Platform platform(reinterpret_cast<cl_platform_id>(0x1234ul));
     TS_ASSERT_THROWS(Platform_Info info(platform),Cl_Error_No<CL_INVALID_PLATFORM>)
   }
