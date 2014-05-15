@@ -119,7 +119,7 @@ public:
     T::Newton_clGetDeviceIDs mock;
     cl_platform_id p = T::Newton_clGetPlatformIDs::platforms[0];
     Devices devices(get_devices(p, CL_DEVICE_TYPE_ALL));
-    TS_ASSERT_EQUALS(((Device)devices[0]).id(), T::Newton_clGetDeviceIDs::devices[0]);
+    TS_ASSERT_EQUALS(static_cast<Device>(devices[0]).id(), T::Newton_clGetDeviceIDs::devices[0]);
   }
   /** // doc: test_get_devices_2() {{{
    * \brief Test get_devices() on Newton.
@@ -129,8 +129,8 @@ public:
     T::Newton_clGetDeviceIDs mock;
     cl_platform_id p = T::Newton_clGetPlatformIDs::platforms[1];
     Devices devices(get_devices(p, CL_DEVICE_TYPE_ALL));
-    TS_ASSERT_EQUALS(((Device)devices[0]).id(), T::Newton_clGetDeviceIDs::devices[1]);
-    TS_ASSERT_EQUALS(((Device)devices[1]).id(), T::Newton_clGetDeviceIDs::devices[2]);
+    TS_ASSERT_EQUALS(static_cast<Device>(devices[0]).id(), T::Newton_clGetDeviceIDs::devices[1]);
+    TS_ASSERT_EQUALS(static_cast<Device>(devices[1]).id(), T::Newton_clGetDeviceIDs::devices[2]);
   }
   /** // doc: test_get_devices_3() {{{
    * \brief Test get_devices() on Newton.
@@ -162,6 +162,7 @@ public:
     T::ErrRet_clGetDeviceIDs mock(CL_INVALID_PLATFORM);
     TS_ASSERT_THROWS(get_num_devices(NULL,0),Cl_Error_No<CL_INVALID_PLATFORM>);
     TS_ASSERT_THROWS(get_device_ids(NULL,0),Cl_Error_No<CL_INVALID_PLATFORM>);
+    TS_ASSERT_THROWS(get_devices(NULL,0),Cl_Error_No<CL_INVALID_PLATFORM>);
   }
   /** // doc: test_invalid_device_type() {{{
    * \brief Test get_xxx() functions in a situation when clGetDeviceIDs returns
@@ -172,6 +173,8 @@ public:
     T::ErrRet_clGetDeviceIDs mock(CL_INVALID_DEVICE_TYPE);
     TS_ASSERT_THROWS(get_num_devices(NULL,0),Cl_Error_No<CL_INVALID_DEVICE_TYPE>);
     TS_ASSERT_THROWS(get_device_ids(NULL,0),Cl_Error_No<CL_INVALID_DEVICE_TYPE>);
+    TS_ASSERT_THROWS(get_devices(NULL,0),Cl_Error_No<CL_INVALID_DEVICE_TYPE>);
+    TS_ASSERT_THROWS(get_devices(Platform(NULL),0),Cl_Error_No<CL_INVALID_DEVICE_TYPE>);
   }
   /** // doc: test_invalid_value() {{{
    * \brief Test get_xxx() functions in a situation when clGetDeviceIDs returns
@@ -182,6 +185,8 @@ public:
     T::ErrRet_clGetDeviceIDs mock(CL_INVALID_VALUE);
     TS_ASSERT_THROWS(get_num_devices(NULL,0),Cl_Error_No<CL_INVALID_VALUE>);
     TS_ASSERT_THROWS(get_device_ids(NULL,0),Cl_Error_No<CL_INVALID_VALUE>);
+    TS_ASSERT_THROWS(get_devices(NULL,0),Cl_Error_No<CL_INVALID_VALUE>);
+    TS_ASSERT_THROWS(get_devices(Platform(NULL),0),Cl_Error_No<CL_INVALID_VALUE>);
   }
   /** // doc: test_device_not_found() {{{
    * \brief Test get_xxx() functions in a situation when clGetDeviceIDs returns
@@ -192,6 +197,8 @@ public:
     T::ErrRet_clGetDeviceIDs mock(CL_DEVICE_NOT_FOUND);
     TS_ASSERT_THROWS_NOTHING(get_num_devices(NULL,0))
     TS_ASSERT_THROWS_NOTHING(get_device_ids(NULL,0))
+    TS_ASSERT_THROWS_NOTHING(get_devices(NULL,0))
+    TS_ASSERT_THROWS_NOTHING(get_devices(Platform(NULL),0))
   }
   /** // doc: test_out_of_resources() {{{
    * \brief Test get_xxx() functions in a situation when clGetDeviceIDs returns
@@ -202,6 +209,8 @@ public:
     T::ErrRet_clGetDeviceIDs mock(CL_OUT_OF_RESOURCES);
     TS_ASSERT_THROWS(get_num_devices(NULL,0),Cl_Error_No<CL_OUT_OF_RESOURCES>);
     TS_ASSERT_THROWS(get_device_ids(NULL,0),Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(get_devices(NULL,0),Cl_Error_No<CL_OUT_OF_RESOURCES>);
+    TS_ASSERT_THROWS(get_devices(Platform(NULL),0),Cl_Error_No<CL_OUT_OF_RESOURCES>);
   }
   /** // doc: test_out_of_host_memory() {{{
    * \brief Test get_xxx() functions in a situation when clGetDeviceIDs returns
@@ -212,6 +221,8 @@ public:
     T::ErrRet_clGetDeviceIDs mock(CL_OUT_OF_HOST_MEMORY);
     TS_ASSERT_THROWS(get_num_devices(NULL,0), Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
     TS_ASSERT_THROWS(get_device_ids(NULL,0), Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(get_devices(NULL,0), Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
+    TS_ASSERT_THROWS(get_devices(Platform(NULL),0), Cl_Error_No<CL_OUT_OF_HOST_MEMORY>);
   }
   /** // doc: test_other_error() {{{
    * \brief Test get_xxx() functions in a situation when clGetDeviceIDs returns
@@ -222,6 +233,8 @@ public:
     T::ErrRet_clGetDeviceIDs mock(-0x3456);
     TS_ASSERT_THROWS(get_num_devices(NULL,0),Other_Cl_Error);
     TS_ASSERT_THROWS(get_device_ids(NULL,0),Other_Cl_Error);
+    TS_ASSERT_THROWS(get_devices(NULL,0),Other_Cl_Error);
+    TS_ASSERT_THROWS(get_devices(Platform(NULL),0),Other_Cl_Error);
   }
 };
 

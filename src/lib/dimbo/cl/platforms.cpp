@@ -69,7 +69,11 @@ get_platform_ids()
       if(ids.size() > 0)
         get_platform_ids(ids.size(), &ids.front(), NULL);
       return ids;
-    } catch(std::bad_alloc const& e) { DIMBO_CL_THROW(Bad_Alloc); }
+    } catch(Dimbo::Cl::Exception const&) {
+      /* rethrow OpenCL exceptions because catch(std::bad_alloc ..) would
+       * eat some of them (e.g. CL_OUT_OF_HOST_MEMORY) */
+      throw;
+    } catch(std::bad_alloc const&) { DIMBO_CL_THROW(Bad_Alloc); }
 }
 /* ------------------------------------------------------------------------ */
 Platforms
@@ -77,9 +81,10 @@ get_platforms()
   throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
        , DIMBO_CL_GET_PLATFORM_IDS_EXCEPTIONS )
 {
+  std::vector<cl_platform_id> ids(get_platform_ids());
   try {
-    return Platforms(get_platform_ids());
-  } catch (std::bad_alloc const& e) {
+    return Platforms(ids);
+  } catch (std::bad_alloc const&) {
     DIMBO_CL_THROW(Bad_Alloc);
   }
 }

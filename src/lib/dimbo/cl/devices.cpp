@@ -77,7 +77,7 @@ get_device_ids(cl_platform_id platform, cl_device_type device_type)
       return ids;
     } catch(Dimbo::Cl::Exception const&) {
       /* rethrow OpenCL exceptions because catch(std::bad_alloc ..) would
-       * catch also CL_OUT_OF_HOST_MEMORY etc. */
+       * eat some of them (e.g. CL_OUT_OF_HOST_MEMORY) */
       throw;
     } catch(std::bad_alloc const&) { DIMBO_CL_THROW(Bad_Alloc); }
 }
@@ -88,8 +88,9 @@ get_devices(cl_platform_id platform, cl_device_type device_type)
         , DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS )
 
 {
+  std::vector<cl_device_id> ids(get_device_ids(platform, device_type));
   try {
-    return Devices(get_device_ids(platform, device_type));
+    return Devices(ids);
   } catch (std::bad_alloc const&) {
     DIMBO_CL_THROW(Bad_Alloc);
   }

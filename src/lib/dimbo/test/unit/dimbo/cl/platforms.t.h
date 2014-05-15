@@ -70,6 +70,17 @@ public:
     TS_ASSERT_EQUALS(ids[0], T::Newton_clGetPlatformIDs::platforms[0]);
     TS_ASSERT_EQUALS(ids[1], T::Newton_clGetPlatformIDs::platforms[1]);
   }
+  /** // doc: test_get_platforms_1() {{{
+   * \brief Test get_platforms() - std::vector version.
+   */ // }}}
+  void test_get_platforms_1( )
+  {
+    T::Newton_clGetPlatformIDs mock;
+    Platforms p(get_platforms());
+    TS_ASSERT_EQUALS(p.size(), 2);
+    TS_ASSERT_EQUALS(static_cast<Platform>(p[0]).id(), T::Newton_clGetPlatformIDs::platforms[0]);
+    TS_ASSERT_EQUALS(static_cast<Platform>(p[1]).id(), T::Newton_clGetPlatformIDs::platforms[1]);
+  }
   /** // doc: test_get_platform_ids_zero_num_entries() {{{
    * \brief Test get_platform_ids() - array version with num_entries == 0.
    */ // }}}
