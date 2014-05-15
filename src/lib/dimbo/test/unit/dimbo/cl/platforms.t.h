@@ -93,7 +93,7 @@ public:
    */ // }}}
   void test_get_platform_ids_negsize( )
   {
-    T::NegSize_clGetPlatformIDs mock;
+    T::SizeRet_clGetPlatformIDs mock(-32);
     TS_ASSERT_THROWS(get_platform_ids(), DIMBO_CL_EXCEPTION(Bad_Alloc));
   }
   /** // doc: test_get_platform_ids_other_error() {{{

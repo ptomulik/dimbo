@@ -346,7 +346,7 @@ public:
    */ // }}}
   void test_negsize( )
   {
-    T::NegSize_clGetPlatformInfo mock;
+    T::SizeRet_clGetPlatformInfo mock(-64);
     Platform p(reinterpret_cast<cl_platform_id>(0x34556ul));
     TS_ASSERT_THROWS(p.get_profile(), DIMBO_CL_EXCEPTION(Bad_Alloc));
     TS_ASSERT_THROWS(p.get_version(), DIMBO_CL_EXCEPTION(Bad_Alloc));

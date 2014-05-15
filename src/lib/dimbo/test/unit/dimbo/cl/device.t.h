@@ -4117,7 +4117,7 @@ public:
    */ // }}}
   void test_get_name_negsize( )
   {
-    T::NegSize_clGetDeviceInfo mock;
+    T::SizeRet_clGetDeviceInfo mock(-1);
     Device d(reinterpret_cast<cl_device_id>(0x34556ul));
     TS_ASSERT_THROWS(d.get_name(), DIMBO_CL_EXCEPTION(Bad_Alloc));
   }
@@ -4126,7 +4126,7 @@ public:
    */ // }}}
   void test_get_max_work_item_sizes_negsize( )
   {
-    T::NegSize_clGetDeviceInfo mock;
+    T::SizeRet_clGetDeviceInfo mock(-64);
     Device d(reinterpret_cast<cl_device_id>(0x34556ul));
     TS_ASSERT_THROWS(d.get_max_work_item_sizes(), DIMBO_CL_EXCEPTION(Bad_Alloc));
   }
