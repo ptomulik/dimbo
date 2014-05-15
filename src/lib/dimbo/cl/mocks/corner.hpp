@@ -54,7 +54,6 @@ class SizeRet_clGetPlatformIDs
   cl_int clGetPlatformIDs(cl_uint num_entries, cl_platform_id* platforms,
                           cl_uint* num_platforms);
 public:
-  SizeRet_clGetPlatformIDs();
   SizeRet_clGetPlatformIDs(cl_uint num_platforms);
 };
 /** // doc: SizeRet_clGetPlatformInfo {{{
@@ -72,7 +71,6 @@ class SizeRet_clGetPlatformInfo
                            size_t param_value_size, void* param_value,
                            size_t* param_value_size_ret);
 public:
-  SizeRet_clGetPlatformInfo();
   SizeRet_clGetPlatformInfo(size_t size);
 };
 /** // doc: SizeRet_clGetDeviceInfo {{{
@@ -90,7 +88,6 @@ class SizeRet_clGetDeviceInfo
                            size_t param_value_size, void* param_value,
                            size_t* param_value_size_ret);
 public:
-  SizeRet_clGetDeviceInfo();
   SizeRet_clGetDeviceInfo(size_t size);
 };
 #endif
@@ -108,7 +105,6 @@ class ErrRet_clGetPlatformIDs
   cl_int clGetPlatformIDs(cl_uint num_entries, cl_platform_id* platforms,
                           cl_uint* num_platforms);
 public:
-  ErrRet_clGetPlatformIDs();
   ErrRet_clGetPlatformIDs(cl_int err);
 };
 /** // doc: ErrRet_clGetPlatformInfo {{{
@@ -124,7 +120,6 @@ class ErrRet_clGetPlatformInfo
                            size_t param_value_size, void* param_value,
                            size_t* param_value_size_ret);
 public:
-  ErrRet_clGetPlatformInfo();
   ErrRet_clGetPlatformInfo(cl_int err);
 };
 /** // doc: ErrRet_clGetDeviceIDs {{{
@@ -142,7 +137,6 @@ class ErrRet_clGetDeviceIDs
                         cl_uint num_entries, cl_device_id* devices,
                         cl_uint* num_devices);
 public:
-  ErrRet_clGetDeviceIDs();
   ErrRet_clGetDeviceIDs(cl_int err);
 };
 /** // doc: ErrRet_clGetDeviceInfo {{{
@@ -158,7 +152,6 @@ class ErrRet_clGetDeviceInfo
                            size_t param_value_size, void* param_value,
                            size_t* param_value_size_ret);
 public:
-  ErrRet_clGetDeviceInfo();
   ErrRet_clGetDeviceInfo(cl_int err);
 };
 } /* namespace T */
@@ -179,11 +172,6 @@ clGetPlatformIDs(cl_uint num_entries, cl_platform_id* platforms,
       *num_platforms = this->_num_platforms;
     }
   return CL_SUCCESS;
-}
-SizeRet_clGetPlatformIDs::
-SizeRet_clGetPlatformIDs() 
-  : _num_platforms(0)
-{ 
 }
 SizeRet_clGetPlatformIDs::
 SizeRet_clGetPlatformIDs(cl_uint num_platforms)
@@ -207,11 +195,6 @@ clGetPlatformInfo(cl_platform_id platform, cl_platform_info param_name,
   return CL_SUCCESS;
 }
 SizeRet_clGetPlatformInfo::
-SizeRet_clGetPlatformInfo() 
-  : _size(0)
-{ 
-}
-SizeRet_clGetPlatformInfo::
 SizeRet_clGetPlatformInfo(size_t size)
   : _size(size)
 {
@@ -233,11 +216,6 @@ clGetDeviceInfo(cl_device_id device, cl_device_info param_name,
   return CL_SUCCESS;
 }
 SizeRet_clGetDeviceInfo::
-SizeRet_clGetDeviceInfo() 
-  : _size(0)
-{ 
-}
-SizeRet_clGetDeviceInfo::
 SizeRet_clGetDeviceInfo(size_t size)
   : _size(size)
 {
@@ -252,11 +230,6 @@ clGetPlatformIDs(cl_uint num_entries, cl_platform_id* platforms,
   (void) platforms;           /* prevent 'unused parameter' warning */
   (void) num_platforms;       /* prevent 'unused parameter' warning */
   return this->_err;
-}
-ErrRet_clGetPlatformIDs::
-ErrRet_clGetPlatformIDs() 
-  : _err(0)
-{ 
 }
 ErrRet_clGetPlatformIDs::
 ErrRet_clGetPlatformIDs(cl_int err)
@@ -277,11 +250,6 @@ clGetPlatformInfo(cl_platform_id platform, cl_platform_info param_name,
   return this->_err;
 }
 ErrRet_clGetPlatformInfo::
-ErrRet_clGetPlatformInfo() 
-  : _err(0)
-{ 
-}
-ErrRet_clGetPlatformInfo::
 ErrRet_clGetPlatformInfo(cl_int err)
   : _err(err)
 {
@@ -300,11 +268,6 @@ clGetDeviceIDs(cl_platform_id platform, cl_device_type device_type,
   return this->_err;
 }
 ErrRet_clGetDeviceIDs::
-ErrRet_clGetDeviceIDs() 
-  : _err(0)
-{ 
-}
-ErrRet_clGetDeviceIDs::
 ErrRet_clGetDeviceIDs(cl_int err)
   : _err(err)
 {
@@ -321,11 +284,6 @@ clGetDeviceInfo(cl_device_id device, cl_device_info param_name,
   (void)param_value;          /* prevent 'unused parameter' warning */
   (void)param_value_size_ret; /* prevent 'unused parameter' warning */
   return this->_err;
-}
-ErrRet_clGetDeviceInfo::
-ErrRet_clGetDeviceInfo() 
-  : _err(0)
-{ 
 }
 ErrRet_clGetDeviceInfo::
 ErrRet_clGetDeviceInfo(cl_int err)
