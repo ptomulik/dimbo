@@ -461,14 +461,14 @@ clGetDeviceIDs(cl_platform_id platform, cl_device_type device_type,
         }
     }
 
-  if(devices && i2 == 0)
-    {
-      return CL_DEVICE_NOT_FOUND;
-    }
-
   if(num_devices)
     {
       *num_devices = i2;
+    }
+
+  if(devices && i2 == 0)
+    {
+      return CL_DEVICE_NOT_FOUND;
     }
 
   return CL_SUCCESS;
