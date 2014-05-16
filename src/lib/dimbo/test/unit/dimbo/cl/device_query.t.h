@@ -964,28 +964,6 @@ public:
     q.select_image_base_address_alignment(true);
     TS_ASSERT(q.image_base_address_alignment_selected());
   }
-  /** // doc: test_eq_op() {{{
-   * \todo Write documentation
-   */ // }}}
-  void test_eq_op( )
-  {
-    Device_Query a;
-    Device_Query b;
-    TS_ASSERT((a == b));
-    a.select_image3d_max_depth(!a.image3d_max_depth_selected());
-    TS_ASSERT(!(a == b));
-  }
-  /** // doc: test_neq_op() {{{
-   * \todo Write documentation
-   */ // }}}
-  void test_neq_op( )
-  {
-    Device_Query a;
-    Device_Query b;
-    TS_ASSERT(!(a != b));
-    a.select_image3d_max_depth(!a.image3d_max_depth_selected());
-    TS_ASSERT((a != b));
-  }
   /** // doc: test_select_all() {{{
    * \todo Write documentation
    */ // }}}
@@ -1174,6 +1152,28 @@ public:
     ia >> b;
 
     TS_ASSERT_EQUALS(a, b);
+  }
+  /** // doc: test_eq_op() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_eq_op( )
+  {
+    Device_Query a;
+    Device_Query b;
+    TS_ASSERT((a == b));
+    a.select_image3d_max_depth(!a.image3d_max_depth_selected());
+    TS_ASSERT(!(a == b));
+  }
+  /** // doc: test_neq_op() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_neq_op( )
+  {
+    Device_Query a;
+    Device_Query b;
+    TS_ASSERT(!(a != b));
+    a.select_image3d_max_depth(!a.image3d_max_depth_selected());
+    TS_ASSERT((a != b));
   }
 };
 

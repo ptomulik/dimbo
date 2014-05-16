@@ -32,6 +32,11 @@
 #include <cxxtest/TestSuite.h>
 #include <dimbo/cl/platform_query.hpp>
 
+// For serialization
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <sstream>
+
 namespace Dimbo { namespace Cl { class Platform_Query_TestSuite; } }
 
 /** // doc: class Dimbo::Cl::Platform_Query_TestSuite {{{
@@ -107,6 +112,26 @@ public:
     TS_ASSERT(!q.extensions_selected());
     q.select_extensions(true);
     TS_ASSERT(q.extensions_selected());
+  }
+  /** // doc: test_serialize_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_serialize_1( )
+  {
+    Platform_Query a;
+    Platform_Query b;
+
+    a.select_none(); // set all to non-default values
+
+    std::stringstream ss;
+
+    boost::archive::text_oarchive oa(ss);
+    oa << a;
+
+    boost::archive::text_iarchive ia(ss);
+    ia >> b;
+
+    TS_ASSERT_EQUALS(a, b);
   }
   /** // doc: test_eq_op() {{{
    * \todo Write documentation

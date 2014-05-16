@@ -563,7 +563,7 @@ public:
    */ // }}}
   unsigned long parent_device_id() const
   {
-    return reinterpret_cast<unsigned long>(this->_parent_device_id);
+    return this->_parent_device_id;
   }
   /** // {{{
    * \todo Write documentation
@@ -638,9 +638,7 @@ private:
     // {{{
     using boost::serialization::make_nvp;
     ar & make_nvp("last_query", _last_query);
-    // FIXME: cl_device_id is a pointer to incomplete type
-    //        must workaround it somehow
-    //ar & make_nvp("id", _id);
+    ar & make_nvp("id", _id);
     ar & make_nvp("type", _type);
     ar & make_nvp("vendor_id", _vendor_id);
     ar & make_nvp("max_compute_units", _max_compute_units);
@@ -690,9 +688,7 @@ private:
     ar & make_nvp("profile", _profile);
     ar & make_nvp("version", _version);
     ar & make_nvp("extensions", _extensions);
-    // FIXME: cl_platform_id is a pointer to incomplete type
-    //        must workaround it somehow
-    //ar & make_nvp("platform_id", _platform_id);
+    ar & make_nvp("platform_id", _platform_id);
     ar & make_nvp("double_fp_config", _double_fp_config);
     ar & make_nvp("preferred_vector_width_half", _preferred_vector_width_half);
     ar & make_nvp("host_unified_memory", _host_unified_memory);
@@ -708,9 +704,7 @@ private:
     ar & make_nvp("built_in_kernels", _built_in_kernels);
     ar & make_nvp("image_max_buffer_size", _image_max_buffer_size);
     ar & make_nvp("image_max_array_size", _image_max_array_size);
-    // FIXME: cl_device_id is a pointer to incomplete type
-    //        must workaround it somehow
-    //ar & make_nvp("parent_device_id", _parent_device_id);
+    ar & make_nvp("parent_device_id", _parent_device_id);
     ar & make_nvp("partition_max_sub_devices", _partition_max_sub_devices);
     ar & make_nvp("partition_properties", _partition_properties);
     ar & make_nvp("partition_affinity_domain", _partition_affinity_domain);
@@ -726,7 +720,7 @@ private:
 private:
   void _init_device_info();
   Device_Query _last_query;
-  // attrbutes {{{
+  // attributes {{{
   unsigned long _id;
   cl_device_type _type;
   cl_uint _vendor_id;

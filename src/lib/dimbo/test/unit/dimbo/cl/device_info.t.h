@@ -32,6 +32,11 @@
 #include <cxxtest/TestSuite.h>
 #include <dimbo/cl/device_info.hpp>
 
+// For serialization
+#include <boost/archive/text_iarchive.hpp>
+#include <boost/archive/text_oarchive.hpp>
+#include <sstream>
+
 namespace Dimbo { namespace Cl { class Device_Info_TestSuite; } }
 
 /** // doc: class Dimbo::Cl::Device_Info_TestSuite {{{
@@ -649,6 +654,29 @@ public:
 
     TS_ASSERT_EQUALS(info.last_query(), q);
     TS_ASSERT_EQUALS(info.name(), "Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz");
+  }
+//  /** // doc: test_serialize_1() {{{
+//   * \todo Write documentation
+//   */ // }}}
+  void test_serialize_1( )
+  {
+    T::Newton_clGetPlatformIDs mock1;
+    T::Newton_clGetPlatformInfo mock2;
+    T::Newton_clGetDeviceIDs mock3;
+    T::Newton_clGetDeviceInfo mock4;
+
+    Device_Info orig(Device(T::Newton_clGetDeviceIDs::devices[0]));
+    Device_Info info;
+
+    std::stringstream ss;
+
+    boost::archive::text_oarchive oa(ss);
+    oa << orig;
+
+    boost::archive::text_iarchive ia(ss);
+    ia >> info;
+
+    TS_ASSERT_EQUALS(info, orig);
   }
   /** // doc: test_eq_op() {{{
    * \todo Write documentation

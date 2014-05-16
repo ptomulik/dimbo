@@ -154,6 +154,26 @@ public:
     TS_ASSERT_EQUALS(info.extensions(),"cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll");
     TS_ASSERT_EQUALS(info.last_query(), Platform_Query());
   }
+  /** // doc: test_serialize_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_serialize_1()
+  {
+    T::Newton_clGetPlatformInfo mock;
+    Platform platform(T::Newton_clGetPlatformIDs::platforms[1]);
+    Platform_Info orig(platform);
+    Platform_Info info;
+
+    std::stringstream ss;
+
+    boost::archive::text_oarchive oa(ss);
+    oa << orig; // serialize
+
+    boost::archive::text_iarchive ia(ss);
+    ia >> info; // deserialize
+
+    TS_ASSERT_EQUALS(info, orig);
+  }
   /** // doc: test_eq_op() {{{
    * \todo Write documentation
    */ // }}}
@@ -179,26 +199,6 @@ public:
     Platform_Info c;
     TS_ASSERT(!(a != b));
     TS_ASSERT((a != c));
-  }
-  /** // doc: test_serialize_1() {{{
-   * \todo Write documentation
-   */ // }}}
-  void test_serialize_1()
-  {
-    T::Newton_clGetPlatformInfo mock;
-    Platform platform(T::Newton_clGetPlatformIDs::platforms[1]);
-    Platform_Info orig(platform);
-    Platform_Info info;
-
-    std::stringstream ss;
-
-    boost::archive::text_oarchive oa(ss);
-    oa << orig; // serialize
-
-    boost::archive::text_iarchive ia(ss);
-    ia >> info; // deserialize
-
-    TS_ASSERT_EQUALS(info, orig);
   }
 };
 
