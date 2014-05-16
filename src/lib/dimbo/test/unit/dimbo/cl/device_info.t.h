@@ -650,12 +650,6 @@ public:
     TS_ASSERT_EQUALS(info.last_query(), q);
     TS_ASSERT_EQUALS(info.name(), "Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz");
   }
-  /** // doc: test_foo() {{{
-   * \todo Write documentation
-   */ // }}}
-  void test_foo( )
-  {
-  }
 };
 
 #endif /* DIMBO_CL_DEVICE_INFO_T_H_INCLUDED */
