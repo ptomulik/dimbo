@@ -32,6 +32,11 @@
 #include <cxxtest/TestSuite.h>
 #include <dimbo/cl/device_query.hpp>
 
+// For serialization
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <sstream>
+
 namespace Dimbo { namespace Cl { class Device_Query_TestSuite; } }
 
 /** // doc: class Dimbo::Cl::Device_Query_TestSuite {{{
@@ -1149,6 +1154,26 @@ public:
     TS_ASSERT(!q.printf_buffer_size_selected());
     TS_ASSERT(!q.image_pitch_alignment_selected());
     TS_ASSERT(!q.image_base_address_alignment_selected());
+  }
+  /** // doc: test_serialize_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_serialize_1( )
+  {
+    Device_Query a;
+    Device_Query b;
+
+    a.select_none(); // set all to non-default values
+
+    std::stringstream ss;
+
+    boost::archive::text_oarchive oa(ss);
+    oa << a;
+
+    boost::archive::text_iarchive ia(ss);
+    ia >> b;
+
+    TS_ASSERT_EQUALS(a, b);
   }
 };
 

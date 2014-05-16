@@ -1215,6 +1215,17 @@ private:
     ar & make_nvp("select_built_in_kernels", _select_built_in_kernels);
     ar & make_nvp("select_image_max_buffer_size", _select_image_max_buffer_size);
     ar & make_nvp("select_image_max_array_size", _select_image_max_array_size);
+    ar & make_nvp("select_image_max_array_size",_select_image_max_array_size);
+    ar & make_nvp("select_parent_device_id",_select_parent_device_id);
+    ar & make_nvp("select_partition_max_sub_devices",_select_partition_max_sub_devices);
+    ar & make_nvp("select_partition_properties",_select_partition_properties);
+    ar & make_nvp("select_partition_affinity_domain",_select_partition_affinity_domain);
+    ar & make_nvp("select_partition_type",_select_partition_type);
+    ar & make_nvp("select_reference_count",_select_reference_count);
+    ar & make_nvp("select_preferred_interop_user_sync",_select_preferred_interop_user_sync);
+    ar & make_nvp("select_printf_buffer_size",_select_printf_buffer_size);
+    ar & make_nvp("select_image_pitch_alignment",_select_image_pitch_alignment);
+    ar & make_nvp("select_image_base_address_alignment",_select_image_base_address_alignment);
     // }}}
   }
 #endif
