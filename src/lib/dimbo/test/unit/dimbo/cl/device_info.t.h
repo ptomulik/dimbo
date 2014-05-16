@@ -209,7 +209,8 @@ public:
     T::Newton_clGetDeviceIDs mock3;
     T::Newton_clGetDeviceInfo mock4;
 
-    Device_Info orig(Device(T::Newton_clGetDeviceIDs::devices[0]));
+    Device d(T::Newton_clGetDeviceIDs::devices[0]);
+    Device_Info orig(d);
     Device_Info info;
 
     std::stringstream ss;
