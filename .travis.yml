@@ -22,7 +22,12 @@ install:
   - sudo apt-get --no-install-recommends -y install nvidia-opencl-dev
   - sudo apt-get --no-install-recommends -y install libboost-dev libboost-program-options-dev libboost-serialization-dev libboost-regex-dev
   - sudo apt-get --no-install-recommends -y install libprotobuf-dev protobuf-compiler
-  - sudo pip install cpp-coveralls
+  - sudo pip install cpp-coveralls;
+    for F in $(find /usr/local/lib/ -name 'coverage.py'); do
+      echo "Patching $F";
+      curl https://raw.githubusercontent.com/eddyxu/cpp-coveralls/master/cpp_coveralls/coverage.py > $F;
+    done
+
 before_script:
   - $CXX --version
   - $CXX -dumpversion
