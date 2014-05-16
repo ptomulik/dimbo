@@ -45,66 +45,19 @@ namespace Dimbo { namespace Cl { class Platform_Info_TestSuite; } }
 class Dimbo::Cl::Platform_Info_TestSuite : public CxxTest::TestSuite
 {
 public:
-  /** // doc: test_default_id() {{{
+  /** // doc: test_defaults() {{{
    * \brief Ensure that Platform_Info has id() == 0.
    */ // }}}
-  void test_default_id( )
-  {
-    TS_ASSERT_EQUALS(Platform_Info().id(), 0);
-  }
-  /** // doc: test_default_profile() {{{
-   * \brief Ensure that Platform_Info has profile() == "" by default.
-   */ // }}}
-  void test_default_profile( )
-  {
-    TS_ASSERT_EQUALS(Platform_Info().profile(), "");
-  }
-  /** // doc: test_default_profile() {{{
-   * \brief Ensure that Platform_Info has version() == "" by default.
-   */ // }}}
-  void test_default_version( )
-  {
-    TS_ASSERT_EQUALS(Platform_Info().version(), "");
-  }
-  /** // doc: test_default_vendor() {{{
-   * \brief Ensure that Platform_Info has vendor() == "" by default.
-   */ // }}}
-  void test_default_vendor( )
-  {
-    TS_ASSERT_EQUALS(Platform_Info().vendor(), "");
-  }
-  /** // doc: test_default_extensions() {{{
-   * \brief Ensure that Platform_Info has extensions() == "" by default.
-   */ // }}}
-  void test_default_extensions( )
-  {
-    TS_ASSERT_EQUALS(Platform_Info().extensions(), "");
-  }
-  /** // doc: test_default_last_query() {{{
-   * \brief Ensure that Platform_Info has empty last_query() by default.
-   */ // }}}
-  void test_default_last_query( )
+  void test_defaults( )
   {
     Platform_Query empty;
     empty.select_none();
+    TS_ASSERT_EQUALS(Platform_Info().id(), 0);
+    TS_ASSERT_EQUALS(Platform_Info().profile(), "");
+    TS_ASSERT_EQUALS(Platform_Info().version(), "");
+    TS_ASSERT_EQUALS(Platform_Info().vendor(), "");
+    TS_ASSERT_EQUALS(Platform_Info().extensions(), "");
     TS_ASSERT_EQUALS(Platform_Info().last_query(), empty);
-  }
-  /** // doc: test_ctor() {{{
-   * \brief Test Platform_Info's default constructor.
-   */ // }}}
-  void test_ctor( )
-  {
-    Platform_Info info;
-    Platform_Query query;
-    query.select_none();
-
-    TS_ASSERT_EQUALS(info.id(),0);
-    TS_ASSERT_EQUALS(info.profile(),"");
-    TS_ASSERT_EQUALS(info.version(),"");
-    TS_ASSERT_EQUALS(info.name(),"");
-    TS_ASSERT_EQUALS(info.vendor(),"");
-    TS_ASSERT_EQUALS(info.extensions(),"");
-    TS_ASSERT_EQUALS(info.last_query(), query);
   }
   /** // doc: test_ctor_invalid_platform() {{{
    * \brief Test Platform_Info(platform) constructor call.
