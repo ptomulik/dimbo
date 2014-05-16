@@ -28,7 +28,7 @@ install:
     for F in $(find /usr/local/lib/ -name 'coverage.py'); do
       echo "Patching $F";
       sudo curl https://raw.githubusercontent.com/eddyxu/cpp-coveralls/master/cpp_coveralls/coverage.py -o $F;
-      sudo rm ${F}c;
+      sudo rm "${F}c";
       sudo python -c 'import coveralls.coverage';
     done
 
