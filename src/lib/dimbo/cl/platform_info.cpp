@@ -90,6 +90,22 @@ _init_platform_info()
   this->clear();
 }
 
+bool operator==(Platform_Info const& a, Platform_Info const& b)
+{
+  Platform_Query const& aq = a.last_query();
+  Platform_Query const& bq = b.last_query();
+
+  if(!(aq == bq)
+  || (aq.id_selected() && (a.id() != b.id()))
+  || (aq.profile_selected() && (a.profile() != b.profile()))
+  || (aq.version_selected() && (a.version() != b.version()))
+  || (aq.name_selected() && (a.name() != b.name()))
+  || (aq.vendor_selected() && (a.vendor() != b.vendor()))
+  || (aq.extensions_selected() && (a.extensions() != b.extensions())))
+    return false;
+  return true;
+}
+
 } /* namespace Cl */
 } /* namespace Dimbo */
 // vim: set expandtab tabstop=2 shiftwidth=2:

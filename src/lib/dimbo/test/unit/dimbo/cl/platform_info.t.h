@@ -32,6 +32,11 @@
 #include <cxxtest/TestSuite.h>
 #include <dimbo/cl/platform_info.hpp>
 
+// For serialization
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
+#include <sstream>
+
 namespace Dimbo { namespace Cl { class Platform_Info_TestSuite; } }
 
 /** // doc: class Dimbo::Cl::Platform_Info_TestSuite {{{
@@ -122,8 +127,7 @@ public:
   void test_ctor_newton_cpu()
   {
     T::Newton_clGetPlatformInfo mock;
-    cl_platform_id id = T::Newton_clGetPlatformIDs::platforms[0];
-    Platform platform(reinterpret_cast<cl_platform_id>(id));
+    Platform platform(T::Newton_clGetPlatformIDs::platforms[0]);
     Platform_Info info(platform);
     TS_ASSERT_EQUALS(info.profile(),"FULL_PROFILE");
     TS_ASSERT_EQUALS(info.version(),"OpenCL 1.2 AMD-APP (1348.4)");
@@ -141,8 +145,7 @@ public:
   void test_ctor_newton_gpu()
   {
     T::Newton_clGetPlatformInfo mock;
-    cl_platform_id id = T::Newton_clGetPlatformIDs::platforms[1];
-    Platform platform(reinterpret_cast<cl_platform_id>(id));
+    Platform platform(T::Newton_clGetPlatformIDs::platforms[1]);
     Platform_Info info(platform);
     TS_ASSERT_EQUALS(info.profile(),"FULL_PROFILE");
     TS_ASSERT_EQUALS(info.version(),"OpenCL 1.1 CUDA 4.2.1");
@@ -150,6 +153,52 @@ public:
     TS_ASSERT_EQUALS(info.vendor(),"NVIDIA Corporation");
     TS_ASSERT_EQUALS(info.extensions(),"cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll");
     TS_ASSERT_EQUALS(info.last_query(), Platform_Query());
+  }
+  /** // doc: test_eq_op() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_eq_op()
+  {
+    T::Newton_clGetPlatformInfo mock;
+    Platform platform(T::Newton_clGetPlatformIDs::platforms[1]);
+    Platform_Info a(platform);
+    Platform_Info b(platform);
+    Platform_Info c;
+    TS_ASSERT((a == b));
+    TS_ASSERT(!(a == c));
+  }
+  /** // doc: test_neq_op() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_neq_op()
+  {
+    T::Newton_clGetPlatformInfo mock;
+    Platform platform(T::Newton_clGetPlatformIDs::platforms[1]);
+    Platform_Info a(platform);
+    Platform_Info b(platform);
+    Platform_Info c;
+    TS_ASSERT(!(a != b));
+    TS_ASSERT((a != c));
+  }
+  /** // doc: test_serialize_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_serialize_1()
+  {
+    T::Newton_clGetPlatformInfo mock;
+    Platform platform(T::Newton_clGetPlatformIDs::platforms[1]);
+    Platform_Info orig(platform);
+    Platform_Info info;
+
+    std::stringstream ss;
+
+    boost::archive::text_oarchive oa(ss);
+    oa << orig; // serialize
+
+    boost::archive::text_iarchive ia(ss);
+    ia >> info; // deserialize
+
+    TS_ASSERT_EQUALS(info, orig);
   }
 };
 

@@ -199,6 +199,10 @@ private:
   std::string _extensions;
 };
 
+bool operator== (Platform_Info const&, Platform_Info const&);
+inline bool operator!= (Platform_Info const& a, Platform_Info const& b)
+{ return !(a == b); }
+
 } /* namespace Dimbo */
 } /* namespace Cl */
 
