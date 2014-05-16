@@ -650,6 +650,38 @@ public:
     TS_ASSERT_EQUALS(info.last_query(), q);
     TS_ASSERT_EQUALS(info.name(), "Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz");
   }
+  /** // doc: test_eq_op() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_eq_op()
+  {
+    T::Newton_clGetPlatformIDs mock1;
+    T::Newton_clGetPlatformInfo mock2;
+    T::Newton_clGetDeviceIDs mock3;
+    T::Newton_clGetDeviceInfo mock4;
+    Device device(T::Newton_clGetDeviceIDs::devices[1]);
+    Device_Info a(device);
+    Device_Info b(device);
+    Device_Info c;
+    TS_ASSERT((a == b));
+    TS_ASSERT(!(a == c));
+  }
+  /** // doc: test_neq_op() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_neq_op()
+  {
+    T::Newton_clGetPlatformIDs mock1;
+    T::Newton_clGetPlatformInfo mock2;
+    T::Newton_clGetDeviceIDs mock3;
+    T::Newton_clGetDeviceInfo mock4;
+    Device device(T::Newton_clGetDeviceIDs::devices[1]);
+    Device_Info a(device);
+    Device_Info b(device);
+    Device_Info c;
+    TS_ASSERT(!(a != b));
+    TS_ASSERT((a != c));
+  }
 };
 
 #endif /* DIMBO_CL_DEVICE_INFO_T_H_INCLUDED */

@@ -806,6 +806,10 @@ private:
   // }}}
 };
 
+bool operator== (Device_Info const&, Device_Info const&);
+inline bool operator!= (Device_Info const& a, Device_Info const& b)
+{ return !(a == b); }
+
 } /* namespace Cl */
 } /* namespace Dimbo */
 
