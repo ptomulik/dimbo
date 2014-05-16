@@ -1301,6 +1301,8 @@ private:
 };
 
 bool operator==(Device_Query const&, Device_Query const&);
+inline bool operator!=(Device_Query const& a, Device_Query const& b)
+{ return !(a == b);}
 
 } /* namespace Cl */
 } /* namespace Dimbo */
