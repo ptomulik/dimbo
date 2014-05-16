@@ -1300,6 +1300,8 @@ private:
   // }}}
 };
 
+bool operator==(Device_Query const&, Device_Query const&);
+
 } /* namespace Cl */
 } /* namespace Dimbo */
 
