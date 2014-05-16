@@ -25,7 +25,7 @@ install:
   - sudo pip install cpp-coveralls;
     for F in $(find /usr/local/lib/ -name 'coverage.py'); do
       echo "Patching $F";
-      curl https://raw.githubusercontent.com/eddyxu/cpp-coveralls/master/cpp_coveralls/coverage.py > $F;
+      sudo curl https://raw.githubusercontent.com/eddyxu/cpp-coveralls/master/cpp_coveralls/coverage.py > $F;
     done
 
 before_script:
