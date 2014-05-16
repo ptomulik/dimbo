@@ -40,17 +40,16 @@ namespace Dimbo { namespace Cl { class Platform_Query_TestSuite; } }
 class Dimbo::Cl::Platform_Query_TestSuite : public CxxTest::TestSuite
 {
 public:
-  /** // doc: test_default_ctor() {{{
+  /** // doc: test_defaults() {{{
    * \brief Test default constructor
    */ // }}}
-  void test_default_ctor( )
+  void test_defaults( )
   {
-    Platform_Query q;
-    TS_ASSERT(q.id_selected());
-    TS_ASSERT(q.profile_selected());
-    TS_ASSERT(q.version_selected());
-    TS_ASSERT(q.vendor_selected());
-    TS_ASSERT(q.extensions_selected());
+    TS_ASSERT(Platform_Query().id_selected());
+    TS_ASSERT(Platform_Query().profile_selected());
+    TS_ASSERT(Platform_Query().version_selected());
+    TS_ASSERT(Platform_Query().vendor_selected());
+    TS_ASSERT(Platform_Query().extensions_selected());
   }
   /** // doc: test_select_id() {{{
    * \brief Test select_id() method.
@@ -108,6 +107,28 @@ public:
     TS_ASSERT(!q.extensions_selected());
     q.select_extensions(true);
     TS_ASSERT(q.extensions_selected());
+  }
+  /** // doc: test_eq_op() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_eq_op( )
+  {
+    Platform_Query q1;
+    Platform_Query q2;
+    TS_ASSERT(q1 == q2);
+    q1.select_id(false);
+    TS_ASSERT(!(q1 == q2));
+  }
+  /** // doc: test_neq_op() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_neq_op( )
+  {
+    Platform_Query q1;
+    Platform_Query q2;
+    TS_ASSERT(!(q1 != q2));
+    q1.select_id(false);
+    TS_ASSERT((q1 != q2));
   }
 };
 

@@ -196,6 +196,8 @@ private:
 };
 
 bool operator==(Platform_Query const&, Platform_Query const&);
+inline bool operator!=(Platform_Query const& a, Platform_Query const& b)
+{ return !(a == b); }
 
 } /* namespace Cl */
 } /* namespace Dimbo */
