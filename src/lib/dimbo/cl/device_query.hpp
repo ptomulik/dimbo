@@ -611,534 +611,610 @@ public:
   /** // doc: select_id() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_id(bool flag = true)
+  inline Device_Query& select_id(bool flag = true)
   {
     this->_select_id = flag;
+    return *this;
   }
   /** // doc: select_type() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_type(bool flag = true)
+  inline Device_Query& select_type(bool flag = true)
   {
     this->_select_type = flag;
+    return *this;
   }
   /** // doc: select_vendor_id() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_vendor_id(bool flag = true)
+  inline Device_Query& select_vendor_id(bool flag = true)
   {
     this->_select_vendor_id = flag;
+    return *this;
   }
   /** // doc: select_max_compute_units() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_max_compute_units(bool flag = true)
+  inline Device_Query& select_max_compute_units(bool flag = true)
   {
     this->_select_max_compute_units = flag;
+    return *this;
   }
   /** // doc: select_max_work_item_dimensions() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_max_work_item_dimensions(bool flag = true)
+  inline Device_Query& select_max_work_item_dimensions(bool flag = true)
   {
     this->_select_max_work_item_dimensions = flag;
+    return *this;
   }
   /** // doc: select_max_work_group_size() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_max_work_group_size(bool flag = true)
+  inline Device_Query& select_max_work_group_size(bool flag = true)
   {
     this->_select_max_work_group_size = flag;
+    return *this;
   }
   /** // doc: select_max_work_item_sizes() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_max_work_item_sizes(bool flag = true)
+  inline Device_Query& select_max_work_item_sizes(bool flag = true)
   {
     this->_select_max_work_item_sizes = flag;
+    return *this;
   }
   /** // doc: select_preferred_vector_width_char() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_preferred_vector_width_char(bool flag = true)
+  inline Device_Query& select_preferred_vector_width_char(bool flag = true)
   {
     this->_select_preferred_vector_width_char = flag;
+    return *this;
   }
   /** // doc: select_preferred_vector_width_short() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_preferred_vector_width_short(bool flag = true)
+  inline Device_Query& select_preferred_vector_width_short(bool flag = true)
   {
     this->_select_preferred_vector_width_short = flag;
+    return *this;
   }
   /** // doc: select_preferred_vector_width_int() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_preferred_vector_width_int(bool flag = true)
+  inline Device_Query& select_preferred_vector_width_int(bool flag = true)
   {
     this->_select_preferred_vector_width_int = flag;
+    return *this;
   }
   /** // doc: select_preferred_vector_width_long() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_preferred_vector_width_long(bool flag = true)
+  inline Device_Query& select_preferred_vector_width_long(bool flag = true)
   {
     this->_select_preferred_vector_width_long = flag;
+    return *this;
   }
   /** // doc: select_preferred_vector_width_float() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_preferred_vector_width_float(bool flag = true)
+  inline Device_Query& select_preferred_vector_width_float(bool flag = true)
   {
     this->_select_preferred_vector_width_float = flag;
+    return *this;
   }
   /** // doc: select_preferred_vector_width_double() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_preferred_vector_width_double(bool flag = true)
+  inline Device_Query& select_preferred_vector_width_double(bool flag = true)
   {
     this->_select_preferred_vector_width_double = flag;
+    return *this;
   }
   /** // doc: select_max_clock_frequency() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_max_clock_frequency(bool flag = true)
+  inline Device_Query& select_max_clock_frequency(bool flag = true)
   {
     this->_select_max_clock_frequency = flag;
+    return *this;
   }
   /** // doc: select_address_bits() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_address_bits(bool flag = true)
+  inline Device_Query& select_address_bits(bool flag = true)
   {
     this->_select_address_bits = flag;
+    return *this;
   }
   /** // doc: select_max_read_image_args() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_max_read_image_args(bool flag = true)
+  inline Device_Query& select_max_read_image_args(bool flag = true)
   {
     this->_select_max_read_image_args = flag;
+    return *this;
   }
   /** // doc: select_max_write_image_args() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_max_write_image_args(bool flag = true)
+  inline Device_Query& select_max_write_image_args(bool flag = true)
   {
     this->_select_max_write_image_args = flag;
+    return *this;
   }
   /** // doc: select_max_mem_alloc_size() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_max_mem_alloc_size(bool flag = true)
+  inline Device_Query& select_max_mem_alloc_size(bool flag = true)
   {
     this->_select_max_mem_alloc_size = flag;
+    return *this;
   }
   /** // doc: select_image2d_max_width() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_image2d_max_width(bool flag = true)
+  inline Device_Query& select_image2d_max_width(bool flag = true)
   {
     this->_select_image2d_max_width = flag;
+    return *this;
   }
   /** // doc: select_image2d_max_height() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_image2d_max_height(bool flag = true)
+  inline Device_Query& select_image2d_max_height(bool flag = true)
   {
     this->_select_image2d_max_height = flag;
+    return *this;
   }
   /** // doc: select_image3d_max_width() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_image3d_max_width(bool flag = true)
+  inline Device_Query& select_image3d_max_width(bool flag = true)
   {
     this->_select_image3d_max_width = flag;
+    return *this;
   }
   /** // doc: select_image3d_max_height() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_image3d_max_height(bool flag = true)
+  inline Device_Query& select_image3d_max_height(bool flag = true)
   {
     this->_select_image3d_max_height = flag;
+    return *this;
   }
   /** // doc: select_image3d_max_depth() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_image3d_max_depth(bool flag = true)
+  inline Device_Query& select_image3d_max_depth(bool flag = true)
   {
     this->_select_image3d_max_depth = flag;
+    return *this;
   }
   /** // doc: select_image_support() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_image_support(bool flag = true)
+  inline Device_Query& select_image_support(bool flag = true)
   {
     this->_select_image_support = flag;
+    return *this;
   }
   /** // doc: select_max_parameter_size() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_max_parameter_size(bool flag = true)
+  inline Device_Query& select_max_parameter_size(bool flag = true)
   {
     this->_select_max_parameter_size = flag;
+    return *this;
   }
   /** // doc: select_max_samplers() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_max_samplers(bool flag = true)
+  inline Device_Query& select_max_samplers(bool flag = true)
   {
     this->_select_max_samplers = flag;
+    return *this;
   }
   /** // doc: select_mem_base_addr_align() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_mem_base_addr_align(bool flag = true)
+  inline Device_Query& select_mem_base_addr_align(bool flag = true)
   {
     this->_select_mem_base_addr_align = flag;
+    return *this;
   }
   /** // doc: select_min_data_type_align_size() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_min_data_type_align_size(bool flag = true)
+  inline Device_Query& select_min_data_type_align_size(bool flag = true)
   {
     this->_select_min_data_type_align_size = flag;
+    return *this;
   }
   /** // doc: select_single_fp_config() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_single_fp_config(bool flag = true)
+  inline Device_Query& select_single_fp_config(bool flag = true)
   {
     this->_select_single_fp_config = flag;
+    return *this;
   }
   /** // doc: select_global_mem_cache_type() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_global_mem_cache_type(bool flag = true)
+  inline Device_Query& select_global_mem_cache_type(bool flag = true)
   {
     this->_select_global_mem_cache_type = flag;
+    return *this;
   }
   /** // doc: select_global_mem_cacheline_size() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_global_mem_cacheline_size(bool flag = true)
+  inline Device_Query& select_global_mem_cacheline_size(bool flag = true)
   {
     this->_select_global_mem_cacheline_size = flag;
+    return *this;
   }
   /** // doc: select_global_mem_cache_size() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_global_mem_cache_size(bool flag = true)
+  inline Device_Query& select_global_mem_cache_size(bool flag = true)
   {
     this->_select_global_mem_cache_size = flag;
+    return *this;
   }
   /** // doc: select_global_mem_size() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_global_mem_size(bool flag = true)
+  inline Device_Query& select_global_mem_size(bool flag = true)
   {
     this->_select_global_mem_size = flag;
+    return *this;
   }
   /** // doc: select_max_constant_buffer_size() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_max_constant_buffer_size(bool flag = true)
+  inline Device_Query& select_max_constant_buffer_size(bool flag = true)
   {
     this->_select_max_constant_buffer_size = flag;
+    return *this;
   }
   /** // doc: select_max_constant_args() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_max_constant_args(bool flag = true)
+  inline Device_Query& select_max_constant_args(bool flag = true)
   {
     this->_select_max_constant_args = flag;
+    return *this;
   }
   /** // doc: select_local_mem_type() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_local_mem_type(bool flag = true)
+  inline Device_Query& select_local_mem_type(bool flag = true)
   {
     this->_select_local_mem_type = flag;
+    return *this;
   }
   /** // doc: select_local_mem_size() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_local_mem_size(bool flag = true)
+  inline Device_Query& select_local_mem_size(bool flag = true)
   {
     this->_select_local_mem_size = flag;
+    return *this;
   }
   /** // doc: select_error_correction_support() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_error_correction_support(bool flag = true)
+  inline Device_Query& select_error_correction_support(bool flag = true)
   {
     this->_select_error_correction_support = flag;
+    return *this;
   }
   /** // doc: select_profiling_timer_resolution() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_profiling_timer_resolution(bool flag = true)
+  inline Device_Query& select_profiling_timer_resolution(bool flag = true)
   {
     this->_select_profiling_timer_resolution = flag;
+    return *this;
   }
   /** // doc: select_endian_little() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_endian_little(bool flag = true)
+  inline Device_Query& select_endian_little(bool flag = true)
   {
     this->_select_endian_little = flag;
+    return *this;
   }
   /** // doc: select_available() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_available(bool flag = true)
+  inline Device_Query& select_available(bool flag = true)
   {
     this->_select_available = flag;
+    return *this;
   }
   /** // doc: select_compiler_available() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_compiler_available(bool flag = true)
+  inline Device_Query& select_compiler_available(bool flag = true)
   {
     this->_select_compiler_available = flag;
+    return *this;
   }
   /** // doc: select_execution_capabilities() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_execution_capabilities(bool flag = true)
+  inline Device_Query& select_execution_capabilities(bool flag = true)
   {
     this->_select_execution_capabilities = flag;
+    return *this;
   }
   /** // doc: select_queue_properties() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_queue_properties(bool flag = true)
+  inline Device_Query& select_queue_properties(bool flag = true)
   {
     this->_select_queue_properties = flag;
+    return *this;
   }
   /** // doc: select_name() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_name(bool flag = true)
+  inline Device_Query& select_name(bool flag = true)
   {
     this->_select_name = flag;
+    return *this;
   }
   /** // doc: select_vendor() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_vendor(bool flag = true)
+  inline Device_Query& select_vendor(bool flag = true)
   {
     this->_select_vendor = flag;
+    return *this;
   }
   /** // doc: select_driver_version() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_driver_version(bool flag = true)
+  inline Device_Query& select_driver_version(bool flag = true)
   {
     this->_select_driver_version = flag;
+    return *this;
   }
   /** // doc: select_profile() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_profile(bool flag = true)
+  inline Device_Query& select_profile(bool flag = true)
   {
     this->_select_profile = flag;
+    return *this;
   }
   /** // doc: select_version() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_version(bool flag = true)
+  inline Device_Query& select_version(bool flag = true)
   {
     this->_select_version = flag;
+    return *this;
   }
   /** // doc: select_extensions() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_extensions(bool flag = true)
+  inline Device_Query& select_extensions(bool flag = true)
   {
     this->_select_extensions = flag;
+    return *this;
   }
   /** // doc: select_platform_id() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_platform_id(bool flag = true)
+  inline Device_Query& select_platform_id(bool flag = true)
   {
     this->_select_platform_id = flag;
+    return *this;
   }
   /** // doc: select_double_fp_config() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_double_fp_config(bool flag = true)
+  inline Device_Query& select_double_fp_config(bool flag = true)
   {
     this->_select_double_fp_config = flag;
+    return *this;
   }
   /** // doc: select_preferred_vector_width_half() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_preferred_vector_width_half(bool flag = true)
+  inline Device_Query& select_preferred_vector_width_half(bool flag = true)
   {
     this->_select_preferred_vector_width_half = flag;
+    return *this;
   }
   /** // doc: select_host_unified_memory() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_host_unified_memory(bool flag = true)
+  inline Device_Query& select_host_unified_memory(bool flag = true)
   {
     this->_select_host_unified_memory = flag;
+    return *this;
   }
   /** // doc: select_native_vector_width_char() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_native_vector_width_char(bool flag = true)
+  inline Device_Query& select_native_vector_width_char(bool flag = true)
   {
     this->_select_native_vector_width_char = flag;
+    return *this;
   }
   /** // doc: select_native_vector_width_short() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_native_vector_width_short(bool flag = true)
+  inline Device_Query& select_native_vector_width_short(bool flag = true)
   {
     this->_select_native_vector_width_short = flag;
+    return *this;
   }
   /** // doc: select_native_vector_width_int() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_native_vector_width_int(bool flag = true)
+  inline Device_Query& select_native_vector_width_int(bool flag = true)
   {
     this->_select_native_vector_width_int = flag;
+    return *this;
   }
   /** // doc: select_native_vector_width_long() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_native_vector_width_long(bool flag = true)
+  inline Device_Query& select_native_vector_width_long(bool flag = true)
   {
     this->_select_native_vector_width_long = flag;
+    return *this;
   }
   /** // doc: select_native_vector_width_float() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_native_vector_width_float(bool flag = true)
+  inline Device_Query& select_native_vector_width_float(bool flag = true)
   {
     this->_select_native_vector_width_float = flag;
+    return *this;
   }
   /** // doc: select_native_vector_width_double() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_native_vector_width_double(bool flag = true)
+  inline Device_Query& select_native_vector_width_double(bool flag = true)
   {
     this->_select_native_vector_width_double = flag;
+    return *this;
   }
   /** // doc: select_native_vector_width_half() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_native_vector_width_half(bool flag = true)
+  inline Device_Query& select_native_vector_width_half(bool flag = true)
   {
     this->_select_native_vector_width_half = flag;
+    return *this;
   }
   /** // doc: select_opencl_c_version() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_opencl_c_version(bool flag = true)
+  inline Device_Query& select_opencl_c_version(bool flag = true)
   {
     this->_select_opencl_c_version = flag;
+    return *this;
   }
   /** // doc: select_linker_available() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_linker_available(bool flag = true)
+  inline Device_Query& select_linker_available(bool flag = true)
   {
     this->_select_linker_available = flag;
+    return *this;
   }
   /** // doc: select_built_in_kernels() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_built_in_kernels(bool flag = true)
+  inline Device_Query& select_built_in_kernels(bool flag = true)
   {
     this->_select_built_in_kernels = flag;
+    return *this;
   }
   /** // doc: select_image_max_buffer_size() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_image_max_buffer_size(bool flag = true)
+  inline Device_Query& select_image_max_buffer_size(bool flag = true)
   {
     this->_select_image_max_buffer_size = flag;
+    return *this;
   }
   /** // doc: select_image_max_array_size() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_image_max_array_size(bool flag = true)
+  inline Device_Query& select_image_max_array_size(bool flag = true)
   {
     this->_select_image_max_array_size = flag;
+    return *this;
   }
   /** // doc: select_parent_device_id() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_parent_device_id(bool flag = true)
+  inline Device_Query& select_parent_device_id(bool flag = true)
   {
     this->_select_parent_device_id = flag;
+    return *this;
   }
   /** // doc: select_partition_max_sub_devices() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_partition_max_sub_devices(bool flag = true)
+  inline Device_Query& select_partition_max_sub_devices(bool flag = true)
   {
     this->_select_partition_max_sub_devices = flag;
+    return *this;
   }
   /** // doc: select_partition_properties() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_partition_properties(bool flag = true)
+  inline Device_Query& select_partition_properties(bool flag = true)
   {
     this->_select_partition_properties = flag;
+    return *this;
   }
   /** // doc: select_partition_affinity_domain() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_partition_affinity_domain(bool flag = true)
+  inline Device_Query& select_partition_affinity_domain(bool flag = true)
   {
     this->_select_partition_affinity_domain = flag;
+    return *this;
   }
   /** // doc: select_partition_type() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_partition_type(bool flag = true)
+  inline Device_Query& select_partition_type(bool flag = true)
   {
     this->_select_partition_type = flag;
+    return *this;
   }
   /** // doc: select_reference_count() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_reference_count(bool flag = true)
+  inline Device_Query& select_reference_count(bool flag = true)
   {
     this->_select_reference_count = flag;
+    return *this;
   }
   /** // doc: select_preferred_interop_user_sync() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_preferred_interop_user_sync(bool flag = true)
+  inline Device_Query& select_preferred_interop_user_sync(bool flag = true)
   {
     this->_select_preferred_interop_user_sync = flag;
+    return *this;
   }
   /** // doc: select_printf_buffer_size() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_printf_buffer_size(bool flag = true)
+  inline Device_Query& select_printf_buffer_size(bool flag = true)
   {
     this->_select_printf_buffer_size = flag;
+    return *this;
   }
   /** // doc: select_image_pitch_alignment() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_image_pitch_alignment(bool flag = true)
+  inline Device_Query& select_image_pitch_alignment(bool flag = true)
   {
     this->_select_image_pitch_alignment = flag;
+    return *this;
   }
   /** // doc: select_image_base_address_alignment() {{{
    * \todo Write documentation
    */ //  }}}
-  inline void select_image_base_address_alignment(bool flag = true)
+  inline Device_Query& select_image_base_address_alignment(bool flag = true)
   {
     this->_select_image_base_address_alignment = flag;
+    return *this;
   }
   // }}}
 private:
