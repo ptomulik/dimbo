@@ -91,17 +91,17 @@ public:
     q.select_version(true);
     TS_ASSERT(q.version_selected());
   }
-  /** // doc: test_select_vendor() {{{
+  /** // doc: test_select_name() {{{
    * \todo Write documentation
-   * \brief Test select_vendor() method.
+   * \brief Test select_name() method.
    */ // }}}
-  void test_select_vendor( )
+  void test_select_name( )
   {
     Platform_Query q;
-    q.select_vendor(false);
-    TS_ASSERT(!q.vendor_selected());
-    q.select_vendor(true);
-    TS_ASSERT(q.vendor_selected());
+    q.select_name(false);
+    TS_ASSERT(!q.name_selected());
+    q.select_name(true);
+    TS_ASSERT(q.name_selected());
   }
   /** // doc: test_select_vendor() {{{
    * \brief Test select_vendor() method.
