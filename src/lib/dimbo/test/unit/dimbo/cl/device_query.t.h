@@ -1160,8 +1160,374 @@ public:
   {
     Device_Query a;
     Device_Query b;
+
     TS_ASSERT((a == b));
-    a.select_image3d_max_depth(!a.image3d_max_depth_selected());
+    a.select_id(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_type(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_vendor_id(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_max_compute_units(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_max_work_item_dimensions(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_max_work_group_size(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_max_work_item_sizes(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_preferred_vector_width_char(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_preferred_vector_width_int(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_preferred_vector_width_short(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_preferred_vector_width_long(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_preferred_vector_width_float(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_preferred_vector_width_double(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_max_clock_frequency(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_address_bits(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_max_read_image_args(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_max_write_image_args(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_max_mem_alloc_size(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_image2d_max_width(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_image2d_max_height(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_image3d_max_width(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_image3d_max_height(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_image3d_max_depth(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_image_support(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_max_parameter_size(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_max_samplers(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_mem_base_addr_align(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_min_data_type_align_size(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_single_fp_config(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_global_mem_cache_type(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_global_mem_cacheline_size(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_global_mem_cache_size(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_global_mem_size(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_max_constant_buffer_size(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_max_constant_args(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_local_mem_type(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_local_mem_size(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_error_correction_support(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_profiling_timer_resolution(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_endian_little(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_available(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_id(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_compiler_available(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_queue_properties(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_name(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_vendor(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_driver_version(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_extensions(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_platform_id(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_double_fp_config(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_preferred_vector_width_half(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_host_unified_memory(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_native_vector_width_char(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_native_vector_width_short(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_native_vector_width_int(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_native_vector_width_long(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_native_vector_width_float(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_native_vector_width_double(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_native_vector_width_half(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_opencl_c_version(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_linker_available(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_built_in_kernels(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_image_max_buffer_size(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_image_max_array_size(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_parent_device_id(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_partition_max_sub_devices(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_partition_properties(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_partition_affinity_domain(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_partition_type(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_reference_count(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_preferred_interop_user_sync(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_printf_buffer_size(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_image_pitch_alignment(false);
+    TS_ASSERT(!(a == b));
+
+    a = b;
+    TS_ASSERT((a == b));
+    a.select_image_base_address_alignment(false);
     TS_ASSERT(!(a == b));
   }
   /** // doc: test_neq_op() {{{
@@ -1173,6 +1539,371 @@ public:
     Device_Query b;
     TS_ASSERT(!(a != b));
     a.select_image3d_max_depth(!a.image3d_max_depth_selected());
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_type(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_vendor_id(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_max_compute_units(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_max_work_item_dimensions(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_max_work_group_size(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_max_work_item_sizes(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_preferred_vector_width_char(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_preferred_vector_width_int(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_preferred_vector_width_short(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_preferred_vector_width_long(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_preferred_vector_width_float(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_preferred_vector_width_double(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_max_clock_frequency(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_address_bits(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_max_read_image_args(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_max_write_image_args(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_max_mem_alloc_size(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_image2d_max_width(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_image2d_max_height(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_image3d_max_width(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_image3d_max_height(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_image3d_max_depth(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_image_support(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_max_parameter_size(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_max_samplers(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_mem_base_addr_align(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_min_data_type_align_size(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_single_fp_config(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_global_mem_cache_type(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_global_mem_cacheline_size(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_global_mem_cache_size(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_global_mem_size(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_max_constant_buffer_size(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_max_constant_args(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_local_mem_type(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_local_mem_size(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_error_correction_support(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_profiling_timer_resolution(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_endian_little(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_available(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_id(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_compiler_available(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_queue_properties(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_name(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_vendor(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_driver_version(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_extensions(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_platform_id(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_double_fp_config(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_preferred_vector_width_half(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_host_unified_memory(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_native_vector_width_char(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_native_vector_width_short(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_native_vector_width_int(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_native_vector_width_long(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_native_vector_width_float(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_native_vector_width_double(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_native_vector_width_half(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_opencl_c_version(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_linker_available(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_built_in_kernels(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_image_max_buffer_size(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_image_max_array_size(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_parent_device_id(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_partition_max_sub_devices(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_partition_properties(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_partition_affinity_domain(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_partition_type(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_reference_count(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_preferred_interop_user_sync(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_printf_buffer_size(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_image_pitch_alignment(false);
+    TS_ASSERT((a != b));
+
+    a = b;
+    TS_ASSERT(!(a != b));
+    a.select_image_base_address_alignment(false);
     TS_ASSERT((a != b));
   }
 };
