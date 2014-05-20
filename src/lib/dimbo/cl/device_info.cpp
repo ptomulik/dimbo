@@ -141,54 +141,21 @@ query(Device const& device, Device_Query const& query)
   std::string vs(device.get_version());
   boost::regex re("OpenCL ([0-9]+)\\.([0-9]+).*");
   boost::smatch sm;
-  int ver[2];
+  int major, minor;
 
   if(boost::regex_match(vs, sm, re))
     {
-      ver[0] = std::stoi(sm[1]);
-      ver[1] = std::stoi(sm[2]);
+      major = std::stoi(sm[1]);
+      minor = std::stoi(sm[2]);
     }
   else
     {
-      ver[0] = 1;
-      ver[1] = 0;
+      major = 1;
+      minor = 0;
     }
 
   this->_last_query = query;
-
-  if(ver[0] == 1 && ver[1] < 1)
-    {
-      // ver < 1.1
-      this->_last_query.select_preferred_vector_width_half(false);
-      this->_last_query.select_host_unified_memory(false);
-      this->_last_query.select_native_vector_width_char(false);
-      this->_last_query.select_native_vector_width_short(false);
-      this->_last_query.select_native_vector_width_int(false);
-      this->_last_query.select_native_vector_width_long(false);
-      this->_last_query.select_native_vector_width_float(false);
-      this->_last_query.select_native_vector_width_double(false);
-      this->_last_query.select_native_vector_width_half(false);
-      this->_last_query.select_opencl_c_version(false);
-    }
-  if(ver[0] == 1 && ver[1] < 2)
-    {
-      // ver < 1.2
-      this->_last_query.select_double_fp_config(false);
-      this->_last_query.select_linker_available(false);
-      this->_last_query.select_built_in_kernels(false);
-      this->_last_query.select_image_max_buffer_size(false);
-      this->_last_query.select_image_max_array_size(false);
-      this->_last_query.select_parent_device_id(false);
-      this->_last_query.select_partition_max_sub_devices(false);
-      this->_last_query.select_partition_properties(false);
-      this->_last_query.select_partition_affinity_domain(false);
-      this->_last_query.select_partition_type(false);
-      this->_last_query.select_reference_count(false);
-      this->_last_query.select_preferred_interop_user_sync(false);
-      this->_last_query.select_printf_buffer_size(false);
-      this->_last_query.select_image_pitch_alignment(false);
-      this->_last_query.select_image_base_address_alignment(false);
-    }
+  this->_last_query.restrict_to(major, minor);
 
   // A lot of "scalar" queries {{{
   if(this->_last_query.id_selected()) {

@@ -44,7 +44,6 @@ Device_Query::
 Device_Query& Device_Query::
 select_all()
 {
-  this->select_none();
   this -> select_id(true);
   this -> select_type(true);
   this -> select_vendor_id(true);
@@ -203,6 +202,45 @@ select_none()
   this -> select_printf_buffer_size(false);
   this -> select_image_pitch_alignment(false);
   this -> select_image_base_address_alignment(false);
+  return *this;
+}
+
+Device_Query& Device_Query::
+restrict_to(int major, int minor)
+{
+  if(major == 1 && minor < 1)
+    {
+      // ver < 1.1
+      this->select_preferred_vector_width_half(false);
+      this->select_host_unified_memory(false);
+      this->select_native_vector_width_char(false);
+      this->select_native_vector_width_short(false);
+      this->select_native_vector_width_int(false);
+      this->select_native_vector_width_long(false);
+      this->select_native_vector_width_float(false);
+      this->select_native_vector_width_double(false);
+      this->select_native_vector_width_half(false);
+      this->select_opencl_c_version(false);
+    }
+  if(major == 1 && minor < 2)
+    {
+      // ver < 1.2
+      this->select_double_fp_config(false);
+      this->select_linker_available(false);
+      this->select_built_in_kernels(false);
+      this->select_image_max_buffer_size(false);
+      this->select_image_max_array_size(false);
+      this->select_parent_device_id(false);
+      this->select_partition_max_sub_devices(false);
+      this->select_partition_properties(false);
+      this->select_partition_affinity_domain(false);
+      this->select_partition_type(false);
+      this->select_reference_count(false);
+      this->select_preferred_interop_user_sync(false);
+      this->select_printf_buffer_size(false);
+      this->select_image_pitch_alignment(false);
+      this->select_image_base_address_alignment(false);
+    }
   return *this;
 }
 

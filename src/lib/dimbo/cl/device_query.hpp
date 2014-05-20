@@ -73,6 +73,10 @@ public:
    * \todo Write documentation
    */ // }}}
   Device_Query& select_none() ;
+  /** // doc: restrict_to(major,minor) {{{
+   * \todo Write documentation
+   */ // }}}
+  Device_Query& restrict_to(int major, int minor);
   // getters ... {{{
   /** // doc: id_selected() {{{
    * \todo Write documentation

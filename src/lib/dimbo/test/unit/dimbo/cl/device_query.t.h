@@ -1133,6 +1133,135 @@ public:
     TS_ASSERT(!q.image_pitch_alignment_selected());
     TS_ASSERT(!q.image_base_address_alignment_selected());
   }
+  /** // doc: test_restrict_to_1_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_restrict_to_1_2( )
+  {
+    Device_Query a;
+    Device_Query b;
+
+    TS_ASSERT((a == b));
+    a.restrict_to(1,2);
+    TS_ASSERT((a == b));
+  }
+
+  /** // doc: test_restrict_to_1_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_restrict_to_1_1( )
+  {
+    Device_Query a;
+    Device_Query b;
+
+    TS_ASSERT((a == b));
+    a.restrict_to(1,1);
+    TS_ASSERT((a != b));
+   
+    // Make sure these are unselected
+    TS_ASSERT(!a.double_fp_config_selected());
+    TS_ASSERT(!a.linker_available_selected());
+    TS_ASSERT(!a.built_in_kernels_selected());
+    TS_ASSERT(!a.image_max_buffer_size_selected());
+    TS_ASSERT(!a.image_max_array_size_selected());
+    TS_ASSERT(!a.parent_device_id_selected());
+    TS_ASSERT(!a.partition_max_sub_devices_selected());
+    TS_ASSERT(!a.partition_properties_selected());
+    TS_ASSERT(!a.partition_affinity_domain_selected());
+    TS_ASSERT(!a.partition_type_selected());
+    TS_ASSERT(!a.reference_count_selected());
+    TS_ASSERT(!a.preferred_interop_user_sync_selected());
+    TS_ASSERT(!a.printf_buffer_size_selected());
+    TS_ASSERT(!a.image_pitch_alignment_selected());
+    TS_ASSERT(!a.image_base_address_alignment_selected());
+
+    // Make sure ONLY these were unselected
+    a.select_double_fp_config();
+    a.select_linker_available();
+    a.select_built_in_kernels();
+    a.select_image_max_buffer_size();
+    a.select_image_max_array_size();
+    a.select_parent_device_id();
+    a.select_partition_max_sub_devices();
+    a.select_partition_properties();
+    a.select_partition_affinity_domain();
+    a.select_partition_type();
+    a.select_reference_count();
+    a.select_preferred_interop_user_sync();
+    a.select_printf_buffer_size();
+    a.select_image_pitch_alignment();
+    a.select_image_base_address_alignment();
+
+    TS_ASSERT((a == b));
+  }
+  /** // doc: test_restrict_to_1_0() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_restrict_to_1_0( )
+  {
+    Device_Query a;
+    Device_Query b;
+
+    TS_ASSERT((a == b));
+    a.restrict_to(1,0);
+    TS_ASSERT((a != b));
+   
+    // Make sure these are unselected
+    TS_ASSERT(!a.preferred_vector_width_half_selected());
+    TS_ASSERT(!a.host_unified_memory_selected());
+    TS_ASSERT(!a.native_vector_width_char_selected());
+    TS_ASSERT(!a.native_vector_width_short_selected());
+    TS_ASSERT(!a.native_vector_width_int_selected());
+    TS_ASSERT(!a.native_vector_width_long_selected());
+    TS_ASSERT(!a.native_vector_width_float_selected());
+    TS_ASSERT(!a.native_vector_width_double_selected());
+    TS_ASSERT(!a.native_vector_width_half_selected());
+    TS_ASSERT(!a.opencl_c_version_selected());
+    TS_ASSERT(!a.double_fp_config_selected());
+    TS_ASSERT(!a.linker_available_selected());
+    TS_ASSERT(!a.built_in_kernels_selected());
+    TS_ASSERT(!a.image_max_buffer_size_selected());
+    TS_ASSERT(!a.image_max_array_size_selected());
+    TS_ASSERT(!a.parent_device_id_selected());
+    TS_ASSERT(!a.partition_max_sub_devices_selected());
+    TS_ASSERT(!a.partition_properties_selected());
+    TS_ASSERT(!a.partition_affinity_domain_selected());
+    TS_ASSERT(!a.partition_type_selected());
+    TS_ASSERT(!a.reference_count_selected());
+    TS_ASSERT(!a.preferred_interop_user_sync_selected());
+    TS_ASSERT(!a.printf_buffer_size_selected());
+    TS_ASSERT(!a.image_pitch_alignment_selected());
+    TS_ASSERT(!a.image_base_address_alignment_selected());
+
+    // Make sure ONLY these were unselected
+    a.select_preferred_vector_width_half();
+    a.select_host_unified_memory();
+    a.select_native_vector_width_char();
+    a.select_native_vector_width_short();
+    a.select_native_vector_width_int();
+    a.select_native_vector_width_long();
+    a.select_native_vector_width_float();
+    a.select_native_vector_width_double();
+    a.select_native_vector_width_half();
+    a.select_opencl_c_version();
+    a.select_double_fp_config();
+    a.select_linker_available();
+    a.select_built_in_kernels();
+    a.select_image_max_buffer_size();
+    a.select_image_max_array_size();
+    a.select_parent_device_id();
+    a.select_partition_max_sub_devices();
+    a.select_partition_properties();
+    a.select_partition_affinity_domain();
+    a.select_partition_type();
+    a.select_reference_count();
+    a.select_preferred_interop_user_sync();
+    a.select_printf_buffer_size();
+    a.select_image_pitch_alignment();
+    a.select_image_base_address_alignment();
+
+    TS_ASSERT((a == b));
+  }
   /** // doc: test_serialize_1() {{{
    * \todo Write documentation
    */ // }}}
