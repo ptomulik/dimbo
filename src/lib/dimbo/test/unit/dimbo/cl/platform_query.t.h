@@ -153,7 +153,33 @@ public:
     Platform_Query q1;
     Platform_Query q2;
     TS_ASSERT(q1 == q2);
+
     q1.select_id(false);
+    TS_ASSERT(!(q1 == q2));
+
+    q1 = q2;
+    TS_ASSERT(q1 == q2);
+    q1.select_profile(false);
+    TS_ASSERT(!(q1 == q2));
+
+    q1 = q2;
+    TS_ASSERT(q1 == q2);
+    q1.select_version(false);
+    TS_ASSERT(!(q1 == q2));
+
+    q1 = q2;
+    TS_ASSERT(q1 == q2);
+    q1.select_name(false);
+    TS_ASSERT(!(q1 == q2));
+
+    q1 = q2;
+    TS_ASSERT(q1 == q2);
+    q1.select_vendor(false);
+    TS_ASSERT(!(q1 == q2));
+
+    q1 = q2;
+    TS_ASSERT(q1 == q2);
+    q1.select_extensions(false);
     TS_ASSERT(!(q1 == q2));
   }
   /** // doc: test_neq_op() {{{
@@ -163,9 +189,35 @@ public:
   {
     Platform_Query q1;
     Platform_Query q2;
+
     TS_ASSERT(!(q1 != q2));
     q1.select_id(false);
-    TS_ASSERT((q1 != q2));
+    TS_ASSERT(q1 != q2);
+
+    q1 = q2;
+    TS_ASSERT(!(q1 != q2));
+    q1.select_profile(false);
+    TS_ASSERT(q1 != q2);
+
+    q1 = q2;
+    TS_ASSERT(!(q1 != q2));
+    q1.select_version(false);
+    TS_ASSERT(q1 != q2);
+
+    q1 = q2;
+    TS_ASSERT(!(q1 != q2));
+    q1.select_name(false);
+    TS_ASSERT(q1 != q2);
+
+    q1 = q2;
+    TS_ASSERT(!(q1 != q2));
+    q1.select_vendor(false);
+    TS_ASSERT(q1 != q2);
+
+    q1 = q2;
+    TS_ASSERT(!(q1 != q2));
+    q1.select_extensions(false);
+    TS_ASSERT(q1 != q2);
   }
 };
 
