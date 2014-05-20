@@ -24,11 +24,6 @@ install:
   - sudo apt-get --no-install-recommends -y install libprotobuf-dev protobuf-compiler
     # Remove the loop below once https://github.com/eddyxu/cpp-coveralls/pull/52 gets merged.
   - sudo pip install cpp-coveralls;
-    for F in $(find /usr/local/lib -name 'coverage.py'); do
-      echo "Patching $F";
-      sudo rm -f "$F" "${F}c";
-      sudo curl https://raw.githubusercontent.com/ptomulik/cpp-coveralls/gcov-local-options/cpp_coveralls/coverage.py -o $F;
-    done
 
 before_script:
   - $CXX --version
