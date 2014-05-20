@@ -1133,6 +1133,7 @@ public:
     TS_ASSERT(!q.image_pitch_alignment_selected());
     TS_ASSERT(!q.image_base_address_alignment_selected());
   }
+
   /** // doc: test_restrict_to_1_1() {{{
    * \todo Write documentation
    */ // }}}
@@ -1157,7 +1158,7 @@ public:
     TS_ASSERT((a == b));
     a.restrict_to(1,1);
     TS_ASSERT((a != b));
-   
+
     // Make sure these are unselected
     TS_ASSERT(!a.double_fp_config_selected());
     TS_ASSERT(!a.linker_available_selected());
@@ -1205,7 +1206,7 @@ public:
     TS_ASSERT((a == b));
     a.restrict_to(1,0);
     TS_ASSERT((a != b));
-   
+
     // Make sure these are unselected
     TS_ASSERT(!a.preferred_vector_width_half_selected());
     TS_ASSERT(!a.host_unified_memory_selected());

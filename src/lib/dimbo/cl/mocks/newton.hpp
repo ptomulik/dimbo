@@ -43,7 +43,7 @@
  *   - Device 1 (Tesla C1060): 0x2479cf0
  *
  *  **Example**:
- *  
+ *
  *  The following is a unit test for Dimbo::Cl::Device::get_vendor_id()
  *  which calls clGetDeviceInfo().
  *
@@ -107,7 +107,7 @@ public:
 class Newton_clGetDeviceIDs
   : public T::Base_clGetDeviceIDs
 {
-  cl_int clGetDeviceIDs(cl_platform_id platform, cl_device_type device_type, 
+  cl_int clGetDeviceIDs(cl_platform_id platform, cl_device_type device_type,
                         cl_uint num_entries, cl_device_id* devices,
                         cl_uint *num_devices);
 public:
@@ -261,7 +261,7 @@ public:
 namespace T {
 
 cl_uint const Newton_clGetPlatformIDs::num_platforms = 2;
-cl_platform_id const Newton_clGetPlatformIDs::platforms[2] = { 
+cl_platform_id const Newton_clGetPlatformIDs::platforms[2] = {
   reinterpret_cast<cl_platform_id>(0x7f1b791754c0),
   reinterpret_cast<cl_platform_id>(0x2479be0)
 };
@@ -315,7 +315,7 @@ char const* const Newton_clGetPlatformInfo::name[2] = {
   "AMD Accelerated Parallel Processing",
   "NVIDIA CUDA"
 };
-char const* const Newton_clGetPlatformInfo::vendor[2] = { 
+char const* const Newton_clGetPlatformInfo::vendor[2] = {
   "Advanced Micro Devices, Inc.",
   "NVIDIA Corporation"
 };
@@ -407,7 +407,7 @@ find(cl_device_id device)
 }
 
 cl_int Newton_clGetDeviceIDs::
-clGetDeviceIDs(cl_platform_id platform, cl_device_type device_type, 
+clGetDeviceIDs(cl_platform_id platform, cl_device_type device_type,
                cl_uint num_entries, cl_device_id* devices,
                cl_uint *num_devices)
 {
@@ -418,7 +418,7 @@ clGetDeviceIDs(cl_platform_id platform, cl_device_type device_type,
       return CL_INVALID_PLATFORM;
     }
 
-  if((num_entries == 0 && devices != NULL) || 
+  if((num_entries == 0 && devices != NULL) ||
      (num_devices == NULL && devices == NULL))
     {
       return CL_INVALID_VALUE;
@@ -634,7 +634,7 @@ cl_bool const Newton_clGetDeviceInfo::
 compiler_available[3] = { CL_TRUE, CL_TRUE, CL_TRUE };
 // CL_DEVICE_EXECUTION_CAPABILITIES
 cl_device_exec_capabilities const Newton_clGetDeviceInfo::
-execution_capabilities[3] = { 
+execution_capabilities[3] = {
   CL_EXEC_KERNEL | CL_EXEC_NATIVE_KERNEL,
   CL_EXEC_KERNEL,
   CL_EXEC_KERNEL,
@@ -669,7 +669,7 @@ vendor[3] = {
 };
 // CL_DRIVER_VERSION
 char const* const Newton_clGetDeviceInfo::
-driver_version[3] = { 
+driver_version[3] = {
   "1348.4 (sse2)",
   "319.76",
   "319.76"
@@ -714,7 +714,7 @@ cl_uint const Newton_clGetDeviceInfo::partition_max_sub_devices[1] = { 16 };
 static cl_device_partition_property const _pprops0[3] = {
   CL_DEVICE_PARTITION_EQUALLY,
   CL_DEVICE_PARTITION_BY_COUNTS,
-  CL_DEVICE_PARTITION_BY_AFFINITY_DOMAIN 
+  CL_DEVICE_PARTITION_BY_AFFINITY_DOMAIN
 };
 std::vector<cl_device_partition_property> const Newton_clGetDeviceInfo::
 partition_properties[1] = {
@@ -729,7 +729,7 @@ partition_affinity_domain[1] = {
 };
 std::vector<cl_device_partition_property> const Newton_clGetDeviceInfo::
 partition_type[1] = {
-  std::vector<cl_device_partition_property>() 
+  std::vector<cl_device_partition_property>()
 };
 cl_uint const Newton_clGetDeviceInfo::reference_count[1] = { 1 };
 cl_bool const Newton_clGetDeviceInfo::preferred_interop_user_sync[1] = { CL_TRUE };

@@ -44,14 +44,14 @@ class Dimbo::Exception_TestSuite : public CxxTest::TestSuite
     {
       Base_Exception(Src_At const& at) : Exception(at) { }
     };
-  class Test_Exception1 
+  class Test_Exception1
     : public Standardized_Exception<Base_Exception, std::domain_error>
     {
     public:
       Test_Exception1(Src_At const& at)
         : Standardized_Exception(at, "Test exception") { }
     };
-  class Test_Exception2 
+  class Test_Exception2
     : public Standardized_Exception<Base_Exception, std::bad_alloc>
     {
     public:

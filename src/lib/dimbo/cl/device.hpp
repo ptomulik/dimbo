@@ -800,7 +800,7 @@ public:
    * \return \c CL_FALSE if the implementation does not have a linker available.
    *         \c CL_TRUE if the linker is available.
    *
-   * This can be \c CL_FALSE for the embedded platform profile only. Must be 
+   * This can be \c CL_FALSE for the embedded platform profile only. Must be
    * \c CL_TRUE if \c CL_DEVICE_COMPILER_AVAILABLE is \c CL_TRUE.
    */ // }}}
   cl_bool get_linker_available() const
@@ -817,7 +817,7 @@ public:
   /** // {{{
    * \brief Get \c CL_DEVICE_IMAGE_MAX_BUFFER_SIZE information.
    * \return Max number of pixels for a 1D image created from a buffer object.
-   *         The minimum value is 2048 if \c CL_DEVICE_IMAGE_SUPPORT is 
+   *         The minimum value is 2048 if \c CL_DEVICE_IMAGE_SUPPORT is
    *         \c CL_TRUE.
    *    nanoseconds.
    */ // }}}
@@ -850,7 +850,7 @@ public:
    *
    * The return is a vector of \c cl_device_partition_property values drawn
    * from the following list:
-   * 
+   *
    * - CL_DEVICE_PARTITION_EQUALLY,
    * - CL_DEVICE_PARTITION_BY_COUNTS,
    * - CL_DEVICE_PARTITION_BY_AFFINITY_DO_MAIN
