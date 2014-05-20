@@ -28,7 +28,7 @@ before_script:
   - $CXX --version
   - $CXX -dumpversion
 script:
-  - scons check DIMBO_ENABLE_GCOV=YES 
+  - scons DIMBO_ENABLE_GCOV=YES && scons DIMBO_ENABLE_GCOV=YES check;
 after_success:
     GCOV=gcov-`$CXX -dumpversion | sed -e 's/^\([0-9]\+\.[0-9]\+\).*$/\1/'`;
     which $GCOV || GCOV="";
