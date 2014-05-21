@@ -1,0 +1,107 @@
+//
+// @COPYRIGHT@
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation
+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the
+// Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+// DEALINGS IN THE SOFTWARE
+//
+
+// dimbo/protobuf/cl/device_query.proto
+
+package Dimbo.Protobuf.Cl;
+message Device_Query {
+  optional bool select_id = 1 [default = true];
+  optional bool select_type = 0x1000 [default = true];
+  optional bool select_vendor_id = 0x1001 [default = true];
+  optional bool select_max_compute_units = 0x1002 [default = true];
+  optional bool select_max_work_item_dimensions = 0x1003 [default = true];
+  optional bool select_max_work_group_size = 0x1004 [default = true];
+  optional bool select_max_work_item_sizes = 0x1005 [default = true];
+  optional bool select_preferred_vector_width_char = 0x1006 [default = true];
+  optional bool select_preferred_vector_width_short = 0x1007 [default = true];
+  optional bool select_preferred_vector_width_int = 0x1008 [default = true];
+  optional bool select_preferred_vector_width_long = 0x1009 [default = true];
+  optional bool select_preferred_vector_width_float = 0x100A [default = true];
+  optional bool select_preferred_vector_width_double = 0x100B [default = true];
+  optional bool select_max_clock_frequency = 0x100C [default = true];
+  optional bool select_address_bits = 0x100D [default = true];
+  optional bool select_max_read_image_args = 0x100E [default = true];
+  optional bool select_max_write_image_args = 0x100F [default = true];
+  optional bool select_max_mem_alloc_size = 0x1010 [default = true];
+  optional bool select_image2d_max_width = 0x1011 [default = true];
+  optional bool select_image2d_max_height = 0x1012 [default = true];
+  optional bool select_image3d_max_width = 0x1013 [default = true];
+  optional bool select_image3d_max_height = 0x1014 [default = true];
+  optional bool select_image3d_max_depth = 0x1015 [default = true];
+  optional bool select_image_support = 0x1016 [default = true];
+  optional bool select_max_parameter_size = 0x1017 [default = true];
+  optional bool select_max_samplers = 0x1018 [default = true];
+  optional bool select_mem_base_addr_align = 0x1019 [default = true];
+  optional bool select_min_data_type_align_size = 0x101A [default = true];
+  optional bool select_single_fp_config = 0x101B [default = true];
+  optional bool select_global_mem_cache_type = 0x101C [default = true];
+  optional bool select_global_mem_cacheline_size = 0x101D [default = true];
+  optional bool select_global_mem_cache_size = 0x101E [default = true];
+  optional bool select_global_mem_size = 0x101F [default = true];
+  optional bool select_max_constant_buffer_size = 0x1020 [default = true];
+  optional bool select_max_constant_args = 0x1021 [default = true];
+  optional bool select_local_mem_type = 0x1022 [default = true];
+  optional bool select_local_mem_size = 0x1023 [default = true];
+  optional bool select_error_correction_support = 0x1024 [default = true];
+  optional bool select_profiling_timer_resolution = 0x1025 [default = true];
+  optional bool select_endian_little = 0x1026 [default = true];
+  optional bool select_available = 0x1027 [default = true];
+  optional bool select_compiler_available = 0x1028 [default = true];
+  optional bool select_execution_capabilities = 0x1029 [default = true];
+  optional bool select_queue_properties = 0x102A [default = true];
+  optional bool select_name = 0x102B [default = true];
+  optional bool select_vendor = 0x102C [default = true];
+  optional bool select_driver_version = 0x102D [default = true];
+  optional bool select_profile = 0x102E [default = true];
+  optional bool select_version = 0x102F [default = true];
+  optional bool select_extensions = 0x1030 [default = true];
+  optional bool select_platform_id = 0x1031 [default = true];
+  optional bool select_double_fp_config = 0x1032 [default = true];
+  optional bool select_preferred_vector_width_half = 0x1034 [default = true];
+  optional bool select_host_unified_memory = 0x1035 [default = true];
+  optional bool select_native_vector_width_char = 0x1036 [default = true];
+  optional bool select_native_vector_width_short = 0x1037 [default = true];
+  optional bool select_native_vector_width_int = 0x1038 [default = true];
+  optional bool select_native_vector_width_long = 0x1039 [default = true];
+  optional bool select_native_vector_width_float = 0x103A [default = true];
+  optional bool select_native_vector_width_double = 0x103B [default = true];
+  optional bool select_native_vector_width_half = 0x103C [default = true];
+  optional bool select_opencl_c_version = 0x103D [default = true];
+  optional bool select_linker_available = 0x103E [default = true];
+  optional bool select_built_in_kernels = 0x103F [default = true];
+  optional bool select_image_max_buffer_size = 0x1040 [default = true];
+  optional bool select_image_max_array_size = 0x1041 [default = true];
+  optional bool select_parent_device_id = 0x1042 [default = true];
+  optional bool select_partition_max_sub_devices = 0x1043 [default = true];
+  optional bool select_partition_properties = 0x1044 [default = true];
+  optional bool select_partition_affinity_domain = 0x1045 [default = true];
+  optional bool select_partition_type = 0x1046 [default = true];
+  optional bool select_reference_count = 0x1047 [default = true];
+  optional bool select_preferred_interop_user_sync = 0x1048 [default = true];
+  optional bool select_printf_buffer_size = 0x1049 [default = true];
+  optional bool select_image_pitch_alignment = 0x104A [default = true];
+  optional bool select_image_base_address_alignment = 0x104B [default = true];
+}
+
+// vim: set expandtab tabstop=2 shiftwidth=2:
+// vim: set foldmethod=marker foldcolumn=4:
+// vim: set syntax=proto:

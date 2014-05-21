@@ -30,7 +30,8 @@ for proto in env.Glob('*.proto'):
 
 source = [
     'platform_query.pb.cc',
-    'platform_info.pb.cc'
+    'platform_info.pb.cc',
+    'device_query.pb.cc',
 ]
 
 lib = env.SharedLibrary('libdimbo_protobuf_cl', source)

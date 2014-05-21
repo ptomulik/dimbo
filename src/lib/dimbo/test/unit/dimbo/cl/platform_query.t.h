@@ -251,12 +251,12 @@ public:
     q.write(buff);
 
     // With bare defaults, the buffer should be empty.
-    TS_ASSERT(buff.has_select_id());
-    TS_ASSERT(buff.has_select_profile());
-    TS_ASSERT(buff.has_select_version());
-    TS_ASSERT(buff.has_select_name());
-    TS_ASSERT(buff.has_select_vendor());
-    TS_ASSERT(buff.has_select_extensions());
+    TS_ASSERT(buff.has_select_id() && !buff.select_id());
+    TS_ASSERT(buff.has_select_profile() && !buff.select_profile());
+    TS_ASSERT(buff.has_select_version() && !buff.select_version());
+    TS_ASSERT(buff.has_select_name() && !buff.select_name());
+    TS_ASSERT(buff.has_select_vendor() && !buff.select_vendor());
+    TS_ASSERT(buff.has_select_extensions() && !buff.select_extensions());
   }
 
   /** // doc: test_read_protobuf_1() {{{
@@ -285,6 +285,7 @@ public:
   void test_read_protobuf_2( )
   {
     Platform_Query q;
+    Platform_Query empty;
     Dimbo::Protobuf::Cl::Platform_Query buff;
 
     buff.set_select_id(false);
@@ -295,14 +296,9 @@ public:
     buff.set_select_extensions(false);
 
     q.read(buff);
+    empty.select_none();
 
-    // With empty buffer we should be set back to bare defaults
-    TS_ASSERT(!q.id_selected());
-    TS_ASSERT(!q.profile_selected());
-    TS_ASSERT(!q.version_selected());
-    TS_ASSERT(!q.name_selected());
-    TS_ASSERT(!q.vendor_selected());
-    TS_ASSERT(!q.extensions_selected());
+    TS_ASSERT(q == empty);
   }
 };
 

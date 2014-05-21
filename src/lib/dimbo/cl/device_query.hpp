@@ -37,6 +37,8 @@
 # include <boost/serialization/nvp.hpp>
 #endif
 
+#include <dimbo/protobuf/cl/device_query.pb.h>
+
 namespace Dimbo {
 namespace Cl {
 
@@ -77,6 +79,14 @@ public:
    * \todo Write documentation
    */ // }}}
   Device_Query& restrict_to(int major, int minor);
+  /** // doc: read(buff) {{{
+   * \todo Write documentation
+   */ // }}}
+  void read(Dimbo::Protobuf::Cl::Device_Query const&);
+  /** // doc: write(buff) {{{
+   * \todo Write documentation
+   */ // }}}
+  void write(Dimbo::Protobuf::Cl::Device_Query&) const;
   // getters ... {{{
   /** // doc: id_selected() {{{
    * \todo Write documentation
