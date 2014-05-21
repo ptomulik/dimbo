@@ -98,10 +98,7 @@ serialize_platform_layer( Archive& ar
   using Dimbo::Cl::Platform_Layer;
   using Dimbo::Cl::Platform_Layer_Info;
 
-  Platform_Layer layer;
-  Platform_Layer_Info info;
-  info.query(layer, platform_query, device_query);
-
+  Platform_Layer_Info info(Platform_Layer(), platform_query, device_query);
   ar << boost::serialization::make_nvp("platform_layer_info", info);
 }
 
@@ -114,10 +111,7 @@ display_platform_layer( Ostream& os
   using Dimbo::Cl::Platform_Layer;
   using Dimbo::Cl::Platform_Layer_Info;
 
-  Platform_Layer layer;
-  Platform_Layer_Info info;
-  info.query(layer, platform_query, device_query);
-
+  Platform_Layer_Info info(Platform_Layer(), platform_query, device_query);
   Dimbo::Format::write(os, info, indent);
 }
 

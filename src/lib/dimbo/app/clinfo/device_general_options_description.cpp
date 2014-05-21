@@ -66,15 +66,39 @@ Device_General_Options_Description::
 void Device_General_Options_Description::
 _init_options_description()
 {
+#if 0
   using Dimbo::App::Options::value;
   using Dimbo::App::Options::bool_switch;
   using std::vector;
   using std::string;
+  // NOTE: for the moment I have no idea of how I could implement this option
   this->add_options()
     ("no-devices,D"
     , bool_switch()->default_value(false)
       /* TRANSLATORS: this is for --no-devices option */
     , _("do not list devices"))
+  ;
+#endif
+  using Dimbo::App::Options::value;
+  this->add_options()
+    ("device-info"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for compute unit information"))
+    ("compute-unit-info"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for compute unit information"))
+    ("vector-width-info"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for xxx-vector-width-xxx options"))
+    ("image-support-info"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for information on image support"))
+    ("global-mem-info"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for global memory information"))
+    ("device-generic-info"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for generic device info"))
   ;
 }
 

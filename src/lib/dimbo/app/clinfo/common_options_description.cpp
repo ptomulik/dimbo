@@ -71,10 +71,8 @@ _init_options_description()
     ("help-detail", _("display detailed options"))
     ("help-platform", _("display detailed platform options"))
     ("help-device", _("display detailed device options"))
-/*    ("format,F", value<string>()->value_name("text/xml"),
-      _("select output format")) */
     ("config,c", value<string>()->value_name("file"),
-      _("read options from `file'"))
+      _("read options from `file' (not implemented yet)"))
     ("indent", value<int>()->value_name("num")->default_value(2),
       _("indent each level of output by `num' spaces"))
     ("short,s", bool_switch()->default_value(false),

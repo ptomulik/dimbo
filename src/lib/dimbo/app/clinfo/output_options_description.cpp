@@ -56,19 +56,19 @@ Output_Options_Description( const std::string & caption
 }
 Output_Options_Description::
 ~Output_Options_Description()
-{ // {{{
-} // }}}
+{ 
+}
 void Output_Options_Description::
 _init_options_description()
-{ // {{{
+{
   using std::vector;
   using std::string;
   using Dimbo::App::Options::value;
   this->add_options()
     ("format,F", value<string>()->default_value("text"),
-      _("output format (see --help-output)"))
+      _("output format (text/xml)"))
   ;
-} // }}}
+}
 } /* namespace Clinfo*/
 } /* namespace App*/
 } /* namespace Dimbo*/

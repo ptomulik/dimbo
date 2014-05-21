@@ -64,26 +64,14 @@ Platform_General_Options_Description::
 void Platform_General_Options_Description::
 _init_options_description()
 {
+  /* typically this will contain something like:
   using Dimbo::App::Options::value;
-  using std::vector;
-  using std::string;
   this->add_options()
-    ("compute-unit-info"
+    ("option-name"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
-    ,_("query for compute unit information"))
-    ("vector-width-info"
-    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
-    ,_("query for xxx-vector-width-xxx options"))
-    ("image-support-info"
-    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
-    ,_("query for information on image support"))
-    ("global-mem-info"
-    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
-    ,_("query for global memory information"))
-    ("device-generic-info"
-    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
-    ,_("query for generic device info"))
+    ,_("query for option-name"))
   ;
+  */
 }
 
 } /* namespace Clinfo*/

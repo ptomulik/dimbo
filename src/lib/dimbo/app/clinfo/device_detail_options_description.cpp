@@ -70,7 +70,6 @@ _init_options_description()
   using std::vector;
   using std::string;
   this->add_options()
-    // detailed options {{{
     ("device-id"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
     ,_("query for device id"))
@@ -176,6 +175,18 @@ _init_options_description()
     ("image3d-max-depth"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
     ,_("query for image3d-max-depth"))
+    ("image-max-buffer-size"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for image-max-buffer-size"))
+    ("image-max-array-size"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for image-max-array-size"))
+    ("image-pitch-alignment"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for image-pitch-alignment"))
+    ("image-base-address-alignment"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for image-base-address-alignment"))
     ("max-samplers"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
     ,_("query for max-samplers"))
@@ -193,6 +204,9 @@ _init_options_description()
     ("single-fp-config"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
     ,_("query for single-fp-config"))
+    ("double-fp-config"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for double-fp-config"))
 
     // global-mem-info {{{
     ("global-mem-cache-type"
@@ -237,13 +251,18 @@ _init_options_description()
     ("endian-little"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
     ,_("query for endian-little"))
-    ("availability"
+
+    ("available"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
     ,_("query for availability"))
 
-    ("compiler-availability"
+    ("compiler-available"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
     ,_("query for compiler-availability"))
+
+    ("linker-available"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for linker-availability"))
 
     ("execution-capabilities"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
@@ -252,6 +271,10 @@ _init_options_description()
     ("queue-properties"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
     ,_("query for queue-properties"))
+    
+    ("built-in-kernels"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for built-in-kernels"))
 
     ("platform-id"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
@@ -279,7 +302,30 @@ _init_options_description()
     ("extensions"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
     ,_("query for extensions"))
-    // }}}
+    ("preferred-interop-user-sync"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for preferred-interop-user-sync"))
+    ("printf-buffer-size"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for printf-buffer-size"))
+    ("parent-device"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for parent-device"))
+    ("partition-max-sub-devices"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for partition-max-sub-devices"))
+    ("partition-properties"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for partition-properties"))
+    ("partition-affinity-domain"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for partition-affinity-domain"))
+    ("partition-type"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for partition-type"))
+    ("reference-count"
+    , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
+    ,_("query for reference-count"))
     // }}}
     // }}}
   ;
