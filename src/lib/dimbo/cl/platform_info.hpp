@@ -39,7 +39,7 @@
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/nvp.hpp>
 #endif
-//#include <dimbo/cl/cl.hpp>
+#include <string>
 
 #include <dimbo/protobuf/cl/platform_info.pb.h>
 
@@ -165,6 +165,14 @@ public:
   {
     return this->_last_query;
   }
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  void read(Dimbo::Protobuf::Cl::Platform_Info const& buff);
+  /** // {{{
+   * \todo Write documentation
+   */ // }}}
+  void write(Dimbo::Protobuf::Cl::Platform_Info& buff) const;
 protected:
   Platform_Info& clear();
 private:

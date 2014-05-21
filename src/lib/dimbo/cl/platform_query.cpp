@@ -70,6 +70,36 @@ select_none()
   this -> select_extensions(false);
 }
 
+void Platform_Query::
+read(Dimbo::Protobuf::Cl::Platform_Query const& buff)
+{
+  this->select_id(buff.select_id());
+  this->select_profile(buff.select_profile());
+  this->select_version(buff.select_version());
+  this->select_name(buff.select_name());
+  this->select_vendor(buff.select_vendor());
+  this->select_extensions(buff.select_extensions());
+}
+
+void Platform_Query::
+write(Dimbo::Protobuf::Cl::Platform_Query& buff) const
+{
+  buff.Clear();
+  // Put to buffer only fields that differ from their defaults.
+  if(!this->id_selected())
+    buff.set_select_id(false);
+  if(!this->profile_selected())
+    buff.set_select_profile(false);
+  if(!this->version_selected())
+    buff.set_select_version(false);
+  if(!this->name_selected())
+    buff.set_select_name(false);
+  if(!this->vendor_selected())
+    buff.set_select_vendor(false);
+  if(!this->extensions_selected())
+    buff.set_select_extensions(false);
+}
+
 bool operator== (Platform_Query const& a, Platform_Query const& b)
 {
   return  (a.id_selected() == b.id_selected()) &&

@@ -37,6 +37,8 @@
 #  include <boost/serialization/nvp.hpp>
 #endif
 
+#include <dimbo/protobuf/cl/platform_query.pb.h>
+
 namespace Dimbo {
 namespace Cl {
 
@@ -163,6 +165,14 @@ public:
   * \todo Write documentation
   */ // }}}
   void select_none();
+  /** // {{{
+  * \todo Write documentation
+  */ // }}}
+  void read(Dimbo::Protobuf::Cl::Platform_Query const& buff);
+  /** // {{{
+  * \todo Write documentation
+  */ // }}}
+  void write(Dimbo::Protobuf::Cl::Platform_Query& buff) const;
 private:
 #ifndef SWIG // FIXME: provide more verbose constant
   friend class boost::serialization::access;

@@ -23,8 +23,8 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = env.get('LIBS', CLVar()) + [ 'dimbo_cl_test', 'OpenCL' ]
-libpath = env.get('LIBPATH', CLVar()) + ['../../../../cl']
+libs = env.get('LIBS', CLVar()) + [ 'dimbo_cl_test', 'dimbo_protobuf_cl', 'protobuf', 'OpenCL' ]
+libpath = env.get('LIBPATH', CLVar()) + ['../../../../cl', '../../../../protobuf/cl']
 
 defs = env.get('CPPDEFINES', {}).copy()
 defs.update({'DIMBO_COMPILING_TEST' : 1})

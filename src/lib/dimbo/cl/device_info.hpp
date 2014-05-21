@@ -43,6 +43,7 @@
 #endif
 #include <dimbo/cl/cl.hpp>
 #include <vector>
+#include <string>
 
 namespace Dimbo {
 namespace Cl {

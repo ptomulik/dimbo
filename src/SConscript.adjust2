@@ -32,8 +32,8 @@ env.Append(CPPPATH = [ '#%s' % env.Dir('lib').path ])
 #############################################################################
 # PROTOC
 #############################################################################
-env.Append(PROTOCPROTOPATH = [ env.Dir('lib').srcnode().path ])
-env.Append(PROTOCPROTOPATH = [ env.Dir('lib').path ])
+#env.Append(PROTOCPROTOPATH = [ env.Dir('lib').srcnode().path ])
+#env.Append(PROTOCPROTOPATH = [ env.Dir('lib').path ])
 #############################################################################
 
 #############################################################################

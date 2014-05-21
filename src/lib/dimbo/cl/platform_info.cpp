@@ -90,6 +90,61 @@ _init_platform_info()
   this->clear();
 }
 
+void Platform_Info::
+read(Dimbo::Protobuf::Cl::Platform_Info const& buff)
+{
+  this->clear();
+  this->_last_query.select_none();
+  if(buff.has_id())
+    {
+      this->_id = buff.id();
+      this->_last_query.select_id();
+    }
+  if(buff.has_profile())
+    {
+      this->_profile = buff.profile();
+      this->_last_query.select_profile();
+    }
+  if(buff.has_version())
+    {
+      this->_version = buff.version();
+      this->_last_query.select_version();
+    }
+  if(buff.has_name())
+    {
+      this->_name = buff.name();
+      this->_last_query.select_name();
+    }
+  if(buff.has_vendor())
+    {
+      this->_vendor = buff.vendor();
+      this->_last_query.select_vendor();
+    }
+  if(buff.has_extensions())
+    {
+      this->_extensions = buff.extensions();
+      this->_last_query.select_extensions();
+    }
+}
+
+void Platform_Info::
+write(Dimbo::Protobuf::Cl::Platform_Info& buff) const
+{
+  buff.Clear();
+  if(this->_last_query.id_selected())
+    buff.set_id(this->id());
+  if(this->_last_query.profile_selected())
+    buff.set_profile(this->profile());
+  if(this->_last_query.version_selected())
+    buff.set_version(this->version());
+  if(this->_last_query.name_selected())
+    buff.set_name(this->name());
+  if(this->_last_query.vendor_selected())
+    buff.set_vendor(this->vendor());
+  if(this->_last_query.extensions_selected())
+    buff.set_extensions(this->extensions());
+}
+
 bool operator==(Platform_Info const& a, Platform_Info const& b)
 {
   Platform_Query const& aq = a.last_query();

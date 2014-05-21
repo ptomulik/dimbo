@@ -153,6 +153,82 @@ public:
     TS_ASSERT(!(a != b));
     TS_ASSERT((a != c));
   }
+  /** // doc: test_write_protobuf_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_write_protobuf_1()
+  {
+    Platform_Info info;
+    Dimbo::Protobuf::Cl::Platform_Info buff;
+
+    info.write(buff);
+
+    TS_ASSERT(!buff.has_id());
+    TS_ASSERT(!buff.has_profile());
+    TS_ASSERT(!buff.has_version());
+    TS_ASSERT(!buff.has_name());
+    TS_ASSERT(!buff.has_vendor());
+    TS_ASSERT(!buff.has_extensions());
+  }
+  /** // doc: test_write_protobuf_2() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_write_protobuf_2()
+  {
+    T::Newton_clGetPlatformInfo mock;
+    Platform platform(T::Newton_clGetPlatformIDs::platforms[0]);
+    Platform_Info info(platform);
+    Dimbo::Protobuf::Cl::Platform_Info buff;
+
+    info.write(buff);
+
+    TS_ASSERT_EQUALS(buff.id(),reinterpret_cast<unsigned long>(T::Newton_clGetPlatformIDs::platforms[0]));
+    TS_ASSERT_EQUALS(buff.profile(),"FULL_PROFILE");
+    TS_ASSERT_EQUALS(buff.version(),"OpenCL 1.2 AMD-APP (1348.4)");
+    TS_ASSERT_EQUALS(buff.name(),"AMD Accelerated Parallel Processing");
+    TS_ASSERT_EQUALS(buff.vendor(),"Advanced Micro Devices, Inc.");
+    TS_ASSERT_EQUALS(buff.extensions(),"cl_khr_icd cl_amd_event_callback cl_amd_offline_devices");
+  }
+  /** // doc: test_read_protobuf_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_read_protobuf_1()
+  {
+    Platform_Info info;
+    Dimbo::Protobuf::Cl::Platform_Info buff;
+
+    info.read(buff);
+
+    Platform_Query const& q = info.last_query();
+    TS_ASSERT(!q.id_selected());
+    TS_ASSERT(!q.profile_selected());
+    TS_ASSERT(!q.version_selected());
+    TS_ASSERT(!q.name_selected());
+    TS_ASSERT(!q.vendor_selected());
+    TS_ASSERT(!q.extensions_selected());
+  }
+  /** // doc: test_read_protobuf_2() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_read_protobuf_2()
+  {
+    T::Newton_clGetPlatformInfo mock;
+    Platform platform(T::Newton_clGetPlatformIDs::platforms[0]);
+    Platform_Info info(platform);
+    Platform_Info info2;
+    Dimbo::Protobuf::Cl::Platform_Info buff;
+
+    buff.set_id(reinterpret_cast<unsigned long>(T::Newton_clGetPlatformIDs::platforms[0]));
+    buff.set_profile("FULL_PROFILE");
+    buff.set_version("OpenCL 1.2 AMD-APP (1348.4)");
+    buff.set_name("AMD Accelerated Parallel Processing");
+    buff.set_vendor("Advanced Micro Devices, Inc.");
+    buff.set_extensions("cl_khr_icd cl_amd_event_callback cl_amd_offline_devices");
+
+    info2.read(buff);
+
+    TS_ASSERT(info == info2);
+  }
 };
 
 #endif /* DIMBO_CL_PLATFORM_INFO_T_H_INCLUDED */
