@@ -27,14 +27,14 @@ ptomulik@tea:$ LD_LIBRARY_PATH=lib PYTHONPATH=lib/python/dist-packages/ python -
 ### Playing with OpenCL bindings
 
 As an example we'll play a little with the python bindings to opencl platform
-layer. Let's start the python interactive session as shown previously. Next
-load all symbols from `dimbo.cl.platform_mod` module
+layer. Let's start the python interactive session as shown previously. Next,
+import `dimbo.cl` package
 
 ```python
 >>> import dimbo.cl
 ```
 
-You shall see several new symbols in global namesapce
+You shall see lot of symbols in dimbo.cl 
 
 ```python
 >>> dir(dimbo.cl)
@@ -63,7 +63,8 @@ its characteristics:
 'OpenCL 1.1 CUDA 6.0.1'
 ```
 
-Each **OpenCL** platform consists of one or more devices. In my case it's a single GPU card:
+Each **OpenCL** platform consists of one or more devices. In my case it's a
+single GPU card:
 
 ```python
 >>> devices = dimbo.cl.get_devices(platforms[0])
