@@ -36,10 +36,11 @@ after_success:
     if [ ! -z "$GCOV" ]; then
       coveralls --gcov $GCOV --gcov-options '\-p \-l' -b . -r . 
                   -e .git -e HOWTO -e lib -e bin -e src/app -e build/app 
-                  -e build/.sconf_temp -e build/lib/dimbo/.sconf_temp
-                  -e src/lib/dimbo/cl/cl_errors -e src/lib/dimbo/cl/exceptions
-                  -e src/lib/dimbo/doc -e src/lib/dimbo/test
-                  -e site_scons -e template -e valgrind -e /usr;
+                  -e build/lib/dimbo/protobuf -e build/.sconf_temp
+                  -e build/lib/dimbo/.sconf_temp -e src/lib/dimbo/cl/cl_errors
+                  -e src/lib/dimbo/cl/exceptions -e src/lib/dimbo/doc
+                  -e src/lib/dimbo/test -e site_scons -e template -e valgrind
+                  -e /usr;
     fi
 after_failure:
   - test -f src/config.log && cat src/config.log
