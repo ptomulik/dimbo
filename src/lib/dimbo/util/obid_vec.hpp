@@ -389,83 +389,72 @@ public:
   /** // doc: get_allocator() const {{{
    * \todo Write documentation
    */ // }}}
-  allocator_type get_ob_allocator() const
+  allocator_type get_allocator() const
   {
     return this->_obs.get_allocator();
   }
-  /** // doc: get_allocator() const {{{
-   * \todo Write documentation
-   */ // }}}
-  allocator_type get_allocator() const
+  ob_vector const& obs() const
   {
-    return this->get_ob_allocator();
+    return this->_obs;
   }
 };
 
 } // namespace Dimbo
 
-#if 0
 /** // doc: operator == () {{{
  * \todo Write documentation
  */ // }}}
-template <class ObT, class IdT, class ObAlloc/*, class IdAlloc*/>
-bool operator == (Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& lhs,
-                  Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& rhs)
+template <class ObT, class IdT, class ObAlloc>
+bool operator == (Dimbo::ObId_Vec<ObT,IdT,ObAlloc> const& lhs,
+                  Dimbo::ObId_Vec<ObT,IdT,ObAlloc> const& rhs)
 {
-  return static_cast<std::vector<IdT,IdAlloc> const&>(lhs)
-     ==  static_cast<std::vector<IdT,IdAlloc> const&>(rhs);
+  return lhs.obs() == rhs.obs();
 }
 /** // doc: operator != () {{{
  * \todo Write documentation
  */ // }}}
-template <class ObT, class IdT, class ObAlloc, class IdAlloc>
-bool operator != (Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& lhs,
-                  Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& rhs)
+template <class ObT, class IdT, class ObAlloc>
+bool operator != (Dimbo::ObId_Vec<ObT,IdT,ObAlloc> const& lhs,
+                  Dimbo::ObId_Vec<ObT,IdT,ObAlloc> const& rhs)
 {
-  return static_cast<std::vector<IdT,IdAlloc> const&>(lhs)
-     !=  static_cast<std::vector<IdT,IdAlloc> const&>(rhs);
+  return lhs.obs() != rhs.obs();
 }
 /** // doc: operator < () {{{
  * \todo Write documentation
  */ // }}}
-template <class ObT, class IdT, class ObAlloc, class IdAlloc>
-bool operator < (Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& lhs,
-                 Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& rhs)
+template <class ObT, class IdT, class ObAlloc>
+bool operator < (Dimbo::ObId_Vec<ObT,IdT,ObAlloc> const& lhs,
+                 Dimbo::ObId_Vec<ObT,IdT,ObAlloc> const& rhs)
 {
-  return static_cast<std::vector<IdT,IdAlloc> const&>(lhs)
-      <  static_cast<std::vector<IdT,IdAlloc> const&>(rhs);
+  return lhs.obs() == rhs.obs();
 }
 /** // doc: operator <= () {{{
  * \todo Write documentation
  */ // }}}
-template <class ObT, class IdT, class ObAlloc, class IdAlloc>
-bool operator <= (Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& lhs,
-                  Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& rhs)
+template <class ObT, class IdT, class ObAlloc>
+bool operator <= (Dimbo::ObId_Vec<ObT,IdT,ObAlloc> const& lhs,
+                  Dimbo::ObId_Vec<ObT,IdT,ObAlloc> const& rhs)
 {
-  return static_cast<std::vector<IdT,IdAlloc> const&>(lhs)
-      <= static_cast<std::vector<IdT,IdAlloc> const&>(rhs);
+  return lhs.obs() == rhs.obs();
 }
 /** // doc: operator > () {{{
  * \todo Write documentation
  */ // }}}
-template <class ObT, class IdT, class ObAlloc, class IdAlloc>
-bool operator > (Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& lhs,
-                 Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& rhs)
+template <class ObT, class IdT, class ObAlloc>
+bool operator > (Dimbo::ObId_Vec<ObT,IdT,ObAlloc> const& lhs,
+                 Dimbo::ObId_Vec<ObT,IdT,ObAlloc> const& rhs)
 {
-  return static_cast<std::vector<IdT,IdAlloc> const&>(lhs)
-      >  static_cast<std::vector<IdT,IdAlloc> const&>(rhs);
+  return lhs.obs() == rhs.obs();
 }
 /** // doc: operator >= () {{{
  * \todo Write documentation
  */ // }}}
-template <class ObT, class IdT, class ObAlloc, class IdAlloc>
-bool operator >= (Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& lhs,
-                  Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> const& rhs)
+template <class ObT, class IdT, class ObAlloc>
+bool operator >= (Dimbo::ObId_Vec<ObT,IdT,ObAlloc> const& lhs,
+                  Dimbo::ObId_Vec<ObT,IdT,ObAlloc> const& rhs)
 {
-  return static_cast<std::vector<IdT,IdAlloc> const&>(lhs)
-      >= static_cast<std::vector<IdT,IdAlloc> const&>(rhs);
+  return lhs.obs() == rhs.obs();
 }
-#endif
 /** // doc: operator >= () {{{
  * \todo Write documentation
  */ // }}}
