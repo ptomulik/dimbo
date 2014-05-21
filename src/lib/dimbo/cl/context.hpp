@@ -501,6 +501,18 @@ create_context(const cl_context_properties* properties,
  * \todo Write documentation
  */ // }}}
 cl_context
+create_context(const Context_Properties& properties,
+               const Devices& devices,
+               void(*pfn_notify)(const char* errinfo, const void* private_info,
+                                 size_t cb, void* user_data),
+               void* user_data)
+  throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
+       , DIMBO_CL_CREATE_CONTEXT_EXCEPTIONS );
+/** // {{{
+ * \ingroup Dimbo_Cl_Platform
+ * \todo Write documentation
+ */ // }}}
+cl_context
 create_context_from_type(const cl_context_properties* properties,
                cl_device_type device_type,
                void(*pfn_notify)(const char* errinfo, const void* private_info,

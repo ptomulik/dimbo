@@ -101,10 +101,7 @@ Context(Context_Properties const& props, Devices const& devs,
 {
   // FIXME: handle DIMBO_CL_EXCEPTION(Invalid_Argument)?
   // FIXME: handle DIMBO_CL_EXCEPTION(Not_Enough_Space)?
-  cl_context_properties props_array[DIMBO_CL_CONTEXT_PROPERTIES_ARRAY_SIZE];
-  props.fill_array(props_array, DIMBO_CL_CONTEXT_PROPERTIES_ARRAY_SIZE);
-  cl_context ctx = create_context(props_array, devs.size(), &devs.ids()[0],
-                                  pfn_notify, user_data);
+  cl_context ctx = create_context(props, devs, pfn_notify, user_data);
   this->_set_id(ctx, false, false);
 }
 /* ------------------------------------------------------------------------ */
@@ -281,6 +278,34 @@ create_context(const cl_context_properties* properties,
     }
 
   return ctx;
+}
+/* ------------------------------------------------------------------------ */
+cl_context
+create_context(const Context_Properties& properties,
+               const Devices& devices,
+               void(*pfn_notify)(const char* errinfo, const void* private_info,
+                                 size_t cb, void* user_data),
+               void* user_data)
+  throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
+       , DIMBO_CL_CREATE_CONTEXT_EXCEPTIONS )
+{
+  // FIXME: handle DIMBO_CL_EXCEPTION(Invalid_Argument)?
+  // FIXME: handle DIMBO_CL_EXCEPTION(Not_Enough_Space)?
+  cl_context_properties props_array[DIMBO_CL_CONTEXT_PROPERTIES_ARRAY_SIZE];
+  properties.fill_array(props_array, DIMBO_CL_CONTEXT_PROPERTIES_ARRAY_SIZE);
+
+  boost::shared_array<cl_device_id> ids;
+  try {
+    ids = boost::shared_array<cl_device_id>(new cl_device_id[devices.size()]);
+  } catch(std::bad_alloc const&) {
+    DIMBO_CL_THROW(Bad_Alloc);
+  }
+  for(size_t i = 0; i < devices.size(); ++i)
+    {
+      ids[i] = devices[i].id();
+    }
+  return create_context(props_array, devices.size(), ids.get(), pfn_notify,
+                        user_data);
 }
 /* ------------------------------------------------------------------------ */
 cl_context

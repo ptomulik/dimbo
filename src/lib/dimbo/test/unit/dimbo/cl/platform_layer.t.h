@@ -63,7 +63,7 @@ public:
     T::Newton_clGetDeviceIDs mock3;
     T::Newton_clGetDeviceInfo mock4;
     Platform_Layer pl;
-    Platform const& p = pl.platforms()[0];
+    Platform p = pl.platforms()[0];
 
     TS_ASSERT_EQUALS(p.id(), T::Newton_clGetPlatformIDs::platforms[0]);
     TS_ASSERT_EQUALS(p.get_profile(), "FULL_PROFILE");
@@ -82,7 +82,7 @@ public:
     T::Newton_clGetDeviceIDs mock3;
     T::Newton_clGetDeviceInfo mock4;
     Platform_Layer pl;
-    Platform const& p = pl.platforms()[1];
+    Platform p = pl.platforms()[1];
 
     TS_ASSERT_EQUALS(p.id(), T::Newton_clGetPlatformIDs::platforms[1]);
     TS_ASSERT_EQUALS(p.get_profile(), "FULL_PROFILE");
@@ -101,7 +101,7 @@ public:
     T::Newton_clGetDeviceIDs mock3;
     T::Newton_clGetDeviceInfo mock4;
     Platform_Layer pl;
-    Device const& d = pl.devices()[0];
+    Device d = pl.devices()[0];
 
     TS_ASSERT_EQUALS(d.id(), T::Newton_clGetDeviceIDs::devices[0]);
     TS_ASSERT_EQUALS(d.get_name(), "Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz");
@@ -120,7 +120,7 @@ public:
     T::Newton_clGetDeviceIDs mock3;
     T::Newton_clGetDeviceInfo mock4;
     Platform_Layer pl;
-    Device const& d = pl.devices()[1];
+    Device d = pl.devices()[1];
 
     TS_ASSERT_EQUALS(d.id(), T::Newton_clGetDeviceIDs::devices[1]);
     TS_ASSERT_EQUALS(d.get_name(), "Tesla C1060");
@@ -139,7 +139,7 @@ public:
     T::Newton_clGetDeviceIDs mock3;
     T::Newton_clGetDeviceInfo mock4;
     Platform_Layer pl;
-    Device const& d = pl.devices()[2];
+    Device d = pl.devices()[2];
 
     TS_ASSERT_EQUALS(d.id(), T::Newton_clGetDeviceIDs::devices[2]);
     TS_ASSERT_EQUALS(d.get_name(), "Tesla C1060");
@@ -158,12 +158,12 @@ public:
     T::Newton_clGetDeviceIDs mock3;
     T::Newton_clGetDeviceInfo mock4;
     Platform_Layer pl;
-    Platform const& p = pl.platforms()[0];
-    Devices const& ds = pl.devices(p);
+    Platform p = pl.platforms()[0];
+    Devices ds = pl.devices(p);
 
     TS_ASSERT_EQUALS(ds.size(), 1);
 
-    Device const& d = ds[0];
+    Device d = ds[0];
 
     TS_ASSERT_EQUALS(d.id(), T::Newton_clGetDeviceIDs::devices[0]);
   }
@@ -177,12 +177,12 @@ public:
     T::Newton_clGetDeviceIDs mock3;
     T::Newton_clGetDeviceInfo mock4;
     Platform_Layer pl;
-    Platform const& p = pl.platforms()[1];
-    Devices const& ds = pl.devices(p);
+    Platform p = pl.platforms()[1];
+    Devices ds = pl.devices(p);
 
     TS_ASSERT_EQUALS(ds.size(), 2);
 
-    Device const& d = ds[0];
+    Device d = ds[0];
 
     TS_ASSERT_EQUALS(d.id(), T::Newton_clGetDeviceIDs::devices[1]);
   }
@@ -196,12 +196,12 @@ public:
     T::Newton_clGetDeviceIDs mock3;
     T::Newton_clGetDeviceInfo mock4;
     Platform_Layer pl;
-    Platform const& p = pl.platforms()[1];
-    Devices const& ds = pl.devices(p);
+    Platform p = pl.platforms()[1];
+    Devices ds = pl.devices(p);
 
     TS_ASSERT_EQUALS(ds.size(), 2);
 
-    Device const& d = ds[1];
+    Device d = ds[1];
 
     TS_ASSERT_EQUALS(d.id(), T::Newton_clGetDeviceIDs::devices[2]);
   }

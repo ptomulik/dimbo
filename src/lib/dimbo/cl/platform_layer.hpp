@@ -72,7 +72,7 @@ private:
   void _init();
   void _insert(cl_platform_id id);
   void _insert(cl_platform_id platform_id, cl_device_id id);
-  void _insert(cl_platform_id platform_id, Device_IDs const& ids );
+  void _insert(cl_platform_id platform_id, Device_IDs const& ids);
   Platform_IDs _platform_ids;
   Device_IDs _device_ids;
   Device_Platform_Map _device_platform_map;

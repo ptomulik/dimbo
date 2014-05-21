@@ -48,25 +48,13 @@ Platform_Layer::
 Platforms Platform_Layer::
 platforms() const
 {
-  typedef Platform_IDs::const_iterator iterator;
-  Platforms plats;
-  plats.reserve(this->_platform_ids.size());
-  iterator end(this->_platform_ids.end());
-  for(iterator cur(this->_platform_ids.begin()); cur != end; ++cur)
-    plats.push_back(Platform(*cur));
-  return plats;
+  return Platforms(this->_platform_ids);
 }
 
 Devices Platform_Layer::
 devices() const
 {
-  typedef Device_IDs::const_iterator iterator;
-  Devices devs;
-  devs.reserve(this->_device_ids.size());
-  iterator end(this->_device_ids.end());
-  for(iterator cur(this->_device_ids.begin()); cur != end; ++cur)
-    devs.push_back(Device(*cur));
-  return devs;
+  return Devices(this->_device_ids);
 }
 
 Devices Platform_Layer::
@@ -75,15 +63,9 @@ devices(Platform const& platform) const
   typedef Platform_Devices_Map::const_iterator map_iterator;
   map_iterator found = this->_platform_devices_map.find(platform.id());
   if(found == this->_platform_devices_map.end())
-    // FIXME: throw ???
+    // FIXME: throw an exception (platform with no devices)???
     return Devices();
-  typedef Device_IDs::const_iterator iterator;
-  Devices devs;
-  devs.reserve(found->second.size());
-  iterator end(found->second.end());
-  for(iterator cur(found->second.begin()); cur != end; ++cur)
-    devs.push_back(Device(*cur));
-  return devs;
+  return Devices(found->second.begin(), found->second.end());
 }
 
 Platform Platform_Layer::

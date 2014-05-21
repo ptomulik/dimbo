@@ -29,8 +29,8 @@
 #include <dimbo/util/obid_vec.hpp>
 %}
 
-%include <dimbo/util/obid_iter.swg>
-%include <dimbo/util/obid_ref.swg>
+//%include <dimbo/util/obid_iter.swg>
+//%include <dimbo/util/obid_ref.swg>
 %include <dimbo/util/obid_id.swg>
 
 %include <std/std_vector.i>
@@ -39,8 +39,7 @@ namespace Dimbo {
 
 template< class ObT
         , class IdT = typename obid_id<ObT>::type
-        , class ObAlloc = std::allocator<ObT>
-        , class IdAlloc = std::allocator<IdT> >
+        , class ObAlloc = std::allocator<ObT> >
 class ObId_Vec
 {
 public:
@@ -56,11 +55,11 @@ public:
   %traits_swigtype(ObT);
   %traits_enum(ObT);
 
-  %fragment(SWIG_Traits_frag(Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc>), "header",
+  %fragment(SWIG_Traits_frag(Dimbo::ObId_Vec<ObT,IdT,ObAlloc>), "header",
     fragment=SWIG_Traits_frag(ObT),
     fragment="DimboObIdVecTraits") {
       namespace swig {
-        template <> struct traits<Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc> > {
+        template <> struct traits<Dimbo::ObId_Vec<ObT,IdT,ObAlloc> > {
           typedef value_category category;
           static const char* type_name() {
             return "Dimbo::ObId_Vec<" #ObT " >";
@@ -69,9 +68,9 @@ public:
     }
   }
   %ignore get_allocator; // we have two allocators actually
-  %typemap_traits_ptr(SWIG_TYPECHECK_VECTOR, Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc>);
+  %typemap_traits_ptr(SWIG_TYPECHECK_VECTOR, Dimbo::ObId_Vec<ObT,IdT,ObAlloc>);
 #ifdef %swig_vector_methods_val
-  %swig_vector_methods_val(Dimbo::ObId_Vec<ObT,IdT,ObAlloc,IdAlloc>);
+  %swig_vector_methods_val(Dimbo::ObId_Vec<ObT,IdT,ObAlloc>);
 #endif
 
   %std_vector_methods_val(ObId_Vec);
