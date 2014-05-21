@@ -255,6 +255,240 @@ public:
     TS_ASSERT(!(a != b));
     TS_ASSERT((a != c));
   }
+  /** // doc: test_write_protobuf_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_write_protobuf_1()
+  {
+    Device_Info info;
+    Dimbo::Protobuf::Cl::Device_Info buff;
+
+    info.write(buff);
+
+    TS_ASSERT(!buff.has_id());
+    TS_ASSERT(!buff.has_type());
+    TS_ASSERT(!buff.has_vendor_id());
+    TS_ASSERT(!buff.has_max_compute_units());
+    TS_ASSERT(!buff.has_max_work_item_dimensions());
+    TS_ASSERT(!buff.has_max_work_group_size());
+    TS_ASSERT_EQUALS(buff.max_work_item_sizes_size(), 0ul);
+    TS_ASSERT(!buff.has_preferred_vector_width_char());
+    TS_ASSERT(!buff.has_preferred_vector_width_short());
+    TS_ASSERT(!buff.has_preferred_vector_width_int());
+    TS_ASSERT(!buff.has_preferred_vector_width_long());
+    TS_ASSERT(!buff.has_preferred_vector_width_float());
+    TS_ASSERT(!buff.has_preferred_vector_width_double());
+    TS_ASSERT(!buff.has_max_clock_frequency());
+    TS_ASSERT(!buff.has_address_bits());
+    TS_ASSERT(!buff.has_max_read_image_args());
+    TS_ASSERT(!buff.has_max_write_image_args());
+    TS_ASSERT(!buff.has_max_mem_alloc_size());
+    TS_ASSERT(!buff.has_image2d_max_width());
+    TS_ASSERT(!buff.has_image2d_max_height());
+    TS_ASSERT(!buff.has_image3d_max_width());
+    TS_ASSERT(!buff.has_image3d_max_height());
+    TS_ASSERT(!buff.has_image3d_max_depth());
+    TS_ASSERT(!buff.has_image_support());
+    TS_ASSERT(!buff.has_max_parameter_size());
+    TS_ASSERT(!buff.has_max_samplers());
+    TS_ASSERT(!buff.has_mem_base_addr_align());
+    TS_ASSERT(!buff.has_min_data_type_align_size());
+    TS_ASSERT(!buff.has_single_fp_config());
+    TS_ASSERT(!buff.has_global_mem_cache_type());
+    TS_ASSERT(!buff.has_global_mem_cacheline_size());
+    TS_ASSERT(!buff.has_global_mem_cache_size());
+    TS_ASSERT(!buff.has_global_mem_size());
+    TS_ASSERT(!buff.has_max_constant_buffer_size());
+    TS_ASSERT(!buff.has_max_constant_args());
+    TS_ASSERT(!buff.has_local_mem_type());
+    TS_ASSERT(!buff.has_local_mem_size());
+    TS_ASSERT(!buff.has_error_correction_support());
+    TS_ASSERT(!buff.has_profiling_timer_resolution());
+    TS_ASSERT(!buff.has_endian_little());
+    TS_ASSERT(!buff.has_available());
+    TS_ASSERT(!buff.has_compiler_available());
+    TS_ASSERT(!buff.has_execution_capabilities());
+    TS_ASSERT(!buff.has_queue_properties());
+    TS_ASSERT(!buff.has_name());
+    TS_ASSERT(!buff.has_vendor());
+    TS_ASSERT(!buff.has_driver_version());
+    TS_ASSERT(!buff.has_profile());
+    TS_ASSERT(!buff.has_version());
+    TS_ASSERT(!buff.has_extensions());
+    TS_ASSERT(!buff.has_platform_id());
+    TS_ASSERT(!buff.has_double_fp_config());
+    TS_ASSERT(!buff.has_preferred_vector_width_half());
+    TS_ASSERT(!buff.has_host_unified_memory());
+    TS_ASSERT(!buff.has_native_vector_width_char());
+    TS_ASSERT(!buff.has_native_vector_width_short());
+    TS_ASSERT(!buff.has_native_vector_width_int());
+    TS_ASSERT(!buff.has_native_vector_width_long());
+    TS_ASSERT(!buff.has_native_vector_width_float());
+    TS_ASSERT(!buff.has_native_vector_width_double());
+    TS_ASSERT(!buff.has_native_vector_width_half());
+    TS_ASSERT(!buff.has_opencl_c_version());
+    TS_ASSERT(!buff.has_linker_available());
+    TS_ASSERT(!buff.has_built_in_kernels());
+    TS_ASSERT(!buff.has_image_max_buffer_size());
+    TS_ASSERT(!buff.has_image_max_array_size());
+    TS_ASSERT(!buff.has_parent_device_id());
+    TS_ASSERT(!buff.has_partition_max_sub_devices());
+    TS_ASSERT_EQUALS(buff.partition_properties_size(), 0ul);
+    TS_ASSERT(!buff.has_partition_affinity_domain());
+    TS_ASSERT_EQUALS(buff.partition_type_size(), 0ul);
+    TS_ASSERT(!buff.has_reference_count());
+    TS_ASSERT(!buff.has_preferred_interop_user_sync());
+    TS_ASSERT(!buff.has_printf_buffer_size());
+    TS_ASSERT(!buff.has_image_pitch_alignment());
+    TS_ASSERT(!buff.has_image_base_address_alignment());
+  }
+  /** // doc: test_write_protobuf_2() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_write_protobuf_2()
+  {
+    T::Newton_clGetPlatformIDs mock1;
+    T::Newton_clGetPlatformInfo mock2;
+    T::Newton_clGetDeviceIDs mock3;
+    T::Newton_clGetDeviceInfo mock4;
+    Device device(T::Newton_clGetDeviceIDs::devices[0]);
+    Device_Info info(device);
+    Dimbo::Protobuf::Cl::Device_Info buff;
+
+    info.write(buff);
+
+    /* Check if we have saved correct information. It's far too much fields
+     * to check them all, so we look only at some of them */
+    TS_ASSERT_EQUALS(buff.id(), reinterpret_cast<unsigned long>(T::Newton_clGetDeviceIDs::devices[0]));
+    TS_ASSERT_EQUALS(buff.name(), "Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz");
+    TS_ASSERT_EQUALS(buff.vendor(), "GenuineIntel");
+    TS_ASSERT_EQUALS(buff.driver_version(), "1348.4 (sse2)");
+    TS_ASSERT_EQUALS(buff.profile(), "FULL_PROFILE");
+    TS_ASSERT_EQUALS(buff.version(), "OpenCL 1.2 AMD-APP (1348.4)");
+  }
+  /** // doc: test_read_protobuf_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_read_protobuf_1()
+  {
+    Device_Info info;
+    Dimbo::Protobuf::Cl::Device_Info buff;
+
+    info.read(buff);
+
+    Device_Query const& q = info.last_query();
+
+    TS_ASSERT(!q.id_selected());
+    TS_ASSERT(!q.type_selected());
+    TS_ASSERT(!q.vendor_id_selected());
+    TS_ASSERT(!q.max_compute_units_selected());
+    TS_ASSERT(!q.max_work_item_dimensions_selected());
+    TS_ASSERT(!q.max_work_group_size_selected());
+    TS_ASSERT(!q.max_work_item_sizes_selected());
+    TS_ASSERT(!q.preferred_vector_width_char_selected());
+    TS_ASSERT(!q.preferred_vector_width_short_selected());
+    TS_ASSERT(!q.preferred_vector_width_int_selected());
+    TS_ASSERT(!q.preferred_vector_width_long_selected());
+    TS_ASSERT(!q.preferred_vector_width_float_selected());
+    TS_ASSERT(!q.preferred_vector_width_double_selected());
+    TS_ASSERT(!q.max_clock_frequency_selected());
+    TS_ASSERT(!q.address_bits_selected());
+    TS_ASSERT(!q.max_read_image_args_selected());
+    TS_ASSERT(!q.max_write_image_args_selected());
+    TS_ASSERT(!q.max_mem_alloc_size_selected());
+    TS_ASSERT(!q.image2d_max_width_selected());
+    TS_ASSERT(!q.image2d_max_height_selected());
+    TS_ASSERT(!q.image3d_max_width_selected());
+    TS_ASSERT(!q.image3d_max_height_selected());
+    TS_ASSERT(!q.image3d_max_depth_selected());
+    TS_ASSERT(!q.image_support_selected());
+    TS_ASSERT(!q.max_parameter_size_selected());
+    TS_ASSERT(!q.max_samplers_selected());
+    TS_ASSERT(!q.mem_base_addr_align_selected());
+    TS_ASSERT(!q.min_data_type_align_size_selected());
+    TS_ASSERT(!q.single_fp_config_selected());
+    TS_ASSERT(!q.global_mem_cache_type_selected());
+    TS_ASSERT(!q.global_mem_cacheline_size_selected());
+    TS_ASSERT(!q.global_mem_cache_size_selected());
+    TS_ASSERT(!q.global_mem_size_selected());
+    TS_ASSERT(!q.max_constant_buffer_size_selected());
+    TS_ASSERT(!q.max_constant_args_selected());
+    TS_ASSERT(!q.local_mem_type_selected());
+    TS_ASSERT(!q.local_mem_size_selected());
+    TS_ASSERT(!q.error_correction_support_selected());
+    TS_ASSERT(!q.profiling_timer_resolution_selected());
+    TS_ASSERT(!q.endian_little_selected());
+    TS_ASSERT(!q.available_selected());
+    TS_ASSERT(!q.compiler_available_selected());
+    TS_ASSERT(!q.execution_capabilities_selected());
+    TS_ASSERT(!q.queue_properties_selected());
+    TS_ASSERT(!q.name_selected());
+    TS_ASSERT(!q.vendor_selected());
+    TS_ASSERT(!q.driver_version_selected());
+    TS_ASSERT(!q.profile_selected());
+    TS_ASSERT(!q.version_selected());
+    TS_ASSERT(!q.extensions_selected());
+    TS_ASSERT(!q.platform_id_selected());
+    TS_ASSERT(!q.double_fp_config_selected());
+    TS_ASSERT(!q.preferred_vector_width_half_selected());
+    TS_ASSERT(!q.host_unified_memory_selected());
+    TS_ASSERT(!q.native_vector_width_char_selected());
+    TS_ASSERT(!q.native_vector_width_short_selected());
+    TS_ASSERT(!q.native_vector_width_int_selected());
+    TS_ASSERT(!q.native_vector_width_long_selected());
+    TS_ASSERT(!q.native_vector_width_float_selected());
+    TS_ASSERT(!q.native_vector_width_double_selected());
+    TS_ASSERT(!q.native_vector_width_half_selected());
+    TS_ASSERT(!q.opencl_c_version_selected());
+    TS_ASSERT(!q.linker_available_selected());
+    TS_ASSERT(!q.built_in_kernels_selected());
+    TS_ASSERT(!q.image_max_buffer_size_selected());
+    TS_ASSERT(!q.image_max_array_size_selected());
+    TS_ASSERT(!q.parent_device_id_selected());
+    TS_ASSERT(!q.partition_max_sub_devices_selected());
+    TS_ASSERT(!q.partition_properties_selected());
+    TS_ASSERT(!q.partition_affinity_domain_selected());
+    TS_ASSERT(!q.partition_type_selected());
+    TS_ASSERT(!q.reference_count_selected());
+    TS_ASSERT(!q.preferred_interop_user_sync_selected());
+    TS_ASSERT(!q.printf_buffer_size_selected());
+    TS_ASSERT(!q.image_pitch_alignment_selected());
+    TS_ASSERT(!q.image_base_address_alignment_selected());
+  }
+  /** // doc: test_read_protobuf_2() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_read_protobuf_2()
+  {
+    T::Newton_clGetPlatformIDs mock1;
+    T::Newton_clGetPlatformInfo mock2;
+    T::Newton_clGetDeviceIDs mock3;
+    T::Newton_clGetDeviceInfo mock4;
+    Device device(T::Newton_clGetDeviceIDs::devices[0]);
+    Device_Query q;
+    q.select_none()
+     .select_id()
+     .select_name()
+     .select_vendor()
+     .select_driver_version()
+     .select_profile()
+     .select_version();
+    Device_Info info(device, q);
+    Device_Info info2;
+    Dimbo::Protobuf::Cl::Device_Info buff;
+
+    /* It's far too much fields to check them all, so we look only at some of them */
+    buff.set_id(reinterpret_cast<unsigned long>(T::Newton_clGetDeviceIDs::devices[0]));
+    buff.set_name("Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz");
+    buff.set_vendor("GenuineIntel");
+    buff.set_driver_version("1348.4 (sse2)");
+    buff.set_profile("FULL_PROFILE");
+    buff.set_version("OpenCL 1.2 AMD-APP (1348.4)");
+
+    info2.read(buff);
+
+    TS_ASSERT(info == info2);
+  }
 };
 
 #endif /* DIMBO_CL_DEVICE_INFO_T_H_INCLUDED */

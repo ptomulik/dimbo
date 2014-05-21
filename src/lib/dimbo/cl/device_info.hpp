@@ -45,6 +45,8 @@
 #include <vector>
 #include <string>
 
+#include <dimbo/protobuf/cl/device_info.pb.h>
+
 namespace Dimbo {
 namespace Cl {
 
@@ -96,6 +98,14 @@ public:
   {
     return this->_last_query;
   }
+  /** // doc: write(...) {{{
+   * \todo Write documentation
+   */ // }}}
+  void write(Dimbo::Protobuf::Cl::Device_Info& buff) const;
+  /** // doc: read(...) {{{
+   * \todo Write documentation
+   */ // }}}
+  void read(Dimbo::Protobuf::Cl::Device_Info const& buff);
   // getters {{{
   /** // {{{
    * \todo Write documentation

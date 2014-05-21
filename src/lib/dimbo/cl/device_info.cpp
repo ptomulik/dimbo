@@ -396,6 +396,553 @@ _init_device_info()
   this->clear();
 }
 
+void Device_Info::
+write(Dimbo::Protobuf::Cl::Device_Info& buff) const
+{
+  buff.Clear();
+  if(this->_last_query.id_selected())
+    buff.set_id(this->id());
+  if(this->_last_query.type_selected())
+    buff.set_type(this->type());
+  if(this->_last_query.vendor_id_selected())
+    buff.set_vendor_id(this->vendor_id());
+  if(this->_last_query.max_compute_units_selected())
+    buff.set_max_compute_units(this->max_compute_units());
+  if(this->_last_query.max_work_item_dimensions_selected())
+    buff.set_max_work_item_dimensions(this->max_work_item_dimensions());
+  if(this->_last_query.max_work_group_size_selected())
+    buff.set_max_work_group_size(this->max_work_group_size());
+  if(this->_last_query.max_work_item_sizes_selected())
+    for(size_t i=0; i < this->max_work_item_sizes().size(); ++i)
+      buff.add_max_work_item_sizes(this->max_work_item_sizes()[i]);
+  if(this->_last_query.preferred_vector_width_char_selected())
+    buff.set_preferred_vector_width_char(this->preferred_vector_width_char());
+  if(this->_last_query.preferred_vector_width_short_selected())
+    buff.set_preferred_vector_width_short(this->preferred_vector_width_short());
+  if(this->_last_query.preferred_vector_width_int_selected())
+    buff.set_preferred_vector_width_int(this->preferred_vector_width_int());
+  if(this->_last_query.preferred_vector_width_long_selected())
+    buff.set_preferred_vector_width_long(this->preferred_vector_width_long());
+  if(this->_last_query.preferred_vector_width_float_selected())
+    buff.set_preferred_vector_width_float(this->preferred_vector_width_float());
+  if(this->_last_query.preferred_vector_width_double_selected())
+    buff.set_preferred_vector_width_double(this->preferred_vector_width_double());
+  if(this->_last_query.max_clock_frequency_selected())
+    buff.set_max_clock_frequency(this->max_clock_frequency());
+  if(this->_last_query.address_bits_selected())
+    buff.set_address_bits(this->address_bits());
+  if(this->_last_query.max_read_image_args_selected())
+    buff.set_max_read_image_args(this->max_read_image_args());
+  if(this->_last_query.max_write_image_args_selected())
+    buff.set_max_write_image_args(this->max_write_image_args());
+  if(this->_last_query.max_mem_alloc_size_selected())
+    buff.set_max_mem_alloc_size(this->max_mem_alloc_size());
+  if(this->_last_query.image2d_max_width_selected())
+    buff.set_image2d_max_width(this->image2d_max_width());
+  if(this->_last_query.image2d_max_height_selected())
+    buff.set_image2d_max_height(this->image2d_max_height());
+  if(this->_last_query.image3d_max_width_selected())
+    buff.set_image3d_max_width(this->image3d_max_width());
+  if(this->_last_query.image3d_max_height_selected())
+    buff.set_image3d_max_height(this->image3d_max_height());
+  if(this->_last_query.image3d_max_depth_selected())
+    buff.set_image3d_max_depth(this->image3d_max_depth());
+  if(this->_last_query.image_support_selected())
+    buff.set_image_support(this->image_support());
+  if(this->_last_query.max_parameter_size_selected())
+    buff.set_max_parameter_size(this->max_parameter_size());
+  if(this->_last_query.max_samplers_selected())
+    buff.set_max_samplers(this->max_samplers());
+  if(this->_last_query.mem_base_addr_align_selected())
+    buff.set_mem_base_addr_align(this->mem_base_addr_align());
+  if(this->_last_query.min_data_type_align_size_selected())
+    buff.set_min_data_type_align_size(this->min_data_type_align_size());
+  if(this->_last_query.single_fp_config_selected())
+    buff.set_single_fp_config(this->single_fp_config());
+  if(this->_last_query.global_mem_cache_type_selected())
+    buff.set_global_mem_cache_type(this->global_mem_cache_type());
+  if(this->_last_query.global_mem_cacheline_size_selected())
+    buff.set_global_mem_cacheline_size(this->global_mem_cacheline_size());
+  if(this->_last_query.global_mem_cache_size_selected())
+    buff.set_global_mem_cache_size(this->global_mem_cache_size());
+  if(this->_last_query.global_mem_size_selected())
+    buff.set_global_mem_size(this->global_mem_size());
+  if(this->_last_query.max_constant_buffer_size_selected())
+    buff.set_max_constant_buffer_size(this->max_constant_buffer_size());
+  if(this->_last_query.max_constant_args_selected())
+    buff.set_max_constant_args(this->max_constant_args());
+  if(this->_last_query.local_mem_type_selected())
+    buff.set_local_mem_type(this->local_mem_type());
+  if(this->_last_query.local_mem_size_selected())
+    buff.set_local_mem_size(this->local_mem_size());
+  if(this->_last_query.error_correction_support_selected())
+    buff.set_error_correction_support(this->error_correction_support());
+  if(this->_last_query.profiling_timer_resolution_selected())
+    buff.set_profiling_timer_resolution(this->profiling_timer_resolution());
+  if(this->_last_query.endian_little_selected())
+    buff.set_endian_little(this->endian_little());
+  if(this->_last_query.available_selected())
+    buff.set_available(this->available());
+  if(this->_last_query.compiler_available_selected())
+    buff.set_compiler_available(this->compiler_available());
+  if(this->_last_query.execution_capabilities_selected())
+    buff.set_execution_capabilities(this->execution_capabilities());
+  if(this->_last_query.queue_properties_selected())
+    buff.set_queue_properties(this->queue_properties());
+  if(this->_last_query.name_selected())
+    buff.set_name(this->name());
+  if(this->_last_query.vendor_selected())
+    buff.set_vendor(this->vendor());
+  if(this->_last_query.driver_version_selected())
+    buff.set_driver_version(this->driver_version());
+  if(this->_last_query.profile_selected())
+    buff.set_profile(this->profile());
+  if(this->_last_query.version_selected())
+    buff.set_version(this->version());
+  if(this->_last_query.extensions_selected())
+    buff.set_extensions(this->extensions());
+  if(this->_last_query.platform_id_selected())
+    buff.set_platform_id(this->platform_id());
+  if(this->_last_query.double_fp_config_selected())
+    buff.set_double_fp_config(this->double_fp_config());
+  if(this->_last_query.preferred_vector_width_half_selected())
+    buff.set_preferred_vector_width_half(this->preferred_vector_width_half());
+  if(this->_last_query.host_unified_memory_selected())
+    buff.set_host_unified_memory(this->host_unified_memory());
+  if(this->_last_query.native_vector_width_char_selected())
+    buff.set_native_vector_width_char(this->native_vector_width_char());
+  if(this->_last_query.native_vector_width_short_selected())
+    buff.set_native_vector_width_short(this->native_vector_width_short());
+  if(this->_last_query.native_vector_width_int_selected())
+    buff.set_native_vector_width_int(this->native_vector_width_int());
+  if(this->_last_query.native_vector_width_long_selected())
+    buff.set_native_vector_width_long(this->native_vector_width_long());
+  if(this->_last_query.native_vector_width_float_selected())
+    buff.set_native_vector_width_float(this->native_vector_width_float());
+  if(this->_last_query.native_vector_width_double_selected())
+    buff.set_native_vector_width_double(this->native_vector_width_double());
+  if(this->_last_query.native_vector_width_half_selected())
+    buff.set_native_vector_width_half(this->native_vector_width_half());
+  if(this->_last_query.opencl_c_version_selected())
+    buff.set_opencl_c_version(this->opencl_c_version());
+  if(this->_last_query.linker_available_selected())
+    buff.set_linker_available(this->linker_available());
+  if(this->_last_query.built_in_kernels_selected())
+    buff.set_built_in_kernels(this->built_in_kernels());
+  if(this->_last_query.image_max_buffer_size_selected())
+    buff.set_image_max_buffer_size(this->image_max_buffer_size());
+  if(this->_last_query.image_max_array_size_selected())
+    buff.set_image_max_array_size(this->image_max_array_size());
+  if(this->_last_query.parent_device_id_selected())
+    buff.set_parent_device_id(this->parent_device_id());
+  if(this->_last_query.partition_max_sub_devices_selected())
+    buff.set_partition_max_sub_devices(this->partition_max_sub_devices());
+  if(this->_last_query.partition_properties_selected())
+    for(size_t i=0; i < this->partition_properties().size(); ++i)
+      buff.add_partition_properties(this->partition_properties()[i]);
+  if(this->_last_query.partition_affinity_domain_selected())
+    buff.set_partition_affinity_domain(this->partition_affinity_domain());
+  if(this->_last_query.partition_type_selected())
+    for(size_t i=0; i < this->partition_type().size(); ++i)
+      buff.add_partition_type(this->partition_type()[i]);
+  if(this->_last_query.reference_count_selected())
+    buff.set_reference_count(this->reference_count());
+  if(this->_last_query.preferred_interop_user_sync_selected())
+    buff.set_preferred_interop_user_sync(this->preferred_interop_user_sync());
+  if(this->_last_query.printf_buffer_size_selected())
+    buff.set_printf_buffer_size(this->printf_buffer_size());
+  if(this->_last_query.image_pitch_alignment_selected())
+    buff.set_image_pitch_alignment(this->image_pitch_alignment());
+  if(this->_last_query.image_base_address_alignment_selected())
+    buff.set_image_base_address_alignment(this->image_base_address_alignment());
+}
+
+void Device_Info::
+read(Dimbo::Protobuf::Cl::Device_Info const& buff)
+{
+  this->clear();
+  if(buff.has_id())
+    {
+      this->_id = buff.id();
+      this->_last_query.select_id();
+    }
+  if(buff.has_type())
+    {
+      this->_type = buff.type();
+      this->_last_query.select_type();
+    }
+  if(buff.has_vendor_id())
+    {
+      this->_vendor_id = buff.vendor_id();
+      this->_last_query.select_vendor_id();
+    }
+  if(buff.has_max_compute_units())
+    {
+      this->_max_compute_units = buff.max_compute_units();
+      this->_last_query.select_max_compute_units();
+    }
+  if(buff.has_max_work_item_dimensions())
+    {
+      this->_max_work_item_dimensions = buff.max_work_item_dimensions();
+      this->_last_query.select_max_work_item_dimensions();
+    }
+  if(buff.has_max_work_group_size())
+    {
+      this->_max_work_group_size = buff.max_work_group_size();
+      this->_last_query.select_max_work_group_size();
+    }
+  if(buff.max_work_item_sizes_size() > 0)
+    {
+      this->_max_work_item_sizes.assign(buff.max_work_item_sizes().begin(),buff.max_work_item_sizes().end());
+      this->_last_query.select_max_work_item_sizes();
+    }
+  if(buff.has_preferred_vector_width_char())
+    {
+      this->_preferred_vector_width_char = buff.preferred_vector_width_char();
+      this->_last_query.select_preferred_vector_width_char();
+    }
+  if(buff.has_preferred_vector_width_short())
+    {
+      this->_preferred_vector_width_short = buff.preferred_vector_width_short();
+      this->_last_query.select_preferred_vector_width_short();
+    }
+  if(buff.has_preferred_vector_width_int())
+    {
+      this->_preferred_vector_width_int = buff.preferred_vector_width_int();
+      this->_last_query.select_preferred_vector_width_int();
+    }
+  if(buff.has_preferred_vector_width_long())
+    {
+      this->_preferred_vector_width_long = buff.preferred_vector_width_long();
+      this->_last_query.select_preferred_vector_width_long();
+    }
+  if(buff.has_preferred_vector_width_float())
+    {
+      this->_preferred_vector_width_float = buff.preferred_vector_width_float();
+      this->_last_query.select_preferred_vector_width_float();
+    }
+  if(buff.has_preferred_vector_width_double())
+    {
+      this->_preferred_vector_width_double = buff.preferred_vector_width_double();
+      this->_last_query.select_preferred_vector_width_double();
+    }
+  if(buff.has_max_clock_frequency())
+    {
+      this->_max_clock_frequency = buff.max_clock_frequency();
+      this->_last_query.select_max_clock_frequency();
+    }
+  if(buff.has_address_bits())
+    {
+      this->_address_bits = buff.address_bits();
+      this->_last_query.select_address_bits();
+    }
+  if(buff.has_max_read_image_args())
+    {
+      this->_max_read_image_args = buff.max_read_image_args();
+      this->_last_query.select_max_read_image_args();
+    }
+  if(buff.has_max_write_image_args())
+    {
+      this->_max_write_image_args = buff.max_write_image_args();
+      this->_last_query.select_max_write_image_args();
+    }
+  if(buff.has_max_mem_alloc_size())
+    {
+      this->_max_mem_alloc_size = buff.max_mem_alloc_size();
+      this->_last_query.select_max_mem_alloc_size();
+    }
+  if(buff.has_image2d_max_width())
+    {
+      this->_image2d_max_width = buff.image2d_max_width();
+      this->_last_query.select_image2d_max_width();
+    }
+  if(buff.has_image2d_max_height())
+    {
+      this->_image2d_max_height = buff.image2d_max_height();
+      this->_last_query.select_image2d_max_height();
+    }
+  if(buff.has_image3d_max_width())
+    {
+      this->_image3d_max_width = buff.image3d_max_width();
+      this->_last_query.select_image3d_max_width();
+    }
+  if(buff.has_image3d_max_height())
+    {
+      this->_image3d_max_height = buff.image3d_max_height();
+      this->_last_query.select_image3d_max_height();
+    }
+  if(buff.has_image3d_max_depth())
+    {
+      this->_image3d_max_depth = buff.image3d_max_depth();
+      this->_last_query.select_image3d_max_depth();
+    }
+  if(buff.has_image_support())
+    {
+      this->_image_support = buff.image_support();
+      this->_last_query.select_image_support();
+    }
+  if(buff.has_max_parameter_size())
+    {
+      this->_max_parameter_size = buff.max_parameter_size();
+      this->_last_query.select_max_parameter_size();
+    }
+  if(buff.has_max_samplers())
+    {
+      this->_max_samplers = buff.max_samplers();
+      this->_last_query.select_max_samplers();
+    }
+  if(buff.has_mem_base_addr_align())
+    {
+      this->_mem_base_addr_align = buff.mem_base_addr_align();
+      this->_last_query.select_mem_base_addr_align();
+    }
+  if(buff.has_min_data_type_align_size())
+    {
+      this->_min_data_type_align_size = buff.min_data_type_align_size();
+      this->_last_query.select_min_data_type_align_size();
+    }
+  if(buff.has_single_fp_config())
+    {
+      this->_single_fp_config = buff.single_fp_config();
+      this->_last_query.select_single_fp_config();
+    }
+  if(buff.has_global_mem_cache_type())
+    {
+      this->_global_mem_cache_type = buff.global_mem_cache_type();
+      this->_last_query.select_global_mem_cache_type();
+    }
+  if(buff.has_global_mem_cacheline_size())
+    {
+      this->_global_mem_cacheline_size = buff.global_mem_cacheline_size();
+      this->_last_query.select_global_mem_cacheline_size();
+    }
+  if(buff.has_global_mem_cache_size())
+    {
+      this->_global_mem_cache_size = buff.global_mem_cache_size();
+      this->_last_query.select_global_mem_cache_size();
+    }
+  if(buff.has_global_mem_size())
+    {
+      this->_global_mem_size = buff.global_mem_size();
+      this->_last_query.select_global_mem_size();
+    }
+  if(buff.has_max_constant_buffer_size())
+    {
+      this->_max_constant_buffer_size = buff.max_constant_buffer_size();
+      this->_last_query.select_max_constant_buffer_size();
+    }
+  if(buff.has_max_constant_args())
+    {
+      this->_max_constant_args = buff.max_constant_args();
+      this->_last_query.select_max_constant_args();
+    }
+  if(buff.has_local_mem_type())
+    {
+      this->_local_mem_type = buff.local_mem_type();
+      this->_last_query.select_local_mem_type();
+    }
+  if(buff.has_local_mem_size())
+    {
+      this->_local_mem_size = buff.local_mem_size();
+      this->_last_query.select_local_mem_size();
+    }
+  if(buff.has_error_correction_support())
+    {
+      this->_error_correction_support = buff.error_correction_support();
+      this->_last_query.select_error_correction_support();
+    }
+  if(buff.has_profiling_timer_resolution())
+    {
+      this->_profiling_timer_resolution = buff.profiling_timer_resolution();
+      this->_last_query.select_profiling_timer_resolution();
+    }
+  if(buff.has_endian_little())
+    {
+      this->_endian_little = buff.endian_little();
+      this->_last_query.select_endian_little();
+    }
+  if(buff.has_available())
+    {
+      this->_available = buff.available();
+      this->_last_query.select_available();
+    }
+  if(buff.has_compiler_available())
+    {
+      this->_compiler_available = buff.compiler_available();
+      this->_last_query.select_compiler_available();
+    }
+  if(buff.has_execution_capabilities())
+    {
+      this->_execution_capabilities = buff.execution_capabilities();
+      this->_last_query.select_execution_capabilities();
+    }
+  if(buff.has_queue_properties())
+    {
+      this->_queue_properties = buff.queue_properties();
+      this->_last_query.select_queue_properties();
+    }
+  if(buff.has_name())
+    {
+      this->_name = buff.name();
+      this->_last_query.select_name();
+    }
+  if(buff.has_vendor())
+    {
+      this->_vendor = buff.vendor();
+      this->_last_query.select_vendor();
+    }
+  if(buff.has_driver_version())
+    {
+      this->_driver_version = buff.driver_version();
+      this->_last_query.select_driver_version();
+    }
+  if(buff.has_profile())
+    {
+      this->_profile = buff.profile();
+      this->_last_query.select_profile();
+    }
+  if(buff.has_version())
+    {
+      this->_version = buff.version();
+      this->_last_query.select_version();
+    }
+  if(buff.has_extensions())
+    {
+      this->_extensions = buff.extensions();
+      this->_last_query.select_extensions();
+    }
+  if(buff.has_platform_id())
+    {
+      this->_platform_id = buff.platform_id();
+      this->_last_query.select_platform_id();
+    }
+  if(buff.has_double_fp_config())
+    {
+      this->_double_fp_config = buff.double_fp_config();
+      this->_last_query.select_double_fp_config();
+    }
+  if(buff.has_preferred_vector_width_half())
+    {
+      this->_preferred_vector_width_half = buff.preferred_vector_width_half();
+      this->_last_query.select_preferred_vector_width_half();
+    }
+  if(buff.has_host_unified_memory())
+    {
+      this->_host_unified_memory = buff.host_unified_memory();
+      this->_last_query.select_host_unified_memory();
+    }
+  if(buff.has_native_vector_width_char())
+    {
+      this->_native_vector_width_char = buff.native_vector_width_char();
+      this->_last_query.select_native_vector_width_char();
+    }
+  if(buff.has_native_vector_width_short())
+    {
+      this->_native_vector_width_short = buff.native_vector_width_short();
+      this->_last_query.select_native_vector_width_short();
+    }
+  if(buff.has_native_vector_width_int())
+    {
+      this->_native_vector_width_int = buff.native_vector_width_int();
+      this->_last_query.select_native_vector_width_int();
+    }
+  if(buff.has_native_vector_width_long())
+    {
+      this->_native_vector_width_long = buff.native_vector_width_long();
+      this->_last_query.select_native_vector_width_long();
+    }
+  if(buff.has_native_vector_width_float())
+    {
+      this->_native_vector_width_float = buff.native_vector_width_float();
+      this->_last_query.select_native_vector_width_float();
+    }
+  if(buff.has_native_vector_width_double())
+    {
+      this->_native_vector_width_double = buff.native_vector_width_double();
+      this->_last_query.select_native_vector_width_double();
+    }
+  if(buff.has_native_vector_width_half())
+    {
+      this->_native_vector_width_half = buff.native_vector_width_half();
+      this->_last_query.select_native_vector_width_half();
+    }
+  if(buff.has_opencl_c_version())
+    {
+      this->_opencl_c_version = buff.opencl_c_version();
+      this->_last_query.select_opencl_c_version();
+    }
+  if(buff.has_linker_available())
+    {
+      this->_linker_available = buff.linker_available();
+      this->_last_query.select_linker_available();
+    }
+  if(buff.has_built_in_kernels())
+    {
+      this->_built_in_kernels = buff.built_in_kernels();
+      this->_last_query.select_built_in_kernels();
+    }
+  if(buff.has_image_max_buffer_size())
+    {
+      this->_image_max_buffer_size = buff.image_max_buffer_size();
+      this->_last_query.select_image_max_buffer_size();
+    }
+  if(buff.has_image_max_array_size())
+    {
+      this->_image_max_array_size = buff.image_max_array_size();
+      this->_last_query.select_image_max_array_size();
+    }
+  if(buff.has_parent_device_id())
+    {
+      this->_parent_device_id = buff.parent_device_id();
+      this->_last_query.select_parent_device_id();
+    }
+  if(buff.has_partition_max_sub_devices())
+    {
+      this->_partition_max_sub_devices = buff.partition_max_sub_devices();
+      this->_last_query.select_partition_max_sub_devices();
+    }
+  if(buff.partition_properties().size() > 0)
+    {
+      this->_partition_properties.assign(buff.partition_properties().begin(),buff.partition_properties().end());
+      this->_last_query.select_partition_properties();
+    }
+  if(buff.has_partition_affinity_domain())
+    {
+      this->_partition_affinity_domain = buff.partition_affinity_domain();
+      this->_last_query.select_partition_affinity_domain();
+    }
+  if(buff.partition_type().size() > 0)
+    {
+      this->_partition_type.assign(buff.partition_type().begin(),buff.partition_type().end());
+      this->_last_query.select_partition_type();
+    }
+  if(buff.has_reference_count())
+    {
+      this->_reference_count = buff.reference_count();
+      this->_last_query.select_reference_count();
+    }
+  if(buff.has_preferred_interop_user_sync())
+    {
+      this->_preferred_interop_user_sync = buff.preferred_interop_user_sync();
+      this->_last_query.select_preferred_interop_user_sync();
+    }
+  if(buff.has_printf_buffer_size())
+    {
+      this->_printf_buffer_size = buff.printf_buffer_size();
+      this->_last_query.select_printf_buffer_size();
+    }
+  if(buff.has_image_pitch_alignment())
+    {
+      this->_image_pitch_alignment = buff.image_pitch_alignment();
+      this->_last_query.select_image_pitch_alignment();
+    }
+  if(buff.has_image_base_address_alignment())
+    {
+      this->_image_base_address_alignment = buff.image_base_address_alignment();
+      this->_last_query.select_image_base_address_alignment();
+    }
+}
+
 bool operator== (Device_Info const& a, Device_Info const& b)
 {
   Device_Query const& aq = a.last_query();

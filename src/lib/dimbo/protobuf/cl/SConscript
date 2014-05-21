@@ -32,6 +32,7 @@ source = [
     'platform_query.pb.cc',
     'platform_info.pb.cc',
     'device_query.pb.cc',
+    'device_info.pb.cc',
 ]
 
 lib = env.SharedLibrary('libdimbo_protobuf_cl', source)
