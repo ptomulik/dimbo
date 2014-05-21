@@ -81,10 +81,16 @@ get_platforms()
   throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
        , DIMBO_CL_GET_PLATFORM_IDS_EXCEPTIONS )
 {
-  std::vector<cl_platform_id> ids(get_platform_ids());
+  return make_platforms(get_platform_ids());
+}
+/* ------------------------------------------------------------------------ */
+Platforms
+make_platforms(std::vector<cl_platform_id> const& ids)
+  throw(DIMBO_CL_EXCEPTION(Bad_Alloc))
+{
   try {
-    return Platforms(ids);
-  } catch (std::bad_alloc const&) {
+    return Platforms(ids.begin(),ids.end());
+  } catch(std::bad_alloc const&) {
     DIMBO_CL_THROW(Bad_Alloc);
   }
 }

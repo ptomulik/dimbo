@@ -357,15 +357,6 @@ get_platform_info(  cl_platform_id platform,
 } /* namespace Cl */
 } /* namespace Dimbo */
 
-#include <dimbo/util/obid_id.hpp>
-
-namespace Dimbo {
-template <> struct obid_id<Dimbo::Cl::Platform>
-{
-  typedef cl_platform_id type;
-};
-} /* namespace Dimbo */
-
 #endif /* DIMBO_CL_PLATFORM_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

@@ -25,8 +25,18 @@ from SCons.Util import CLVar
 # "Generate" __init__.py
 init_py = env.Substfile(['__init__.py.in'], SUBST_DICT = {})
 # Generate python modules with swig
-libs = env.get('SWIGPY_LIBS', CLVar()) + ['dimbo_cl', 'dimbo_format', 'OpenCL']
-libpath = env.get('SWIGPY_LIBPATH', CLVar()) + ['../../../cl', '../../../format']
+libs = env.get('SWIGPY_LIBS', CLVar()) + [
+    'dimbo_cl',
+    'dimbo_protobuf_cl',
+    'dimbo_format',
+    'protobuf',
+    'OpenCL'
+]
+libpath = env.get('SWIGPY_LIBPATH', CLVar()) + [
+    '../../../cl',
+    '../../../protobuf/cl',
+    '../../../format'
+]
 overrides = {
     'SWIGPY_LIBS'       : libs,
     'SWIGPY_LIBPATH'    : libpath

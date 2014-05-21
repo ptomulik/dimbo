@@ -88,12 +88,7 @@ get_devices(cl_platform_id platform, cl_device_type device_type)
         , DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS )
 
 {
-  std::vector<cl_device_id> ids(get_device_ids(platform, device_type));
-  try {
-    return Devices(ids);
-  } catch (std::bad_alloc const&) {
-    DIMBO_CL_THROW(Bad_Alloc);
-  }
+  return make_devices(get_device_ids(platform, device_type));
 }
 /* ------------------------------------------------------------------------ */
 Devices
@@ -104,6 +99,18 @@ get_devices(Platform const& platform, cl_device_type device_type)
 {
   return get_devices(platform.id(), device_type);
 }
+/* ------------------------------------------------------------------------ */
+Devices
+make_devices(std::vector<cl_device_id> const& ids)
+  throw(DIMBO_CL_EXCEPTION(Bad_Alloc))
+{
+  try {
+    return Devices(ids.begin(),ids.end());
+  } catch(std::bad_alloc const&) {
+    DIMBO_CL_THROW(Bad_Alloc);
+  }
+}
+/* ------------------------------------------------------------------------ */
 
 } /* namespace Cl */
 } /* namespace Dimbo */

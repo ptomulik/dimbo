@@ -984,14 +984,6 @@ get_device_info( cl_device_id device, cl_device_info name, size_t value_size,
 } // namespace Cl {
 } // namespace Dimbo {
 
-#include <dimbo/util/obid_id.hpp>
-namespace Dimbo {
-template<> struct obid_id<Dimbo::Cl::Device>
-{
-  typedef cl_device_id type;
-};
-} /* namespace Dimbo */
-
 #endif /* DIMBO_CL_DEVICE_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

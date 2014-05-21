@@ -222,7 +222,9 @@ get_devices() const
   throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
        , DIMBO_CL_CONTEXT_GET_INFO_EXCEPTIONS )
 {
-  return Devices(_get_vec_info<cl_device_id>(*this, CL_CONTEXT_DEVICES));
+  typedef cl_device_id T;
+  std::vector<T> devs(_get_vec_info<T>(*this, CL_CONTEXT_DEVICES));
+  return Devices(devs.begin(), devs.end());
 }
 /* ------------------------------------------------------------------------ */
 Context_Properties Context::

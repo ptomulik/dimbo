@@ -28,9 +28,7 @@
 %{
 #include <dimbo/cl/platform.hpp>
 %}
-%include <dimbo/util/obid_id.swg>
 %include <dimbo/cl/platform.hpp>
-%template() Dimbo::obid_id<Dimbo::Cl::Platform>;
 
 
 

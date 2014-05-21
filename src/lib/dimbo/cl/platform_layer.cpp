@@ -48,13 +48,13 @@ Platform_Layer::
 Platforms Platform_Layer::
 platforms() const
 {
-  return Platforms(this->_platform_ids);
+  return Platforms(this->_platform_ids.begin(), this->_platform_ids.end());
 }
 
 Devices Platform_Layer::
 devices() const
 {
-  return Devices(this->_device_ids);
+  return Devices(this->_device_ids.begin(), this->_device_ids.end());
 }
 
 Devices Platform_Layer::

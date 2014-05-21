@@ -32,7 +32,6 @@
 #define DIMBO_CL_PLATFORMS_HPP_INCLUDED
 
 #include <dimbo/cl/platform.hpp>
-#include <dimbo/util/obid_vec.hpp>
 #include <dimbo/cl/exceptions/bad_alloc.hpp>
 #include <dimbo/cl/cl_errors/other_cl_error.hpp>
 #include <dimbo/cl/cl_errors/cl_invalid_value.hpp>
@@ -73,7 +72,7 @@ namespace Cl {
  *
  * \see Dimbo::ObId_Vec
  */ // }}}
-typedef Dimbo::ObId_Vec<Platform> Platforms;
+typedef std::vector<Platform> Platforms;
 
 /** // {{{ doc: get_num_platforms()
  * \ingroup Dimbo_Cl_Platform
@@ -137,6 +136,17 @@ Platforms
 get_platforms()
   throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
        , DIMBO_CL_GET_PLATFORM_IDS_EXCEPTIONS );
+
+/** // {{{ doc: make_platforms(ids)
+ * \ingroup Dimbo_Cl_Platform
+ * \todo Write documentation
+ *
+ * In case of error, this function throws an exception defined by
+ * DIMBO_CL_EXCEPTION(Bad_Alloc).
+ */ // }}}
+Platforms
+make_platforms(std::vector<cl_platform_id> const& ids)
+  throw(DIMBO_CL_EXCEPTION(Bad_Alloc));
 } /* namespace Cl */
 } /* namespace Dimbo */
 

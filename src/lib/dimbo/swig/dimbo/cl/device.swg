@@ -28,9 +28,7 @@
 %{
 #include <dimbo/cl/device.hpp>
 %}
-%include <dimbo/util/obid_id.swg>
 %include <dimbo/cl/device.hpp>
-%template() Dimbo::obid_id<Dimbo::Cl::Device>;
 
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

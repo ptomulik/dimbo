@@ -31,7 +31,6 @@
 
 #include <dimbo/cl/device.hpp>
 #include <dimbo/cl/platform.hpp>
-#include <dimbo/util/obid_vec.hpp>
 #include <dimbo/cl/exceptions/bad_alloc.hpp>
 #include <dimbo/cl/cl_errors/other_cl_error.hpp>
 #include <dimbo/cl/cl_errors/cl_device_not_found.hpp>
@@ -62,7 +61,7 @@ namespace Cl {
  * \ingroup Dimbo_Cl_Platform
  * \todo Write documentation
  */ // }}}
-typedef ::Dimbo::ObId_Vec<Device> Devices;
+typedef std::vector<Device> Devices;
 
 /** // {{{
  * \ingroup Dimbo_Cl_Platform
@@ -106,6 +105,16 @@ get_devices(Platform const& platform,
             cl_device_type device_type = CL_DEVICE_TYPE_ALL)
    throw( DIMBO_CL_EXCEPTION(Bad_Alloc)
         , DIMBO_CL_GET_DEVICE_IDS_EXCEPTIONS );
+/** // {{{ doc: make_devices(ids)
+ * \ingroup Dimbo_Cl_Device
+ * \todo Write documentation
+ *
+ * In case of error, this function throws an exception defined by
+ * DIMBO_CL_EXCEPTION(Bad_Alloc).
+ */ // }}}
+Devices
+make_devices(std::vector<cl_device_id> const& ids)
+  throw(DIMBO_CL_EXCEPTION(Bad_Alloc));
 
 } /* namespace Cl */
 } /* namespace Dimbo */
