@@ -27,9 +27,11 @@ libs = env.get('LIBS', CLVar()) + [
   , 'dimbo_app'
   , 'dimbo_format'
   , 'dimbo_cl'
+  , 'dimbo_protobuf_cl'
   , 'boost_program_options'
   , 'boost_serialization'
   , 'boost_regex'
+  , 'protobuf'
   , 'OpenCL.so'
 ]
 libpath = env.get('LIBPATH', CLVar()) + [
@@ -37,6 +39,7 @@ libpath = env.get('LIBPATH', CLVar()) + [
   , '../../lib/dimbo/app/clinfo'
   , '../../lib/dimbo/format'
   , '../../lib/dimbo/cl'
+  , '../../lib/dimbo/protobuf/cl'
 ]
 
 clinfo = env.Program( 'dimbo-clinfo', 'main.cpp', LIBS=libs, LIBPATH=libpath)

@@ -22,8 +22,8 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = ['dimbo_cl','dimbo_format','OpenCL', 'boost_regex']
-lpath = ['../../../cl', '../../../format']
+libs = ['dimbo_cl','dimbo_protobuf_cl','dimbo_format','protobuf','OpenCL', 'boost_regex']
+lpath = ['../../../cl', '../../../format', '../../../protobuf/cl']
 
 env.Program(['cl_platform1'], ['cl_platform1.cpp'], LIBS = libs, LIBPATH = lpath)
 env.Program(['cl_platform2'], ['cl_platform2.cpp'], LIBS = libs, LIBPATH = lpath)
