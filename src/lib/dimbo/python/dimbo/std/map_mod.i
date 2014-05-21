@@ -25,7 +25,7 @@
  * \todo Write documentation
  */ // }}}
 
-%module(package="dimbo.std") map_mod
+%module(package="dimbo_.std") map_mod
 %feature("autodoc","3");
 %include <dimbo/std/map_mod.swg>
 

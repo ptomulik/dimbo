@@ -19,13 +19,11 @@
 # SOFTWARE
 
 Import( 'env' )
+
 # "Generate" __init__.py
 init_py = env.Substfile(['__init__.py.in'], SUBST_DICT = {})
-#env.Substfile(['Detail/__init__.py.in'], SUBST_DICT = {})
 
 modules = [ 'exception_mod' ]
-subdirs = [ 'std', 'cl' ]
-scripts = [ '%s/SConscript' % s for s in subdirs ]
 # Build modules
 modfiles = env.SwigPyModule(modules)
 instfiles =  [m for m in modfiles if not str(m).endswith('.cc')] + init_py
@@ -34,10 +32,14 @@ instfiles =  [m for m in modfiles if not str(m).endswith('.cc')] + init_py
 #        also the python packages should be compiled when installed, later on
 #        a plain user can't do this (root owns the directory with installed
 #        *.py files)
-env.Install('${libdir}/python/dist-packages/dimbo', instfiles)
+env.Install('${libdir}/python/dist-packages/dimbo_', instfiles)
 
 # Nest into subdirs
+subdirs = [ 'std', 'cl' ]
+scripts = [ '%s/SConscript' % s for s in subdirs ]
 SConscript( scripts, exports = ['env'] )
+
+SConscript( '_ldr_/SConscript', exports = ['env'] )
 
 # Local Variables:
 # # tab-width:4

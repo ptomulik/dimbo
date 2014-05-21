@@ -17,3 +17,26 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
+
+Import( 'env' )
+
+# "Generate" __init__.py
+init_py = env.Substfile(['__init__.py.in'], SUBST_DICT = {})
+instfiles = init_py
+
+# FIXME: this is only for now, elaborate what should be the destination path,
+#        also the python packages should be compiled when installed, later on
+#        a plain user can't do this (root owns the directory with installed
+#        *.py files)
+env.Install('${libdir}/python/dist-packages/dimbo', instfiles)
+
+# Nest into subdirs
+subdirs = [ 'std', 'cl' ]
+scripts = [ '%s/SConscript' % s for s in subdirs ]
+SConscript( scripts, exports = ['env'] )
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

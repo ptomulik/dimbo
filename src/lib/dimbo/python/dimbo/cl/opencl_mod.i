@@ -25,7 +25,7 @@
  * \todo Write documentation
  */ // }}}
 
-%module(package="dimbo.cl") opencl_mod
+%module(package="dimbo_.cl") opencl_mod
 %feature("autodoc","3");
 %include <dimbo/cl/opencl_mod.swg>
 %pythoncode %{
@@ -39,27 +39,27 @@
 DIMBO_OPENCL_VERSION = None
 if (DIMBO_OPENCL_VERSION is None) and (DIMBO_OPENCL_CL_H_VERSION_2_0 == 1):
   try:
-    from dimbo.cl.opencl2_0 import *
+    from dimbo_.cl.opencl2_0 import *
     DIMBO_OPENCL_VERSION = "2.0"
   except ImportError:
     pass
 
 if (DIMBO_OPENCL_VERSION is None) and (DIMBO_OPENCL_CL_H_VERSION_1_2 == 1):
   try:
-    from dimbo.cl.opencl1_2 import *
+    from dimbo_.cl.opencl1_2 import *
     DIMBO_OPENCL_VERSION = "1.2"
   except ImportError:
     pass
 
 if (DIMBO_OPENCL_VERSION is None) and (DIMBO_OPENCL_CL_H_VERSION_1_1 == 1):
   try:
-    from dimbo.cl.opencl1_1 import *
+    from dimbo_.cl.opencl1_1 import *
     DIMBO_OPENCL_VERSION = "1.1"
   except ImportError:
     pass
 
 if (DIMBO_OPENCL_VERSION is None) and (DIMBO_OPENCL_CL_H_VERSION_1_0 == 1):
-  from dimbo.cl.opencl1_1 import *
+  from dimbo_.cl.opencl1_1 import *
   DIMBO_OPENCL_VERSION = "1.0"
 
 %}

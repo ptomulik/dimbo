@@ -25,7 +25,7 @@
  * \todo Write documentation
  */ // }}}
 
-%module(package="dimbo.std") bad_alloc_mod
+%module(package="dimbo_.std") bad_alloc_mod
 %feature("autodoc","3");
 %include <dimbo/std/bad_alloc_mod.swg>
 

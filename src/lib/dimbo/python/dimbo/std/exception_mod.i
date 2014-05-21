@@ -25,7 +25,7 @@
  * \todo Write documentation
  */ // }}}
 
-%module(package="dimbo.std") exception_mod
+%module(package="dimbo_.std") exception_mod
 %feature("autodoc","3");
 %include <dimbo/std/exception_mod.swg>
 

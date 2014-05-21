@@ -25,7 +25,7 @@
  * \todo Write documentation
  */ // }}}
 
-%module(package="dimbo.std") vector_mod
+%module(package="dimbo_.std") vector_mod
 %feature("autodoc","3");
 %include <dimbo/std/vector_mod.swg>
 

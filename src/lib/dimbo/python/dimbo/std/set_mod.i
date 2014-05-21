@@ -25,7 +25,7 @@
  * \todo Write documentation
  */ // }}}
 
-%module(package="dimbo.std") set_mod
+%module(package="dimbo_.std") set_mod
 %feature("autodoc","3");
 %include <dimbo/std/set_mod.swg>
 

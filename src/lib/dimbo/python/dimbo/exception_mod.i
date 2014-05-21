@@ -25,7 +25,7 @@
  * \todo Write documentation
  */ // }}}
 
-%module (package="dimbo") exception_mod
+%module (package="dimbo_") exception_mod
 %feature("autodoc","3");
 
 %pythoncode %{

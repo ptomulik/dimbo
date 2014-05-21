@@ -25,7 +25,7 @@
  * \todo Write documentation
  */ // }}}
 
-%module(package="dimbo.cl") context_mod
+%module(package="dimbo_.cl") context_mod
 %feature("autodoc","3");
 %include <dimbo/cl/context_mod.swg>
 

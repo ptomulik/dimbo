@@ -25,7 +25,7 @@
  * \todo Write documentation
  */ // }}}
 
-%module(package="dimbo.cl") opencl2_0
+%module(package="dimbo_.cl") opencl2_0
 %feature("autodoc","3");
 %include <dimbo/cl/opencl2_0.swg>
 
