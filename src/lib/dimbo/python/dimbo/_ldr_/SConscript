@@ -30,11 +30,6 @@ instfiles = init_py
 #        *.py files)
 env.Install('${libdir}/python/dist-packages/dimbo', instfiles)
 
-# Nest into subdirs
-subdirs = [ 'std', 'cl' ]
-scripts = [ '%s/SConscript' % s for s in subdirs ]
-SConscript( scripts, exports = ['env'] )
-
 # Local Variables:
 # # tab-width:4
 # # indent-tabs-mode:nil
