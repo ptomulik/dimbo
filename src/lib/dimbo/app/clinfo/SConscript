@@ -20,19 +20,24 @@
 
 Import('env')
 
-libdimbo_clinfo = env.SharedLibrary(
-  target = 'libdimbo_clinfo',
-  source =  [ 'options_description.cpp'
-            , 'common_options_description.cpp'
-            , 'platform_general_options_description.cpp'
-            , 'platform_detail_options_description.cpp'
-            , 'device_general_options_description.cpp'
-            , 'device_detail_options_description.cpp'
-            , 'output_options_description.cpp'
-            , 'create_query.cpp'
-            , 'main.cpp' ] )
+from SCons.Util import CLVar
 
-env.Install('${libdir}', libdimbo_clinfo)
+libs = env.get('LIBS', CLVar()) + [ 'dimbo_app', 'dimbo_format' ]
+
+lib = env.SharedLibrary('../../../dimbo_app_clinfo',
+    [ 'options_description.cpp'
+    , 'common_options_description.cpp'
+    , 'platform_general_options_description.cpp'
+    , 'platform_detail_options_description.cpp'
+    , 'device_general_options_description.cpp'
+    , 'device_detail_options_description.cpp'
+    , 'output_options_description.cpp'
+    , 'create_query.cpp'
+    , 'main.cpp' ],
+    LIBS = libs
+)
+
+env.Install('${libdir}', lib)
 
 subdirs = [ 'po' ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]

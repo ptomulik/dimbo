@@ -26,7 +26,10 @@ from distutils import sysconfig
 #############################################################################
 # CC/CXX
 #############################################################################
-env.Append(CPPPATH = [ '#%s' % env.Dir('lib').path ])
+libdir = '%s' % env.Dir('lib').path
+env.AppendUnique(CPPPATH = [ '#%s' % libdir ])
+env.AppendUnique(LINKFLAGS = ['-Wl,-rpath-link=%s' % libdir])
+env.AppendUnique(LIBPATH = ['#%s' % libdir])
 #############################################################################
 
 #############################################################################

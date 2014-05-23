@@ -22,25 +22,20 @@ Import('env')
 
 from SCons.Util import CLVar
 
-overrides = { 'PROTOCPYTHONOUTDIR' : None, 'PROTOCOUTDIR' : '${TARGET.dir}' }
-## FIXME: Ensure that there are no dependency issues in generated files
-##        xx.pb.h may include yy.pb.h and I'm not sure if currently the
-##        generated C++ code compiles by accident or the dependencies are
-##        recognized by SCons and compilation order is respected.
-for proto in env.Glob('*.proto'):
-    env.Protoc( proto, **overrides )
+libs = env.get('LIBS', CLVar()) + ['dimbo_cl']
 
-libs = env.get('LIBS',CLVar()) + [ 'protobuf' ]
-
-lib = env.SharedLibrary('../../../dimbo_protobuf_cl', 
-    [ 'platform_query.pb.cc'
-    , 'platform_info.pb.cc'
-    , 'device_query.pb.cc'
-    , 'device_info.pb.cc' ],
-    LIBS = libs
+lib = env.SharedLibrary( '../../../dimbo_format_cl',
+  [ 'platform_info.cpp'
+  , 'platform_query.cpp'
+  , 'device_info.cpp'
+  , 'device_query.cpp'
+  , 'platform_layer_info.cpp' ],
+  LIBS = libs
 )
 
 env.Install('${libdir}', lib)
+
+# TODO: Install
 
 # Local Variables:
 # # tab-width:4

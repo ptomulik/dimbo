@@ -22,12 +22,11 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = ['dimbo_cl','dimbo_protobuf_cl','dimbo_format','protobuf','OpenCL', 'boost_regex']
-lpath = ['../../../cl', '../../../format', '../../../protobuf/cl']
+libs = ['dimbo_format_cl', 'dimbo_cl']
 
-env.Program(['cl_platform1'], ['cl_platform1.cpp'], LIBS = libs, LIBPATH = lpath)
-env.Program(['cl_platform2'], ['cl_platform2.cpp'], LIBS = libs, LIBPATH = lpath)
-env.Program(['cl_platform3'], ['cl_platform3.cpp'], LIBS = libs, LIBPATH = lpath)
+env.Program(['cl_platform1'], ['cl_platform1.cpp'], LIBS = libs)
+env.Program(['cl_platform2'], ['cl_platform2.cpp'], LIBS = libs)
+env.Program(['cl_platform3'], ['cl_platform3.cpp'], LIBS = libs)
 
 # Local Variables:
 # # tab-width:4

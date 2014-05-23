@@ -26,13 +26,13 @@ Import('env')
 
 from SCons.Util import CLVar
 
+
 #############################################################################
 # Default flags
 #############################################################################
 env.Replace( CCFLAGS = CLVar('-g -O2') )
 env.Replace( CXXFLAGS = CLVar('-ansi -std=c++0x -Werror -Wall -Wextra -pedantic') )
 env.Replace( CFLAGS = CLVar('-ansi -std=c1x -Werror -Wall -Wextra -pedantic') )
-env.Replace( LINKFLAGS = CLVar() )
 #############################################################################
 
 # Local Variables:

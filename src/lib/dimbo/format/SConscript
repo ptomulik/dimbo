@@ -20,18 +20,19 @@
 
 Import('env')
 
-libdimbo_format = env.StaticLibrary(
-  target = 'libdimbo_format',
-  source =  [ 'cl/platform_info.cpp'
-            , 'cl/platform_query.cpp'
-            , 'cl/device_info.cpp'
-            , 'cl/device_query.cpp'
-            , 'cl/platform_layer_info.cpp' ]
+from SCons.Util import CLVar
+
+libs = env.get('LIBS', CLVar()) + ['dimbo_format_cl']
+lib = env.SharedLibrary('../../dimbo_format',
+    ['join.cpp'],
+    LIBS = libs,
 )
 
-env.Install('${libdir}', libdimbo_format)
+env.Install('${libdir}', lib)
 
-# TODO: Install
+subdirs = [ 'cl' ]
+scripts = [ '%s/SConscript' % s for s in subdirs ]
+SConscript(scripts, exports = ['env'])
 
 # Local Variables:
 # # tab-width:4

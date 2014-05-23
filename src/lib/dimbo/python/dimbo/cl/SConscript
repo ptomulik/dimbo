@@ -32,14 +32,8 @@ libs = env.get('SWIGPY_LIBS', CLVar()) + [
     'protobuf',
     'OpenCL'
 ]
-libpath = env.get('SWIGPY_LIBPATH', CLVar()) + [
-    '../../../cl',
-    '../../../protobuf/cl',
-    '../../../format'
-]
 overrides = {
-    'SWIGPY_LIBS'       : libs,
-    'SWIGPY_LIBPATH'    : libpath
+    'SWIGPY_LIBS'       : libs
 }
 modules = [
     'opencl1_0',

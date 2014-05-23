@@ -28,7 +28,5 @@
  */ // }}}
 #include <dimbo/format/join.hpp>
 
-} /* namespace Format */
-} /* namespace Dimbo */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

@@ -20,15 +20,19 @@
 
 Import('env')
 
-libdimbo_app = env.SharedLibrary(
-  target = 'libdimbo_app',
-  source =  [ 'options/options_map.cpp'
-            , 'options/options_description.cpp'
-            , 'common_options_description.cpp'
-            , 'main.cpp' ]
+from SCons.Util import CLVar
+
+libs = env.get('LIBS', CLVar()) + [ 'boost_program_options' ]
+
+lib = env.SharedLibrary('../../dimbo_app',
+    [ 'options/options_map.cpp'
+    , 'options/options_description.cpp'
+    , 'common_options_description.cpp'
+    , 'main.cpp' ],
+    LIBS = libs
 )
 
-env.Install('${libdir}', libdimbo_app)
+env.Install('${libdir}', lib)
 
 subdirs = [ 'po', 'clinfo' ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]
