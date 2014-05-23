@@ -49,7 +49,6 @@ protocs = 'protoc'
 ProtocAction = SCons.Action.Action('$PROTOCCOM', '$PROTOCCOMSTR')
 def ProtocEmitter(target, source, env):
     dirOfCallingSConscript = Dir('.').srcnode()
-    env.Prepend(PROTOCPROTOPATH = dirOfCallingSConscript.path)
 
     source_with_corrected_path = []
     for src in source:
@@ -97,10 +96,16 @@ def generate(env):
     env['PROTOC']        = env.Detect(protocs) or 'protoc'
     env['PROTOCFLAGS']   = SCons.Util.CLVar('')
     env['PROTOCPROTOPATH'] = SCons.Util.CLVar('')
-    env['PROTOCCOM']     = '$PROTOC ${["-I%s"%x for x in PROTOCPROTOPATH]} $PROTOCFLAGS --cpp_out=$PROTOCCPPOUTFLAGS$PROTOCOUTDIR ${PROTOCPYTHONOUTDIR and ("--python_out="+PROTOCPYTHONOUTDIR) or ""} ${PROTOCFDSOUT and ("-o"+PROTOCFDSOUT) or ""} ${SOURCES}'
+    env['PROTOCCOM'] = '$PROTOC $_PROTOCFLAGS ${SOURCES}'
     env['PROTOCOUTDIR'] = '${SOURCE.dir}'
     env['PROTOCPYTHONOUTDIR'] = "python"
     env['PROTOCSRCSUFFIX']  = '.proto'
+    env['PROTOCINCPREFIX'] = '-I'
+    env['PROTOCINCSUFFIX'] = ''
+    env['PROTOCCWD'] = '${__env__.Dir(".").srcnode().path}'
+    env['_PROTOCCWD'] = SCons.Util.CLVar('$PROTOCCWD')
+    env['_PROTOCPROTOPATHFLAGS'] = '${_concat(PROTOCINCPREFIX,_PROTOCCWD+PROTOCPROTOPATH,PROTOCINCSUFFIX,__env__,RDirs)}'
+    env['_PROTOCFLAGS'] = '$_PROTOCPROTOPATHFLAGS $PROTOCFLAGS --cpp_out=$PROTOCCPPOUTFLAGS$PROTOCOUTDIR ${PROTOCPYTHONOUTDIR and ("--python_out="+PROTOCPYTHONOUTDIR) or ""} ${PROTOCFDSOUT and ("-o"+PROTOCFDSOUT) or ""}'
 
 def exists(env):
     return env.Detect(protocs)
