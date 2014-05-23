@@ -22,7 +22,7 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = env.get('LIBS', CLVar()) + [ 'boost_program_options' ]
+libs = CLVar('boost_program_options')
 
 lib = env.SharedLibrary('../../dimbo_app',
     [ 'options/options_map.cpp'

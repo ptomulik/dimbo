@@ -22,7 +22,7 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = env.get('LIBS', CLVar()) + ['dimbo_format']
+libs = CLVar('dimbo_format')
 
 env.Program(['autosep1'], ['autosep1.cpp'], LIBS = libs)
 env.Program(['autosep2'], ['autosep2.cpp'], LIBS = libs)

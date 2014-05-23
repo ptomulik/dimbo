@@ -22,7 +22,7 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = env.get('LIBS', CLVar()) + [ 'dimbo_app', 'dimbo_format' ]
+libs = CLVar('dimbo_app dimbo_format')
 
 lib = env.SharedLibrary('../../../dimbo_app_clinfo',
     [ 'options_description.cpp'

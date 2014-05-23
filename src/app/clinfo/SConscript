@@ -22,7 +22,7 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = env.get('LIBS', CLVar()) + [ 'dimbo_app_clinfo' ]
+libs = CLVar('dimbo_app_clinfo')
 clinfo = env.Program('dimbo-clinfo', 'main.cpp', LIBS = libs)
 
 env.Install('${bindir}', clinfo)

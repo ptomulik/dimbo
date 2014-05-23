@@ -42,12 +42,7 @@ objects = env.SharedObject([
     , 'context_properties.cpp'
 ])
 
-libs = env.get('LIBS', CLVar()) + [ 
-      'dimbo_protobuf_cl'
-    , 'boost_regex' 
-#    , 'boost_serialization' 
-    , 'OpenCL'
-]
+libs =  CLVar('dimbo_protobuf_cl boost_regex boost_serialization OpenCL')
 
 # rlib - "real" library
 rlib = env.SharedLibrary('../../dimbo_cl', objects + ['real.cpp'], LIBS = libs)

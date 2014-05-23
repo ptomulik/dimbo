@@ -30,7 +30,7 @@ overrides = { 'PROTOCPYTHONOUTDIR' : None, 'PROTOCOUTDIR' : '${TARGET.dir}' }
 for proto in env.Glob('*.proto'):
     env.Protoc( proto, **overrides )
 
-libs = env.get('LIBS',CLVar()) + [ 'protobuf' ]
+libs = CLVar( 'protobuf')
 
 lib = env.SharedLibrary('../../../dimbo_protobuf_cl', 
     [ 'platform_query.pb.cc'
