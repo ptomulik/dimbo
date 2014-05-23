@@ -37,7 +37,7 @@
 #include <dimbo/cl/platform_layer_info.hpp>
 
 #include <dimbo/config.h>
-#define DIMBO_GETTEXT_DOMAIN LIBDIMBO_CLINFO_GETTEXT_DOMAIN
+#define DIMBO_GETTEXT_DOMAIN LIBDIMBO_APP_CLINFO_GETTEXT_DOMAIN
 #include <dimbo/gettext.hpp>
 
 #include <boost/program_options/parsers.hpp>

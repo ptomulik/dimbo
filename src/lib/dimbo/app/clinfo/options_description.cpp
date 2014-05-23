@@ -28,7 +28,7 @@
  */ // }}}
 #include <dimbo/app/clinfo/options_description.hpp>
 #include <dimbo/config.h>
-#define DIMBO_GETTEXT_DOMAIN LIBDIMBO_CLINFO_GETTEXT_DOMAIN
+#define DIMBO_GETTEXT_DOMAIN LIBDIMBO_APP_CLINFO_GETTEXT_DOMAIN
 #include <dimbo/gettext.hpp>
 
 
