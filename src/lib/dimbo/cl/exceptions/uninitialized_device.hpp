@@ -29,12 +29,15 @@
 #ifndef DIMBO_CL_EXCEPTIONS_UNINITIALIZED_DEVICE_HPP_INCLUDED
 #define DIMBO_CL_EXCEPTIONS_UNINITIALIZED_DEVICE_HPP_INCLUDED
 
-#include <dimbo/cl/exceptions/decl_logic_error.hpp>
+#include <dimbo/cl/exception.hpp>
+#include <dimbo/exceptions/decl_logic_error.hpp>
 #include <dimbo/cl/exceptions/common.hpp>
 
 namespace Dimbo {
 namespace Cl {
-DIMBO_CL_DECL_LOGIC_ERROR(Uninitialized_Device, "Access to uninitialized device object")
+
+DIMBO_DECL_LOGIC_ERROR(Dimbo::Cl, Exception, Uninitialized_Device, "Access to uninitialized device object")
+
 } /* namespace Cl */
 } /* namespace Dimbo */
 

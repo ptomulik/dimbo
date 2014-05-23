@@ -26,14 +26,14 @@
  */ // }}}
 
 %{
-#include <dimbo/cl/exceptions/decl_invalid_arg.hpp>
+#include <dimbo/exceptions/decl_invalid_arg.hpp>
 %}
 %include <dimbo/cl/exceptions/decl_exception_ctor_what.swg>
 
 %exceptionclass
   Dimbo::Standardized_Exception<Dimbo::Cl::Exception, std::invalid_argument>;
 
-%include <dimbo/cl/exceptions/decl_invalid_arg.hpp>
+%include <dimbo/exceptions/decl_invalid_arg.hpp>
 
 %template(DimboStandardizedException_T_DimboClException_StdInvalidArg)
   Dimbo::Standardized_Exception<Dimbo::Cl::Exception, std::invalid_argument>;

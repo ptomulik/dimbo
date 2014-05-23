@@ -29,12 +29,15 @@
 #ifndef DIMBO_CL_EXCEPTIONS_UNINITIALIZED_PROGRAM_HPP_INCLUDED
 #define DIMBO_CL_EXCEPTIONS_UNINITIALIZED_PROGRAM_HPP_INCLUDED
 
-#include <dimbo/cl/exceptions/decl_logic_error.hpp>
+#include <dimbo/cl/exception.hpp>
+#include <dimbo/exceptions/decl_logic_error.hpp>
 #include <dimbo/cl/exceptions/common.hpp>
 
 namespace Dimbo {
 namespace Cl {
-DIMBO_CL_DECL_LOGIC_ERROR(Uninitialized_Program, "Access to uninitialized program object")
+
+DIMBO_DECL_LOGIC_ERROR(Dimbo::Cl, Exception, Uninitialized_Program, "Access to uninitialized program object")
+
 } /* namespace Cl */
 } /* namespace Dimbo */
 

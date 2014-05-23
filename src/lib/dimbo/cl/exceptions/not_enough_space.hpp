@@ -29,13 +29,14 @@
 #ifndef DIMBO_CL_EXCEPTIONS_NOT_ENOUGH_SPACE_HPP_INCLUDED
 #define DIMBO_CL_EXCEPTIONS_NOT_ENOUGH_SPACE_HPP_INCLUDED
 
-#include <dimbo/cl/exceptions/decl_logic_error.hpp>
+#include <dimbo/cl/exception.hpp>
+#include <dimbo/exceptions/decl_logic_error.hpp>
 #include <dimbo/cl/exceptions/common.hpp>
 
 namespace Dimbo {
 namespace Cl {
 
-DIMBO_CL_DECL_LOGIC_ERROR(Not_Enough_Space, "Not enough space")
+DIMBO_DECL_LOGIC_ERROR(Dimbo::Cl, Exception, Not_Enough_Space, "Not enough space")
 
 } // namespace Cl
 } // namespace Dimbo

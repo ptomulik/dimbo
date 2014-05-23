@@ -32,7 +32,7 @@
 #include <dimbo/cl/context_properties.hpp>
 #include <dimbo/cl/devices.hpp>
 
-#include <dimbo/cl/exceptions/decl_logic_error.hpp>
+//#include <dimbo/cl/exceptions/decl_logic_error.hpp>
 #include <dimbo/cl/exceptions/bad_alloc.hpp>
 #include <dimbo/cl/exceptions/uninitialized_context.hpp>
 #include <dimbo/cl/cl_errors/other_cl_error.hpp>

@@ -26,14 +26,14 @@
  */ // }}}
 
 %{
-#include <dimbo/cl/exceptions/decl_out_of_range.hpp>
+#include <dimbo/exceptions/decl_out_of_range.hpp>
 %}
 %include <dimbo/cl/exceptions/decl_exception_ctor_what.swg>
 
 %exceptionclass
   Dimbo::Standardized_Exception<Dimbo::Cl::Exception, std::out_of_range>;
 
-%include <dimbo/cl/exceptions/decl_out_of_range.hpp>
+%include <dimbo/exceptions/decl_out_of_range.hpp>
 
 %template(DimboStandardizedException_T_DimboClException_StdOutOfRange)
   Dimbo::Standardized_Exception<Dimbo::Cl::Exception, std::out_of_range>;
