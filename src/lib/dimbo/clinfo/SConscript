@@ -20,19 +20,21 @@
 
 Import('env')
 
-## --------------------------------------------------------------------------
-## NOTE: THIS PART (CONFIG CODE) MUST GO BEFORE THE NORMAL BUILD CODE
-if not env.GetOption('clean') and not env.GetOption('help'):
-    log = env.File('config.log').abspath
-    conf_dir = env.Dir('.sconf_temp').abspath
-    conf = env.Configure(conf_dir = conf_dir, log_file=log, config_h = 'config.h')
-    SConscript('SConscript.conf', exports = ['conf'])
-    env = conf.Finish()
-## --------------------------------------------------------------------------
+from SCons.Util import CLVar
 
-subdirs = [ 'doc', 'app', 'cl', 'clinfo', 'format', 'protobuf', 'swig', 'python', 'examples' ]
-scripts = [ '%s/SConscript' % s for s in subdirs ]
-SConscript(scripts, exports = ['env'])
+libs =  CLVar('dimbo_protobuf_clinfo boost_serialization')
+
+# rlib - "real" library
+lib = env.SharedLibrary('../../dimbo_clinfo', 
+    [ 'platform_info.cpp'
+    , 'platform_query.cpp'
+    , 'device_info.cpp'
+    , 'device_query.cpp'
+    , 'platform_layer_info.cpp'],
+    LIBS = libs
+)
+env.Install('${libdir}', lib)
+
 
 # Local Variables:
 # # tab-width:4

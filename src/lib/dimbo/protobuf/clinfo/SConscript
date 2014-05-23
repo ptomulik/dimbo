@@ -20,19 +20,27 @@
 
 Import('env')
 
-## --------------------------------------------------------------------------
-## NOTE: THIS PART (CONFIG CODE) MUST GO BEFORE THE NORMAL BUILD CODE
-if not env.GetOption('clean') and not env.GetOption('help'):
-    log = env.File('config.log').abspath
-    conf_dir = env.Dir('.sconf_temp').abspath
-    conf = env.Configure(conf_dir = conf_dir, log_file=log, config_h = 'config.h')
-    SConscript('SConscript.conf', exports = ['conf'])
-    env = conf.Finish()
-## --------------------------------------------------------------------------
+from SCons.Util import CLVar
 
-subdirs = [ 'doc', 'app', 'cl', 'clinfo', 'format', 'protobuf', 'swig', 'python', 'examples' ]
-scripts = [ '%s/SConscript' % s for s in subdirs ]
-SConscript(scripts, exports = ['env'])
+overrides = { 'PROTOCPYTHONOUTDIR' : None, 'PROTOCOUTDIR' : '${TARGET.dir}' }
+## FIXME: Ensure that there are no dependency issues in generated files
+##        xx.pb.h may include yy.pb.h and I'm not sure if currently the
+##        generated C++ code compiles by accident or the dependencies are
+##        recognized by SCons and compilation order is respected.
+for proto in env.Glob('*.proto'):
+    env.Protoc( proto, **overrides )
+
+libs = CLVar('protobuf')
+
+lib = env.SharedLibrary('../../../dimbo_protobuf_clinfo', 
+    [ 'platform_query.pb.cc'
+    , 'platform_info.pb.cc'
+    , 'device_query.pb.cc'
+    , 'device_info.pb.cc' ],
+    LIBS = libs
+)
+
+env.Install('${libdir}', lib)
 
 # Local Variables:
 # # tab-width:4

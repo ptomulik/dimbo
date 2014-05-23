@@ -1,0 +1,107 @@
+//
+// @COPYRIGHT@
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation
+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the
+// Software is furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+// DEALINGS IN THE SOFTWARE
+//
+
+// dimbo/protobuf/cl/device_info.proto
+
+package Dimbo.Protobuf.Clinfo;
+message Device_Info {
+  optional uint64 id = 1;
+  optional uint64 type = 0x1000;
+  optional uint32 vendor_id = 0x1001;
+  optional uint32 max_compute_units = 0x1002;
+  optional uint32 max_work_item_dimensions = 0x1003;
+  optional uint64 max_work_group_size = 0x1004;
+  repeated uint64 max_work_item_sizes = 0x1005;
+  optional uint32 preferred_vector_width_char = 0x1006;
+  optional uint32 preferred_vector_width_short = 0x1007;
+  optional uint32 preferred_vector_width_int = 0x1008;
+  optional uint32 preferred_vector_width_long = 0x1009;
+  optional uint32 preferred_vector_width_float = 0x100A;
+  optional uint32 preferred_vector_width_double = 0x100B;
+  optional uint32 max_clock_frequency = 0x100C;
+  optional uint32 address_bits = 0x100D;
+  optional uint32 max_read_image_args = 0x100E;
+  optional uint32 max_write_image_args = 0x100F;
+  optional uint64 max_mem_alloc_size = 0x1010;
+  optional uint64 image2d_max_width = 0x1011;
+  optional uint64 image2d_max_height = 0x1012;
+  optional uint64 image3d_max_width = 0x1013;
+  optional uint64 image3d_max_height = 0x1014;
+  optional uint64 image3d_max_depth = 0x1015;
+  optional bool image_support = 0x1016;
+  optional uint64 max_parameter_size = 0x1017;
+  optional uint32 max_samplers = 0x1018;
+  optional uint32 mem_base_addr_align = 0x1019;
+  optional uint32 min_data_type_align_size = 0x101A;
+  optional uint64 single_fp_config = 0x101B;
+  optional uint32 global_mem_cache_type = 0x101C;
+  optional uint32 global_mem_cacheline_size = 0x101D;
+  optional uint64 global_mem_cache_size = 0x101E;
+  optional uint64 global_mem_size = 0x101F;
+  optional uint32 max_constant_buffer_size = 0x1020;
+  optional uint32 max_constant_args = 0x1021;
+  optional uint32 local_mem_type = 0x1022;
+  optional uint64 local_mem_size = 0x1023;
+  optional bool error_correction_support = 0x1024;
+  optional uint64 profiling_timer_resolution = 0x1025;
+  optional bool endian_little = 0x1026;
+  optional bool available = 0x1027;
+  optional bool compiler_available = 0x1028;
+  optional uint64 execution_capabilities = 0x1029;
+  optional uint64 queue_properties = 0x102A;
+  optional string name = 0x102B;
+  optional string vendor = 0x102C;
+  optional string driver_version = 0x102D;
+  optional string profile = 0x102E;
+  optional string version = 0x102F;
+  optional string extensions = 0x1030;
+  optional uint64 platform_id = 0x1031;
+  optional uint64 double_fp_config = 0x1032;
+  optional uint32 preferred_vector_width_half = 0x1034;
+  optional bool host_unified_memory = 0x1035;
+  optional uint32 native_vector_width_char = 0x1036;
+  optional uint32 native_vector_width_short = 0x1037;
+  optional uint32 native_vector_width_int = 0x1038;
+  optional uint32 native_vector_width_long = 0x1039;
+  optional uint32 native_vector_width_float = 0x103A;
+  optional uint32 native_vector_width_double = 0x103B;
+  optional uint32 native_vector_width_half = 0x103C;
+  optional string opencl_c_version = 0x103D;
+  optional bool linker_available = 0x103E;
+  optional string built_in_kernels = 0x103F;
+  optional uint64 image_max_buffer_size = 0x1040;
+  optional uint64 image_max_array_size = 0x1041;
+  optional uint64 parent_device_id = 0x1042;
+  optional uint32 partition_max_sub_devices = 0x1043;
+  repeated int64 partition_properties = 0x1044;
+  optional uint64 partition_affinity_domain = 0x1045;
+  repeated int64 partition_type = 0x1046;
+  optional uint32 reference_count = 0x1047;
+  optional bool preferred_interop_user_sync = 0x1048;
+  optional uint64 printf_buffer_size = 0x1049;
+  optional uint32 image_pitch_alignment = 0x104A;
+  optional uint32 image_base_address_alignment = 0x104B;
+}
+
+// vim: set expandtab tabstop=2 shiftwidth=2:
+// vim: set foldmethod=marker foldcolumn=4:
+// vim: set syntax=proto:

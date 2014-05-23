@@ -19,7 +19,7 @@
 # SOFTWARE
 
 Import('env')
-subdirs = [ 'cl' ]
+subdirs = [ 'cl', 'clinfo' ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]
 SConscript( scripts, exports = ['env'] )
 
