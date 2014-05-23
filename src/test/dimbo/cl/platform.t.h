@@ -20,10 +20,10 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/test/unit/dimbo/cl/platform.t.h
+// dimbo/cl/platform.t.h
 
-/** // doc: dimbo/test/unit/dimbo/cl/platform.t.h {{{
- * \file dimbo/test/unit/dimbo/cl/platform.t.h
+/** // doc: dimbo/cl/platform.t.h {{{
+ * \file dimbo/cl/platform.t.h
  * \todo Write documentation
  */ // }}}
 #ifndef DIMBO_CL_PLATFORM_T_H_INCLUDED

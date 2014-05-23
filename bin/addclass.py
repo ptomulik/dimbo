@@ -36,7 +36,7 @@ def add_cli_args(argparser):
     proto_ext = '.proto'
     proto_h_ext = '.pb.h'
     swig_prefix = 'swig'
-    unit_test_prefix = path.join('test', 'unit')
+    unit_test_prefix = path.join('src', 'test')
     swig_ext = '.swg'
     # Options
     argparser.add_argument('-q','--quiet', action = "store_false",
@@ -68,9 +68,9 @@ def add_cli_args(argparser):
         action = 'store', dest = 'proto_infix',
         help = "additional part added to protobuf class name (%s)" % proto_infix,
         default = proto_infix)
-    argparser.add_argument('--unit-test-prefix', type = str, metavar = 'infix',
+    argparser.add_argument('--unit-test-prefix', type = str, metavar = 'dir',
         action = 'store', dest = 'unit_test_prefix',
-        help = "additional prefix added to unit test file path (%s)" % unit_test_prefix,
+        help = "prefix prepended to output directory of unit test (%s)" % unit_test_prefix,
         default = unit_test_prefix)
     argparser.add_argument('--swig-prefix', type = str, metavar = 'infix',
         action = 'store', dest = 'swig_prefix',
@@ -172,13 +172,13 @@ def generate_class(args):
     swig_module_parts = class_name_parts
     swig_package_parts = swig_module_parts[:-1]
 
-    if args.unit_test_prefix:
-        unit_test_file_name_parts = [p.lower() for p in [ class_name_parts[0], \
-                                                     args.unit_test_prefix ] \
-                                                   + class_name_parts]
-
-    else:
-        unit_test_file_name_parts = [p.lower() for p in class_name_parts ]
+##    if args.unit_test_prefix:
+##        unit_test_file_name_parts = [p.lower() for p in [ class_name_parts[0], \
+##                                                     args.unit_test_prefix ] \
+##                                                   + class_name_parts]
+##
+##    else:
+    unit_test_file_name_parts = [p.lower() for p in class_name_parts ]
 
     unit_test_header_guard = '_'.join([p.upper() for p in class_name_parts]) + '_T_H_INCLUDED'
 
@@ -188,7 +188,7 @@ def generate_class(args):
     cpp_file_rel = path.join(*class_name_parts).lower() + args.cpp_ext
     cpp_file_full = path.join(args.prefix, cpp_file_rel)
     unit_test_file_rel = path.join(*unit_test_file_name_parts).lower() + args.unit_test_ext
-    unit_test_file_full = path.join(args.prefix, unit_test_file_rel)
+    unit_test_file_full = path.join(args.unit_test_prefix, unit_test_file_rel)
     proto_file_rel = path.join(*proto_class_name_parts).lower() + args.proto_ext
     # FIXME: The extension (and possibly location) should not be hard-coded
     proto_h_file_rel = path.join(*proto_class_name_parts).lower() + args.proto_h_ext

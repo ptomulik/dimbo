@@ -20,10 +20,10 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/test/unit/dimbo/cl/device_info.t.h
+// dimbo/cl/device_info.t.h
 
-/** // doc: dimbo/test/unit/dimbo/cl/device_info.t.h {{{
- * \file dimbo/test/unit/dimbo/cl/device_info.t.h
+/** // doc: dimbo/cl/device_info.t.h {{{
+ * \file dimbo/cl/device_info.t.h
  * \brief Unit tests for Dimbo::Cl::Device_Info
  */ // }}}
 #ifndef DIMBO_CL_DEVICE_INFO_T_H_INCLUDED

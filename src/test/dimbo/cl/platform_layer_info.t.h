@@ -20,10 +20,10 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/test/unit/dimbo/cl/platform_layer_info.t.h
+// dimbo/cl/platform_layer_info.t.h
 
-/** // doc: dimbo/test/unit/dimbo/cl/platform_layer_info.t.h {{{
- * \file dimbo/test/unit/dimbo/cl/platform_layer_info.t.h
+/** // doc: dimbo/cl/platform_layer_info.t.h {{{
+ * \file dimbo/cl/platform_layer_info.t.h
  * \brief Unit tests for Dimbo::Cl::Platform_Layer_Info
  */ // }}}
 #ifndef DIMBO_CL_PLATFORM_LAYER_INFO_T_H_INCLUDED

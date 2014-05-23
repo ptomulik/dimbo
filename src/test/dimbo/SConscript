@@ -19,6 +19,25 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
 
+Import('env')
+
+from SCons.Util import CLVar
+
+libs = env.get('LIBS', CLVar())
+libpath = env.get('LIBPATH', CLVar()) + ['../../lib/dimbo']
+
+defs = env.get('CPPDEFINES', {}).copy()
+defs.update({'DIMBO_COMPILING_TEST' : 1})
+
+env.CxxTest('dimbo-test', env.Glob('*.t.h'),
+            LIBS = libs,
+            CXXTEST_LIBPATH = libpath,
+            CXXTEST_TARGET = 'check-dimbo')
+env.Alias('check', ['check-dimbo'])
+
+scripts = env.Glob('*/SConscript')
+SConscript(scripts, exports = ['env'])
+
 # Local Variables:
 # # tab-width:4
 # # indent-tabs-mode:nil

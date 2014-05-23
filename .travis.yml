@@ -39,7 +39,7 @@ after_success:
                   -e build/lib/dimbo/protobuf -e build/.sconf_temp
                   -e build/lib/dimbo/.sconf_temp -e src/lib/dimbo/cl/cl_errors
                   -e src/lib/dimbo/cl/exceptions -e src/lib/dimbo/doc
-                  -e src/lib/dimbo/test -e site_scons -e template -e valgrind
+                  -e src/test -e site_scons -e template -e valgrind
                   -e /usr;
     fi
 after_failure:

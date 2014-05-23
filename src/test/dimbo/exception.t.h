@@ -20,10 +20,10 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/test/unit/dimbo/exception.t.h
+// dimbo/exception.t.h
 
-/** // doc: dimbo/test/unit/dimbo/exception.t.h {{{
- * \file dimbo/test/unit/dimbo/exception.t.h
+/** // doc: dimbo/exception.t.h {{{
+ * \file dimbo/exception.t.h
  * \todo Write documentation
  */ // }}}
 #ifndef DIMBO_EXCEPTION_T_H_INCLUDED

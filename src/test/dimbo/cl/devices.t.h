@@ -20,10 +20,10 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/test/unit/dimbo/cl/devices.t.h
+// dimbo/cl/devices.t.h
 
-/** // doc: dimbo/test/unit/dimbo/cl/devices.t.h {{{
- * \file dimbo/test/unit/dimbo/cl/devices.t.h
+/** // doc: dimbo/cl/devices.t.h {{{
+ * \file dimbo/cl/devices.t.h
  * \todo Write documentation
  */ // }}}
 #ifndef DIMBO_CL_DEVICES_T_H_INCLUDED

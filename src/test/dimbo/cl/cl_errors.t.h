@@ -20,10 +20,10 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/test/unit/dimbo/cl/cl_errors.t.h
+// dimbo/cl/cl_errors.t.h
 
-/** // doc: dimbo/test/unit/dimbo/cl/cl_errors.t.h {{{
- * \file dimbo/test/unit/dimbo/cl/cl_errors.t.h
+/** // doc: dimbo/cl/cl_errors.t.h {{{
+ * \file dimbo/cl/cl_errors.t.h
  * \todo Write documentation
  */ // }}}
 #ifndef DIMBO_CL_CL_ERRORS_T_H_INCLUDED

@@ -20,10 +20,10 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/test/unit/dimbo/cl/platform_query.t.h
+// dimbo/cl/platform_query.t.h
 
-/** // doc: dimbo/test/unit/dimbo/cl/platform_query.t.h {{{
- * \file dimbo/test/unit/dimbo/cl/platform_query.t.h
+/** // doc: dimbo/cl/platform_query.t.h {{{
+ * \file dimbo/cl/platform_query.t.h
  * \brief Unit tests for Dimbo::Cl::Platform_Query
  */ // }}}
 #ifndef DIMBO_CL_PLATFORM_QUERY_T_H_INCLUDED

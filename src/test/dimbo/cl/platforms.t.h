@@ -20,10 +20,10 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/test/unit/dimbo/cl/platforms.t.h
+// dimbo/cl/platforms.t.h
 
-/** // doc: dimbo/test/unit/dimbo/cl/platforms.t.h {{{
- * \file dimbo/test/unit/dimbo/cl/platforms.t.h
+/** // doc: dimbo/cl/platforms.t.h {{{
+ * \file dimbo/cl/platforms.t.h
  * \brief Unit tests for dimbo/cl/platforms.hpp
  */ // }}}
 #ifndef DIMBO_CL_PLATFORMS_T_H_INCLUDED
