@@ -26,11 +26,11 @@
  */ // }}}
 
 %{
-#include <dimbo/cl/exceptions/decl_exception_const_what.hpp>
+#include <dimbo/exceptions/decl_exception_const_what.hpp>
 %}
 %include <dimbo/standardized_exception.swg>
 %include <dimbo/cl/exception.swg>
-%include <dimbo/cl/exceptions/decl_exception_const_what.hpp>
+%include <dimbo/exceptions/decl_exception_const_what.hpp>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

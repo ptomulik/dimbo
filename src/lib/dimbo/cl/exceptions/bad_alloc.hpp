@@ -29,13 +29,14 @@
 #ifndef DIMBO_CL_EXCEPTIONS_BAD_ALLOC_HPP_INCLUDED
 #define DIMBO_CL_EXCEPTIONS_BAD_ALLOC_HPP_INCLUDED
 
-#include <dimbo/cl/exceptions/decl_bad_alloc.hpp>
+#include <dimbo/cl/exception.hpp>
+#include <dimbo/exceptions/decl_bad_alloc.hpp>
 #include <dimbo/cl/exceptions/common.hpp>
 
 namespace Dimbo {
 namespace Cl {
 
-DIMBO_CL_DECL_BAD_ALLOC(Bad_Alloc,"Memory allocation failed")
+DIMBO_DECL_BAD_ALLOC(Dimbo::Cl, Exception, Bad_Alloc,"Memory allocation failed")
 
 } // namespace Cl
 } // namespace Dimbo

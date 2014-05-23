@@ -26,14 +26,14 @@
  */ // }}}
 
 %{
-#include <dimbo/cl/exceptions/decl_logic_error.hpp>
+#include <dimbo/exceptions/decl_logic_error.hpp>
 %}
 %include <dimbo/cl/exceptions/decl_exception_ctor_what.swg>
 
 %exceptionclass
   Dimbo::Standardized_Exception<Dimbo::Cl::Exception, std::logic_error>;
 
-%include <dimbo/cl/exceptions/decl_logic_error.hpp>
+%include <dimbo/exceptions/decl_logic_error.hpp>
 
 %template(DimboStandardizedException_T_DimboClException_StdLogicError)
   Dimbo::Standardized_Exception<Dimbo::Cl::Exception, std::logic_error>;

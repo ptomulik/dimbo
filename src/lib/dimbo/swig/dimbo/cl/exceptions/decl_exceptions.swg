@@ -26,19 +26,19 @@
  */ // }}}
 
 %{
-#include <dimbo/cl/exceptions/decl_exception_const_what.hpp>
-#include <dimbo/cl/exceptions/decl_exception_ctor_what.hpp>
-#include <dimbo/cl/exceptions/decl_bad_alloc.hpp>
-#include <dimbo/cl/exceptions/decl_domain_error.hpp>
-#include <dimbo/cl/exceptions/decl_exception.hpp>
-#include <dimbo/cl/exceptions/decl_invalid_arg.hpp>
-#include <dimbo/cl/exceptions/decl_length_error.hpp>
-#include <dimbo/cl/exceptions/decl_logic_error.hpp>
-#include <dimbo/cl/exceptions/decl_out_of_range.hpp>
-#include <dimbo/cl/exceptions/decl_overflow_error.hpp>
-#include <dimbo/cl/exceptions/decl_range_error.hpp>
-#include <dimbo/cl/exceptions/decl_runtime_error.hpp>
-#include <dimbo/cl/exceptions/decl_underflow_error.hpp>
+#include <dimbo/exceptions/decl_exception_const_what.hpp>
+#include <dimbo/exceptions/decl_exception_ctor_what.hpp>
+#include <dimbo/exceptions/decl_bad_alloc.hpp>
+#include <dimbo/exceptions/decl_domain_error.hpp>
+#include <dimbo/exceptions/decl_exception.hpp>
+#include <dimbo/exceptions/decl_invalid_arg.hpp>
+#include <dimbo/exceptions/decl_length_error.hpp>
+#include <dimbo/exceptions/decl_logic_error.hpp>
+#include <dimbo/exceptions/decl_out_of_range.hpp>
+#include <dimbo/exceptions/decl_overflow_error.hpp>
+#include <dimbo/exceptions/decl_range_error.hpp>
+#include <dimbo/exceptions/decl_runtime_error.hpp>
+#include <dimbo/exceptions/decl_underflow_error.hpp>
 %}
 
 //%exceptionclass
@@ -64,19 +64,19 @@
 //%exceptionclass
 //  Dimbo::Standardized_Exception<Dimbo::Cl::Exception, std::underflow_error>;
 
-%include <dimbo/cl/exceptions/decl_exception_const_what.hpp>
-%include <dimbo/cl/exceptions/decl_exception_ctor_what.hpp>
-%include <dimbo/cl/exceptions/decl_bad_alloc.hpp>
-%include <dimbo/cl/exceptions/decl_domain_error.hpp>
-%include <dimbo/cl/exceptions/decl_exception.hpp>
-%include <dimbo/cl/exceptions/decl_invalid_arg.hpp>
-%include <dimbo/cl/exceptions/decl_length_error.hpp>
-%include <dimbo/cl/exceptions/decl_logic_error.hpp>
-%include <dimbo/cl/exceptions/decl_out_of_range.hpp>
-%include <dimbo/cl/exceptions/decl_overflow_error.hpp>
-%include <dimbo/cl/exceptions/decl_range_error.hpp>
-%include <dimbo/cl/exceptions/decl_runtime_error.hpp>
-%include <dimbo/cl/exceptions/decl_underflow_error.hpp>
+%include <dimbo/exceptions/decl_exception_const_what.hpp>
+%include <dimbo/exceptions/decl_exception_ctor_what.hpp>
+%include <dimbo/exceptions/decl_bad_alloc.hpp>
+%include <dimbo/exceptions/decl_domain_error.hpp>
+%include <dimbo/exceptions/decl_exception.hpp>
+%include <dimbo/exceptions/decl_invalid_arg.hpp>
+%include <dimbo/exceptions/decl_length_error.hpp>
+%include <dimbo/exceptions/decl_logic_error.hpp>
+%include <dimbo/exceptions/decl_out_of_range.hpp>
+%include <dimbo/exceptions/decl_overflow_error.hpp>
+%include <dimbo/exceptions/decl_range_error.hpp>
+%include <dimbo/exceptions/decl_runtime_error.hpp>
+%include <dimbo/exceptions/decl_underflow_error.hpp>
 
 
 //%template(DimboStandardizedException_T_DimboClException_StdBadAlloc)

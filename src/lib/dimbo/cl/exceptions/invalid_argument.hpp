@@ -29,13 +29,14 @@
 #ifndef DIMBO_CL_EXCEPTIONS_INVALID_ARGUMENT_HPP_INCLUDED
 #define DIMBO_CL_EXCEPTIONS_INVALID_ARGUMENT_HPP_INCLUDED
 
-#include <dimbo/cl/exceptions/decl_invalid_arg.hpp>
+#include <dimbo/cl/exception.hpp>
+#include <dimbo/exceptions/decl_invalid_arg.hpp>
 #include <dimbo/cl/exceptions/common.hpp>
 
 namespace Dimbo {
 namespace Cl {
 
-DIMBO_CL_DECL_INVALID_ARG(Invalid_Argument, "Invalid argument")
+DIMBO_DECL_INVALID_ARG(Dimbo::Cl, Exception, Invalid_Argument, "Invalid argument")
 
 } // namespace Cl
 } // namespace Dimbo

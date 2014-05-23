@@ -20,21 +20,21 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/cl/exceptions/decl_logic_error.hpp
+// dimbo/exceptions/decl_overflow_error.hpp
 
-/** // doc: dimbo/cl/exceptions/decl_logic_error.hpp {{{
- * \file dimbo/cl/exceptions/decl_logic_error.hpp
+/** // doc: dimbo/exceptions/decl_overflow_error.hpp {{{
+ * \file dimbo/exceptions/decl_overflow_error.hpp
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_CL_DECL_LOGIC_ERROR_HPP_INCLUDED
-#define DIMBO_CL_DECL_LOGIC_ERROR_HPP_INCLUDED
+#ifndef DIMBO_DECL_OVERFLOW_ERROR_HPP_INCLUDED
+#define DIMBO_DECL_OVERFLOW_ERROR_HPP_INCLUDED
 
-#include <dimbo/cl/exceptions/decl_exception_ctor_what.hpp>
+#include <dimbo/exceptions/decl_exception_ctor_what.hpp>
 #include <stdexcept>
 
-#define DIMBO_CL_DECL_LOGIC_ERROR(__name,__what) \
-  DIMBO_CL_DECL_EXCEPTION_CTOR_WHAT(__name,__what,std::logic_error)
+#define DIMBO_DECL_OVERFLOW_ERROR(__ns,__klass,__name,__what) \
+  DIMBO_DECL_EXCEPTION_CTOR_WHAT(__ns,__klass,__name,__what,std::overflow_error)
 
-#endif /* DIMBO_CL_DECL_LOGIC_ERROR_HPP_INCLUDED */
+#endif /* DIMBO_DECL_OVERFLOW_ERROR_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

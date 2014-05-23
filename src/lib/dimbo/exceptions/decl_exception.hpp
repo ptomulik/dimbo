@@ -20,32 +20,20 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/cl/exceptions/decl_exception_ctor_what.hpp
+// dimbo/exceptions/decl_exception.hpp
 
-/** // doc: dimbo/cl/exceptions/decl_exception_ctor_what.hpp {{{
- * \file dimbo/cl/exceptions/decl_exception_ctor_what.hpp
+/** // doc: dimbo/exceptions/decl_exception.hpp {{{
+ * \file dimbo/exceptions/decl_exception.hpp
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_CL_DECL_EXCEPTION_CTOR_WHAT_HPP_INCLUDED
-#define DIMBO_CL_DECL_EXCEPTION_CTOR_WHAT_HPP_INCLUDED
+#ifndef DIMBO_DECL_EXCEPTION_HPP_INCLUDED
+#define DIMBO_DECL_EXCEPTION_HPP_INCLUDED
 
-#include <dimbo/cl/exception.hpp>
-#include <dimbo/standardized_exception.hpp>
-#include <dimbo/src_at.hpp>
-#include <string>
+#include <dimbo/exceptions/decl_exception_const_what.hpp>
 
-#define DIMBO_CL_DECL_EXCEPTION_CTOR_WHAT(__name,__what,__stdexcpt) \
-class Exception_##__name \
-  : public Dimbo::Standardized_Exception<Dimbo::Cl::Exception,__stdexcpt> \
-{ \
-public: \
-  Exception_##__name(Dimbo::Src_At const& at) throw() \
-    : Standardized_Exception(at, std::string("Dimbo.Cl: " __what)) { } \
-  Exception_##__name(Exception_##__name const& e) throw() \
-    : Standardized_Exception(e) { } \
-  virtual ~Exception_##__name() throw() { } \
-};
+#define DIMBO_DECL_EXCEPTION(__ns,__klass,__name,__what) \
+  DIMBO_DECL_EXCEPTION_CONST_WHAT(__ns,__klass,__name,__what,std::exception)
 
-#endif /* DIMBO_CL_DECL_EXCEPTION_CTOR_WHAT_HPP_INCLUDED */
+#endif /* DIMBO_DECL_EXCEPTION_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

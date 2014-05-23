@@ -29,12 +29,15 @@
 #ifndef DIMBO_CL_EXCEPTIONS_LENGTH_ERROR_HPP_INCLUDED
 #define DIMBO_CL_EXCEPTIONS_LENGTH_ERROR_HPP_INCLUDED
 
+#include <dimbo/cl/exception.hpp>
 #include <dimbo/cl/exceptions/common.hpp>
-#include <dimbo/cl/exceptions/decl_length_error.hpp>
+#include <dimbo/exceptions/decl_length_error.hpp>
 
 namespace Dimbo {
 namespace Cl {
-DIMBO_CL_DECL_LENGTH_ERROR(Length_Error, "Length error")
+
+DIMBO_DECL_LENGTH_ERROR(Dimbo::Cl, Exception, Length_Error, "Length error")
+
 } /* namespace Cl */
 } /* namespace Dimbo */
 

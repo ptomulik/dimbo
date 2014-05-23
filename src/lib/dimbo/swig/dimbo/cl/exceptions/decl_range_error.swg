@@ -26,14 +26,14 @@
  */ // }}}
 
 %{
-#include <dimbo/cl/exceptions/decl_range_error.hpp>
+#include <dimbo/exceptions/decl_range_error.hpp>
 %}
 %include <dimbo/cl/exceptions/decl_exception_ctor_what.swg>
 
 %exceptionclass
   Dimbo::Standardized_Exception<Dimbo::Cl::Exception, std::range_error>;
 
-%include <dimbo/cl/exceptions/decl_range_error.hpp>
+%include <dimbo/exceptions/decl_range_error.hpp>
 
 %template(DimboStandardizedException_T_DimboClException_StdRangeError)
   Dimbo::Standardized_Exception<Dimbo::Cl::Exception, std::range_error>;

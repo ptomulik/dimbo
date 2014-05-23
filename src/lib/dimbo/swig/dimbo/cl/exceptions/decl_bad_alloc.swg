@@ -26,14 +26,14 @@
  */ // }}}
 
 %{
-#include <dimbo/cl/exceptions/decl_bad_alloc.hpp>
+#include <dimbo/exceptions/decl_bad_alloc.hpp>
 %}
 %include <dimbo/cl/exceptions/decl_exception_const_what.swg>
 
 %exceptionclass
   Dimbo::Standardized_Exception<Dimbo::Cl::Exception, std::bad_alloc>;
 
-%include <dimbo/cl/exceptions/decl_bad_alloc.hpp>
+%include <dimbo/exceptions/decl_bad_alloc.hpp>
 
 %template(DimboStandardizedException_T_DimboClException_StdBadAlloc)
   Dimbo::Standardized_Exception<Dimbo::Cl::Exception, std::bad_alloc>;

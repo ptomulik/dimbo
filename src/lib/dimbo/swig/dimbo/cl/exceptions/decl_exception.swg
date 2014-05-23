@@ -26,14 +26,14 @@
  */ // }}}
 
 %{
-#include <dimbo/cl/exceptions/decl_exception.hpp>
+#include <dimbo/exceptions/decl_exception.hpp>
 %}
 %include <dimbo/cl/exceptions/decl_exception_const_what.swg>
 
 %exceptionclass
   Dimbo::Standardized_Exception<Dimbo::Cl::Exception, std::exception>;
 
-%include <dimbo/cl/exceptions/decl_exception.hpp>
+%include <dimbo/exceptions/decl_exception.hpp>
 
 %template(DimboStandardizedException_T_DimboClException_StdException)
   Dimbo::Standardized_Exception<Dimbo::Cl::Exception, std::exception>;

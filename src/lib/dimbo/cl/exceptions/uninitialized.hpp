@@ -29,12 +29,15 @@
 #ifndef DIMBO_CL_EXCEPTIONS_UNINITIALIZED_HPP_INCLUDED
 #define DIMBO_CL_EXCEPTIONS_UNINITIALIZED_HPP_INCLUDED
 
-#include <dimbo/cl/exceptions/decl_runtime_error.hpp>
+#include <dimbo/cl/exception.hpp>
+#include <dimbo/exceptions/decl_runtime_error.hpp>
 #include <dimbo/cl/exceptions/common.hpp>
 
 namespace Dimbo {
 namespace Cl {
-DIMBO_CL_DECL_RUNTIME_ERROR(Uninitialized,"Access to uninitialized variable")
+
+DIMBO_DECL_RUNTIME_ERROR(Dimbo::Cl, Exception, Uninitialized,"Access to uninitialized variable")
+
 } /* namespace Cl */
 } /* namespace Dimbo */
 

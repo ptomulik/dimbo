@@ -29,12 +29,15 @@
 #ifndef DIMBO_CL_EXCEPTIONS_UNINITIALIZED_PLATFORM_HPP_INCLUDED
 #define DIMBO_CL_EXCEPTIONS_UNINITIALIZED_PLATFORM_HPP_INCLUDED
 
-#include <dimbo/cl/exceptions/decl_logic_error.hpp>
+#include <dimbo/cl/exception.hpp>
+#include <dimbo/exceptions/decl_logic_error.hpp>
 #include <dimbo/cl/exceptions/common.hpp>
 
 namespace Dimbo {
 namespace Cl {
-DIMBO_CL_DECL_LOGIC_ERROR(Uninitialized_Platform, "Access to uninitialized platform object")
+
+DIMBO_DECL_LOGIC_ERROR(Dimbo::Cl, Exception, Uninitialized_Platform, "Access to uninitialized platform object")
+
 } /* namespace Cl */
 } /* namespace Dimbo */
 

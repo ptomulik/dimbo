@@ -20,21 +20,21 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/cl/exceptions/decl_domain_error.hpp
+// dimbo/exceptions/decl_runtime_error.hpp
 
-/** // doc: dimbo/cl/exceptions/decl_domain_error.hpp {{{
- * \file dimbo/cl/exceptions/decl_domain_error.hpp
+/** // doc: dimbo/exceptions/decl_runtime_error.hpp {{{
+ * \file dimbo/exceptions/decl_runtime_error.hpp
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_CL_DECL_DOMAIN_ERROR_HPP_INCLUDED
-#define DIMBO_CL_DECL_DOMAIN_ERROR_HPP_INCLUDED
+#ifndef DIMBO_DECL_RUNTIME_ERROR_HPP_INCLUDED
+#define DIMBO_DECL_RUNTIME_ERROR_HPP_INCLUDED
 
-#include <dimbo/cl/exceptions/decl_exception_ctor_what.hpp>
+#include <dimbo/exceptions/decl_exception_ctor_what.hpp>
 #include <stdexcept>
 
-#define DIMBO_CL_DECL_DOMAIN_ERROR(__name,__what) \
-  DIMBO_CL_DECL_EXCEPTION_CTOR_WHAT(__name,__what,std::domain_error)
+#define DIMBO_DECL_RUNTIME_ERROR(__ns,__klass,__name,__what) \
+  DIMBO_DECL_EXCEPTION_CTOR_WHAT(__ns,__klass,__name,__what,std::runtime_error)
 
-#endif /* DIMBO_CL_DECL_DOMAIN_ERROR_HPP_INCLUDED */
+#endif /* DIMBO_DECL_RUNTIME_ERROR_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

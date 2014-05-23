@@ -31,7 +31,7 @@
 
 #include <dimbo/cl/program_interface.hpp>
 
-#include <dimbo/cl/exceptions/decl_logic_error.hpp>
+//#include <dimbo/cl/exceptions/decl_logic_error.hpp>
 #include <dimbo/cl/exceptions/bad_alloc.hpp>
 #include <dimbo/cl/exceptions/uninitialized_program.hpp>
 #include <dimbo/cl/cl_errors/other_cl_error.hpp>
