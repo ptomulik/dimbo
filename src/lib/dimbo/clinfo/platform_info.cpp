@@ -41,9 +41,20 @@ Platform_Info()
 Platform_Info& Platform_Info::
 clear()
 {
-  this->_clear_flags();
-  this->_clear_values();
+  this->_clear();
   return *this;
+}
+/* ------------------------------------------------------------------------ */
+bool Platform_Info::
+cmp(Platform_Info const& rhs) const
+  throw()
+{
+  return ((this->_id == rhs._id)
+      && ((this->_profile == rhs._profile))
+      && ((this->_version == rhs._version))
+      && ((this->_name == rhs._name))
+      && ((this->_vendor == rhs._vendor))
+      && ((this->_extensions == rhs._extensions)));
 }
 /* ------------------------------------------------------------------------ */
 void Platform_Info::
@@ -55,25 +66,12 @@ _init()
 void Platform_Info::
 _clear()
 {
-  using boost::detail::none_t;
-  this->_id = none_t;
-  this->_profile = none_t;
-  this->_version = none_t;
-  this->_name = none_t;
-  this->_vendor = none_t;
-  this->_extensions = none_t;
-}
-/* ------------------------------------------------------------------------ */
-bool operator==(Platform_Info const& a, Platform_Info const& b)
-{
-  if(((a.id() != b.id()))
-  || ((a.profile() != b.profile()))
-  || ((a.version() != b.version()))
-  || ((a.name() != b.name()))
-  || ((a.vendor() != b.vendor()))
-  || ((a.extensions() != b.extensions())))
-    return false;
-  return true;
+  this->_id = boost::none;
+  this->_profile = boost::none;
+  this->_version = boost::none;
+  this->_name = boost::none;
+  this->_vendor = boost::none;
+  this->_extensions = boost::none;
 }
 /* ------------------------------------------------------------------------ */
 } /* namespace Clinfo */
