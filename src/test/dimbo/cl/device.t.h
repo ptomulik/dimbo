@@ -4366,6 +4366,48 @@ public:
     TS_ASSERT_THROWS(d.get_image_pitch_alignment(), Other_Cl_Error);
     TS_ASSERT_THROWS(d.get_image_base_address_alignment(), Other_Cl_Error);
   }
+  /** doc: test_query_device_info_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_query_device_info_1()
+  {
+    T::Newton_clGetPlatformIDs mock1;
+    T::Newton_clGetPlatformInfo mock2;
+    T::Newton_clGetDeviceIDs mock3;
+    T::Newton_clGetDeviceInfo mock4;
+    Device d(T::Newton_clGetDeviceIDs::devices[0]);
+    Dimbo::Clinfo::Device_Info info(query_device_info(d));
+
+    /* Check if we have obtained  correct information. It's far too much fields
+     * to check them all, so we look only at some of them */
+    TS_ASSERT_EQUALS(info.id(), reinterpret_cast<unsigned long>(T::Newton_clGetDeviceIDs::devices[0]));
+    TS_ASSERT_EQUALS(info.name(), "Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz");
+    TS_ASSERT_EQUALS(info.vendor(), "GenuineIntel");
+    TS_ASSERT_EQUALS(info.driver_version(), "1348.4 (sse2)");
+    TS_ASSERT_EQUALS(info.profile(), "FULL_PROFILE");
+    TS_ASSERT_EQUALS(info.version(), "OpenCL 1.2 AMD-APP (1348.4)");
+  }
+  /** doc: test_query_device_info_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_query_device_info_2()
+  {
+    T::Newton_clGetPlatformIDs mock1;
+    T::Newton_clGetPlatformInfo mock2;
+    T::Newton_clGetDeviceIDs mock3;
+    T::Newton_clGetDeviceInfo mock4;
+    Device d(T::Newton_clGetDeviceIDs::devices[1]);
+    Dimbo::Clinfo::Device_Info info(query_device_info(d));
+
+    /* Check if we have obtained  correct information. It's far too much fields
+     * to check them all, so we look only at some of them */
+    TS_ASSERT_EQUALS(info.id(), reinterpret_cast<unsigned long>(T::Newton_clGetDeviceIDs::devices[1]));
+    TS_ASSERT_EQUALS(info.name(), "Tesla C1060");
+    TS_ASSERT_EQUALS(info.vendor(), "NVIDIA Corporation");
+    TS_ASSERT_EQUALS(info.driver_version(), "319.76");
+    TS_ASSERT_EQUALS(info.profile(), "FULL_PROFILE");
+    TS_ASSERT_EQUALS(info.version(), "OpenCL 1.0 CUDA");
+  }
 };
 
 #endif /* DIMBO_CL_DEVICE_T_H_INCLUDED */

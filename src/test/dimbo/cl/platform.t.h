@@ -381,6 +381,34 @@ public:
     TS_ASSERT_THROWS(p.get_vendor(), Other_Cl_Error);
     TS_ASSERT_THROWS(p.get_extensions(), Other_Cl_Error);
   }
+  /** // doc: test_query_platform_info_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_query_platform_info_1( )
+  {
+    T::Newton_clGetPlatformInfo mock;
+    Platform platform(T::Newton_clGetPlatformIDs::platforms[0]);
+    Dimbo::Clinfo::Platform_Info info(query_platform_info(platform));
+    TS_ASSERT_EQUALS(info.profile(),"FULL_PROFILE");
+    TS_ASSERT_EQUALS(info.version(),"OpenCL 1.2 AMD-APP (1348.4)");
+    TS_ASSERT_EQUALS(info.name(),"AMD Accelerated Parallel Processing");
+    TS_ASSERT_EQUALS(info.vendor(),"Advanced Micro Devices, Inc.");
+    TS_ASSERT_EQUALS(info.extensions(),"cl_khr_icd cl_amd_event_callback cl_amd_offline_devices");
+  }
+  /** // doc: test_query_platform_info_2() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_query_platform_info_2( )
+  {
+    T::Newton_clGetPlatformInfo mock;
+    Platform platform(T::Newton_clGetPlatformIDs::platforms[1]);
+    Dimbo::Clinfo::Platform_Info info(query_platform_info(platform));
+    TS_ASSERT_EQUALS(info.profile(),"FULL_PROFILE");
+    TS_ASSERT_EQUALS(info.version(),"OpenCL 1.1 CUDA 4.2.1");
+    TS_ASSERT_EQUALS(info.name(),"NVIDIA CUDA");
+    TS_ASSERT_EQUALS(info.vendor(),"NVIDIA Corporation");
+    TS_ASSERT_EQUALS(info.extensions(),"cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll");
+  }
 };
 
 #endif /* DIMBO_CL_PLATFORM_T_H_INCLUDED */

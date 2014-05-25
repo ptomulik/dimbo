@@ -25,12 +25,12 @@
 package Dimbo.Protobuf.Clinfo;
 
 message Platform_Query {
-    optional bool select_id = 1 [default = true];
-    optional bool select_profile = 2 [default = true];
-    optional bool select_version = 3 [default = true];
-    optional bool select_name = 4 [default = true];
-    optional bool select_vendor = 5 [default = true];
-    optional bool select_extensions = 6 [default = true];
+    optional bool id_selected = 1 [default = true];
+    optional bool profile_selected = 0x0900 [default = true];
+    optional bool version_selected = 0x0901 [default = true];
+    optional bool name_selected = 0x0902 [default = true];
+    optional bool vendor_selected = 0x0903 [default = true];
+    optional bool extensions_selected = 0x0904 [default = true];
 }
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

@@ -31,14 +31,6 @@
 #ifndef DIMBO_CLINFO_PLATFORM_INFO_QUERY_HPP_INCLUDED
 #define DIMBO_CLINFO_PLATFORM_INFO_QUERY_HPP_INCLUDED
 
-#ifndef SWIG // FIXME: provide more verbose constant
-#  include <boost/serialization/version.hpp>
-#  include <boost/serialization/access.hpp>
-#  include <boost/serialization/nvp.hpp>
-#endif
-
-#include <dimbo/protobuf/clinfo/platform_query.pb.h>
-
 namespace Dimbo {
 namespace Clinfo {
 
@@ -54,10 +46,10 @@ namespace Clinfo {
  */ // }}}
 class Platform_Query
 {
+  template <class Archive>
+  friend void serialize(Archive&, Platform_Query&, const unsigned int);
 public:
-#ifndef SWIG // FIXME: provide more verbose constant
-  BOOST_STATIC_CONSTANT(unsigned int, class_version = 1 );
-#endif
+  static constexpr unsigned int class_version = 0x000001;
 public:
   /** // doc: ~Platform_Query() {{{
    * \todo Write documentation for class Platform_Query
@@ -67,141 +59,126 @@ public:
    * \todo Write documentation
    */ // }}}
   Platform_Query();
-  /** // {{{
+  /** // doc: Platform_Query(flag) {{{
+   * \todo Write documentation
+   */ // }}}
+  Platform_Query(bool flag);
+  /** // doc: select_all() {{{
   * \todo Write documentation
   */ // }}}
-  inline Platform_Query& select_id(bool flag = true)
-  {
-    this->_select_id = flag;
-    return *this;
-  }
+  Platform_Query& select_all();
+  /** // doc: select_none() {{{
+  * \todo Write documentation
+  */ // }}}
+  Platform_Query& select_none();
+  /** // doc: select_default() {{{
+  * \todo Write documentation
+  */ // }}}
+  Platform_Query& select_default();
+  // getters {{{
   /** // {{{
   * \todo Write documentation
   */ // }}}
   inline bool id_selected() const
   {
-    return this->_select_id;
-  }
-  /** // {{{
-  * \todo Write documentation
-  */ // }}}
-  inline Platform_Query& select_profile(bool flag = true)
-  {
-    this->_select_profile = flag;
-    return *this;
+    return this->_id;
   }
   /** // {{{
   * \todo Write documentation
   */ // }}}
   inline bool profile_selected() const
   {
-    return this->_select_profile;
-  }
-  /** // {{{
-  * \todo Write documentation
-  */ // }}}
-  inline Platform_Query& select_version(bool flag = true)
-  {
-    this->_select_version = flag;
-    return *this;
+    return this->_profile;
   }
   /** // {{{
   * \todo Write documentation
   */ // }}}
   inline bool version_selected() const
   {
-    return this->_select_version;
-  }
-  /** // {{{
-  * \todo Write documentation
-  */ // }}}
-  inline Platform_Query& select_name(bool flag = true)
-  {
-    this->_select_name = flag;
-    return *this;
+    return this->_version;
   }
   /** // {{{
   * \todo Write documentation
   */ // }}}
   inline bool name_selected() const
   {
-    return this->_select_name;
-  }
-  /** // {{{
-  * \todo Write documentation
-  */ // }}}
-  inline Platform_Query& select_vendor(bool flag = true)
-  {
-    this->_select_vendor = flag;
-    return *this;
+    return this->_name;
   }
   /** // {{{
   * \todo Write documentation
   */ // }}}
   inline bool vendor_selected() const
   {
-    return this->_select_vendor;
-  }
-  /** // {{{
-  * \todo Write documentation
-  */ // }}}
-  inline Platform_Query& select_extensions(bool flag = true)
-  {
-    this->_select_extensions = flag;
-    return *this;
+    return this->_vendor;
   }
   /** // {{{
   * \todo Write documentation
   */ // }}}
   inline bool extensions_selected() const
   {
-    return this->_select_extensions;
+    return this->_extensions;
   }
+  // }}}
+  // selectors {{{
   /** // {{{
   * \todo Write documentation
   */ // }}}
-  void select_all();
-  /** // {{{
-  * \todo Write documentation
-  */ // }}}
-  void select_none();
-  /** // {{{
-  * \todo Write documentation
-  */ // }}}
-  void read(Dimbo::Protobuf::Clinfo::Platform_Query const& buff);
-  /** // {{{
-  * \todo Write documentation
-  */ // }}}
-  void write(Dimbo::Protobuf::Clinfo::Platform_Query& buff) const;
-private:
-#ifndef SWIG // FIXME: provide more verbose constant
-  friend class boost::serialization::access;
-  /** // {{{
-   * \todo Write documentation
-   */ // }}}
-  template <class Archive>
-  void serialize(Archive & ar, const unsigned int /* version */)
+  inline Platform_Query& select_id(bool flag = true)
   {
-    // {{{
-    using boost::serialization::make_nvp;
-    ar & make_nvp("select_id", _select_id);
-    ar & make_nvp("select_profile", _select_profile);
-    ar & make_nvp("select_version", _select_version);
-    ar & make_nvp("select_name", _select_name);
-    ar & make_nvp("select_vendor", _select_vendor);
-    ar & make_nvp("select_extensions", _select_extensions);
-    // }}}
+    this->_id = flag;
+    return *this;
   }
-#endif
+  /** // {{{
+  * \todo Write documentation
+  */ // }}}
+  inline Platform_Query& select_profile(bool flag = true)
+  {
+    this->_profile = flag;
+    return *this;
+  }
+  /** // {{{
+  * \todo Write documentation
+  */ // }}}
+  inline Platform_Query& select_version(bool flag = true)
+  {
+    this->_version = flag;
+    return *this;
+  }
+  /** // {{{
+  * \todo Write documentation
+  */ // }}}
+  inline Platform_Query& select_name(bool flag = true)
+  {
+    this->_name = flag;
+    return *this;
+  }
+  /** // {{{
+  * \todo Write documentation
+  */ // }}}
+  inline Platform_Query& select_vendor(bool flag = true)
+  {
+    this->_vendor = flag;
+    return *this;
+  }
+  /** // {{{
+  * \todo Write documentation
+  */ // }}}
+  inline Platform_Query& select_extensions(bool flag = true)
+  {
+    this->_extensions = flag;
+    return *this;
+  }
+  // }}}
 private:
-  void _init_query();
+  void _select(bool flag);
+  void _init(bool flag);
   // Attributes {{{
-  bool _select_id;
-  bool _select_profile;
-  bool _select_version;
-  bool _select_name;
-  bool _select_vendor;
-  bool _select_extensions;
+  bool _id;
+  bool _profile;
+  bool _version;
+  bool _name;
+  bool _vendor;
+  bool _extensions;
   // }}}
 };
 
@@ -211,11 +188,6 @@ inline bool operator!=(Platform_Query const& a, Platform_Query const& b)
 
 } /* namespace Clinfo */
 } /* namespace Dimbo */
-
-#ifndef SWIG // FIXME: provide more verbose constant
-BOOST_CLASS_VERSION( Dimbo::Clinfo::Platform_Query
-                   , Dimbo::Clinfo::Platform_Query::class_version)
-#endif
 
 #endif /* DIMBO_CLINFO_PLATFORM_INFO_QUERY_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

@@ -28,21 +28,16 @@ objects = env.SharedObject([
     , 'cl_error_no.cpp'
     , 'platform.cpp'
     , 'platforms.cpp'
-    , 'platform_info.cpp'
-    , 'platform_query.cpp'
     , 'device.cpp'
     , 'devices.cpp'
-    , 'device_info.cpp'
-    , 'device_query.cpp'
     , 'platform_layer.cpp'
-    , 'platform_layer_info.cpp'
     , 'program.cpp'
     #, 'program_source.cpp'
     , 'context.cpp'
     , 'context_properties.cpp'
 ])
 
-libs =  CLVar('dimbo_protobuf_cl boost_regex boost_serialization OpenCL')
+libs =  CLVar('dimbo_clinfo boost_regex OpenCL')
 
 # rlib - "real" library
 rlib = env.SharedLibrary('../../dimbo_cl', objects + ['real.cpp'], LIBS = libs)

@@ -28,11 +28,11 @@ package Dimbo.Protobuf.Clinfo;
 
 message Platform_Info {
   optional uint64 id  = 1;
-  optional string profile = 2;
-  optional string version = 3;
-  optional string name = 4;
-  optional string vendor = 5;
-  optional string extensions = 6;
+  optional string profile = 0x900;
+  optional string version = 0x901;
+  optional string name = 0x902;
+  optional string vendor = 0x903;
+  optional string extensions = 0x904;
 }
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

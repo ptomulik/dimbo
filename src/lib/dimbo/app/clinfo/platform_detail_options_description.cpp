@@ -48,8 +48,8 @@ Platform_Detail_Options_Description( unsigned line_length
 }
 Platform_Detail_Options_Description::
 Platform_Detail_Options_Description( const std::string & caption
-                             , unsigned line_length
-                             , unsigned min_description_length )
+                                   , unsigned line_length
+                                   , unsigned min_description_length )
   : Dimbo::App::Options::Options_Description( caption, line_length
                                             , min_description_length )
 {
@@ -57,17 +57,16 @@ Platform_Detail_Options_Description( const std::string & caption
 }
 Platform_Detail_Options_Description::
 ~Platform_Detail_Options_Description()
-{ // {{{
-} // }}}
+{ 
+}
 void Platform_Detail_Options_Description::
 _init_options_description()
-{ // {{{
+{ 
   using Dimbo::App::Options::value;
   using std::vector;
   using std::string;
   this->add_options()
     ("platform-profile"
-    //, value<bool>()->value_name("yes/no")->default_value(true)
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
       /* TRANSLATORS: This is for --platform-profile option */
     , _("query for platform profile?"))
@@ -88,7 +87,7 @@ _init_options_description()
       /* TRANSLATORS: This is for --platform-extensions option */
     , _("query for platform extensions?"))
   ;
-} // }}}
+} 
 } /* namespace Clinfo*/
 } /* namespace App*/
 } /* namespace Dimbo*/

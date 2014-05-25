@@ -133,6 +133,26 @@ get_platform_info(  cl_platform_id platform,
       default:                    DIMBO_CL_THROW_OTHER_CL(err);
     }
 }
+
+Dimbo::Clinfo::Platform_Info
+query_platform_info( Platform const& platform,
+                    Dimbo::Clinfo::Platform_Query const& query)
+{
+  Dimbo::Clinfo::Platform_Info info;
+  if(query.id_selected())
+    info.set_id(reinterpret_cast<unsigned long>(platform.id()));
+  if(query.profile_selected())
+    info.set_profile(platform.get_profile());
+  if(query.version_selected())
+    info.set_version(platform.get_version());
+  if(query.name_selected())
+    info.set_name(platform.get_name());
+  if(query.vendor_selected())
+    info.set_vendor(platform.get_vendor());
+  if(query.extensions_selected())
+    info.set_extensions(platform.get_extensions());
+  return info;
+}
 } /* namespace Cl */
 } /* namespace Dimbo */
 // vim: set expandtab tabstop=2 shiftwidth=2:

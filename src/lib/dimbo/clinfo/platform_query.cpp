@@ -30,75 +30,62 @@
 
 namespace Dimbo {
 namespace Clinfo {
+
+/* ------------------------------------------------------------------------ */
 Platform_Query::
 Platform_Query()
 {
-  this->_init_query();
+  this->_init(true);
 }
-
+/* ------------------------------------------------------------------------ */
+Platform_Query::
+Platform_Query(bool flag)
+{
+  this->_init(flag);
+}
+/* ------------------------------------------------------------------------ */
 Platform_Query::
 ~Platform_Query()
 {
 }
-
+/* ------------------------------------------------------------------------ */
 void Platform_Query::
-_init_query()
+_init(bool flag)
 {
-  this->select_all();
+  this->_select(flag);
 }
-
+/* ------------------------------------------------------------------------ */
 void Platform_Query::
+_select(bool flag)
+{
+  this -> select_id(flag);
+  this -> select_profile(flag);
+  this -> select_version(flag);
+  this -> select_name(flag);
+  this -> select_vendor(flag);
+  this -> select_extensions(flag);
+}
+/* ------------------------------------------------------------------------ */
+Platform_Query& Platform_Query::
 select_all()
 {
-  this -> select_id();
-  this -> select_profile();
-  this -> select_version();
-  this -> select_name();
-  this -> select_vendor();
-  this -> select_extensions();
+  this->_select(true);
+  return *this;
 }
-
-void Platform_Query::
+/* ------------------------------------------------------------------------ */
+Platform_Query& Platform_Query::
 select_none()
 {
-  this -> select_id(false);
-  this -> select_profile(false);
-  this -> select_version(false);
-  this -> select_name(false);
-  this -> select_vendor(false);
-  this -> select_extensions(false);
+  this->_select(false);
+  return *this;
 }
-
-void Platform_Query::
-read(Dimbo::Protobuf::Clinfo::Platform_Query const& buff)
+/* ------------------------------------------------------------------------ */
+Platform_Query& Platform_Query::
+select_default()
 {
-  this->select_id(buff.select_id());
-  this->select_profile(buff.select_profile());
-  this->select_version(buff.select_version());
-  this->select_name(buff.select_name());
-  this->select_vendor(buff.select_vendor());
-  this->select_extensions(buff.select_extensions());
+  return this->select_all();
 }
-
-void Platform_Query::
-write(Dimbo::Protobuf::Clinfo::Platform_Query& buff) const
-{
-  buff.Clear();
-  // Put to buffer only fields that differ from their defaults.
-  if(!this->id_selected())
-    buff.set_select_id(false);
-  if(!this->profile_selected())
-    buff.set_select_profile(false);
-  if(!this->version_selected())
-    buff.set_select_version(false);
-  if(!this->name_selected())
-    buff.set_select_name(false);
-  if(!this->vendor_selected())
-    buff.set_select_vendor(false);
-  if(!this->extensions_selected())
-    buff.set_select_extensions(false);
-}
-
+/* ------------------------------------------------------------------------ */
 bool operator== (Platform_Query const& a, Platform_Query const& b)
 {
   return  (a.id_selected() == b.id_selected()) &&
@@ -108,6 +95,7 @@ bool operator== (Platform_Query const& a, Platform_Query const& b)
           (a.vendor_selected() == b.vendor_selected()) &&
           (a.extensions_selected() == b.extensions_selected());
 }
+/* ------------------------------------------------------------------------ */
 
 } /* namespace Clinfo */
 } /* namespace Dimbo */

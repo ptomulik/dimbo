@@ -293,7 +293,7 @@ _init_options_description()
     ("profile"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
     ,_("query for profile"))
-    ("version"
+    ("device-version"
     , value<bool>()->value_name("yes/no")->implicit_value(true,"yes")
     ,_("query for version"))
     ("opencl-c-version"

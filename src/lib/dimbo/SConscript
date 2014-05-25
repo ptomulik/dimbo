@@ -30,7 +30,8 @@ if not env.GetOption('clean') and not env.GetOption('help'):
     env = conf.Finish()
 ## --------------------------------------------------------------------------
 
-subdirs = [ 'doc', 'app', 'cl', 'clinfo', 'format', 'protobuf', 'swig', 'python', 'examples' ]
+subdirs = [ 'doc', 'app', 'cl', 'clinfo', 'format', 'protobuf',
+            'serialization', 'swig', 'python', 'examples' ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]
 SConscript(scripts, exports = ['env'])
 

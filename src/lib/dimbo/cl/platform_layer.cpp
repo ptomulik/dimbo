@@ -120,6 +120,42 @@ _init()
     this->_insert(*cur, get_device_ids(*cur));
 }
 
+Dimbo::Clinfo::Platform_Layer_Info
+query_platform_layer_info(Platform_Layer const& layer,
+                          Dimbo::Clinfo::Platform_Query const& pquery,
+                          Dimbo::Clinfo::Device_Query const& dquery)
+{
+  Platforms platforms(layer.platforms());
+  Platforms::const_iterator pend(platforms.end());
+  Platforms::const_iterator pcur(platforms.begin());
+
+  Dimbo::Clinfo::Platform_Layer_Info info;
+
+  for(;pcur != pend; ++pcur)
+    {
+      Dimbo::Clinfo::Platform_Info_Ptr pinfo(
+          new Dimbo::Clinfo::Platform_Info(
+            query_platform_info(*pcur, pquery)
+          )
+      );
+      Devices devices(layer.devices(*pcur));
+      Devices::const_iterator dend(devices.end());
+      Devices::const_iterator dcur(devices.begin());
+      for(;dcur != dend; ++dcur)
+        {
+          info.push_back(
+            Dimbo::Clinfo::Device_Info_Ptr(
+              new Dimbo::Clinfo::Device_Info(
+                query_device_info(*dcur, dquery)
+              )
+            ),
+            pinfo
+          );
+        }
+    }
+  return info;
+}
+
 } /* namespace Cl */
 } /* namespace Dimbo */
 // vim: set expandtab tabstop=2 shiftwidth=2:

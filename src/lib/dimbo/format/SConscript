@@ -22,12 +22,12 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = CLVar('dimbo_format_cl')
+libs = CLVar('dimbo_format_clinfo')
 lib = env.SharedLibrary('../../dimbo_format', ['join.cpp'], LIBS = libs)
 
 env.Install('${libdir}', lib)
 
-subdirs = [ 'cl' ]
+subdirs = [ 'clinfo' ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]
 SConscript(scripts, exports = ['env'])
 

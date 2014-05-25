@@ -30,6 +30,7 @@ defs.update({'DIMBO_COMPILING_TEST' : 1})
 
 env.CxxTest('dimbo-test', env.Glob('*.t.h'),
             LIBS = libs,
+            CXXTEST_CPPPATH = ['..'],
             CXXTEST_LIBPATH = env.get('LIBPATH', CLVar()),
             CXXTEST_TARGET = 'check-dimbo')
 env.Alias('check', ['check-dimbo'])

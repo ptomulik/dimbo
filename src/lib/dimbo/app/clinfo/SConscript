@@ -22,7 +22,7 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = CLVar('dimbo_app dimbo_format boost_serialization')
+libs = CLVar('dimbo_app dimbo_format_clinfo dimbo_serialization_clinfo boost_serialization dimbo_cl dimbo_clinfo')
 
 lib = env.SharedLibrary('../../../dimbo_app_clinfo',
     [ 'options_description.cpp'
@@ -31,7 +31,7 @@ lib = env.SharedLibrary('../../../dimbo_app_clinfo',
     , 'platform_detail_options_description.cpp'
     , 'device_general_options_description.cpp'
     , 'device_detail_options_description.cpp'
-    , 'output_options_description.cpp'
+    , 'io_options_description.cpp'
     , 'create_query.cpp'
     , 'main.cpp' ],
     LIBS = libs

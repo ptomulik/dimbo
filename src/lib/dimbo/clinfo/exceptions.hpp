@@ -29,6 +29,8 @@
 #ifndef DIMBO_CLINFO_EXCEPTIONS_HPP_INCLUDED
 #define DIMBO_CLINFO_EXCEPTIONS_HPP_INCLUDED
 
+#include <dimbo/clinfo/exceptions/bad_alloc.hpp>
+#include <dimbo/clinfo/exceptions/length_error.hpp>
 #include <dimbo/clinfo/exceptions/uninitialized_value.hpp>
 
 #endif /* DIMBO_CLINFO_EXCEPTIONS_HPP_INCLUDED */

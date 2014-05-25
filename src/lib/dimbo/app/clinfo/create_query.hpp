@@ -29,8 +29,8 @@
 #ifndef DIMBO_APP_CLINFO_CREATE_QUERY_HPP_INCLUDED
 #define DIMBO_APP_CLINFO_CREATE_QUERY_HPP_INCLUDED
 
-#include <dimbo/cl/platform_query.hpp>
-#include <dimbo/cl/device_query.hpp>
+#include <dimbo/clinfo/platform_query.hpp>
+#include <dimbo/clinfo/device_query.hpp>
 #include <dimbo/app/options/options_map.hpp>
 
 namespace Dimbo {
@@ -40,9 +40,9 @@ namespace Clinfo {
 /** // {{{
  * \todo Write documentation
  */ // }}}
-Dimbo::Cl::Platform_Query
+Dimbo::Clinfo::Platform_Query
 create_platform_query(Dimbo::App::Options::Options_Map const& optmap);
-Dimbo::Cl::Device_Query
+Dimbo::Clinfo::Device_Query
 create_device_query(Dimbo::App::Options::Options_Map const& optmap);
 
 } /* namespace Clinfo */

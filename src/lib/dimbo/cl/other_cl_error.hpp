@@ -65,7 +65,7 @@ class Other_Cl_Error
      */ // }}}
     virtual char const* what() const throw()
     {
-      return "Dimbo.Cl: other error";
+      return "Dimbo::Cl: other error";
     }
     /** // {{{
      * \todo Write documentation

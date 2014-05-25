@@ -33,7 +33,7 @@ namespace App {
 namespace Clinfo {
 
 static void
-_select_device_info(Dimbo::Cl::Device_Query& query, bool flag)
+_select_device_info(Dimbo::Clinfo::Device_Query& query, bool flag)
 {
   if(!flag)
     {
@@ -43,7 +43,7 @@ _select_device_info(Dimbo::Cl::Device_Query& query, bool flag)
 }
 
 static void
-_select_vector_width_info(Dimbo::Cl::Device_Query& query, bool flag)
+_select_vector_width_info(Dimbo::Clinfo::Device_Query& query, bool flag)
 {
   query.select_preferred_vector_width_char(flag);
   query.select_preferred_vector_width_short(flag);
@@ -61,7 +61,7 @@ _select_vector_width_info(Dimbo::Cl::Device_Query& query, bool flag)
   query.select_native_vector_width_half(flag);
 }
 static void
-_select_compute_unit_info(Dimbo::Cl::Device_Query& query, bool flag)
+_select_compute_unit_info(Dimbo::Clinfo::Device_Query& query, bool flag)
 {
   query.select_max_compute_units(flag);
   query.select_max_work_item_dimensions(flag);
@@ -75,7 +75,7 @@ _select_compute_unit_info(Dimbo::Cl::Device_Query& query, bool flag)
 }
 
 static void
-_select_image_support_info(Dimbo::Cl::Device_Query& query, bool flag)
+_select_image_support_info(Dimbo::Clinfo::Device_Query& query, bool flag)
 {
   query.select_image_support(flag);
   query.select_max_read_image_args(flag);
@@ -93,7 +93,7 @@ _select_image_support_info(Dimbo::Cl::Device_Query& query, bool flag)
 }
 
 static void
-_select_global_mem_info(Dimbo::Cl::Device_Query& query, bool flag)
+_select_global_mem_info(Dimbo::Clinfo::Device_Query& query, bool flag)
 {
   query.select_global_mem_cache_type(flag);
   query.select_global_mem_cacheline_size(flag);
@@ -102,7 +102,7 @@ _select_global_mem_info(Dimbo::Cl::Device_Query& query, bool flag)
 }
 
 static void
-_select_device_generic_info(Dimbo::Cl::Device_Query& query, bool flag)
+_select_device_generic_info(Dimbo::Clinfo::Device_Query& query, bool flag)
 {
   query.select_name(flag);
   query.select_vendor(flag);
@@ -121,10 +121,10 @@ _select_device_generic_info(Dimbo::Cl::Device_Query& query, bool flag)
   query.select_reference_count(flag);
 }
 
-Dimbo::Cl::Platform_Query
+Dimbo::Clinfo::Platform_Query
 create_platform_query( Dimbo::App::Options::Options_Map const& optmap )
 {
-  Dimbo::Cl::Platform_Query query;
+  Dimbo::Clinfo::Platform_Query query;
   if(optmap.count("short") && optmap["short"].as<bool>())
     {
       query.select_none();
@@ -148,10 +148,10 @@ create_platform_query( Dimbo::App::Options::Options_Map const& optmap )
   return query;
 }
 
-Dimbo::Cl::Device_Query
+Dimbo::Clinfo::Device_Query
 create_device_query( Dimbo::App::Options::Options_Map const& om )
 {
-  Dimbo::Cl::Device_Query query;
+  Dimbo::Clinfo::Device_Query query;
 
   if(om.count("short") && om["short"].as<bool>())
     {
@@ -291,8 +291,8 @@ create_device_query( Dimbo::App::Options::Options_Map const& om )
         query.select_driver_version(om["driver-version"].as<bool>());
       if(om.count("profile"))
         query.select_profile(om["profile"].as<bool>());
-      if(om.count("version"))
-        query.select_version(om["version"].as<bool>());
+      if(om.count("device-version"))
+        query.select_version(om["device-version"].as<bool>());
       if(om.count("opencl-c-version"))
         query.select_opencl_c_version(om["opencl-c-version"].as<bool>());
       if(om.count("extensions"))

@@ -20,8 +20,8 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-/** // doc: dimbo/cl.swg {{{
- * \file dimbo/cl.swg
+/** // doc: dimbo/cl/exception_mod.swg {{{
+ * \file dimbo/cl/exception_mod.swg
  * \todo Write documentation
  */ // }}}
 

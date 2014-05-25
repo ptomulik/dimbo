@@ -205,12 +205,144 @@ public:
 
     TS_ASSERT_EQUALS(d.id(), T::Newton_clGetDeviceIDs::devices[2]);
   }
-  /** // doc: test_foo() {{{
-   * \todo Write documentation
+  /** // doc: test_query_platform_layer_info_1() {{{
+   * \brief Test the platforms() method.
    */ // }}}
-  void test_foo( )
+  void test_query_platform_layer_info_1( )
   {
-    TS_ASSERT(true);
+    T::Newton_clGetPlatformIDs mock1;
+    T::Newton_clGetPlatformInfo mock2;
+    T::Newton_clGetDeviceIDs mock3;
+    T::Newton_clGetDeviceInfo mock4;
+    Platform_Layer layer;
+    Dimbo::Clinfo::Platform_Layer_Info p(query_platform_layer_info(layer));
+    Dimbo::Clinfo::Platform_Info_Ptrs infos(p.platforms());
+
+    TS_ASSERT_EQUALS(infos.size(), 2);
+
+    /* Check if we have obtained  correct information */
+    TS_ASSERT_EQUALS(infos[0]->id(), reinterpret_cast<unsigned long>(T::Newton_clGetPlatformIDs::platforms[0]));
+    TS_ASSERT_EQUALS(infos[0]->profile(), "FULL_PROFILE");
+    TS_ASSERT_EQUALS(infos[0]->version(), "OpenCL 1.2 AMD-APP (1348.4)");
+    TS_ASSERT_EQUALS(infos[0]->name(), "AMD Accelerated Parallel Processing");
+    TS_ASSERT_EQUALS(infos[0]->vendor(), "Advanced Micro Devices, Inc.");
+    TS_ASSERT_EQUALS(infos[0]->extensions(), "cl_khr_icd cl_amd_event_callback cl_amd_offline_devices");
+
+    TS_ASSERT_EQUALS(infos[1]->id(), reinterpret_cast<unsigned long>(T::Newton_clGetPlatformIDs::platforms[1]));
+    TS_ASSERT_EQUALS(infos[1]->profile(), "FULL_PROFILE");
+    TS_ASSERT_EQUALS(infos[1]->version(), "OpenCL 1.1 CUDA 4.2.1");
+    TS_ASSERT_EQUALS(infos[1]->name(), "NVIDIA CUDA");
+    TS_ASSERT_EQUALS(infos[1]->vendor(), "NVIDIA Corporation");
+    TS_ASSERT_EQUALS(infos[1]->extensions(), "cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll");
+  }
+  /** // doc: test_query_platform_layer_info_2() {{{
+   * \brief Test the devices() method.
+   */ // }}}
+  void test_query_platform_layer_info_2( )
+  {
+    T::Newton_clGetPlatformIDs mock1;
+    T::Newton_clGetPlatformInfo mock2;
+    T::Newton_clGetDeviceIDs mock3;
+    T::Newton_clGetDeviceInfo mock4;
+    Platform_Layer layer;
+    Dimbo::Clinfo::Platform_Layer_Info p(query_platform_layer_info(layer));
+    Dimbo::Clinfo::Device_Info_Ptrs infos(p.devices());
+
+    TS_ASSERT_EQUALS(infos.size(), 3);
+
+    /* Check if we have obtained  correct information. It's far too much fields
+     * to check them all, so we look only at some of them */
+    TS_ASSERT_EQUALS(infos[0]->id(), reinterpret_cast<unsigned long>(T::Newton_clGetDeviceIDs::devices[0]));
+    TS_ASSERT_EQUALS(infos[0]->name(), "Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz");
+    TS_ASSERT_EQUALS(infos[0]->vendor(), "GenuineIntel");
+    TS_ASSERT_EQUALS(infos[0]->driver_version(), "1348.4 (sse2)");
+    TS_ASSERT_EQUALS(infos[0]->profile(), "FULL_PROFILE");
+    TS_ASSERT_EQUALS(infos[0]->version(), "OpenCL 1.2 AMD-APP (1348.4)");
+
+    TS_ASSERT_EQUALS(infos[1]->id(), reinterpret_cast<unsigned long>(T::Newton_clGetDeviceIDs::devices[1]));
+    TS_ASSERT_EQUALS(infos[1]->name(), "Tesla C1060");
+    TS_ASSERT_EQUALS(infos[1]->vendor(), "NVIDIA Corporation");
+    TS_ASSERT_EQUALS(infos[1]->driver_version(), "319.76");
+    TS_ASSERT_EQUALS(infos[1]->profile(), "FULL_PROFILE");
+    TS_ASSERT_EQUALS(infos[1]->version(), "OpenCL 1.0 CUDA");
+
+    TS_ASSERT_EQUALS(infos[2]->id(), reinterpret_cast<unsigned long>(T::Newton_clGetDeviceIDs::devices[2]));
+    TS_ASSERT_EQUALS(infos[2]->name(), "Tesla C1060");
+    TS_ASSERT_EQUALS(infos[2]->vendor(), "NVIDIA Corporation");
+    TS_ASSERT_EQUALS(infos[2]->driver_version(), "319.76");
+    TS_ASSERT_EQUALS(infos[2]->profile(), "FULL_PROFILE");
+    TS_ASSERT_EQUALS(infos[2]->version(), "OpenCL 1.0 CUDA");
+  }
+  /** // doc: test_query_platform_layer_info_2() {{{
+   * \brief Test the query_platform_layer_info(platforms()[0]) invocation.
+   */ // }}}
+  void test_query_platform_layer_info_3( )
+  {
+    T::Newton_clGetPlatformIDs mock1;
+    T::Newton_clGetPlatformInfo mock2;
+    T::Newton_clGetDeviceIDs mock3;
+    T::Newton_clGetDeviceInfo mock4;
+    Platform_Layer layer;
+    Dimbo::Clinfo::Platform_Layer_Info p(query_platform_layer_info(layer));
+    Dimbo::Clinfo::Device_Info_Ptrs infos(p.devices(p.platforms()[0]));
+
+    TS_ASSERT_EQUALS(infos.size(), 1);
+
+    /* Check if we have obtained  correct information. It's far too much fields
+     * to check them all, so we look only at some of them */
+    TS_ASSERT_EQUALS(infos[0]->id(), reinterpret_cast<unsigned long>(T::Newton_clGetDeviceIDs::devices[0]));
+    TS_ASSERT_EQUALS(infos[0]->name(), "Intel(R) Xeon(R) CPU           E5620  @ 2.40GHz");
+    TS_ASSERT_EQUALS(infos[0]->vendor(), "GenuineIntel");
+    TS_ASSERT_EQUALS(infos[0]->driver_version(), "1348.4 (sse2)");
+    TS_ASSERT_EQUALS(infos[0]->profile(), "FULL_PROFILE");
+    TS_ASSERT_EQUALS(infos[0]->version(), "OpenCL 1.2 AMD-APP (1348.4)");
+  }
+  /** // doc: test_query_platform_layer_info_2() {{{
+   * \brief Test the query_platform_layer_info(platforms()[0]) invocation.
+   */ // }}}
+  void test_query_platform_layer_info_4( )
+  {
+    T::Newton_clGetPlatformIDs mock1;
+    T::Newton_clGetPlatformInfo mock2;
+    T::Newton_clGetDeviceIDs mock3;
+    T::Newton_clGetDeviceInfo mock4;
+    Platform_Layer layer;
+    Dimbo::Clinfo::Platform_Layer_Info p(query_platform_layer_info(layer));
+    Dimbo::Clinfo::Device_Info_Ptrs infos(p.devices(p.platforms()[1]));
+
+    TS_ASSERT_EQUALS(infos.size(), 2);
+
+    /* Check if we have obtained  correct information. It's far too much fields
+     * to check them all, so we look only at some of them */
+    TS_ASSERT_EQUALS(infos[0]->id(), reinterpret_cast<unsigned long>(T::Newton_clGetDeviceIDs::devices[1]));
+    TS_ASSERT_EQUALS(infos[0]->name(), "Tesla C1060");
+    TS_ASSERT_EQUALS(infos[0]->vendor(), "NVIDIA Corporation");
+    TS_ASSERT_EQUALS(infos[0]->driver_version(), "319.76");
+    TS_ASSERT_EQUALS(infos[0]->profile(), "FULL_PROFILE");
+    TS_ASSERT_EQUALS(infos[0]->version(), "OpenCL 1.0 CUDA");
+
+    TS_ASSERT_EQUALS(infos[1]->id(), reinterpret_cast<unsigned long>(T::Newton_clGetDeviceIDs::devices[2]));
+    TS_ASSERT_EQUALS(infos[1]->name(), "Tesla C1060");
+    TS_ASSERT_EQUALS(infos[1]->vendor(), "NVIDIA Corporation");
+    TS_ASSERT_EQUALS(infos[1]->driver_version(), "319.76");
+    TS_ASSERT_EQUALS(infos[1]->profile(), "FULL_PROFILE");
+    TS_ASSERT_EQUALS(infos[1]->version(), "OpenCL 1.0 CUDA");
+  }
+  /** // doc: test_query_platform_layer_info_5() {{{
+   * \brief Test the devices(unknown_platform) invocation.
+   */ // }}}
+  void test_query_platform_layer_info_5( )
+  {
+    T::Newton_clGetPlatformIDs mock1;
+    T::Newton_clGetPlatformInfo mock2;
+    T::Newton_clGetDeviceIDs mock3;
+    T::Newton_clGetDeviceInfo mock4;
+    Platform_Layer layer;
+    Dimbo::Clinfo::Platform_Layer_Info p(query_platform_layer_info(layer));
+    Dimbo::Clinfo::Const_Platform_Info_Ptr unknown_platform(NULL);
+    Dimbo::Clinfo::Device_Info_Ptrs infos(p.devices(unknown_platform));
+
+    TS_ASSERT(infos.empty());
   }
 };
 

@@ -29,8 +29,6 @@
 #ifndef $CLASS_HEADER_GUARD
 #define $CLASS_HEADER_GUARD
 
-#include <$CLASS_PROTO_H_FILE>
-
 $CLASS_OPEN_NAMESPACES
 
 /** // doc: class $CLASS {{{
@@ -38,7 +36,10 @@ $CLASS_OPEN_NAMESPACES
  */ // }}}
 class $CLASS
 {
+  template <class Archive>
+  friend void serialize(Archive&, $CLASS&, const unsigned int)
 public:
+  static constexpr unsigned int class_version = 0x000001;
   /** // doc: $CLASS() {{{
    * \todo Write documentation
    */ // }}}
@@ -52,6 +53,7 @@ public:
    */ // }}}
   virtual void foo( ) ;
 };
+
 $CLASS_CLOSE_NAMESPACES
 
 #endif /* $CLASS_HEADER_GUARD */

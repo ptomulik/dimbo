@@ -32,6 +32,11 @@
 #include <dimbo/cl/platforms.hpp>
 #include <dimbo/cl/devices.hpp>
 #include <dimbo/cl/cl.hpp>
+
+#include <dimbo/clinfo/platform_layer_info.hpp>
+#include <dimbo/clinfo/platform_query.hpp>
+#include <dimbo/clinfo/device_query.hpp>
+
 #include <set>
 #include <map>
 #include <vector>
@@ -78,6 +83,14 @@ private:
   Device_Platform_Map _device_platform_map;
   Platform_Devices_Map _platform_devices_map;
 };
+
+/** // doc: query_platform_layer_info(layer,pquery,dquery) {{{
+ * \todo Write documentation
+ */ // }}}
+Dimbo::Clinfo::Platform_Layer_Info
+query_platform_layer_info(Platform_Layer const& layer,
+                          Dimbo::Clinfo::Platform_Query const& pquery = Dimbo::Clinfo::Platform_Query(),
+                          Dimbo::Clinfo::Device_Query const& dquery = Dimbo::Clinfo::Device_Query());
 } /* namespace Cl */
 } /* namespace Dimbo */
 

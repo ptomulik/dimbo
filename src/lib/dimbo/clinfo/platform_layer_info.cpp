@@ -27,112 +27,154 @@
  * @todo Write documentation
  */ // }}}
 #include <dimbo/clinfo/platform_layer_info.hpp>
+#include <set>
 
 namespace Dimbo {
 namespace Clinfo {
 
-Platform_Layer_Info::
-Platform_Layer_Info()
-{
-}
-#if 0
-Platform_Layer_Info::
-Platform_Layer_Info( Platform_Layer const& layer, Platform_Query const& pquery
-                   , Device_Query const& dquery )
-{
-  this->query(layer, pquery, dquery);
-}
-#endif
-Platform_Layer_Info::
-~Platform_Layer_Info()
-{
-}
+/* ------------------------------------------------------------------------ */
 
+Platform_Layer_Info::Platform_Layer_Info()
+{
+}
+/* ------------------------------------------------------------------------ */
+
+Platform_Layer_Info::~Platform_Layer_Info()
+{
+}
+/* ------------------------------------------------------------------------ */
 void Platform_Layer_Info::
 clear()
 {
-  this->_platform_infos.clear();
-  this->_device_infos.clear();
-  this->_device_platform_map.clear();
-  this->_platform_devices_map.clear();
+  this->_bimap.clear();
 }
-#if 0
-void Platform_Layer_Info::
-query( Platform_Layer const& layer, Platform_Query const& pquery
-     , Device_Query const& dquery )
+/* ------------------------------------------------------------------------ */
+Platform_Info_Ptrs Platform_Layer_Info::
+platforms()
 {
-  this->clear();
-  Platforms platforms(layer.platforms());
-  Platforms::const_iterator pend(platforms.end());
-  Platforms::const_iterator pcur(platforms.begin());
-
-  for(;pcur != pend; ++pcur)
+  typedef Bimap::left_const_iterator It;
+  std::set<Const_Platform_Info_Ptr> seen;
+  Platform_Info_Ptrs platforms;
+  It end(this->_bimap.left.end());
+  for(It cur = this->_bimap.left.begin(); cur != end; ++cur)
     {
-      Platform_Info_Ptr pinfo(new Platform_Info(Platform(*pcur), pquery));
-      Devices devices(layer.devices(*pcur));
-      Devices::const_iterator dend(devices.end());
-      Devices::const_iterator dcur(devices.begin());
-      for(;dcur != dend; ++dcur)
+      if(seen.find(cur->first) == seen.end())
         {
-          this->_insert(
-            pinfo,
-            Device_Info_Ptr(
-              new Device_Info(
-                Device(*dcur),
-                dquery)
-            )
-          );
+          platforms.push_back(boost::const_pointer_cast<Platform_Info>(cur->first));
+          seen.insert(cur->first);
         }
     }
+  return platforms;
 }
-#endif
-Platform_Layer_Info::Platform_Infos Platform_Layer_Info::
+/* ------------------------------------------------------------------------ */
+Const_Platform_Info_Ptrs Platform_Layer_Info::
 platforms() const
 {
-  return Platform_Infos(this->_platform_infos);
+  typedef Bimap::left_const_iterator It;
+  std::set<Const_Platform_Info_Ptr> seen;
+  Const_Platform_Info_Ptrs platforms;
+  It end(this->_bimap.left.end());
+  for(It cur = this->_bimap.left.begin(); cur != end; ++cur)
+    {
+      if(seen.find(cur->first) == seen.end())
+        {
+          platforms.push_back(cur->first);
+          seen.insert(cur->first);
+        }
+    }
+  return platforms;
 }
-
-Platform_Layer_Info::Device_Infos Platform_Layer_Info::
+/* ------------------------------------------------------------------------ */
+Platform_Info_Ptr Platform_Layer_Info::
+platform(Const_Device_Info_Ptr device)
+{
+  // NOTE: this throws an exception if device is an invalid key
+  return boost::const_pointer_cast<Platform_Info>(this->_bimap.right.at(device));
+}
+/* ------------------------------------------------------------------------ */
+Const_Platform_Info_Ptr Platform_Layer_Info::
+platform(Const_Device_Info_Ptr device) const
+{
+  // NOTE: this throws an exception if device is an invalid key
+  return this->_bimap.right.at(device);
+}
+/* ------------------------------------------------------------------------ */
+Device_Info_Ptrs Platform_Layer_Info::
+devices()
+{
+  typedef Bimap::left_const_iterator It;
+  Device_Info_Ptrs devices;
+  It end(this->_bimap.left.end());
+  for(It cur = this->_bimap.left.begin(); cur != end; ++cur)
+    devices.push_back(boost::const_pointer_cast<Device_Info>(cur->second));
+  return devices;
+}
+/* ------------------------------------------------------------------------ */
+Const_Device_Info_Ptrs Platform_Layer_Info::
 devices() const
 {
-  return Device_Infos(this->_device_infos);
+  typedef Bimap::left_const_iterator It;
+  Const_Device_Info_Ptrs devices;
+  It end(this->_bimap.left.end());
+  for(It cur = this->_bimap.left.begin(); cur != end; ++cur)
+    devices.push_back(cur->second);
+  return devices;
 }
-
-Platform_Layer_Info::Device_Infos Platform_Layer_Info::
+/* ------------------------------------------------------------------------ */
+Device_Info_Ptrs Platform_Layer_Info::
+devices(Const_Platform_Info_Ptr platform)
+{
+  typedef Bimap::left_const_iterator It;
+  Device_Info_Ptrs devices;
+  It end(this->_bimap.left.end());
+  for(It cur = _bimap.left.begin(); cur != end; ++cur)
+    if(cur->first == platform)
+      devices.push_back(boost::const_pointer_cast<Device_Info>(cur->second));
+  return devices;
+}
+/* ------------------------------------------------------------------------ */
+Const_Device_Info_Ptrs Platform_Layer_Info::
 devices(Const_Platform_Info_Ptr platform) const
 {
-  typedef Platform_Devices_Map::const_iterator map_iterator;
-  map_iterator found = this->_platform_devices_map.find(platform);
-  if(found == this->_platform_devices_map.end())
-    // FIXME: throw an exception?
-    return Device_Infos();
-  else
-    return found->second;
+  typedef Bimap::left_const_iterator It;
+  Const_Device_Info_Ptrs devices;
+  It end(this->_bimap.left.end());
+  for(It cur = _bimap.left.begin(); cur != end; ++cur)
+    if(cur->first == platform)
+      devices.push_back(cur->second);
+  return devices;
 }
-
-void Platform_Layer_Info::
-_insert(Platform_Info_Ptr platform)
+/* ------------------------------------------------------------------------ */
+Device_Info_Ptr Platform_Layer_Info::
+push_back(Device_Info const& device, Platform_Info_Ptr platform)
 {
-  if(this->_platform_devices_map.count(platform) == 0)
-    {
-      this->_platform_infos.push_back(platform);
-      this->_platform_devices_map.insert(
-        std::make_pair(platform,Device_Infos())
-      );
-    }
+  return this->push_back(Device_Info_Ptr(new Device_Info(device)), platform);
 }
-
-void Platform_Layer_Info::
-_insert(Platform_Info_Ptr platform, Device_Info_Ptr device)
+/* ------------------------------------------------------------------------ */
+Device_Info_Ptr Platform_Layer_Info::
+push_back(Device_Info_Ptr device, Platform_Info_Ptr platform)
 {
-  this->_insert(platform);
-  if(this->_device_platform_map.count(device) == 0)
-    {
-      this->_device_infos.push_back(device);
-      this->_platform_devices_map[platform].push_back(device);
-      this->_device_platform_map[device] = platform;
-    }
+  this->_bimap.left.push_back(Bimap::left_value_type(platform, device));
+  return device;
 }
+/* ------------------------------------------------------------------------ */
+void Platform_Layer_Info::
+remove(Const_Platform_Info_Ptr platform)
+{
+  typedef Bimap::left_iterator It;
+  for(It cur = this->_bimap.left.begin(); cur != this->_bimap.left.end();)
+    if(cur->first == platform)
+      cur = this->_bimap.left.erase(cur);
+    else
+      ++cur;
+}
+/* ------------------------------------------------------------------------ */
+void Platform_Layer_Info::
+remove(Const_Device_Info_Ptr device)
+{
+  this->_bimap.right.erase(device);
+}
+/* ------------------------------------------------------------------------ */
 
 } /* namespace Clinfo */
 } /* namespace Dimbo */

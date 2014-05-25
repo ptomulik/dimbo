@@ -23,13 +23,14 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = CLVar('dimbo_cl_test dimbo_protobuf_cl protobuf boost_serialization')
+libs = CLVar('dimbo_cl_test dimbo_clinfo')
 
 defs = env.get('CPPDEFINES', {}).copy()
 defs.update({'DIMBO_COMPILING_TEST' : 1})
 
 env.CxxTest('dimbo-cl-test', env.Glob('*.t.h'),
             LIBS = libs,
+            CXXTEST_CPPPATH = ['../..'],
             CXXTEST_LIBPATH = env.get('LIBPATH', CLVar()),
             CXXTEST_TARGET = 'check-dimbo-cl')
 env.Alias('check', ['check-dimbo-cl'])

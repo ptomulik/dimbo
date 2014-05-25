@@ -39,6 +39,9 @@
 #include <dimbo/cl/cl_errors/cl_out_of_resources.hpp>
 #include <dimbo/cl/cl_errors/cl_out_of_host_memory.hpp>
 
+#include <dimbo/clinfo/device_info.hpp>
+#include <dimbo/clinfo/device_query.hpp>
+
 #include <vector>
 #include <string>
 
@@ -980,6 +983,13 @@ void
 get_device_info( cl_device_id device, cl_device_info name, size_t value_size,
                  void* value, size_t* value_size_ret)
   throw( DIMBO_CL_GET_DEVICE_INFO_EXCEPTIONS );
+
+/** // doc: query_device_info(device, query) {{{
+ * \todo Write documentation
+ */ // }}}
+Dimbo::Clinfo::Device_Info
+query_device_info( Device const& device,
+                   Dimbo::Clinfo::Device_Query const& query = Dimbo::Clinfo::Device_Query() );
 
 } // namespace Cl {
 } // namespace Dimbo {

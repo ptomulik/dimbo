@@ -34,7 +34,9 @@
 #include <string>
 #include <boost/optional.hpp>
 
-#include <dimbo/clinfo/throw.hpp>
+#include <dimbo/clinfo/exceptions/common.hpp>
+#include <dimbo/clinfo/exceptions/bad_alloc.hpp>
+#include <dimbo/clinfo/exceptions/length_error.hpp>
 #include <dimbo/clinfo/exceptions/uninitialized_value.hpp>
 
 namespace Dimbo {
@@ -52,6 +54,10 @@ namespace Clinfo {
  */ // }}}
 class Platform_Info
 {
+  template <class Archive>
+  friend void serialize(Archive&, Platform_Info&, const unsigned int);
+public:
+  static constexpr unsigned int class_version = 0x000001;
 public:
   /** // doc: Platform_Info() {{{
    * \brief Default constructor.
@@ -75,207 +81,122 @@ public:
    * \return The \c cl_platform_id identifier of an OpenCL platform, whose
    *    parameters are keeps in this object.
    */ // }}}
-  inline unsigned long id() const
-    throw(DIMBO_CLINFO_EXCEPTION(Uninitialized_Value))
-  {
-    if(!this->has_id()) { DIMBO_CLINFO_THROW(Uninitialized_Value); }
-    return this->_id.get();
-  }
+  unsigned long id() const
+    throw(DIMBO_CLINFO_EXCEPTION(Uninitialized_Value));
   /** // // doc: profile() {{{
    * \brief Platform profile string retrieved with Platform::get_profile().
    * \todo Refine documentation
    */ // }}}
-  inline std::string const& profile() const
-    throw(DIMBO_CLINFO_EXCEPTION(Uninitialized_Value))
-  {
-    if(!this->has_profile()) { DIMBO_CLINFO_THROW(Uninitialized_Value); }
-    return this->_profile.get();
-  }
+  std::string const& profile() const
+    throw(DIMBO_CLINFO_EXCEPTION(Uninitialized_Value));
   /** // // doc: version() {{{
    * \brief Platform version string retrieved with Platform::get_version().
    * \todo Refine documentation
    */ // }}}
-  inline std::string const& version() const
-    throw(DIMBO_CLINFO_EXCEPTION(Uninitialized_Value))
-  {
-    if(!this->has_version()) { DIMBO_CLINFO_THROW(Uninitialized_Value); }
-    return this->_version.get();
-  }
+  std::string const& version() const
+    throw(DIMBO_CLINFO_EXCEPTION(Uninitialized_Value));
   /** // // doc: name() {{{
    * \brief Platform version string retrieved with Platform::get_version().
    * \todo Refine documentation
    */ // }}}
-  inline std::string const& name() const
-    throw(DIMBO_CLINFO_EXCEPTION(Uninitialized_Value))
-  {
-    if(!this->has_name()) { DIMBO_CLINFO_THROW(Uninitialized_Value); }
-    return this->_name.get();
-  }
+  std::string const& name() const
+    throw(DIMBO_CLINFO_EXCEPTION(Uninitialized_Value));
   /** // // doc: vendor() {{{
    * \todo Refine documentation
    * \brief Platform vendor string retrieved with Platform::get_vendor().
    */ // }}}
-  inline std::string const& vendor() const
-    throw(DIMBO_CLINFO_EXCEPTION(Uninitialized_Value))
-  {
-    if(!this->has_vendor()) { DIMBO_CLINFO_THROW(Uninitialized_Value); }
-    return this->_vendor.get();
-  }
+  std::string const& vendor() const
+    throw(DIMBO_CLINFO_EXCEPTION(Uninitialized_Value));
   /** // // doc: extensions() {{{
    * \todo Refine documentation
    * \brief Platform extensions string retrieved with
    *        Platform::get_extensions().
    */ // }}}
-  inline std::string const& extensions() const
-    throw(DIMBO_CLINFO_EXCEPTION(Uninitialized_Value))
-  {
-    if(!this->has_extensions()) { DIMBO_CLINFO_THROW(Uninitialized_Value); }
-    return this->_extensions.get();
-  }
+  std::string const& extensions() const
+    throw(DIMBO_CLINFO_EXCEPTION(Uninitialized_Value));
   // }}}
   // setters {{{
   /** // doc: set_id() {{{
    * \todo Write documentation
    */ // }}}
-  Platform_Info& set_id(unsigned long val) throw()
-  {
-    this->_id = val;
-    return *this;
-  }
+  Platform_Info& set_id(unsigned long val) throw();
   /** // doc: set_profile() {{{
    * \todo Write documentation
    */ // }}}
   Platform_Info& set_profile(std::string const& val)
-  {
-    this->_profile = val;
-    return *this;
-  }
+    throw(DIMBO_CLINFO_EXCEPTION(Bad_Alloc), DIMBO_CLINFO_EXCEPTION(Length_Error));
   /** // doc: set_version() {{{
    * \todo Write documentation
    */ // }}}
   Platform_Info& set_version(std::string const& val)
-  {
-    this->_version = val;
-    return *this;
-  }
+    throw(DIMBO_CLINFO_EXCEPTION(Bad_Alloc), DIMBO_CLINFO_EXCEPTION(Length_Error));
   /** // doc: set_name() {{{
    * \todo Write documentation
    */ // }}}
   Platform_Info& set_name(std::string const& val)
-  {
-    this->_name = val;
-    return *this;
-  }
+    throw(DIMBO_CLINFO_EXCEPTION(Bad_Alloc), DIMBO_CLINFO_EXCEPTION(Length_Error));
   /** // doc: set_vendor() {{{
    * \todo Write documentation
    */ // }}}
   Platform_Info& set_vendor(std::string const& val)
-  {
-    this->_vendor = val;
-    return *this;
-  }
+    throw(DIMBO_CLINFO_EXCEPTION(Bad_Alloc), DIMBO_CLINFO_EXCEPTION(Length_Error));
   /** // doc: set_extensions() {{{
    * \todo Write documentation
    */ // }}}
   Platform_Info& set_extensions(std::string const& val)
-  {
-    this->_extensions = val;
-    return *this;
-  }
+    throw(DIMBO_CLINFO_EXCEPTION(Bad_Alloc), DIMBO_CLINFO_EXCEPTION(Length_Error));
   // }}}
   // cleaners {{{
   /** // doc: clear_id() {{{
    * \todo Write documentation
    */ // }}}
-  inline Platform_Info& clear_id() throw()
-  {
-    this->_id = boost::none;
-    return *this;
-  }
+  Platform_Info& clear_id() throw();
   /** // doc: clear_profile() {{{
    * \todo Write documentation
    */ // }}}
-  inline Platform_Info& clear_profile() throw()
-  {
-    this->_profile = boost::none;
-    return *this;
-  }
+  Platform_Info& clear_profile() throw();
   /** // doc: clear_version() {{{
    * \todo Write documentation
    */ // }}}
-  inline Platform_Info& clear_version() throw()
-  {
-    this->_version = boost::none;
-    return *this;
-  }
+  Platform_Info& clear_version() throw();
   /** // doc: clear_name() {{{
    * \todo Write documentation
    */ // }}}
-  inline Platform_Info& clear_name() throw()
-  {
-    this->_name = boost::none;
-    return *this;
-  }
+  Platform_Info& clear_name() throw();
   /** // doc: clear_vendor() {{{
    * \todo Write documentation
    */ // }}}
-  inline Platform_Info& clear_vendor() throw()
-  {
-    this->_vendor = boost::none;
-    return *this;
-  }
+  Platform_Info& clear_vendor() throw();
   /** // doc: clear_extensions() {{{
    * \todo Write documentation
    */ // }}}
-  inline Platform_Info& clear_extensions() throw()
-  {
-    this->_extensions = boost::none;
-    return *this;
-  }
+  Platform_Info& clear_extensions() throw();
   // }}}
   // presence {{{
   /** // doc: has_id() {{{
    * \todo Write documentation
    */ // }}}
-  inline bool has_id() const throw()
-  {
-    return this->_id.is_initialized();
-  }
+  bool has_id() const throw();
   /** // doc: has_profile() {{{
    * \todo Write documentation
    */ // }}}
-  inline bool has_profile() const throw()
-  {
-    return this->_profile.is_initialized();
-  }
+  bool has_profile() const throw();
   /** // doc: has_version() {{{
    * \todo Write documentation
    */ // }}}
-  inline bool has_version() const throw()
-  {
-    return this->_version.is_initialized();
-  }
+  bool has_version() const throw();
   /** // doc: has_name() {{{
    * \todo Write documentation
    */ // }}}
-  inline bool has_name() const throw()
-  {
-    return this->_name.is_initialized();
-  }
+  bool has_name() const throw();
   /** // doc: has_vendor() {{{
    * \todo Write documentation
    */ // }}}
-  inline bool has_vendor() const throw()
-  {
-    return this->_vendor.is_initialized();
-  }
+  bool has_vendor() const throw();
   /** // doc: has_extensions() {{{
    * \todo Write documentation
    */ // }}}
-  inline bool has_extensions() const throw()
-  {
-    return this->_extensions.is_initialized();
-  }
+  bool has_extensions() const throw();
   // }}}
 private:
   void _init();

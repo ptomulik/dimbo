@@ -30,17 +30,8 @@
 #define DIMBO_CL_EXCEPTION_MOD_HPP_INCLUDED
 
 // module's core
-//#include <dimbo/cl/exception.hpp>
-//#include <dimbo/util/std_except_ctor_arg.hpp>
-//#include <dimbo/standardized_exception.hpp>
-
-//#include <dimbo/cl/decl_exceptions.hpp>
 #include <dimbo/cl/exceptions.hpp>
 
-//#include <dimbo/cl/cl_error.hpp>
-//#include <dimbo/cl/cl_error_no.hpp>
-
-//#include <dimbo/cl/decl_cl_errors.hpp>
 #include <dimbo/cl/cl_errors.hpp>
 
 // dependencies of other modules

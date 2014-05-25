@@ -35,6 +35,8 @@ def add_cli_args(argparser):
     unit_test_ext = '.t.h'
     proto_ext = '.proto'
     proto_h_ext = '.pb.h'
+    proto_wrapper_h_ext = '.hpp'
+    proto_wrapper_c_ext = '.cpp'
     swig_prefix = 'swig'
     unit_test_prefix = path.join('src', 'test')
     swig_ext = '.swg'
@@ -96,6 +98,14 @@ def add_cli_args(argparser):
         action = 'store', dest = 'proto_h_ext',
         help = "extension used for output protobuf headers (%s)" % proto_h_ext,
         default = proto_h_ext)
+    argparser.add_argument('--proto-wrapper-h-ext', type = str, metavar = 'dir',
+        action = 'store', dest = 'proto_wrapper_h_ext',
+        help = "extension used for protobuf wrapper header file (%s)" % proto_wrapper_h_ext,
+        default = proto_wrapper_h_ext)
+    argparser.add_argument('--proto-wrapper-c-ext', type = str, metavar = 'dir',
+        action = 'store', dest = 'proto_wrapper_c_ext',
+        help = "extension used for protobuf wrapper source file (%s)" % proto_wrapper_c_ext,
+        default = proto_wrapper_c_ext)
     argparser.add_argument('--swig-ext', type = str, metavar = 'dir',
         action = 'store', dest = 'swig_ext',
         help = "extension used for swig file (%s)" % swig_ext,
@@ -190,12 +200,16 @@ def generate_class(args):
     unit_test_file_rel = path.join(*unit_test_file_name_parts).lower() + args.unit_test_ext
     unit_test_file_full = path.join(args.unit_test_prefix, unit_test_file_rel)
     proto_file_rel = path.join(*proto_class_name_parts).lower() + args.proto_ext
-    # FIXME: The extension (and possibly location) should not be hard-coded
     proto_h_file_rel = path.join(*proto_class_name_parts).lower() + args.proto_h_ext
+    proto_wrapper_h_file_rel = path.join(*proto_class_name_parts).lower() + args.proto_wrapper_h_ext
+    proto_wrapper_c_file_rel = path.join(*proto_class_name_parts).lower() + args.proto_wrapper_c_ext
     proto_file_full = path.join(args.prefix, proto_file_rel)
+    proto_wrapper_h_file_full = path.join(args.prefix, proto_wrapper_h_file_rel)
+    proto_wrapper_c_file_full = path.join(args.prefix, proto_wrapper_c_file_rel)
     swig_file_rel = path.join(*swig_file_name_parts).lower() + args.swig_ext
     swig_file_full = path.join(args.prefix, swig_file_rel)
     swig_moduledecl_perl = '%%module %s' % '::'.join(swig_module_parts)
+    proto_wrapper_header_guard = re.sub(r'[/\.]','_', proto_wrapper_h_file_rel).upper() + '_INCLUDED'
     if swig_package_parts:
         swig_moduledecl_python = '%%module (package=%s) %s' \
                                % ('.'.join(swig_package_parts), class_name)
@@ -222,6 +236,14 @@ def generate_class(args):
         if path.exists(proto_file_full):
             stderr.write("error: %r already exists, won't override\n"
                         % proto_file_full)
+            error = 1
+        if path.exists(proto_wrapper_h_file_full):
+            stderr.write("error: %r already exists, won't override\n"
+                        % proto_wrapper_h_file_full)
+            error = 1
+        if path.exists(proto_wrapper_c_file_full):
+            stderr.write("error: %r already exists, won't override\n"
+                        % proto_wrapper_c_file_full)
             error = 1
     if args.generate_swig:
         if path.exists(swig_file_full):
@@ -282,6 +304,8 @@ def generate_class(args):
         class_hpp_in = path.join("template", "addclass", "class.hpp.in")
         class_cpp_in = path.join("template", "addclass", "class.cpp.in")
         class_proto_in = path.join("template", "addclass", "class.proto.in")
+        class_proto_wrapper_h_in = path.join("template", "addclass", "protoc-wrapper.hpp.in")
+        class_proto_wrapper_c_in = path.join("template", "addclass", "protoc-wrapper.cpp.in")
         class_unit_test_in = path.join("template", "addclass", "class.t.h.in")
         class_swig_in = path.join("template", "addclass", "class.swg.in")
         class_unit_test = class_name + '_TestSuite'
@@ -290,6 +314,7 @@ def generate_class(args):
         substs = {
             'CLASS'                             : class_name,
             'CLASS_NAMESPACES'                  : '::'.join(namespaces),
+            'CLASS_FQDN'                        : '::'.join(namespaces + [class_name]),
             'CLASS_HEADER_FILE'                 : hpp_file_rel,
             'CLASS_SOURCE_FILE'                 : cpp_file_rel,
             'CLASS_PROTO_FILE'                  : proto_file_rel,
@@ -307,6 +332,10 @@ def generate_class(args):
             'CLASS_UNIT_TEST_HEADER_GUARD'      : unit_test_header_guard,
             'CLASS_UNIT_TEST_OPEN_NAMESPACES'   : unit_test_open_namespaces,
             'CLASS_UNIT_TEST_CLOSE_NAMESPACES'  : unit_test_close_namespaces,
+            'PROTO_WRAPPER_HEADER_FILE'         : proto_wrapper_h_file_rel,
+            'PROTO_WRAPPER_SOURCE_FILE'         : proto_wrapper_c_file_rel,
+            'PROTO_WRAPPER_HEADER_GUARD'        : proto_wrapper_header_guard,
+            'CLASS_PROTO_FQDN'                  : '::'.join(proto_namespaces + [class_name]),
         }
 
         if args.generate_hpp:
@@ -345,6 +374,22 @@ def generate_class(args):
                 error = 1
             else:
                 proto_template = string.Template(file(class_proto_in).read())
+            if args.verbose:
+                stdout.write("info: reading %r\n" % class_proto_wrapper_h_in)
+            if not path.isfile(class_proto_wrapper_h_in):
+                stderr.write("error: file %r does not exist\n"
+                            % class_proto_wrapper_h_in)
+                error = 1
+            else:
+                proto_wrapper_h_template = string.Template(file(class_proto_wrapper_h_in).read())
+            if args.verbose:
+                stdout.write("info: reading %r\n" % class_proto_wrapper_c_in)
+            if not path.isfile(class_proto_wrapper_c_in):
+                stderr.write("error: file %r does not exist\n"
+                            % class_proto_wrapper_c_in)
+                error = 1
+            else:
+                proto_wrapper_c_template = string.Template(file(class_proto_wrapper_c_in).read())
         if args.generate_swig:
             if args.verbose:
                 stdout.write("info: reading %r\n" % class_swig_in)
@@ -372,6 +417,12 @@ def generate_class(args):
             if args.verbose:
                 stdout.write("info: generating %r\n" % proto_file_full)
             file(proto_file_full, "w").write(proto_template.substitute(substs))
+            if args.verbose:
+                stdout.write("info: generating %r\n" % proto_wrapper_h_file_full)
+            file(proto_wrapper_h_file_full, "w").write(proto_wrapper_h_template.substitute(substs))
+            if args.verbose:
+                stdout.write("info: generating %r\n" % proto_wrapper_c_file_full)
+            file(proto_wrapper_c_file_full, "w").write(proto_wrapper_c_template.substitute(substs))
         if args.generate_swig:
             if args.verbose:
                 stdout.write("info: generating %r\n" % swig_file_full)

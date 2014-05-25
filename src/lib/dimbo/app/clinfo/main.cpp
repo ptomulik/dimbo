@@ -26,26 +26,30 @@
  * \file dimbo/app/clinfo/main.cpp
  * \todo Write documentation
  */ // }}}
-#include <dimbo/cl/platform.hpp>
-#include <dimbo/cl/platform_info.hpp>
 #include <dimbo/app/clinfo/main.hpp>
 #include <dimbo/app/clinfo/create_query.hpp>
-#include <dimbo/format/cl/platform_layer_info.hpp>
-//#include <dimbo/format/cl/platform_info.hpp>
-//#include <dimbo/format/cl/device_info.hpp>
+
 #include <dimbo/cl/platform_layer.hpp>
-#include <dimbo/cl/platform_layer_info.hpp>
+#include <dimbo/clinfo/platform_layer_info.hpp>
+#include <dimbo/serialization/clinfo/platform_layer_info.hpp>
+#include <dimbo/format/clinfo/platform_layer_info.hpp>
 
 #include <dimbo/config.h>
 #define DIMBO_GETTEXT_DOMAIN LIBDIMBO_APP_CLINFO_GETTEXT_DOMAIN
 #include <dimbo/gettext.hpp>
 
 #include <boost/program_options/parsers.hpp>
+#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 #include <boost/archive/xml_iarchive.hpp>
-#include <boost/serialization/nvp.hpp>
+#include <boost/archive/binary_oarchive.hpp>
+#include <boost/archive/binary_iarchive.hpp>
+#include <boost/archive/xml_oarchive.hpp>
+#include <boost/archive/xml_iarchive.hpp>
 #include <cstdlib>
 #include <iostream>
+#include <fstream>
 #include <vector>
 
 namespace Dimbo {
@@ -65,7 +69,7 @@ process_help_options( Dimbo::App::Options::Options_Map const& om
   if(om.count("help"))
     {
       std::cout << od.common_options() << std::endl;
-      std::cout << od.output_options() << std::endl;
+      std::cout << od.io_options() << std::endl;
       std::cout << od.platform_general_options() << std::endl;
       std::cout << od.device_general_options() << std::endl;
       return true;
@@ -88,31 +92,6 @@ process_help_options( Dimbo::App::Options::Options_Map const& om
       return true;
     }
   return false;
-}
-
-template<class Archive> static void
-serialize_platform_layer( Archive& ar
-                        , Dimbo::Cl::Platform_Query const& platform_query
-                        , Dimbo::Cl::Device_Query const& device_query )
-{
-  using Dimbo::Cl::Platform_Layer;
-  using Dimbo::Cl::Platform_Layer_Info;
-
-  Platform_Layer_Info info(Platform_Layer(), platform_query, device_query);
-  ar << boost::serialization::make_nvp("platform_layer_info", info);
-}
-
-template<class Ostream> static void
-display_platform_layer( Ostream& os
-                      , Dimbo::Cl::Platform_Query const& platform_query
-                      , Dimbo::Cl::Device_Query const& device_query
-                      , int indent )
-{
-  using Dimbo::Cl::Platform_Layer;
-  using Dimbo::Cl::Platform_Layer_Info;
-
-  Platform_Layer_Info info(Platform_Layer(), platform_query, device_query);
-  Dimbo::Format::write(os, info, indent);
 }
 
 Main::
@@ -138,31 +117,136 @@ Main::
 int Main::
 run()
 {
+  using Dimbo::Clinfo::Platform_Layer_Info;
+  using boost::serialization::make_nvp;
+  struct noop { void operator()(...) const{}; };
+
+  enum Output_Format {
+    of_human,   // Human-readable text 
+    of_xml,     // Serialized to XML
+    of_text,    // Serialized to text
+    of_bin      // Serializaed to binary form
+  };
+  enum Input_Format {
+    if_xml,     // Serialized to XML
+    if_text,    // Serialized to text
+    if_bin      // Serializaed to binary form
+  };
+  Output_Format oformat = of_text;
+
   if(process_help_options(this->options_map(), this->options_description()))
     return EXIT_SUCCESS;
 
-  bool xml = false;
-  if(this->options_map().count("format"))
-    {
-      if(this->options_map()["format"].as<std::string>() == "xml")
-        xml = true;
-    }
+  Platform_Layer_Info platform_layer_info;
 
-  if(xml)
-    { boost::archive::xml_oarchive ar(std::cout);
-      serialize_platform_layer( ar
-                              , create_platform_query(this->options_map())
-                              , create_device_query(this->options_map()));
+  if(this->options_map().count("input"))
+    {
+      Input_Format iformat = if_xml;
+      if(this->options_map().count("input-format"))
+        {
+          if(this->options_map()["input-format"].as<std::string>() == "xml")
+            iformat = if_xml;
+          else if(this->options_map()["input-format"].as<std::string>() == "text")
+            iformat = if_text;
+          else if(this->options_map()["input-format"].as<std::string>() == "bin")
+            iformat = if_bin;
+        }
+
+      std::string ifile(this->options_map()["input"].as<std::string>());
+      boost::shared_ptr<std::istream> ifs;
+      if(ifile == "-")
+        ifs.reset(&std::cin, noop());
+      else
+        ifs.reset(new std::ifstream(ifile));
+
+      switch(iformat)
+        {
+          case if_text:
+            { 
+              boost::archive::text_iarchive ar(*ifs);
+              ar >> make_nvp("platform_layer_info", platform_layer_info);
+            }
+            break;
+          case if_bin:
+            { 
+              boost::archive::binary_iarchive ar(*ifs);
+              ar >> make_nvp("platform_layer_info", platform_layer_info);
+            }
+            break;
+          default:
+            { 
+              boost::archive::xml_iarchive ar(*ifs);
+              ar >> make_nvp("platform_layer_info", platform_layer_info);
+            }
+            break;
+        }
     }
   else
     {
-      int indent = 2;
-      if(this->options_map().count("indent"))
-        indent = this->options_map()["indent"].as<int>();
-      display_platform_layer( std::cout
-                            , create_platform_query(this->options_map())
-                            , create_device_query(this->options_map())
-                            , indent );
+      using Dimbo::Cl::Platform_Layer;
+      using Dimbo::Clinfo::Platform_Query;
+      using Dimbo::Clinfo::Device_Query;
+      using Dimbo::Cl::query_platform_info;
+      platform_layer_info = query_platform_layer_info(
+          Platform_Layer(), 
+          create_platform_query(this->options_map()),
+          create_device_query(this->options_map())
+     );
+    }
+
+  if(this->options_map().count("output-format"))
+    {
+      if(this->options_map()["output-format"].as<std::string>() == "human")
+        oformat = of_human;
+      else if(this->options_map()["output-format"].as<std::string>() == "xml")
+        oformat = of_xml;
+      else if(this->options_map()["output-format"].as<std::string>() == "text")
+        oformat = of_text;
+      else if(this->options_map()["output-format"].as<std::string>() == "bin")
+        oformat = of_bin;
+    }
+
+  boost::shared_ptr<std::ostream> ofs;
+  if(this->options_map().count("output"))
+    {
+      std::string ofile(this->options_map()["output"].as<std::string>());
+      if(ofile == "-")
+        ofs.reset(&std::cout, noop());
+      else
+        ofs.reset(new std::ofstream(ofile));
+    }
+  else
+    ofs.reset(&std::cout, noop());
+
+
+  switch(oformat)
+    {
+      case of_xml:
+        { 
+          boost::archive::xml_oarchive ar(*ofs);
+          ar << make_nvp("platform_layer_info", platform_layer_info);
+        }
+        break;
+      case of_text:
+        { 
+          boost::archive::text_oarchive ar(*ofs);
+          ar << make_nvp("platform_layer_info", platform_layer_info);
+        }
+        break;
+      case of_bin:
+        { 
+          boost::archive::binary_oarchive ar(*ofs);
+          ar << make_nvp("platform_layer_info", platform_layer_info);
+        }
+        break;
+      default:
+        {
+          int indent = 2;
+          if(this->options_map().count("indent"))
+            indent = this->options_map()["indent"].as<int>();
+          Dimbo::Format::write(*ofs, platform_layer_info, indent);
+        }
+        break;
     }
   return EXIT_SUCCESS;
 }

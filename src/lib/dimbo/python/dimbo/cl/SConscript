@@ -27,9 +27,6 @@ init_py = env.Substfile(['__init__.py.in'], SUBST_DICT = {})
 # Generate python modules with swig
 libs = env.get('SWIGPY_LIBS', CLVar()) + [
     'dimbo_cl',
-    'dimbo_protobuf_cl',
-    'dimbo_format',
-    'protobuf',
     'OpenCL'
 ]
 overrides = {
@@ -43,7 +40,6 @@ modules = [
     'opencl_mod',
     'exception_mod',
     'platform_mod',
-    'platform_info_mod',
     'context_mod',
     'program_mod'
 ]

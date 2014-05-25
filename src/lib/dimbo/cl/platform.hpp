@@ -39,6 +39,9 @@
 #include <dimbo/cl/cl_errors/cl_invalid_platform.hpp>
 #include <dimbo/cl/cl_errors/cl_out_of_host_memory.hpp>
 
+#include <dimbo/clinfo/platform_info.hpp>
+#include <dimbo/clinfo/platform_query.hpp>
+
 #include <vector>
 
 /* OpenCL header */
@@ -354,6 +357,12 @@ get_platform_info(  cl_platform_id platform,
                     size_t* param_value_size_ret )
   throw( DIMBO_CL_GET_PLATFORM_INFO_EXCEPTIONS );
 
+/** // doc: query_platform_info(platform, query) {{{
+ * \todo Write documentation
+ */ // }}}
+Dimbo::Clinfo::Platform_Info
+query_platform_info( Platform const& platform,
+                    Dimbo::Clinfo::Platform_Query const& query = Dimbo::Clinfo::Platform_Query() );
 } /* namespace Cl */
 } /* namespace Dimbo */
 

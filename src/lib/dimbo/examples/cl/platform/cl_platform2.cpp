@@ -34,10 +34,10 @@
 // [Includes]
 #include <dimbo/cl/platforms.hpp>
 #include <dimbo/cl/devices.hpp>
-#include <dimbo/cl/platform_info.hpp>
-#include <dimbo/cl/device_info.hpp>
-#include <dimbo/format/cl/platform_info.hpp>
-#include <dimbo/format/cl/device_info.hpp>
+#include <dimbo/clinfo/platform_info.hpp>
+#include <dimbo/clinfo/device_info.hpp>
+#include <dimbo/format/clinfo/platform_info.hpp>
+#include <dimbo/format/clinfo/device_info.hpp>
 #include <iostream>
 // [Includes]
 
@@ -60,6 +60,7 @@ int main(int, char const*[])
 {
   using namespace std;
   using namespace Dimbo::Cl;
+  using namespace Dimbo::Clinfo;
   using namespace Dimbo::Format;
   try {
     // [CreatePlatforms]
@@ -91,9 +92,10 @@ int main(int, char const*[])
          pi != platforms.end(); ++ pi)
       {
         // [CreatePlatformInfo]
-        // Crete Platform_Info object for platform *pi and gather information
-        // about *pi by performing query described by platform_query
-        Platform_Info platform_info(*pi, platform_query);
+        // Crete Platform_Info object and gather information about *pi
+        // by performing query described by platform_query
+        Platform_Info platform_info;
+        query_platform_info(*pi, platform_query);
         // [CreatePlatformInfo]
 
         // Print-out pi info
@@ -109,9 +111,10 @@ int main(int, char const*[])
             di != devices.end(); ++di)
           {
             // [CreateDeviceInfo]
-            // Crete Device_Info object for device *di and gather information
-            // about *di by performing query described by device_query
-            Device_Info device_info(*di, device_query);
+            // Crete Device_Info object gather information about *di by
+            // performing query described by device_query
+            Device_Info device_info;
+            query_device_info(*di, device_query);
             // [CreateDeviceInfo]
             // Print-out device info
             cout << "    Device " << di - devices.begin() << ":" << endl;

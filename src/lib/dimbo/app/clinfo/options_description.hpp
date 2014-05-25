@@ -35,7 +35,7 @@
 #include <dimbo/app/clinfo/platform_detail_options_description.hpp>
 #include <dimbo/app/clinfo/device_general_options_description.hpp>
 #include <dimbo/app/clinfo/device_detail_options_description.hpp>
-#include <dimbo/app/clinfo/output_options_description.hpp>
+#include <dimbo/app/clinfo/io_options_description.hpp>
 
 namespace Dimbo {
 namespace App {
@@ -100,9 +100,9 @@ public:
   /** // {{{
    * \todo Write documentation
    */ // }}}
-  Output_Options_Description const& output_options() const
+  IO_Options_Description const& io_options() const
     { // {{{
-      return this->_output_options;
+      return this->_io_options;
     } // }}}
 private:
   /** // doc _init_options_description() {{{
@@ -115,7 +115,7 @@ private:
   Platform_Detail_Options_Description _platform_detail_options;
   Device_General_Options_Description _device_general_options;
   Device_Detail_Options_Description _device_detail_options;
-  Output_Options_Description _output_options;
+  IO_Options_Description _io_options;
 };
 
 } /* namespace Clinfo */

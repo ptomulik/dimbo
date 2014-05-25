@@ -44,7 +44,7 @@ Options_Description( unsigned line_length, unsigned min_description_length )
   , _platform_detail_options(line_length,min_description_length)
   , _device_general_options(line_length,min_description_length)
   , _device_detail_options(line_length,min_description_length)
-  , _output_options(line_length,min_description_length)
+  , _io_options(line_length,min_description_length)
 { // {{{
   this->_init_options_description();
 } // }}}
@@ -58,7 +58,7 @@ Options_Description( const std::string & caption, unsigned line_length
   , _platform_detail_options(line_length,min_description_length)
   , _device_general_options(line_length,min_description_length)
   , _device_detail_options(line_length,min_description_length)
-  , _output_options(line_length,min_description_length)
+  , _io_options(line_length,min_description_length)
 { // {{{
   this->_init_options_description();
 } // }}}
@@ -74,7 +74,7 @@ _init_options_description()
   this->add(this->platform_detail_options());
   this->add(this->device_general_options());
   this->add(this->device_detail_options());
-  this->add(this->output_options());
+  this->add(this->io_options());
 } // }}}
 } /* namespace Clinfo */
 } /* namespace App */

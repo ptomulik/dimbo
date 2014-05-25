@@ -34,8 +34,8 @@
 // [Program]
 // [Includes]
 #include <dimbo/cl/platform_layer.hpp>
-#include <dimbo/cl/platform_layer_info.hpp>
-#include <dimbo/format/cl/platform_layer_info.hpp>
+#include <dimbo/clinfo/platform_layer_info.hpp>
+#include <dimbo/format/clinfo/platform_layer_info.hpp>
 #include <iostream>
 // [Includes]
 
@@ -58,6 +58,7 @@ int main(int, char const*[])
 {
   using namespace std;
   using namespace Dimbo::Cl;
+  using namespace Dimbo::Clinfo;
   using namespace Dimbo::Format;
   try {
     // [PrepareQueries]
@@ -80,7 +81,8 @@ int main(int, char const*[])
     Platform_Layer layer;
     // [CreatePlatformLayer]
     // [CreatePlatformLayerInfo]
-    Platform_Layer_Info info(layer, platform_query, device_query);
+    Platform_Layer_Info info;
+    query_platform_layer_info(layer, platform_query, device_query);
     // [CreatePlatformLayerInfo]
 
     write(cout, info, 2)  << endl;
