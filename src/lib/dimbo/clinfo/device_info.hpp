@@ -1401,7 +1401,7 @@ private:
   boost::optional<cl_uint> _max_compute_units;
   boost::optional<cl_uint> _max_work_item_dimensions;
   boost::optional<size_t> _max_work_group_size;
-  boost::optional<std::vector<size_t>> _max_work_item_sizes;
+  boost::optional<std::vector<size_t> > _max_work_item_sizes;
   boost::optional<cl_uint> _preferred_vector_width_char;
   boost::optional<cl_uint> _preferred_vector_width_short;
   boost::optional<cl_uint> _preferred_vector_width_int;
@@ -1463,9 +1463,9 @@ private:
   boost::optional<size_t> _image_max_array_size;
   boost::optional<unsigned long> _parent_device_id;
   boost::optional<cl_uint> _partition_max_sub_devices;
-  boost::optional<std::vector<cl_device_partition_property>> _partition_properties;
+  boost::optional<std::vector<cl_device_partition_property> > _partition_properties;
   boost::optional<cl_device_affinity_domain> _partition_affinity_domain;
-  boost::optional<std::vector<cl_device_partition_property>> _partition_type;
+  boost::optional<std::vector<cl_device_partition_property> > _partition_type;
   boost::optional<cl_uint> _reference_count;
   boost::optional<cl_bool> _preferred_interop_user_sync;
   boost::optional<size_t> _printf_buffer_size;

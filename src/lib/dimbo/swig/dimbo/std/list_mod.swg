@@ -25,6 +25,8 @@
  * \todo Write documentation
  */ // }}}
 
+%include <dimbo/swig_config.swg>
+
 %include <std_list.i>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

@@ -25,6 +25,8 @@
  * \todo Write documentation
  */ // }}}
 
+%include <dimbo/swig_config.swg>
+
 %import <dimbo/config.h>
 
 #if HAVE_OPENCL_CL_H_VERSION_2_0

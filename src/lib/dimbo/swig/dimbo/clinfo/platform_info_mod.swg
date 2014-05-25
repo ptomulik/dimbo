@@ -25,6 +25,8 @@
  * \todo Write documentation
  */ // }}}
 
+%include <dimbo/swig_config.swg>
+
 //%include <boost_shared_ptr.i>
 //%shared_ptr(Dimbo::Clinfo::Platform_Info)
 //%shared_ptr(Dimbo::Clinfo::Device_Info)

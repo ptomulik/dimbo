@@ -20,26 +20,14 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-/** // doc: dimbo/swig/dimbo/cl/platform_mod.swg {{{
- * \file dimbo/swig/dimbo/cl/platform_mod.swg
+/** // doc: dimbo/swig_config.swg {{{
+ * \file dimbo/swig_config.swg
  * \todo Write documentation
  */ // }}}
 
-%include <dimbo/swig_config.swg>
-
-%import  <dimbo/cl/exception_mod.i>
-%import  <dimbo/cl/opencl1_0.i>
-
-%{
-#include <dimbo/cl/exception_mod.hpp>
-#include <dimbo/cl/opencl_mod.hpp>
-%}
-
-%include <dimbo/cl/device.swg>
-%include <dimbo/cl/devices.swg>
-%include <dimbo/cl/platform.swg>
-%include <dimbo/cl/platforms.swg>
-%include <dimbo/cl/platform_layer.swg>
+#if SWIG_VERSION < 0x030000
+# define constexpr const
+#endif
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

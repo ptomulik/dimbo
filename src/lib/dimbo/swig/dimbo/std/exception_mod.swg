@@ -25,6 +25,8 @@
  * \todo Write documentation
  */ // }}}
 
+%include <dimbo/swig_config.swg>
+
 %{
 #include <dimbo/std/string_mod.hpp>
 %}
