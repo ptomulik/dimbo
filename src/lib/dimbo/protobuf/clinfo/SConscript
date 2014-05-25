@@ -36,7 +36,8 @@ lib = env.SharedLibrary('../../../dimbo_protobuf_clinfo',
     [ 'platform_query.pb.cc', 'platform_query.cpp'
     , 'platform_info.pb.cc', 'platform_info.cpp'
     , 'device_query.pb.cc', 'device_query.cpp'
-    , 'device_info.pb.cc', 'device_info.cpp' ],
+    , 'device_info.pb.cc', 'device_info.cpp'
+    , 'platform_layer_info.pb.cc', 'platform_layer_info.cpp' ],
     LIBS = libs
 )
 

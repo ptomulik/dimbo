@@ -145,11 +145,10 @@ devices(Const_Platform_Info_Ptr platform) const
   return devices;
 }
 /* ------------------------------------------------------------------------ */
-Device_Info_Ptr Platform_Layer_Info::
+void Platform_Layer_Info::
 push_back(Device_Info_Ptr device, Platform_Info_Ptr platform)
 {
   this->_bimap.left.push_back(Bimap::left_value_type(platform, device));
-  return device;
 }
 /* ------------------------------------------------------------------------ */
 void Platform_Layer_Info::
@@ -169,6 +168,11 @@ remove(Const_Device_Info_Ptr device)
   this->_bimap.right.erase(device);
 }
 /* ------------------------------------------------------------------------ */
+bool Platform_Layer_Info::
+empty() const
+{
+  return this->_bimap.empty();
+}
 
 } /* namespace Clinfo */
 } /* namespace Dimbo */

@@ -149,8 +149,22 @@ public:
     pli.push_back(Device_Info_Ptr(new Device_Info()), pi);
     pli.push_back(Device_Info_Ptr(new Device_Info()), pi);
     pli.clear();
-    TS_ASSERT(Platform_Layer_Info().platforms().empty());
-    TS_ASSERT(Platform_Layer_Info().devices().empty());
+    TS_ASSERT(pli.platforms().empty());
+    TS_ASSERT(pli.devices().empty());
+  }
+  /** // doc: test_empty() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_empty( )
+  {
+    Platform_Layer_Info pli;
+    TS_ASSERT(pli.empty());
+    Platform_Info_Ptr pi(new Platform_Info());
+    pli.push_back(Device_Info_Ptr(new Device_Info()), pi);
+    pli.push_back(Device_Info_Ptr(new Device_Info()), pi);
+    TS_ASSERT(!pli.empty());
+    pli.clear();
+    TS_ASSERT(pli.empty());
   }
 };
 

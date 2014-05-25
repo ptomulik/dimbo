@@ -20,18 +20,18 @@
 // DEALINGS IN THE SOFTWARE
 //
 
-// dimbo/protobuf/cl/platform_info.proto
+// dimbo/protobuf/cl/platform_layer_info.proto
 
 package Dimbo.Protobuf.Clinfo;
 
-message Platform_Info {
-  optional uint64 id  = 1;
-  optional string profile = 0x900;
-  optional string version = 0x901;
-  optional string name = 0x902;
-  optional string vendor = 0x903;
-  optional string extensions = 0x904;
-}
+import "platform_info.proto";
+import "device_info.proto";
+
+message Platform_Layer_Info {
+  repeated int32 device_platform_index = 1;
+  repeated Device_Info device = 2;
+  repeated Platform_Info platform = 3;
+};
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

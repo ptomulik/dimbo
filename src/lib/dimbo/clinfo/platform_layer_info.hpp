@@ -113,7 +113,7 @@ public:
   /** // doc: push_back (device) {{{
    * \todo Write documentation
    */ // }}}
-  Device_Info_Ptr push_back(Device_Info_Ptr device, Platform_Info_Ptr platform);
+  void push_back(Device_Info_Ptr device, Platform_Info_Ptr platform);
   /** // doc: remove (device) {{{
    * \todo Write documentation
    */ // }}}
@@ -122,6 +122,10 @@ public:
    * \todo Write documentation
    */ // }}}
   void remove(Const_Device_Info_Ptr device);
+  /** // doc: empty() {{{
+   * \todo Write documentation
+   */ // }}}
+  bool empty() const;
 private:
   Bimap _bimap;
 };
