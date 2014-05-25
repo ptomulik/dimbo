@@ -91,6 +91,23 @@ public:
     TS_ASSERT_EQUALS(p.get_vendor(), "NVIDIA Corporation");
     TS_ASSERT_EQUALS(p.get_extensions(), "cl_khr_byte_addressable_store cl_khr_icd cl_khr_gl_sharing cl_nv_compiler_options cl_nv_device_attribute_query cl_nv_pragma_unroll");
   }
+  /** // doc: test_platform_1() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_platform_1( )
+  {
+    T::Newton_clGetPlatformIDs mock1;
+    T::Newton_clGetPlatformInfo mock2;
+    T::Newton_clGetDeviceIDs mock3;
+    T::Newton_clGetDeviceInfo mock4;
+    Platform_Layer pl;
+    Devices d = pl.devices();
+
+    TS_ASSERT_EQUALS(pl.devices().size(), 3);
+    TS_ASSERT_EQUALS(pl.platform(d[0]).id(), T::Newton_clGetPlatformIDs::platforms[0]);
+    TS_ASSERT_EQUALS(pl.platform(d[1]).id(), T::Newton_clGetPlatformIDs::platforms[1]);
+    TS_ASSERT_EQUALS(pl.platform(d[2]).id(), T::Newton_clGetPlatformIDs::platforms[1]);
+  }
   /** // doc: test_devices_1() {{{
    * \todo Write documentation
    */ // }}}
