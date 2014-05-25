@@ -113,10 +113,6 @@ public:
   /** // doc: push_back (device) {{{
    * \todo Write documentation
    */ // }}}
-  Device_Info_Ptr push_back(Device_Info const& device, Platform_Info_Ptr platform);
-  /** // doc: push_back (device) {{{
-   * \todo Write documentation
-   */ // }}}
   Device_Info_Ptr push_back(Device_Info_Ptr device, Platform_Info_Ptr platform);
   /** // doc: remove (device) {{{
    * \todo Write documentation

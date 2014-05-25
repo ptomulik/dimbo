@@ -146,12 +146,6 @@ devices(Const_Platform_Info_Ptr platform) const
 }
 /* ------------------------------------------------------------------------ */
 Device_Info_Ptr Platform_Layer_Info::
-push_back(Device_Info const& device, Platform_Info_Ptr platform)
-{
-  return this->push_back(Device_Info_Ptr(new Device_Info(device)), platform);
-}
-/* ------------------------------------------------------------------------ */
-Device_Info_Ptr Platform_Layer_Info::
 push_back(Device_Info_Ptr device, Platform_Info_Ptr platform)
 {
   this->_bimap.left.push_back(Bimap::left_value_type(platform, device));

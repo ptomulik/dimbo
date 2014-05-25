@@ -56,24 +56,24 @@ public:
   {
     Platform_Info_Ptr p1(new Platform_Info());
     Platform_Info_Ptr p2(new Platform_Info());
-    Device_Info di11;
-    Device_Info di12;
-    Device_Info di21;
-    Device_Info di22;
+    Device_Info_Ptr d11(new Device_Info());
+    Device_Info_Ptr d12(new Device_Info());
+    Device_Info_Ptr d21(new Device_Info());
+    Device_Info_Ptr d22(new Device_Info());
 
     p1->set_name("platform 1");
     p2->set_name("platform 2");
 
-    di11.set_name("platform 1 device 1");
-    di12.set_name("platform 1 device 2");
-    di21.set_name("platform 2 device 1");
-    di22.set_name("platform 2 device 2");
+    d11->set_name("platform 1 device 1");
+    d12->set_name("platform 1 device 2");
+    d21->set_name("platform 2 device 1");
+    d22->set_name("platform 2 device 2");
 
     Platform_Layer_Info pli;
-    pli.push_back(di11,p1);
-    pli.push_back(di12,p1);
-    pli.push_back(di21,p2);
-    pli.push_back(di22,p2);
+    pli.push_back(d11,p1);
+    pli.push_back(d12,p1);
+    pli.push_back(d21,p2);
+    pli.push_back(d22,p2);
 
     TS_ASSERT_EQUALS(pli.platforms().size(), 2);
     TS_ASSERT_EQUALS(pli.devices().size(), 4);
@@ -105,24 +105,24 @@ public:
   {
     Platform_Info_Ptr p1(new Platform_Info());
     Platform_Info_Ptr p2(new Platform_Info());
-    Device_Info di11;
-    Device_Info di12;
-    Device_Info di21;
-    Device_Info di22;
+    Device_Info_Ptr d11(new Device_Info());
+    Device_Info_Ptr d12(new Device_Info());
+    Device_Info_Ptr d21(new Device_Info());
+    Device_Info_Ptr d22(new Device_Info());
 
     p1->set_name("platform 1");
     p2->set_name("platform 2");
 
-    di11.set_name("platform 1 device 1");
-    di12.set_name("platform 1 device 2");
-    di21.set_name("platform 2 device 1");
-    di22.set_name("platform 2 device 2");
+    d11->set_name("platform 1 device 1");
+    d12->set_name("platform 1 device 2");
+    d21->set_name("platform 2 device 1");
+    d22->set_name("platform 2 device 2");
 
     Platform_Layer_Info pli;
-    Device_Info_Ptr d11 = pli.push_back(di11,p1);
-    Device_Info_Ptr d12 = pli.push_back(di12,p1);
-    Device_Info_Ptr d21 = pli.push_back(di21,p2);
-    Device_Info_Ptr d22 = pli.push_back(di22,p2);
+    pli.push_back(d11,p1);
+    pli.push_back(d12,p1);
+    pli.push_back(d21,p2);
+    pli.push_back(d22,p2);
 
     pli.remove(d21);
     TS_ASSERT_EQUALS(pli.devices().size(), 3);
@@ -146,8 +146,8 @@ public:
   {
     Platform_Layer_Info pli;
     Platform_Info_Ptr pi(new Platform_Info());
-    pli.push_back(Device_Info(), pi);
-    pli.push_back(Device_Info(), pi);
+    pli.push_back(Device_Info_Ptr(new Device_Info()), pi);
+    pli.push_back(Device_Info_Ptr(new Device_Info()), pi);
     pli.clear();
     TS_ASSERT(Platform_Layer_Info().platforms().empty());
     TS_ASSERT(Platform_Layer_Info().devices().empty());
