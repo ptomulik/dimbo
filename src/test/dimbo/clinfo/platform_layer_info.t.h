@@ -70,6 +70,7 @@ public:
     d22->set_name("platform 2 device 2");
 
     Platform_Layer_Info pli;
+
     pli.push_back(d11,p1);
     pli.push_back(d12,p1);
     pli.push_back(d21,p2);
@@ -97,6 +98,26 @@ public:
     TS_ASSERT_EQUALS(pli.platform(pli.devices()[1]), p1);
     TS_ASSERT_EQUALS(pli.platform(pli.devices()[2]), p2);
     TS_ASSERT_EQUALS(pli.platform(pli.devices()[3]), p2);
+
+    // peek some functions via the const Platform_Layer_Info object
+    Platform_Layer_Info const& cpli = pli;
+    TS_ASSERT_EQUALS(cpli.platforms()[0]->name(),"platform 1");
+    TS_ASSERT_EQUALS(cpli.platforms()[1]->name(),"platform 2");
+
+    TS_ASSERT_EQUALS(cpli.devices()[0]->name(),"platform 1 device 1");
+    TS_ASSERT_EQUALS(cpli.devices()[1]->name(),"platform 1 device 2");
+    TS_ASSERT_EQUALS(cpli.devices()[2]->name(),"platform 2 device 1");
+    TS_ASSERT_EQUALS(cpli.devices()[3]->name(),"platform 2 device 2");
+
+    TS_ASSERT_EQUALS(cpli.devices(p1)[0]->name(),"platform 1 device 1");
+    TS_ASSERT_EQUALS(cpli.devices(p1)[1]->name(),"platform 1 device 2");
+    TS_ASSERT_EQUALS(cpli.devices(p2)[0]->name(),"platform 2 device 1");
+    TS_ASSERT_EQUALS(cpli.devices(p2)[1]->name(),"platform 2 device 2");
+
+    TS_ASSERT_EQUALS(cpli.platform(cpli.devices()[0]), p1);
+    TS_ASSERT_EQUALS(cpli.platform(cpli.devices()[1]), p1);
+    TS_ASSERT_EQUALS(cpli.platform(cpli.devices()[2]), p2);
+    TS_ASSERT_EQUALS(cpli.platform(cpli.devices()[3]), p2);
   }
   /** // doc: test_remove_device() {{{
    * \todo Write documentation

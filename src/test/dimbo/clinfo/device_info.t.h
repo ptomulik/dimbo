@@ -382,10 +382,10 @@ public:
     TS_ASSERT(Device_Info().set_image_pitch_alignment(0x1234u).has_image_pitch_alignment());
     TS_ASSERT(Device_Info().set_image_base_address_alignment(0x1234u).has_image_base_address_alignment());
   }
-  /** // doc: test_clear_has_1() {{{
+  /** // doc: test_has_1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_clear_has_1( )
+  void test_has_1( )
   {
     Device_Info const infos[2] = { Device_Info_Fixtures::_1(), Device_Info_Fixtures::_2() };
     for(Device_Info const* info = infos; info < infos + 2; ++info)
@@ -468,10 +468,10 @@ public:
         TS_ASSERT(info->has_image_base_address_alignment());
       }
   }
-  /** // doc: test_clear_has_2() {{{
+  /** // doc: test_clear_dont_has_1() {{{
    * \todo Write documentation
    */ // }}}
-  void test_clear_has_2( )
+  void test_clear_dont_has_1( )
   {
     Device_Info info(Device_Info_Fixtures::_1());
 
@@ -553,6 +553,90 @@ public:
     TS_ASSERT(!info.has_printf_buffer_size());
     TS_ASSERT(!info.has_image_pitch_alignment());
     TS_ASSERT(!info.has_image_base_address_alignment());
+  }
+  /** // doc: test_clear_dont_has_2() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_clear_dont_has_2( )
+  {
+    Device_Info info(Device_Info_Fixtures::_1());
+
+    TS_ASSERT(!info.clear_id().has_id());
+    TS_ASSERT(!info.clear_type().has_type());
+    TS_ASSERT(!info.clear_vendor_id().has_vendor_id());
+    TS_ASSERT(!info.clear_max_compute_units().has_max_compute_units());
+    TS_ASSERT(!info.clear_max_work_item_dimensions().has_max_work_item_dimensions());
+    TS_ASSERT(!info.clear_max_work_group_size().has_max_work_group_size());
+    TS_ASSERT(!info.clear_max_work_item_sizes().has_max_work_item_sizes());
+    TS_ASSERT(!info.clear_preferred_vector_width_char().has_preferred_vector_width_char());
+    TS_ASSERT(!info.clear_preferred_vector_width_short().has_preferred_vector_width_short());
+    TS_ASSERT(!info.clear_preferred_vector_width_int().has_preferred_vector_width_int());
+    TS_ASSERT(!info.clear_preferred_vector_width_long().has_preferred_vector_width_long());
+    TS_ASSERT(!info.clear_preferred_vector_width_float().has_preferred_vector_width_float());
+    TS_ASSERT(!info.clear_preferred_vector_width_double().has_preferred_vector_width_double());
+    TS_ASSERT(!info.clear_max_clock_frequency().has_max_clock_frequency());
+    TS_ASSERT(!info.clear_address_bits().has_address_bits());
+    TS_ASSERT(!info.clear_max_read_image_args().has_max_read_image_args());
+    TS_ASSERT(!info.clear_max_write_image_args().has_max_write_image_args());
+    TS_ASSERT(!info.clear_max_mem_alloc_size().has_max_mem_alloc_size());
+    TS_ASSERT(!info.clear_image2d_max_width().has_image2d_max_width());
+    TS_ASSERT(!info.clear_image2d_max_height().has_image2d_max_height());
+    TS_ASSERT(!info.clear_image3d_max_width().has_image3d_max_width());
+    TS_ASSERT(!info.clear_image3d_max_height().has_image3d_max_height());
+    TS_ASSERT(!info.clear_image3d_max_depth().has_image3d_max_depth());
+    TS_ASSERT(!info.clear_image_support().has_image_support());
+    TS_ASSERT(!info.clear_max_parameter_size().has_max_parameter_size());
+    TS_ASSERT(!info.clear_max_samplers().has_max_samplers());
+    TS_ASSERT(!info.clear_mem_base_addr_align().has_mem_base_addr_align());
+    TS_ASSERT(!info.clear_min_data_type_align_size().has_min_data_type_align_size());
+    TS_ASSERT(!info.clear_single_fp_config().has_single_fp_config());
+    TS_ASSERT(!info.clear_global_mem_cache_type().has_global_mem_cache_type());
+    TS_ASSERT(!info.clear_global_mem_cacheline_size().has_global_mem_cacheline_size());
+    TS_ASSERT(!info.clear_global_mem_cache_size().has_global_mem_cache_size());
+    TS_ASSERT(!info.clear_global_mem_size().has_global_mem_size());
+    TS_ASSERT(!info.clear_max_constant_buffer_size().has_max_constant_buffer_size());
+    TS_ASSERT(!info.clear_max_constant_args().has_max_constant_args());
+    TS_ASSERT(!info.clear_local_mem_type().has_local_mem_type());
+    TS_ASSERT(!info.clear_local_mem_size().has_local_mem_size());
+    TS_ASSERT(!info.clear_error_correction_support().has_error_correction_support());
+    TS_ASSERT(!info.clear_profiling_timer_resolution().has_profiling_timer_resolution());
+    TS_ASSERT(!info.clear_endian_little().has_endian_little());
+    TS_ASSERT(!info.clear_available().has_available());
+    TS_ASSERT(!info.clear_compiler_available().has_compiler_available());
+    TS_ASSERT(!info.clear_execution_capabilities().has_execution_capabilities());
+    TS_ASSERT(!info.clear_queue_properties().has_queue_properties());
+    TS_ASSERT(!info.clear_name().has_name());
+    TS_ASSERT(!info.clear_vendor().has_vendor());
+    TS_ASSERT(!info.clear_driver_version().has_driver_version());
+    TS_ASSERT(!info.clear_profile().has_profile());
+    TS_ASSERT(!info.clear_version().has_version());
+    TS_ASSERT(!info.clear_extensions().has_extensions());
+    TS_ASSERT(!info.clear_platform_id().has_platform_id());
+    TS_ASSERT(!info.clear_double_fp_config().has_double_fp_config());
+    TS_ASSERT(!info.clear_preferred_vector_width_half().has_preferred_vector_width_half());
+    TS_ASSERT(!info.clear_host_unified_memory().has_host_unified_memory());
+    TS_ASSERT(!info.clear_native_vector_width_char().has_native_vector_width_char());
+    TS_ASSERT(!info.clear_native_vector_width_short().has_native_vector_width_short());
+    TS_ASSERT(!info.clear_native_vector_width_int().has_native_vector_width_int());
+    TS_ASSERT(!info.clear_native_vector_width_long().has_native_vector_width_long());
+    TS_ASSERT(!info.clear_native_vector_width_float().has_native_vector_width_float());
+    TS_ASSERT(!info.clear_native_vector_width_double().has_native_vector_width_double());
+    TS_ASSERT(!info.clear_native_vector_width_half().has_native_vector_width_half());
+    TS_ASSERT(!info.clear_opencl_c_version().has_opencl_c_version());
+    TS_ASSERT(!info.clear_linker_available().has_linker_available());
+    TS_ASSERT(!info.clear_built_in_kernels().has_built_in_kernels());
+    TS_ASSERT(!info.clear_image_max_buffer_size().has_image_max_buffer_size());
+    TS_ASSERT(!info.clear_image_max_array_size().has_image_max_array_size());
+    TS_ASSERT(!info.clear_parent_device_id().has_parent_device_id());
+    TS_ASSERT(!info.clear_partition_max_sub_devices().has_partition_max_sub_devices());
+    TS_ASSERT(!info.clear_partition_properties().has_partition_properties());
+    TS_ASSERT(!info.clear_partition_affinity_domain().has_partition_affinity_domain());
+    TS_ASSERT(!info.clear_partition_type().has_partition_type());
+    TS_ASSERT(!info.clear_reference_count().has_reference_count());
+    TS_ASSERT(!info.clear_preferred_interop_user_sync().has_preferred_interop_user_sync());
+    TS_ASSERT(!info.clear_printf_buffer_size().has_printf_buffer_size());
+    TS_ASSERT(!info.clear_image_pitch_alignment().has_image_pitch_alignment());
+    TS_ASSERT(!info.clear_image_base_address_alignment().has_image_base_address_alignment());
   }
   /** // doc: test_eq_op_1() {{{
    * \todo Write documentation
