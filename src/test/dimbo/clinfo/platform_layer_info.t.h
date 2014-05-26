@@ -31,6 +31,7 @@
 
 #include <cxxtest/TestSuite.h>
 #include <dimbo/clinfo/platform_layer_info.hpp>
+#include <dimbo/clinfo/platform_layer_info_fixtures.hpp>
 
 namespace Dimbo { namespace Clinfo { class Platform_Layer_Info_TestSuite; } }
 
@@ -54,29 +55,13 @@ public:
    */ // }}}
   void test_mapping_1( )
   {
-    Platform_Info_Ptr p1(new Platform_Info());
-    Platform_Info_Ptr p2(new Platform_Info());
-    Device_Info_Ptr d11(new Device_Info());
-    Device_Info_Ptr d12(new Device_Info());
-    Device_Info_Ptr d21(new Device_Info());
-    Device_Info_Ptr d22(new Device_Info());
-
-    p1->set_name("platform 1");
-    p2->set_name("platform 2");
-
-    d11->set_name("platform 1 device 1");
-    d12->set_name("platform 1 device 2");
-    d21->set_name("platform 2 device 1");
-    d22->set_name("platform 2 device 2");
-
-    Platform_Layer_Info pli;
-
-    pli.push_back(d11,p1);
-    pli.push_back(d12,p1);
-    pli.push_back(d21,p2);
-    pli.push_back(d22,p2);
+    Platform_Layer_Info pli(Platform_Layer_Info_Fixtures::_1());
 
     TS_ASSERT_EQUALS(pli.platforms().size(), 2);
+
+    Const_Platform_Info_Ptr p1(pli.platforms()[0]);
+    Const_Platform_Info_Ptr p2(pli.platforms()[1]);
+
     TS_ASSERT_EQUALS(pli.devices().size(), 4);
     TS_ASSERT_EQUALS(pli.devices(p1).size(), 2);
     TS_ASSERT_EQUALS(pli.devices(p2).size(), 2);
@@ -124,39 +109,20 @@ public:
    */ // }}}
   void test_remove_device( )
   {
-    Platform_Info_Ptr p1(new Platform_Info());
-    Platform_Info_Ptr p2(new Platform_Info());
-    Device_Info_Ptr d11(new Device_Info());
-    Device_Info_Ptr d12(new Device_Info());
-    Device_Info_Ptr d21(new Device_Info());
-    Device_Info_Ptr d22(new Device_Info());
+    Platform_Layer_Info pli(Platform_Layer_Info_Fixtures::_1());
 
-    p1->set_name("platform 1");
-    p2->set_name("platform 2");
-
-    d11->set_name("platform 1 device 1");
-    d12->set_name("platform 1 device 2");
-    d21->set_name("platform 2 device 1");
-    d22->set_name("platform 2 device 2");
-
-    Platform_Layer_Info pli;
-    pli.push_back(d11,p1);
-    pli.push_back(d12,p1);
-    pli.push_back(d21,p2);
-    pli.push_back(d22,p2);
-
-    pli.remove(d21);
+    pli.remove(pli.devices(pli.platforms()[1])[0]);
     TS_ASSERT_EQUALS(pli.devices().size(), 3);
     TS_ASSERT_EQUALS(pli.devices()[0]->name(),"platform 1 device 1")
     TS_ASSERT_EQUALS(pli.devices()[1]->name(),"platform 1 device 2")
     TS_ASSERT_EQUALS(pli.devices()[2]->name(),"platform 2 device 2")
 
-    pli.remove(p1);
+    pli.remove(pli.platforms()[0]);
     TS_ASSERT_EQUALS(pli.devices().size(), 1);
     TS_ASSERT_EQUALS(pli.platforms().size(), 1);
     TS_ASSERT_EQUALS(pli.devices()[0]->name(),"platform 2 device 2");
 
-    pli.remove(d22);
+    pli.remove(pli.devices()[0]);
     TS_ASSERT(pli.devices().empty());
     TS_ASSERT(pli.platforms().empty());
   }
@@ -165,10 +131,7 @@ public:
    */ // }}}
   void test_clear( )
   {
-    Platform_Layer_Info pli;
-    Platform_Info_Ptr pi(new Platform_Info());
-    pli.push_back(Device_Info_Ptr(new Device_Info()), pi);
-    pli.push_back(Device_Info_Ptr(new Device_Info()), pi);
+    Platform_Layer_Info pli(Platform_Layer_Info_Fixtures::_1());
     pli.clear();
     TS_ASSERT(pli.platforms().empty());
     TS_ASSERT(pli.devices().empty());
@@ -180,9 +143,7 @@ public:
   {
     Platform_Layer_Info pli;
     TS_ASSERT(pli.empty());
-    Platform_Info_Ptr pi(new Platform_Info());
-    pli.push_back(Device_Info_Ptr(new Device_Info()), pi);
-    pli.push_back(Device_Info_Ptr(new Device_Info()), pi);
+    pli = Platform_Layer_Info_Fixtures::_1();
     TS_ASSERT(!pli.empty());
     pli.clear();
     TS_ASSERT(pli.empty());

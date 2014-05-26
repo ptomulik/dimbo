@@ -50,7 +50,7 @@ namespace Dimbo { namespace Clinfo { class Platform_Info_Serialization_TestSuite
 class Dimbo::Clinfo::Platform_Info_Serialization_TestSuite : public CxxTest::TestSuite
 {
 public:
-  /** // doc: test_serialize_1() {{{
+  /** // doc: test_serialize_text() {{{
    * \todo Write documentation
    */ // }}}
   void test_serialize_text()
@@ -68,7 +68,7 @@ public:
 
     TS_ASSERT_EQUALS(info, orig);
   }
-  /** // doc: test_serialize_1() {{{
+  /** // doc: test_serialize_xml() {{{
    * \todo Write documentation
    */ // }}}
   void test_serialize_xml()
@@ -87,7 +87,7 @@ public:
 
     TS_ASSERT_EQUALS(info, orig);
   }
-  /** // doc: test_serialize_1() {{{
+  /** // doc: test_serialize_binary() {{{
    * \todo Write documentation
    */ // }}}
   void test_serialize_binary()
