@@ -42,7 +42,7 @@ after_success:
                   -e src/lib/dimbo/cl/exceptions -e src/lib/dimbo/cl/cl_errors
                   -e src/lib/dimbo/clinfo/exceptions -e src/lib/dimbo/doc
                   -e src/test -e site_scons -e template -e src/lib/dimbo/swig
-                  -e valgrind -e /usr;
+                  -e valgrind -e /usr -E '.*\.pb\.[^\.]*$';
     fi
 after_failure:
   - test -f src/config.log && cat src/config.log
