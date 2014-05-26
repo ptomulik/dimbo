@@ -39,59 +39,13 @@
 #include <iostream>
 // [Includes]
 
-void print_exception(Dimbo::Exception const&e)
-{
-  using namespace std;
-  cerr << "Exception caught: " << endl;
-  cerr << "  at: " << e.at().file() <<":"<< e.at().line() << endl;
-  cerr << "  in: " << e.at().function() << endl;
-  cerr << " msg: " << e.std_except().what() << endl;
-}
-
-void print_exception(std::exception const&e)
-{
-  using namespace std;
-  cerr << "Exception caught: " << e.what() << endl;
-}
-
 int main(int, char const*[])
 {
-  using namespace std;
-  using namespace Dimbo::Cl;
-  using namespace Dimbo::Clinfo;
-  using namespace Dimbo::Format;
-  try {
-    // [PrepareQueries]
-    // Preconfigure platform query
-    Platform_Query platform_query(false);
-    platform_query.select_id();
-    platform_query.select_name();
-    platform_query.select_vendor();
-    // Preconfigure device query
-    Device_Query device_query(false);
-    device_query.select_id();
-    device_query.select_name();
-    device_query.select_vendor();
-    device_query.select_version();
-    // [PrepareQueries]
-
-    // [CreatePlatformLayer]
-    Platform_Layer layer;
-    // [CreatePlatformLayer]
-    // [CreatePlatformLayerInfo]
-    Platform_Layer_Info info;
-    query_platform_layer_info(layer, platform_query, device_query);
-    // [CreatePlatformLayerInfo]
-
-    write(cout, info, 2)  << endl;
-
-  } catch (Dimbo::Exception const& e) {
-    print_exception(e);
-    return EXIT_FAILURE;
-  } catch (exception const& e) {
-    print_exception(e);
-    return EXIT_FAILURE;
-  }
+  using Dimbo::Cl::query_platform_layer_info;
+  using Dimbo::Cl::Platform_Layer;
+  // [Query_Print_Info]
+  std::cout << query_platform_layer_info(Platform_Layer()) << std::endl;
+  // [Query_Print_Info]
   return EXIT_SUCCESS;
 }
 // [Program]

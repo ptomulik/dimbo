@@ -53,11 +53,13 @@ public:
   query_device() : i(1) { }
   void operator ()(Device const& device)
   {
+    // [Query_Device_Info]
     cout << "  Device " << this->i << endl;
     cout << "    Id:      " << device.id() << endl;
     cout << "    Name:    " << device.get_name() << endl;
     cout << "    Vendor:  " << device.get_vendor() << endl;
     cout << "    Version: " << device.get_version() << endl;
+    // [Query_Device_Info]
     ++this->i;
   }
 };
@@ -70,14 +72,20 @@ public:
   void operator () (Platform const& platform)
   {
     using Dimbo::Cl::get_devices;
+    // [Retrieve_Platform_Devices]
     Devices devices(get_devices(platform));
+    // [Retrieve_Platform_Devices]
+    // [Query_Platform_Info]
     cout << "Platform " << this->i << endl;
     cout << "  Id:      " << platform.id() << endl;
     cout << "  Name:    " << platform.get_name() << endl;
     cout << "  Profile: " << platform.get_profile() << endl;
     cout << "  Version: " << platform.get_version() << endl;
     cout << "  Ext's:   " << platform.get_extensions() << endl;
+    // [Query_Platform_Info]
+    // [Iterate_Platform_Devices]
     for_each(devices.begin(), devices.end(), query_device());
+    // [Iterate_Platform_Devices]
     cout << endl;
     ++this->i;
   }
@@ -100,8 +108,12 @@ int main(int, char const*[])
 {
   using Dimbo::Cl::get_platforms;
   try {
+    // [Create_Platforms]
     Platforms platforms(get_platforms());
+    // [Create_Platforms]
+    // [Iterate_Platforms]
     for_each(platforms.begin(), platforms.end(), query_platform());
+    // [Iterate_Platforms]
   } catch (Dimbo::Exception const& e) {
     print_exception(e);
     return EXIT_FAILURE;

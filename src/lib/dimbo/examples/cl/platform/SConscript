@@ -24,6 +24,7 @@ from SCons.Util import CLVar
 
 libs = ['dimbo_format_clinfo', 'dimbo_clinfo', 'dimbo_cl']
 
+env.Program(['cl_platform0'], ['cl_platform0.cpp'], LIBS = libs)
 env.Program(['cl_platform1'], ['cl_platform1.cpp'], LIBS = libs)
 env.Program(['cl_platform2'], ['cl_platform2.cpp'], LIBS = libs)
 env.Program(['cl_platform3'], ['cl_platform3.cpp'], LIBS = libs)

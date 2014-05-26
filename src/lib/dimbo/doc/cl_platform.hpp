@@ -24,87 +24,84 @@
  *
  * This module provides access to OpenCL platform layer described by the
  * OpenCL specification under chapter 4 "The OpenCL Platform Layer". Most of
- * the functionalities is provided in object oriented way, some calls are
+ * the functionalities is provided in object oriented way, most calls are
  * simplified, OpenCL errors are turned-out into %Dimbo CL exceptions
- * (see \ref Dimbo::Cl::Exception).  All the stuff is made type-safe.
- * Some objects used to represent platform/device parameters or parameter
- * queries are serializable.
+ * (see \ref Dimbo::Cl::Exception). All the stuff is made type-safe.
  *
- * The %Dimbo OpenCL platform layer implements three kinds of classes:
+ * The source code providing the core functionality of OpenCL platform layer
+ * may be found in \c src/lib/dimbo/cl/ directory. There is also an amount of
+ * associated code scattered over other directories, for example swig wrappers
+ * may be found in \c src/lib/dimbo/swig/dimbo/cl/, swig wrappers specific to
+ * python in \c src/lib/dimbo/python/dimbo/cl/ etc.
+ *
+ * The %Dimbo OpenCL platform layer provides these classes:
  *    - platform/device proxy (Dimbo::Cl::Platform and Dimbo::Cl::Device),
- *    - platform/device info  (Dimbo::Cl::Platform_Info and
- *      Dimbo::Cl::Device_Info) and,
- *    - platform/device query (Dimbo::Cl::Platform_Query and
- *      Dimbo::Cl::Device_Query).
- *
- * The whole OpenCL platform layer (all locally available OpenCL platforms and
- * devices) is represented by Dimbo::Cl::Platform_Layer object.
+ *    - platform/device collection (Dimbo::Cl::Platforms and Dimbo::Cl::Devices) and,
+ *    - entire platform layer (Dimbo::Cl::Platform_Layer).
  *
  * The Dimbo::Cl::Platform object is used to send queries to single OpenCL
- * platform. The Dimbo::Cl::Device is used to send queries to single OpenCL
- * device. The Dimbo::Cl::Platform and Dimbo::Cl::Device objects are
- * lightweight. In fact, each of them stores only one attribute &mdash; the
- * platform/device identifier.
+ * platform (via \c clGetPlatformInfo()). The Dimbo::Cl::Device is used to send
+ * queries to single OpenCL device (via \c clGetDeviceInfo()). The
+ * Dimbo::Cl::Platform and Dimbo::Cl::Device objects are lightweight - each of
+ * them stores only its platform/device identifier.
  *
- * The Dimbo::Cl::Platform_Info encapsulates parameters that are result of
- * single query performed on a platform. The Dimbo::Cl::Device_Info
- * encapsulates the result of single query to device.
+ * The whole OpenCL platform layer (OpenCL platforms and devices available
+ * locally to the current process) is represented by Dimbo::Cl::Platform_Layer
+ * object. The Dimbo::Cl::Platform_Layer provides convenient ways to query multiple
+ * platforms/devices at once (see Examples below).
  *
- * Queries may be predefined via Dimbo::Cl::Platform_Query
- * and Dimbo::Cl::Device_Query objects respectively. The query objects
- * Dimbo::Cl::Platform_Query and Dimbo::Cl::Device_Query define a set
- * of boolean flags to decide what parameters should be retrieved from
- * platform/device. Single query object may be used multiple times to retrieve
- * same set of parameters from different platforms/devices.
- *
- * The Dimbo::Cl::Platform_Layer and Dimbo::Cl::Platform_Layer_Info provide
- * convenient ways to query multiple platforms/devices at once (see Examples
- * below).
- *
- * The easiest way to retrieve parameters of all locally available platforms
- * and their devices is to:
- *    -# Create Dimbo::Cl::Platform_Layer object, for example:
- *       \snippet cl_platform1.cpp CreatePlatformLayer
- *    -# Optionaly prepare query objects for platforms and devices, for
- *       example:
- *       \snippet cl_platform1.cpp PrepareQueries
- *    -# Create Dimbo::Cl::Platform_Layer_Info object and retrieve all
- *       parameters with Dimbo::Cl::Platform_Layer_Info::query().
- *       If you provide Dimbo::Cl::Platform_Layer object to
- *       Dimbo::Cl::Platform_Layer_Info constructor, you don't have to
- *       call @c query() method explicitly:
- *       \snippet cl_platform1.cpp CreatePlatformLayerInfo
+ * <h3 class="groupheader">
+ * Querying OpenCL platforms/devices in a straightforward way
+ * </h3>
+ * \anchor querying_cl_platform_straight
  *
  *
- * A complete code example for this method may be found in \ref
- * cl_platform1.cpp.
- *
- * Platforms/devices may be queried without using Dimbo::Cl::Platform_Layer.
- * In this case the usual workflow is following:
- *    -# Create proxy object(s) &mdash; i.e. create instance(s) of
- *       Dimbo::Cl::Platform or Dimbo::Cl::Device:
- *       \snippet cl_platform2.cpp CreatePlatforms
- *       \snippet cl_platform2.cpp CreateDevices
- *    -# Optionally create and preconfigue query objects, i.e.
- *       create instance(s) of Dimbo::Cl::Platform_Query and/or
- *       Dimbo::Cl::Device_Query.
- *    -# Create info object, i.e. an instance of Dimbo::Cl::Platform_Info or
- *       Dimbo::Cl::Device_Info and perform query by
- *       Dimbo::Cl::Platform_Info::query() or Dimbo::Cl::Device_Info::query()
- *       respectively. These two activities may also be done during
- *       initialization of Dimbo::Cl::Platform_Info or Dimbo::Cl::Device_Info
- *       objects:
- *       \snippet cl_platform2.cpp CreatePlatformInfo
- *       \snippet cl_platform2.cpp CreateDeviceInfo
+ * Platforms/devices may be queried by using Dimbo::Cl::Platform,
+ * Dimbo::Cl::Device objects. A straightforward workflow is to:
+ *    -# Create a collection of Platform objects:
+ *        \snippet cl_platform3.cpp Create_Platforms
+ *    -# Iterate over the platforms,
+ *       \snippet cl_platform3.cpp Iterate_Platforms
+ *       and query it for necessary information, e.g (the code within our
+ *       custom query_platform functor):
+ *       \snippet cl_platform3.cpp Query_Platform_Info
+ *    -# For each platform, retrieve its Devices,
+ *       \snippet cl_platform3.cpp Retrieve_Platform_Devices
+ *       then iterate over these devices
+ *       \snippet cl_platform3.cpp Iterate_Platform_Devices
+ *       and query each device for device information, e.g. (the code within
+ *       our custom query_device functor):
+ *       \snippet cl_platform3.cpp Query_Device_Info
  *
  *
- * A complete code example for this may be found in \ref cl_platform2.cpp.
+ * The complete code for the above example may be found in \ref
+ * cl_platform3.cpp. Note, that this is suboptimal (you see the boilerplate
+ * related to iteration and manual querying). The better, and more flexible
+ * approach is described below.
  *
- * Finally, platform and device parameters may also be retrieved without
- * involving info and query objects by just invoking platform/device
- * get_xxx() methods "by hand" (for example
- * Dimbo::Cl::Device::get_name()). A complete code example for this may
- * be found in \ref cl_platform3.cpp.
+ * <h3 class="groupheader">
+ * Using the Dimbo::Cl::Platform_Layer object
+ * </h3>
+ * \anchor using_cl_platform_layer_object
+ *
+ * Retrieval and enumeration of (all) available platforms and devices is
+ * implemented in class Dimbo::Cl::Platform_Layer. An instance of
+ * Dimbo::Cl::Platform_Layer represents (locally available) OpenCL platforms
+ * and their devices. It's intended to cooperate with other objects, such as
+ * these defined in module named \ref Dimbo_Clinfo.
+ *
+ * An OpenCL information describing all the platforms and devices represented
+ * by Dimbo::Cl::Platform_Layer object may be easily encapsulated within an
+ * instance of Dimbo::Clinfo::Platform_Layer_Info. Querying all the information
+ * and storing it with Dimbo::Clinfo::Platform_Layer_Info is as simple as
+ * single call to Dimbo::Cl::query_platform_layer_info(). With few additional
+ * utilities implemented in %Dimbo we may reduce the whole executable code to
+ * a single line:
+ * 
+ * \snippet cl_platform0.cpp Query_Print_Info
+ *
+ * The complete example is found in cl_platform0.cpp
+ *
  */ // }}}
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:
