@@ -21,11 +21,11 @@
  */
 
 /** // {{{
- * \file dimbo/examples/cl/platform/cl_platform1.cpp
+ * \file dimbo/examples/cl/platform/cl_platform0.cpp
  * \todo Write file documentation
  */ // }}}
 /** // {{{
- * \example cl_platform1.cpp
+ * \example cl_platform0.cpp
  * This example demonstrates, how OpenCL Platfrom Layer may be accessed from
  * local machine. We get and display some info about platforms and devices
  * available locally. We use Dimbo::Cl::Platform_Layer and
@@ -41,8 +41,7 @@
 
 int main(int, char const*[])
 {
-  using Dimbo::Cl::query_platform_layer_info;
-  using Dimbo::Cl::Platform_Layer;
+  using namespace Dimbo::Cl;
   // [Query_Print_Info]
   std::cout << query_platform_layer_info(Platform_Layer()) << std::endl;
   // [Query_Print_Info]

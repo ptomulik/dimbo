@@ -53,8 +53,8 @@ public:
   query_device() : i(1) { }
   void operator ()(Device const& device)
   {
-    // [Query_Device_Info]
     cout << "  Device " << this->i << endl;
+    // [Query_Device_Info]
     cout << "    Id:      " << device.id() << endl;
     cout << "    Name:    " << device.get_name() << endl;
     cout << "    Vendor:  " << device.get_vendor() << endl;
@@ -75,8 +75,8 @@ public:
     // [Retrieve_Platform_Devices]
     Devices devices(get_devices(platform));
     // [Retrieve_Platform_Devices]
-    // [Query_Platform_Info]
     cout << "Platform " << this->i << endl;
+    // [Query_Platform_Info]
     cout << "  Id:      " << platform.id() << endl;
     cout << "  Name:    " << platform.get_name() << endl;
     cout << "  Profile: " << platform.get_profile() << endl;

@@ -38,7 +38,8 @@ doxyfile = env.Doxyfile(
     FILTER_SOURCE_PATTERNS  = { '*.cpp' : env.File('#bin/doxycppfilter'),
                                 '*.hpp' : env.File('#bin/doxycppfilter'),
                                 '*.h' : env.File('#bin/doxycppfilter') },
-    PREDEFINED              = 'DOXYGEN=1'
+    LAYOUT_FILE             = 'DoxygenLayout.xml',
+    PREDEFINED              = 'DOXYGEN=1',
 )
 
 doc = env.Doxygen(doxyfile)

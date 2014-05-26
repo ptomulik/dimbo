@@ -21,16 +21,24 @@
  */
 /** // \defgroup Dimbo_Clinfo {{{
  * \defgroup Dimbo_Clinfo Clinfo, encapsulating OpenCL information
+ * \brief Objects used to represent OpenCL information such as platform of
+ *        device parameters.
+ *
+ * <h3 class="groupheader">Overwiev</h3>
  *
  * This module provides objects which encapsulate OpenCL-related information.
- * This allow to represent, and pass between applications, the information
- * about available OpenCL computational resources.
+ * This allow to represent, and pass around, the information about available
+ * OpenCL computational resources.
+ *
+ * <h3 class="groupheader">Location in source tree</h3>
  *
  * The source code providing the core of this module's content may be found in
  * @c src/lib/dimbo/clinfo directory. There is also an amount of associated
  * code scattered over other directories, for example serialization is in 
  * @c src/lib/dimbo/serialization/clinfo, support for protocol buffers within 
  * @c src/lib/dimbo/protobuf/clinfo etc.
+ *
+ * <h3 class="groupheader">Contents</h3>
  *
  * Currently the following classes constitute the core of %Dimbo Clinfo module:
  *    - platform/device information (Dimbo::Clinfo::Platform_Info, 
@@ -39,9 +47,11 @@
  *      Dimbo::Clinfo::Device_Query),
  *    - platform layer information (Dimbo::Clinfo::Platform_Layer_Info),
  *
- * The Dimbo::Clinfo::Platform_Info encapsulates parameters that are result of
- * single query performed on a platform. The Dimbo::Clinfo::Device_Info
- * encapsulates the result of single query to device.
+ * The Dimbo::Clinfo::Platform_Info encapsulates parameters returned by a
+ * single query performed on an OpenCL platform. The Dimbo::Clinfo::Device_Info
+ * encapsulates the result of single query to an OpenCL device.
+ *
+ * <h3 class="groupheader">Defining queries</h3>
  *
  * Queries may be predefined via Dimbo::Clinfo::Platform_Query
  * and Dimbo::Clinfo::Device_Query objects respectively. The query objects
