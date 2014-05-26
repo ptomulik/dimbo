@@ -40,33 +40,27 @@ void write(Dimbo::Protobuf::Clinfo::Platform_Layer_Info& buf,
   using Dimbo::Clinfo::Const_Platform_Info_Ptrs;
   using Dimbo::Clinfo::Const_Device_Info_Ptrs;
 
-  Const_Platform_Info_Ptrs platforms(obj.platforms());
-  Const_Device_Info_Ptrs devices(obj.devices());
 
   buf.Clear();
 
-  Const_Device_Info_Ptrs::iterator cur;
-  Const_Device_Info_Ptrs::iterator end(devices.end());
-  for(cur = devices.begin(); cur != end; ++cur)
+  std::vector<int> indices(obj.indices());
+  Const_Device_Info_Ptrs devices(obj.devices());
+  Const_Platform_Info_Ptrs platforms(obj.platforms());
+  for(size_t i = 0; i < indices.size(); ++i)
     {
-      Const_Platform_Info_Ptr platform(obj.platform(*cur));
-      Const_Platform_Info_Ptrs::iterator pos;
-      pos = std::find(platforms.begin(), platforms.end(), platform);
-      if(pos != platforms.end())
+      if(indices[i] >= 0 && static_cast<size_t>(indices[i]) < platforms.size())
         {
-          buf.add_device_platform_index(pos - platforms.begin());
-          write(*(buf.add_device()),**cur);
+          buf.add_device_platform_index(indices[i]);
+          write(*(buf.add_device()),*(devices[i]));
         }
       // else
       //   {
-      //      FIXME: shouldn't we throw an exception here?
+      //      FIXME: throw an exception here? this is likely an internal error
       //   }
     }
-  Const_Platform_Info_Ptrs::iterator pcur;
-  Const_Platform_Info_Ptrs::iterator pend(platforms.end());
-  for(pcur = platforms.begin(); pcur != pend; ++pcur)
+  for(size_t j = 0; j < platforms.size(); ++j)
     {
-      write(*(buf.add_platform()), **pcur);
+      write(*(buf.add_platform()), *(platforms[j]));
     }
 }
 /* ------------------------------------------------------------------------ */

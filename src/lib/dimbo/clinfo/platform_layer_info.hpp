@@ -126,9 +126,32 @@ public:
    * \todo Write documentation
    */ // }}}
   bool empty() const;
+  /** // doc: cmp(p) {{{
+   * \todo Write documentation
+   */ // }}}
+  bool cmp(Platform_Layer_Info const& p) const;
+  /** // doc: indices() {{{
+   * \todo Write documentation
+   */ // }}}
+  std::vector<int> indices() const;
 private:
   Bimap _bimap;
 };
+
+/** // doc: operator==(l,r) {{{
+ * \todo Write documentation
+ */ // }}}
+inline bool operator==(Platform_Layer_Info const& a, Platform_Layer_Info const& b)
+{
+  return a.cmp(b);
+}
+/** // doc: operator!=(l,r) {{{
+ * \todo Write documentation
+ */ // }}}
+inline bool operator!=(Platform_Layer_Info const& a, Platform_Layer_Info const& b)
+{
+  return !a.cmp(b);
+}
 
 } /* namespace Clinfo */
 } /* namespace Dimbo */

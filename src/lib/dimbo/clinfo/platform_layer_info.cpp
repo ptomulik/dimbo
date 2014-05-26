@@ -173,6 +173,39 @@ empty() const
 {
   return this->_bimap.empty();
 }
+/* ------------------------------------------------------------------------ */
+bool Platform_Layer_Info::
+cmp(Platform_Layer_Info const& p) const
+{
+  // Compare sizes of bimaps first
+  if(this->_bimap.left.size() != p._bimap.left.size())
+    return false;
+  // Compare layout (which device maps to which platform, in order)
+  if(this->indices() != p.indices())
+    return false;
+  // Compare Platforms and Devices one by one
+  typedef Bimap::left_const_iterator It;
+  It cur1(_bimap.left.begin());
+  It cur2(p._bimap.left.begin());
+  It end1(_bimap.left.end());
+  It end2(p._bimap.left.end());
+  for(; cur1 != end1 && cur2 != end2; ++cur1, ++cur2)
+    {
+      if(*(cur1->first) != *(cur2->first) || *(cur1->second) != *(cur2->second))
+        return false;
+    }
+  return true;
+}
+/* ------------------------------------------------------------------------ */
+std::vector<int> Platform_Layer_Info::
+indices() const
+{
+  std::vector<int> is(_bimap.left.size());
+  Const_Platform_Info_Ptrs ps(this->platforms());
+  for(size_t i = 0; i < _bimap.left.size(); ++i)
+    is[i] = std::find(ps.begin(), ps.end(), _bimap.left[i].first) - ps.begin();
+  return is;
+}
 
 } /* namespace Clinfo */
 } /* namespace Dimbo */
