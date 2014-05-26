@@ -36,7 +36,7 @@ after_success:
     if [ ! -z "$GCOV" ]; then
       coveralls --gcov $GCOV --gcov-options '\-p \-l' -b . -r . 
                   -e .git -e HOWTO -e lib -e bin -e src/app -e build/app 
-                  -e build/lib/dimbo/protobuf -e build/.sconf_temp
+                  -e build/.sconf_temp
                   -e build/lib/dimbo/.sconf_temp -e build/lib/dimbo/python
                   -e src/lib/dimbo/exceptions -e src/lib/dimbo/std/exceptions
                   -e src/lib/dimbo/cl/exceptions -e src/lib/dimbo/cl/cl_errors
