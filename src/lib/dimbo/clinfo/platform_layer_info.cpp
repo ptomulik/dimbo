@@ -27,6 +27,8 @@
  * @todo Write documentation
  */ // }}}
 #include <dimbo/clinfo/platform_layer_info.hpp>
+#include <dimbo/clinfo/platform_info.hpp>
+#include <dimbo/clinfo/device_info.hpp>
 #include <set>
 
 namespace Dimbo {

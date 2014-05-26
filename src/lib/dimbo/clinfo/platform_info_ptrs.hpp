@@ -20,22 +20,27 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/clinfo/platform_info_mod.hpp
+// dimbo/clinfo/platform_info_ptrs.hpp
 
-/** // doc: dimbo/clinfo/platform_info_mod.hpp {{{
- * \file dimbo/clinfo/platform_info_mod.hpp
+/** // doc: dimbo/clinfo/platform_info_ptrs.hpp {{{
+ * \file dimbo/clinfo/platform_info_ptrs.hpp
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_CLINFO_PLATFORM_INFO_MOD_HPP_INCLUDED
-#define DIMBO_CLINFO_PLATFORM_INFO_MOD_HPP_INCLUDED
+#ifndef DIMBO_CLINFO_PLATFORM_INFO_PTRS_HPP_INCLUDED
+#define DIMBO_CLINFO_PLATFORM_INFO_PTRS_HPP_INCLUDED
 
-// module's core
-#include <dimbo/clinfo/platform_query.hpp>
-#include <dimbo/clinfo/device_query.hpp>
-#include <dimbo/clinfo/platform_info.hpp>
-#include <dimbo/clinfo/device_info.hpp>
-#include <dimbo/clinfo/platform_layer_info.hpp>
+#include <dimbo/clinfo/platform_info_ptr.hpp>
+#include <vector>
 
-#endif /* DIMBO_CLINFO_PLATFORM_INFO_MOD_HPP_INCLUDED */
+namespace Dimbo {
+namespace Clinfo {
+
+typedef std::vector<Platform_Info_Ptr> Platform_Info_Ptrs;
+typedef std::vector<Const_Platform_Info_Ptr> Const_Platform_Info_Ptrs;
+
+} /* namespace Clinfo */
+} /* namespace Dimbo */
+
+#endif /* DIMBO_CLINFO_PLATFORM_INFO_PTRS_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

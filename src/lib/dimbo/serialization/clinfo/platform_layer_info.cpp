@@ -25,6 +25,8 @@
  * \todo Write documentation
  */ // }}}
 #include <dimbo/serialization/clinfo/platform_layer_info_impl.hpp>
+#include <dimbo/clinfo/platform_info.hpp>
+#include <dimbo/clinfo/device_info.hpp>
 #include <boost/archive/text_iarchive.hpp>
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/xml_iarchive.hpp>

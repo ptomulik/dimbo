@@ -32,6 +32,8 @@
 #include <cxxtest/TestSuite.h>
 #include <dimbo/clinfo/platform_layer_info.hpp>
 #include <dimbo/clinfo/platform_layer_info_fixtures.hpp>
+#include <dimbo/clinfo/platform_info.hpp>
+#include <dimbo/clinfo/device_info.hpp>
 
 namespace Dimbo { namespace Clinfo { class Platform_Layer_Info_TestSuite; } }
 

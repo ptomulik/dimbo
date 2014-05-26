@@ -29,10 +29,9 @@
 #ifndef DIMBO_CLINFO_PLATFORM_LAYER_INFO_HPP_INCLUDED
 #define DIMBO_CLINFO_PLATFORM_LAYER_INFO_HPP_INCLUDED
 
-#include <dimbo/clinfo/platform_info.hpp>
-#include <dimbo/clinfo/device_info.hpp>
+#include <dimbo/clinfo/platform_info_ptrs.hpp>
+#include <dimbo/clinfo/device_info_ptrs.hpp>
 
-#include <boost/shared_ptr.hpp>
 #include <boost/bimap/bimap.hpp>
 #include <boost/bimap/vector_of.hpp>
 #include <boost/bimap/set_of.hpp>
@@ -40,15 +39,6 @@
 
 namespace Dimbo {
 namespace Clinfo {
-
-typedef boost::shared_ptr<Platform_Info> Platform_Info_Ptr;
-typedef boost::shared_ptr<Device_Info> Device_Info_Ptr;
-typedef boost::shared_ptr<const Platform_Info> Const_Platform_Info_Ptr;
-typedef boost::shared_ptr<const Device_Info> Const_Device_Info_Ptr;
-typedef std::vector<Platform_Info_Ptr> Platform_Info_Ptrs;
-typedef std::vector<Const_Platform_Info_Ptr> Const_Platform_Info_Ptrs;
-typedef std::vector<Device_Info_Ptr> Device_Info_Ptrs;
-typedef std::vector<Const_Device_Info_Ptr> Const_Device_Info_Ptrs;
 
 /** // doc: class Platform_Layer_Info {{{
  * \ingroup Dimbo_Clinfo_Platform
@@ -63,7 +53,7 @@ public:
 private:
   typedef boost::bimaps::vector_of<Const_Platform_Info_Ptr> Left_Set;
   typedef boost::bimaps::set_of<Const_Device_Info_Ptr> Right_Set;
-  typedef boost::bimaps::bimap<Left_Set,Right_Set> Bimap;
+  typedef boost::bimaps::bimap<Left_Set, Right_Set> Bimap;
 
 public:
   /** // doc: Platform_Layer_Info() {{{

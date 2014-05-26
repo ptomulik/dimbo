@@ -88,9 +88,11 @@ private:
  * \todo Write documentation
  */ // }}}
 Dimbo::Clinfo::Platform_Layer_Info
-query_platform_layer_info(Platform_Layer const& layer,
-                          Dimbo::Clinfo::Platform_Query const& pquery = Dimbo::Clinfo::Platform_Query(),
-                          Dimbo::Clinfo::Device_Query const& dquery = Dimbo::Clinfo::Device_Query());
+query_platform_layer_info(
+    Platform_Layer const& layer = Platform_Layer(),
+    Dimbo::Clinfo::Platform_Query const& pquery = Dimbo::Clinfo::Platform_Query(),
+    Dimbo::Clinfo::Device_Query const& dquery = Dimbo::Clinfo::Device_Query()
+);
 } /* namespace Cl */
 } /* namespace Dimbo */
 
