@@ -30,8 +30,8 @@
 %}
 
 %template(PlatformInfoSharedPtrVector)
-  std::vector< boost::shared_ptr<Dimbo::Clinfo::Platform_Info> >;
+  std::vector< Dimbo::Shared_Ptr<Dimbo::Clinfo::Platform_Info> >;
 %template(DeviceInfoSharedPtrVector)
-  std::vector< boost::shared_ptr<Dimbo::Clinfo::Device_Info> >;
+  std::vector< Dimbo::Shared_Ptr<Dimbo::Clinfo::Device_Info> >;
 
 %include <dimbo/clinfo/platform_layer_info.hpp>

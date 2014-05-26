@@ -20,28 +20,16 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/clinfo/device_info_ptr.hpp
-
-/** // doc: dimbo/clinfo/device_info_ptr.hpp {{{
- * \file dimbo/clinfo/device_info_ptr.hpp
+/** // doc: dimbo/shared_ptr.swg {{{
+ * \file dimbo/shared_ptr.swg
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_CLINFO_DEVICE_INFO_PTR_HPP_INCLUDED
-#define DIMBO_CLINFO_DEVICE_INFO_PTR_HPP_INCLUDED
 
+#include <boost_shared_ptr.i>
+%{
+#include <dimbo/shared_ptr.hpp>
+%}
 #include <dimbo/shared_ptr.hpp>
 
-namespace Dimbo {
-namespace Clinfo {
-
-class Device_Info;
-
-typedef Dimbo::Shared_Ptr<Device_Info> Device_Info_Ptr;
-typedef Dimbo::Shared_Ptr<const Device_Info> Const_Device_Info_Ptr;
-
-} /* namespace Clinfo */
-} /* namespace Dimbo */
-
-#endif /* DIMBO_CLINFO_DEVICE_INFO_PTR_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

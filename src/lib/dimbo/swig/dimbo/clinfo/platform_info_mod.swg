@@ -27,7 +27,7 @@
 
 %include <dimbo/swig_config.swg>
 
-//%include <boost_shared_ptr.i>
+//%include <dimbo/shared_ptr.swg>
 //%shared_ptr(Dimbo::Clinfo::Platform_Info)
 //%shared_ptr(Dimbo::Clinfo::Device_Info)
 %include <std_vector.i>

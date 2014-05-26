@@ -29,15 +29,15 @@
 #ifndef DIMBO_CLINFO_PLATFORM_INFO_PTR_HPP_INCLUDED
 #define DIMBO_CLINFO_PLATFORM_INFO_PTR_HPP_INCLUDED
 
-#include <boost/shared_ptr.hpp>
+#include <dimbo/shared_ptr.hpp>
 
 namespace Dimbo {
 namespace Clinfo {
 
 class Platform_Info;
 
-typedef boost::shared_ptr<Platform_Info> Platform_Info_Ptr;
-typedef boost::shared_ptr<const Platform_Info> Const_Platform_Info_Ptr;
+typedef Dimbo::Shared_Ptr<Platform_Info> Platform_Info_Ptr;
+typedef Dimbo::Shared_Ptr<const Platform_Info> Const_Platform_Info_Ptr;
 
 } /* namespace Clinfo */
 } /* namespace Dimbo */

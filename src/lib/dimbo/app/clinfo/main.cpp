@@ -153,7 +153,7 @@ run()
         }
 
       std::string ifile(this->options_map()["input"].as<std::string>());
-      boost::shared_ptr<std::istream> ifs;
+      Dimbo::Shared_Ptr<std::istream> ifs;
       if(ifile == "-")
         ifs.reset(&std::cin, noop());
       else
@@ -206,7 +206,7 @@ run()
         oformat = of_bin;
     }
 
-  boost::shared_ptr<std::ostream> ofs;
+  Dimbo::Shared_Ptr<std::ostream> ofs;
   if(this->options_map().count("output"))
     {
       std::string ofile(this->options_map()["output"].as<std::string>());

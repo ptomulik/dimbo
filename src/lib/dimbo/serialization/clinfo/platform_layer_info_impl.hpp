@@ -30,9 +30,9 @@
 #define DIMBO_SERIALIZATION_CLINFO_PLATFORM_LAYER_INFO_IMPL_HPP_INCLUDED
 
 #include <dimbo/serialization/clinfo/platform_layer_info.hpp>
+#include <dimbo/serialization/shared_ptr.hpp>
 #include <boost/serialization/serialization.hpp>
 #include <boost/serialization/utility.hpp>
-#include <boost/serialization/shared_ptr.hpp>
 
 namespace Dimbo {
 namespace Clinfo {
