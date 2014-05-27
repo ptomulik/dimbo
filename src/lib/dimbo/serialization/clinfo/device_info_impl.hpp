@@ -41,7 +41,7 @@ namespace Clinfo {
 
 /* ------------------------------------------------------------------------ */
 template<class Archive>
-static void _serialize(Archive& ar, Device_Info& obj, const unsigned int)
+void _serialize(Archive& ar, Device_Info& obj, const unsigned int)
 {
   using boost::serialization::make_nvp;
   ar  & make_nvp("id", obj._id)
