@@ -24,7 +24,7 @@
  * \file dimbo/clinfo/device_info_ptrs.swg
  * \todo Write documentation
  */ // }}}
-%include <dimbo/swig_config.swg>
+%import <dimbo/swig_config.swg>
 
 %{
 #include <dimbo/clinfo/device_info_ptrs.hpp>

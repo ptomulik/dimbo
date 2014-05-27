@@ -24,7 +24,7 @@
  * \file dimbo/clinfo/platform_mod.swg
  * \todo Write documentation
  */ // }}}
-%include <dimbo/swig_config.swg>
+%import <dimbo/swig_config.swg>
 
 %include <dimbo/shared_ptr.swg>
 

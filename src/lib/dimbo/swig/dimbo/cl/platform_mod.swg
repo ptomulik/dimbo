@@ -25,14 +25,16 @@
  * \todo Write documentation
  */ // }}}
 
-%include <dimbo/swig_config.swg>
+%import <dimbo/swig_config.swg>
 
 %import  <dimbo/cl/exception_mod.i>
 %import  <dimbo/cl/opencl1_0.i>
+%import  <dimbo/clinfo/platform_info_mod.i>
 
 %{
 #include <dimbo/cl/exception_mod.hpp>
 #include <dimbo/cl/opencl_mod.hpp>
+#include <dimbo/clinfo/platform_info_mod.hpp>
 %}
 
 %include <dimbo/cl/device.swg>
