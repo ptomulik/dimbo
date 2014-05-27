@@ -29,9 +29,6 @@
 #include <dimbo/clinfo/platform_layer_info.hpp>
 %}
 
-%template(PlatformInfoSharedPtrVector)
-  std::vector< Dimbo::Shared_Ptr<Dimbo::Clinfo::Platform_Info> >;
-%template(DeviceInfoSharedPtrVector)
-  std::vector< Dimbo::Shared_Ptr<Dimbo::Clinfo::Device_Info> >;
-
+%include <dimbo/clinfo/platform_info_ptrs.swg>
+%include <dimbo/clinfo/device_info_ptrs.swg>
 %include <dimbo/clinfo/platform_layer_info.hpp>

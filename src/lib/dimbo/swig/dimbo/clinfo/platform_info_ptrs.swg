@@ -20,22 +20,17 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/shared_ptr.hpp
-
-/** // doc: dimbo/shared_ptr.hpp {{{
- * \file dimbo/shared_ptr.hpp
+/** // doc: dimbo/clinfo/platform_info_ptrs.swg {{{
+ * \file dimbo/clinfo/platform_info_ptrs.swg
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_SHARED_PTR_HPP_INCLUDED
-#define DIMBO_SHARED_PTR_HPP_INCLUDED
+%{
+#include <dimbo/clinfo/platform_info_ptrs.hpp>
+%}
 
-#include <boost/shared_ptr.hpp>
-namespace Dimbo {
-/** // doc: Shared_Ptr {{{
- * \todo Write documentation
- */ // }}}
-template <typename T> using Shared_Ptr = boost::shared_ptr<T>;
-} /* namespace Dimbo */
-#endif /* DIMBO_SHARED_PTR_HPP_INCLUDED */
+%include <dimbo/clinfo/platform_info_ptr.swg>
+%include <std_vector.i>
+%include <dimbo/clinfo/platform_info_ptrs.hpp>
+
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

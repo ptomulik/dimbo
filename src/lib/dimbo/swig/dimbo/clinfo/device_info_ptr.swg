@@ -20,22 +20,27 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/shared_ptr.hpp
-
-/** // doc: dimbo/shared_ptr.hpp {{{
- * \file dimbo/shared_ptr.hpp
+/** // doc: dimbo/clinfo/device_info_ptr.swg {{{
+ * \file dimbo/clinfo/device_info_ptr.swg
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_SHARED_PTR_HPP_INCLUDED
-#define DIMBO_SHARED_PTR_HPP_INCLUDED
+%{
+#include <dimbo/clinfo/device_info_ptr.hpp>
+%}
 
-#include <boost/shared_ptr.hpp>
+%include <dimbo/shared_ptr.swg>
+// we have to do it this way, as swig does not support alias templates
 namespace Dimbo {
-/** // doc: Shared_Ptr {{{
- * \todo Write documentation
- */ // }}}
-template <typename T> using Shared_Ptr = boost::shared_ptr<T>;
-} /* namespace Dimbo */
-#endif /* DIMBO_SHARED_PTR_HPP_INCLUDED */
+namespace Clinfo {
+
+class Device_Info;
+typedef DIMBO_SHARED_PTR<Device_Info> Device_Info_Ptr;
+typedef DIMBO_SHARED_PTR<const Device_Info> Const_Device_Info_Ptr;
+
+}
+}
+//%rename(Dimbo__Clinfo__Device_Info) Dimbo::Clinfo::Device_Info;
+%shared_ptr(Dimbo::Clinfo::Device_Info);
+
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

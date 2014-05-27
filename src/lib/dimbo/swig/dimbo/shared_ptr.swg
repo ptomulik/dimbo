@@ -25,11 +25,16 @@
  * \todo Write documentation
  */ // }}}
 
-#include <boost_shared_ptr.i>
+%include <boost_shared_ptr.i>
+
 %{
 #include <dimbo/shared_ptr.hpp>
 %}
-#include <dimbo/shared_ptr.hpp>
+
+// NOTE: this contains alias template, which is not yet supported by swig,
+//       we have to replace it with a number of typedefs in a point of use.
+//%include <dimbo/shared_ptr.hpp>
+#define DIMBO_SHARED_PTR boost::shared_ptr
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:
