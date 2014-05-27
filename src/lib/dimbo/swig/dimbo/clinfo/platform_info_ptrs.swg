@@ -31,6 +31,8 @@
 %include <dimbo/clinfo/platform_info_ptr.swg>
 %include <std_vector.i>
 %include <dimbo/clinfo/platform_info_ptrs.hpp>
+%template(Platform_Info_Ptrs) std::vector< Dimbo::Clinfo::Platform_Info_Ptr >;
+%template(Const_Platform_Info_Ptrs) std::vector< Dimbo::Clinfo::Const_Platform_Info_Ptr >;
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

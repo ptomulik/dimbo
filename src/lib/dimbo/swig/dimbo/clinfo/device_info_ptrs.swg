@@ -33,6 +33,8 @@
 %include <dimbo/clinfo/device_info_ptr.swg>
 %include <std_vector.i>
 %include <dimbo/clinfo/device_info_ptrs.hpp>
+%template(Device_Info_Ptrs) std::vector<Dimbo::Clinfo::Device_Info_Ptr >;
+%template(Const_Device_Info_Ptrs) std::vector<Dimbo::Clinfo::Const_Device_Info_Ptr>;
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

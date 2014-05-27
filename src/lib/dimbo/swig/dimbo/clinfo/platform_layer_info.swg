@@ -29,6 +29,6 @@
 #include <dimbo/clinfo/platform_layer_info.hpp>
 %}
 
-%include <dimbo/clinfo/platform_info_ptrs.swg>
 %include <dimbo/clinfo/device_info_ptrs.swg>
+%include <dimbo/clinfo/platform_info_ptrs.swg>
 %include <dimbo/clinfo/platform_layer_info.hpp>

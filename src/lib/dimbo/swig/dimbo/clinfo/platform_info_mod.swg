@@ -33,11 +33,11 @@
 #include <dimbo/clinfo/exception_mod.hpp>
 %}
 
+%include <dimbo/clinfo/platform_layer_info.swg>
 %include <dimbo/clinfo/device_query.swg>
 %include <dimbo/clinfo/device_info.swg>
 %include <dimbo/clinfo/platform_query.swg>
 %include <dimbo/clinfo/platform_info.swg>
-%include <dimbo/clinfo/platform_layer_info.swg>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

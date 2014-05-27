@@ -24,23 +24,14 @@
  * \file dimbo/clinfo/device_info_ptr.swg
  * \todo Write documentation
  */ // }}}
+
 %{
 #include <dimbo/clinfo/device_info_ptr.hpp>
 %}
 
 %include <dimbo/shared_ptr.swg>
-// we have to do it this way, as swig does not support alias templates
-namespace Dimbo {
-namespace Clinfo {
-
-class Device_Info;
-typedef DIMBO_SHARED_PTR<Device_Info> Device_Info_Ptr;
-typedef DIMBO_SHARED_PTR<const Device_Info> Const_Device_Info_Ptr;
-
-}
-}
-//%rename(Dimbo__Clinfo__Device_Info) Dimbo::Clinfo::Device_Info;
-%shared_ptr(Dimbo::Clinfo::Device_Info);
+namespace Dimbo { namespace Clinfo { class Device_Info; } }
+DIMBO_DECL_CLASS_SHARED_PTR2(Dimbo, Clinfo, Device_Info);
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:
