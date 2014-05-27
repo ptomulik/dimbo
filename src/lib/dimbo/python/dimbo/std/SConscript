@@ -30,7 +30,8 @@ modules = [
     'map_mod',
     'exception_mod',
     'set_mod',
-    'bad_alloc_mod'
+    'bad_alloc_mod',
+    'iostream_mod'
 ]
 # Build modules
 modfiles = env.SwigPyModule(modules, **overrides)

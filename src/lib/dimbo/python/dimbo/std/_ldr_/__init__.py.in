@@ -25,3 +25,4 @@ from dimbo_.std.list_mod import *
 from dimbo_.std.map_mod import *
 from dimbo_.std.exception_mod import *
 from dimbo_.std.bad_alloc_mod import *
+from dimbo_.std.iostream_mod import *
