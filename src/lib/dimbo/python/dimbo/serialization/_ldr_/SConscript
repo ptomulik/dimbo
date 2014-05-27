@@ -22,24 +22,13 @@ Import( 'env' )
 
 # "Generate" __init__.py
 init_py = env.Substfile(['__init__.py.in'], SUBST_DICT = {})
-
-modules = [ 'exception_mod' ]
-# Build modules
-modfiles = env.SwigPyModule(modules)
-instfiles =  [m for m in modfiles if not str(m).endswith('.cc')] + init_py
+instfiles = init_py
 
 # FIXME: this is only for now, elaborate what should be the destination path,
 #        also the python packages should be compiled when installed, later on
 #        a plain user can't do this (root owns the directory with installed
 #        *.py files)
-env.Install('${libdir}/python/dist-packages/dimbo_', instfiles)
-
-# Nest into subdirs
-subdirs = [ 'std', 'cl', 'clinfo', 'serialization' ]
-scripts = [ '%s/SConscript' % s for s in subdirs ]
-SConscript( scripts, exports = ['env'] )
-
-SConscript( '_ldr_/SConscript', exports = ['env'] )
+env.Install('${libdir}/python/dist-packages/dimbo/serialization', instfiles)
 
 # Local Variables:
 # # tab-width:4

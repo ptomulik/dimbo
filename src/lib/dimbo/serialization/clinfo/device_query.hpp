@@ -38,17 +38,17 @@ BOOST_CLASS_VERSION( Dimbo::Clinfo::Device_Query
                    , Dimbo::Clinfo::Device_Query::class_version )
 #endif
 
-namespace Dimbo {
-namespace Clinfo {
+namespace boost {
+namespace serialization {
 
 /** // doc: serialize(ar,obj,ver) {{{
  * \todo Write documentation
  */ // }}}
 template<class Archive>
-void serialize(Archive& ar, Device_Query& obj, const unsigned int ver);
+void serialize(Archive& ar, Dimbo::Clinfo::Device_Query& obj, const unsigned int ver);
 
-} /* namespace Clinfo */
-} /* namespace Dimbo */
+} /* namespace serialization */
+} /* namespace boost */
 
 #endif /* DIMBO_SERIALIZATION_CLINFO_DEVICE_QUERY_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

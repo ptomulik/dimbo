@@ -55,7 +55,7 @@ namespace Clinfo {
 class Platform_Info
 {
   template <class Archive>
-  friend void serialize(Archive&, Platform_Info&, const unsigned int);
+  friend void _serialize(Archive&, Platform_Info&, const unsigned int);
 public:
   static constexpr unsigned int class_version = 0x000001;
 public:

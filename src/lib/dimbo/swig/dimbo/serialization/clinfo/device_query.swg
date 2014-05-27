@@ -20,36 +20,15 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/serialization/clinfo/device_info.hpp
-
-/** // doc: dimbo/serialization/clinfo/device_info.hpp {{{
- * \file dimbo/serialization/clinfo/device_info.hpp
+/** // doc: dimbo/serialization/clinfo/device_query.swg {{{
+ * \file dimbo/serialization/clinfo/device_query.swg
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_SERIALIZATION_CLINFO_DEVICE_INFO_HPP_INCLUDED
-#define DIMBO_SERIALIZATION_CLINFO_DEVICE_INFO_HPP_INCLUDED
 
-#include <dimbo/clinfo/device_info.hpp>
-#include <boost/serialization/version.hpp>
+%{
+#include <dimbo/serialization/clinfo/device_query.hpp>
+%}
+%include <dimbo/serialization/clinfo/device_query.hpp>
 
-// FIXME: replace with more verbose constant, e.g. DIMBO_USE_BOOST_SERIALIZATION
-#ifndef SWIG
-BOOST_CLASS_VERSION( Dimbo::Clinfo::Device_Info
-                   , Dimbo::Clinfo::Device_Info::class_version )
-#endif
-
-namespace boost {
-namespace serialization {
-
-/** // doc: serialize(ar,obj,ver) {{{
- * \todo Write documentation
- */ // }}}
-template<class Archive>
-void serialize(Archive& ar, Dimbo::Clinfo::Device_Info& obj, const unsigned int ver);
-
-} /* namespace serialization */
-} /* namespace boost */
-
-#endif /* DIMBO_SERIALIZATION_CLINFO_DEVICE_INFO_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

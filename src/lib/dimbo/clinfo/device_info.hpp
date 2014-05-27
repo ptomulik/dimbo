@@ -63,7 +63,7 @@ namespace Clinfo {
 class Device_Info
 {
   template <class Archive>
-  friend void serialize(Archive&, Device_Info&, const unsigned int);
+  friend void _serialize(Archive&, Device_Info&, const unsigned int);
 public:
   static constexpr unsigned int class_version = 0x000001;
 public:

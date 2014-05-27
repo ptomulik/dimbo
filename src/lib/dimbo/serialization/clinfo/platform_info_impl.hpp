@@ -40,7 +40,7 @@ namespace Clinfo {
 
 /* ------------------------------------------------------------------------ */
 template<class Archive>
-void serialize(Archive& ar, Platform_Info& obj, const unsigned int)
+static void _serialize(Archive& ar, Platform_Info& obj, const unsigned int)
 {
   using boost::serialization::make_nvp;
   ar  & make_nvp("id",          obj._id)
@@ -54,6 +54,20 @@ void serialize(Archive& ar, Platform_Info& obj, const unsigned int)
 
 } /* namespace Clinfo */
 } /* namespace Dimbo */
+
+namespace boost {
+namespace serialization {
+
+/* ------------------------------------------------------------------------ */
+template <class Archive>
+void serialize(Archive& ar, Dimbo::Clinfo::Platform_Info& obj, const unsigned int ver)
+{
+  Dimbo::Clinfo::_serialize(ar, obj, ver);
+}
+/* ------------------------------------------------------------------------ */
+
+} /* namespace boost */
+} /* namespace serialization */
 
 #endif /* DIMBO_SERIALIZATION_CLINFO_PLATFORM_INFO_IMPL_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

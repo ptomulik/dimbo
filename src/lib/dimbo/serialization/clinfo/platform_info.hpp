@@ -38,17 +38,17 @@ BOOST_CLASS_VERSION( Dimbo::Clinfo::Platform_Info
                    , Dimbo::Clinfo::Platform_Info::class_version )
 #endif
 
-namespace Dimbo {
-namespace Clinfo {
+namespace boost {
+namespace serialization {
 
 /** // doc: serialize(ar,obj,ver) {{{
  * \todo Write documentation
  */ // }}}
 template<class Archive>
-void serialize(Archive& ar, Platform_Info& obj, const unsigned int ver);
+void serialize(Archive& ar, Dimbo::Clinfo::Platform_Info& obj, const unsigned int ver);
 
-} /* namespace Clinfo */
-} /* namespace Dimbo */
+} /* namespace serialization */
+} /* namespace boost */
 
 #endif /* DIMBO_SERIALIZATION_CLINFO_PLATFORM_INFO_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

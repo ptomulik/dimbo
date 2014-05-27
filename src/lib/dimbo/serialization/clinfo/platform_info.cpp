@@ -35,19 +35,19 @@
 // 
 // Instantiations:
 //
-namespace Dimbo {
-namespace Clinfo {
+namespace boost {
+namespace serialization {
 
-template void serialize(boost::archive::text_iarchive&, Platform_Info&, const unsigned int);
-template void serialize(boost::archive::xml_iarchive&, Platform_Info&, const unsigned int);
-template void serialize(boost::archive::binary_iarchive&, Platform_Info&, const unsigned int);
+template void serialize(boost::archive::text_iarchive&, Dimbo::Clinfo::Platform_Info&, const unsigned int);
+template void serialize(boost::archive::xml_iarchive&, Dimbo::Clinfo::Platform_Info&, const unsigned int);
+template void serialize(boost::archive::binary_iarchive&, Dimbo::Clinfo::Platform_Info&, const unsigned int);
 
-template void serialize(boost::archive::text_oarchive&, Platform_Info&, const unsigned int);
-template void serialize(boost::archive::xml_oarchive&, Platform_Info&, const unsigned int);
-template void serialize(boost::archive::binary_oarchive&, Platform_Info&, const unsigned int);
+template void serialize(boost::archive::text_oarchive&, Dimbo::Clinfo::Platform_Info&, const unsigned int);
+template void serialize(boost::archive::xml_oarchive&, Dimbo::Clinfo::Platform_Info&, const unsigned int);
+template void serialize(boost::archive::binary_oarchive&, Dimbo::Clinfo::Platform_Info&, const unsigned int);
 
-} /* namespace Dimbo */
-} /* namespace Clinfo */
+} /* namespace serialization */
+} /* namespace boost */
 
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
