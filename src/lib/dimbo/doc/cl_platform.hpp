@@ -19,7 +19,8 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE
  */
-/** // \defgroup Dimbo_Cl_Platform {{{
+
+/** 
  * \defgroup Dimbo_Cl_Platform Dimbo OpenCL platform layer
  * \brief C++ wrappers for accessing OpenCL platform layer (retrieving
  *        information about available OpenCL platforms and devices).
@@ -89,8 +90,8 @@
  *
  *
  * The complete code for the above example may be found in \ref
- * cl_platform3.cpp. Note, that this is suboptimal (you've just see the
- * boilerplate related to iteration and manual querying). The better, and more
+ * cl_platform3.cpp. Note, that this is suboptimal (you've just sees the
+ * boilerplate created by iteration and manual querying). The better, and more
  * flexible approach is described below.
  *
  * \anchor querying_cl_platform_with_platform_layer_object
@@ -107,7 +108,7 @@
  * and storing it with Dimbo::Clinfo::Platform_Layer_Info is as simple as
  * single call to Dimbo::Cl::query_platform_layer_info().
  *
- * With the help of %Dimbo data streaming utilities, code for dumping
+ * With the help of %Dimbo data streaming utilities, the code for dumping
  * properties of all locally available OpenCL platforms and devices may be
  * reduced to a single line:
  *
@@ -116,6 +117,7 @@
  * The complete example is found in \ref cl_platform0.cpp. More instructions
  * may be found in a module named \ref Dimbo_Clinfo.
  *
- */ // }}}
+ */
+
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:
