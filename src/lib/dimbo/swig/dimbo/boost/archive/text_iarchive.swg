@@ -31,16 +31,18 @@
 %}
 
 %import <dimbo/std/iostream_mod.i>
+%include <dimbo/boost/archive/detail/interface_iarchive.swg>
 
 namespace boost {
 namespace archive {
+class text_iarchive;
+%template(interface_iarchive_T_text_iarchive) detail::interface_iarchive<text_iarchive>;
 class text_iarchive 
+  : public detail::interface_iarchive<text_iarchive>
   {
   public:
     text_iarchive(std::istream &os, unsigned int flags = 0);
    ~text_iarchive();
-    template<class T>
-    text_iarchive& operator>>(T const&);
   };
 } /* namespace archive */
 } /* namespace boost */

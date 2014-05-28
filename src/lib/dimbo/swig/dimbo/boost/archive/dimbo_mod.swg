@@ -20,32 +20,13 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-/** // doc: dimbo/boost/archive/text_oarchive.swg {{{
- * \file dimbo/boost/archive/text_oarchive.swg
+/** // doc: dimbo/boost/archive/dimbo_mod.swg {{{
+ * \file dimbo/boost/archive/dimbo_mod.swg
  * \todo Write documentation
  */ // }}}
 
-%{
-#include <dimbo/std/iostream_mod.hpp>
-#include <boost/archive/text_oarchive.hpp>
-%}
-
-%import <dimbo/std/iostream_mod.i>
-%include <dimbo/boost/archive/detail/interface_oarchive.swg>
-
-namespace boost {
-namespace archive {
-class text_oarchive;
-%template(interface_oarchive_T_text_oarchive) detail::interface_oarchive<text_oarchive>;
-class text_oarchive 
-  : public detail::interface_oarchive<text_oarchive>
-  {
-  public:
-    text_oarchive(std::ostream &os, unsigned int flags = 0);
-   ~text_oarchive();
-  };
-} /* namespace archive */
-} /* namespace boost */
+%include <dimbo/boost/archive/boost_archives.swg>
+%include <dimbo/s11n/clinfo_mod.swg>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

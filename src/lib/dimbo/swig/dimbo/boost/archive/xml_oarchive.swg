@@ -31,16 +31,18 @@
 %}
 
 %import <dimbo/std/iostream_mod.i>
+%include <dimbo/boost/archive/detail/interface_oarchive.swg>
 
 namespace boost {
 namespace archive {
+class xml_oarchive;
+%template(interface_oarchive_T_xml_oarchive) detail::interface_oarchive<xml_oarchive>;
 class xml_oarchive 
+  : public detail::interface_oarchive<xml_oarchive>
   {
   public:
     xml_oarchive(std::ostream &os, unsigned int flags = 0);
    ~xml_oarchive();
-    template<class T>
-    xml_oarchive& operator<<(T const&);
   };
 } /* namespace archive */
 } /* namespace boost */

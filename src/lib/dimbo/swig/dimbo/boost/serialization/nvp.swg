@@ -20,31 +20,24 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-/** // doc: dimbo/boost/archive/text_oarchive.swg {{{
- * \file dimbo/boost/archive/text_oarchive.swg
+/** // doc: dimbo/boost/serialization/nvp.swg {{{
+ * \file dimbo/boost/serialization/nvp.swg
  * \todo Write documentation
  */ // }}}
 
-%{
-#include <dimbo/std/iostream_mod.hpp>
-#include <boost/archive/text_oarchive.hpp>
-%}
-
-%import <dimbo/std/iostream_mod.i>
-%include <dimbo/boost/archive/detail/interface_oarchive.swg>
-
 namespace boost {
-namespace archive {
-class text_oarchive;
-%template(interface_oarchive_T_text_oarchive) detail::interface_oarchive<text_oarchive>;
-class text_oarchive 
-  : public detail::interface_oarchive<text_oarchive>
+namespace serialization {
+template<class T>
+struct nvp
   {
-  public:
-    text_oarchive(std::ostream &os, unsigned int flags = 0);
-   ~text_oarchive();
+    explicit nvp(const char * name_, T & t);
+    nvp(const nvp & rhs);
+    const char* name() const;
+    T & value() const;
+    const T & const_value() const;
   };
-} /* namespace archive */
+template<class T> nvp<T> make_nvp(const char* name, T & t);
+} /* namespace serialization */
 } /* namespace boost */
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

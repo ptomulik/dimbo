@@ -1,4 +1,3 @@
-
 /*
  * @COPYRIGHT@
  *
@@ -21,14 +20,17 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-/** // doc: dimbo/boost/archive/boost_archives_mod.i {{{
- * \file dimbo/boost/archive/boost_archives_mod.i
+// dimbo/s11n/clinfo_mod.hpp
+
+/** // doc: dimbo/s11n/clinfo_mod.hpp {{{
+ * \file dimbo/s11n/clinfo_mod.hpp
  * \todo Write documentation
  */ // }}}
+#ifndef DIMBO_S11N_CLINFO_MOD_HPP_INCLUDED
+#define DIMBO_S11N_CLINFO_MOD_HPP_INCLUDED
 
-%module(package="dimbo_.boost.archive") boost_archives_mod
-%feature("autodoc", "3");
-%include <dimbo/boost/archive/boost_archives.swg>
+#include <dimbo/s11n/clinfo/platform_info_mod.hpp>
 
+#endif /* DIMBO_S11N_CLINFO_MOD_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

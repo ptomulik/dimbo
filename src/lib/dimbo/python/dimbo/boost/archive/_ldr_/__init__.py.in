@@ -18,4 +18,4 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
 
-from dimbo_.boost.archive.boost_archives_mod import *
+from dimbo_.boost.archive.dimbo_mod import *

@@ -27,8 +27,15 @@
 
 %{
 #include <dimbo/s11n/clinfo/platform_info.hpp>
+#include <dimbo/s11n/boost_archives.hpp>
+#include <dimbo/s11n/shared_ptr.hpp>
 %}
+
 %include <dimbo/s11n/clinfo/platform_info.hpp>
+%import <dimbo/s11n/boost_archives.swg>
+%import <dimbo/shared_ptr.swg>
+DIMBO_EXTEND_BOOST_ARCHIVES(Dimbo::Clinfo::Platform_Info);
+DIMBO_EXTEND_BOOST_ARCHIVES(DIMBO_SHARED_PTR(Dimbo::Clinfo::Platform_Info));
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

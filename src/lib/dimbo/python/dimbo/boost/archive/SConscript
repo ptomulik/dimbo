@@ -32,7 +32,7 @@ overrides = {
     'SWIGPY_LIBS'       : libs
 }
 modules = [
-    'boost_archives_mod',
+    'dimbo_mod',
 ]
 # Build modules
 modfiles = env.SwigPyModule(modules, **overrides)

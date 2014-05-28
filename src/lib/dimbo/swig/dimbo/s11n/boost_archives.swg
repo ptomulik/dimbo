@@ -27,11 +27,5 @@
 
 %include <dimbo/boost/archive/boost_archives.swg>
 
-%include <dimbo/s11n/clinfo/device_info.swg>
-%include <dimbo/s11n/clinfo/platform_info.swg>
-%include <dimbo/s11n/clinfo/platform_query.swg>
-%include <dimbo/s11n/clinfo/device_query.swg>
-%include <dimbo/s11n/clinfo/platform_layer_info.swg>
-
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

@@ -31,7 +31,7 @@ libs = env.get('SWIGPY_LIBS', CLVar()) + [
 overrides = {
     'SWIGPY_LIBS'       : libs
 }
-modules = [ 'boost_archives_mod' ]
+modules = [ ]
 # Build modules
 modfiles = env.SwigPyModule(modules, **overrides)
 instfiles =  [m for m in modfiles if not str(m).endswith('.cc')] + init_py

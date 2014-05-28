@@ -20,30 +20,26 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-/** // doc: dimbo/boost/archive/text_oarchive.swg {{{
- * \file dimbo/boost/archive/text_oarchive.swg
+/** // doc: dimbo/boost/archive/detail/interface_iarchive.swg {{{
+ * \file dimbo/boost/archive/detail/interface_iarchive.swg
  * \todo Write documentation
  */ // }}}
 
-%{
-#include <dimbo/std/iostream_mod.hpp>
-#include <boost/archive/text_oarchive.hpp>
-%}
-
-%import <dimbo/std/iostream_mod.i>
-%include <dimbo/boost/archive/detail/interface_oarchive.swg>
-
 namespace boost {
 namespace archive {
-class text_oarchive;
-%template(interface_oarchive_T_text_oarchive) detail::interface_oarchive<text_oarchive>;
-class text_oarchive 
-  : public detail::interface_oarchive<text_oarchive>
+namespace detail {
+
+template <class Archive>
+class interface_iarchive
   {
+  protected:
+    interface_iarchive();
   public:
-    text_oarchive(std::ostream &os, unsigned int flags = 0);
-   ~text_oarchive();
+    template <class T> Archive& operator>>(T & t);
+    template <class T> Archive& operator& (T & t);
   };
+
+} /* namespace detail */
 } /* namespace archive */
 } /* namespace boost */
 
