@@ -35,7 +35,7 @@ instfiles =  [m for m in modfiles if not str(m).endswith('.cc')] + init_py
 env.Install('${libdir}/python/dist-packages/dimbo_', instfiles)
 
 # Nest into subdirs
-subdirs = [ 'std', 'boost', 'cl', 'clinfo', 'serialization' ]
+subdirs = [ 'std', 'boost', 'cl', 'clinfo', 's11n' ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]
 SConscript( scripts, exports = ['env'] )
 

@@ -26,13 +26,13 @@ from SCons.Util import CLVar
 init_py = env.Substfile(['__init__.py.in'], SUBST_DICT = {})
 # Generate python modules with swig
 libs = env.get('SWIGPY_LIBS', CLVar()) + [
-    'boost_serialization', 'dimbo_s11n_clinfo'
+    'dimbo_s11n_clinfo'
 ]
 overrides = {
     'SWIGPY_LIBS'       : libs
 }
 modules = [
-    'boost_archives_mod',
+    'platform_info_mod',
 ]
 # Build modules
 modfiles = env.SwigPyModule(modules, **overrides)
@@ -43,7 +43,7 @@ instfiles =  [m for m in modfiles if not str(m).endswith('.cc')] + init_py
 #        also the python packages should be compiled when installed, later on
 #        a plain user can't do this (root owns the directory with installed
 #        *.py files)
-env.Install('${libdir}/python/dist-packages/dimbo_/boost/archive', instfiles)
+env.Install('${libdir}/python/dist-packages/dimbo_/serialization/clinfo', instfiles)
 
 SConscript('_ldr_/SConscript', exports = ['env'])
 
