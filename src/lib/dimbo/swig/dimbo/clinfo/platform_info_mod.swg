@@ -24,24 +24,20 @@
  * \file dimbo/clinfo/platform_mod.swg
  * \todo Write documentation
  */ // }}}
+%import <dimbo/swig_config.swg>
 
-%include <dimbo/swig_config.swg>
-
-//%include <boost_shared_ptr.i>
-//%shared_ptr(Dimbo::Clinfo::Platform_Info)
-//%shared_ptr(Dimbo::Clinfo::Device_Info)
-%include <std_vector.i>
+%include <dimbo/shared_ptr.swg>
 
 %import <dimbo/clinfo/exception_mod.i>
 %{
 #include <dimbo/clinfo/exception_mod.hpp>
 %}
 
-//%include <dimbo/clinfo/device_query.swg>
+%include <dimbo/clinfo/platform_layer_info.swg>
+%include <dimbo/clinfo/device_query.swg>
 %include <dimbo/clinfo/device_info.swg>
-//%include <dimbo/clinfo/platform_query.swg>
+%include <dimbo/clinfo/platform_query.swg>
 %include <dimbo/clinfo/platform_info.swg>
-//%include <dimbo/clinfo/platform_layer_info.swg>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

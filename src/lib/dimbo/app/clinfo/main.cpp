@@ -31,7 +31,7 @@
 
 #include <dimbo/cl/platform_layer.hpp>
 #include <dimbo/clinfo/platform_layer_info.hpp>
-#include <dimbo/serialization/clinfo/platform_layer_info.hpp>
+#include <dimbo/s11n/clinfo/platform_layer_info.hpp>
 #include <dimbo/format/clinfo/platform_layer_info.hpp>
 
 #include <dimbo/config.h>
@@ -125,12 +125,12 @@ run()
     of_human,   // Human-readable text 
     of_xml,     // Serialized to XML
     of_text,    // Serialized to text
-    of_bin      // Serializaed to binary form
+    of_bin      // Serialized to binary form
   };
   enum Input_Format {
     if_xml,     // Serialized to XML
     if_text,    // Serialized to text
-    if_bin      // Serializaed to binary form
+    if_bin      // Serialized to binary form
   };
   Output_Format oformat = of_text;
 
@@ -153,7 +153,7 @@ run()
         }
 
       std::string ifile(this->options_map()["input"].as<std::string>());
-      boost::shared_ptr<std::istream> ifs;
+      Dimbo::Shared_Ptr<std::istream> ifs;
       if(ifile == "-")
         ifs.reset(&std::cin, noop());
       else
@@ -206,7 +206,7 @@ run()
         oformat = of_bin;
     }
 
-  boost::shared_ptr<std::ostream> ofs;
+  Dimbo::Shared_Ptr<std::ostream> ofs;
   if(this->options_map().count("output"))
     {
       std::string ofile(this->options_map()["output"].as<std::string>());

@@ -30,6 +30,8 @@
 #define DIMBO_CLINFO_PLATFORM_LAYER_INFO_FIXTURES_HPP_INCLUDED
 
 #include <dimbo/clinfo/platform_layer_info.hpp>
+#include <dimbo/clinfo/platform_info.hpp>
+#include <dimbo/clinfo/device_info.hpp>
 
 namespace Dimbo {
 namespace Clinfo {

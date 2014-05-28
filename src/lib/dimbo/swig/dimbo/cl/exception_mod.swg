@@ -25,7 +25,7 @@
  * \todo Write documentation
  */ // }}}
 
-%include <dimbo/swig_config.swg>
+%import <dimbo/swig_config.swg>
 
 %import  <dimbo/exception_mod.i>
 %import  <dimbo/cl/opencl1_0.i>

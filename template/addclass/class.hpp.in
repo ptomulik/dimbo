@@ -37,7 +37,7 @@ $CLASS_OPEN_NAMESPACES
 class $CLASS
 {
   template <class Archive>
-  friend void serialize(Archive&, $CLASS&, const unsigned int)
+  friend void _serialize(Archive&, $CLASS&, const unsigned int)
 public:
   static constexpr unsigned int class_version = 0x000001;
   /** // doc: $CLASS() {{{

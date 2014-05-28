@@ -25,7 +25,7 @@
  * \todo Write documentation
  */ // }}}
 
-%include <dimbo/swig_config.swg>
+%import <dimbo/swig_config.swg>
 
 %include <std_vector.i>
 
