@@ -32,7 +32,7 @@ for proto in env.Glob('*.proto'):
 
 libs = CLVar('protobuf dimbo_clinfo')
 
-lib = env.SharedLibrary('../../../dimbo_protobuf_clinfo', 
+lib = env.SharedLibrary('../../../dimbo_protobuf_clinfo',
     [ 'platform_query.pb.cc', 'platform_query.cpp'
     , 'platform_info.pb.cc', 'platform_info.cpp'
     , 'device_query.pb.cc', 'device_query.cpp'

@@ -25,7 +25,7 @@ from SCons.Util import CLVar
 libs =  CLVar('dimbo_clinfo boost_serialization')
 
 # rlib - "real" library
-lib = env.SharedLibrary('../../../dimbo_s11n_clinfo', 
+lib = env.SharedLibrary('../../../dimbo_s11n_clinfo',
     [ 'platform_info.cpp'
     , 'platform_query.cpp'
     , 'device_info.cpp'

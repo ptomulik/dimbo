@@ -122,7 +122,7 @@ run()
   struct noop { void operator()(...) const{}; };
 
   enum Output_Format {
-    of_human,   // Human-readable text 
+    of_human,   // Human-readable text
     of_xml,     // Serialized to XML
     of_text,    // Serialized to text
     of_bin      // Serialized to binary form
@@ -162,19 +162,19 @@ run()
       switch(iformat)
         {
           case if_text:
-            { 
+            {
               boost::archive::text_iarchive ar(*ifs);
               ar >> make_nvp("platform_layer_info", platform_layer_info);
             }
             break;
           case if_bin:
-            { 
+            {
               boost::archive::binary_iarchive ar(*ifs);
               ar >> make_nvp("platform_layer_info", platform_layer_info);
             }
             break;
           default:
-            { 
+            {
               boost::archive::xml_iarchive ar(*ifs);
               ar >> make_nvp("platform_layer_info", platform_layer_info);
             }
@@ -188,7 +188,7 @@ run()
       using Dimbo::Clinfo::Device_Query;
       using Dimbo::Cl::query_platform_info;
       platform_layer_info = query_platform_layer_info(
-          Platform_Layer(), 
+          Platform_Layer(),
           create_platform_query(this->options_map()),
           create_device_query(this->options_map())
      );
@@ -222,19 +222,19 @@ run()
   switch(oformat)
     {
       case of_xml:
-        { 
+        {
           boost::archive::xml_oarchive ar(*ofs);
           ar << make_nvp("platform_layer_info", platform_layer_info);
         }
         break;
       case of_text:
-        { 
+        {
           boost::archive::text_oarchive ar(*ofs);
           ar << make_nvp("platform_layer_info", platform_layer_info);
         }
         break;
       case of_bin:
-        { 
+        {
           boost::archive::binary_oarchive ar(*ofs);
           ar << make_nvp("platform_layer_info", platform_layer_info);
         }

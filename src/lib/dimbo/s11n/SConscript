@@ -24,7 +24,7 @@ from SCons.Util import CLVar
 
 libs =  CLVar()
 
-##lib = env.SharedLibrary('../../dimbo_clinfo', 
+##lib = env.SharedLibrary('../../dimbo_clinfo',
 ##    [ 'platform_info.cpp'
 ##    , 'platform_query.cpp'
 ##    , 'device_info.cpp'

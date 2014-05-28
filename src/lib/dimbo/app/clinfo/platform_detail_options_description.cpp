@@ -57,11 +57,11 @@ Platform_Detail_Options_Description( const std::string & caption
 }
 Platform_Detail_Options_Description::
 ~Platform_Detail_Options_Description()
-{ 
+{
 }
 void Platform_Detail_Options_Description::
 _init_options_description()
-{ 
+{
   using Dimbo::App::Options::value;
   using std::vector;
   using std::string;
@@ -87,7 +87,7 @@ _init_options_description()
       /* TRANSLATORS: This is for --platform-extensions option */
     , _("query for platform extensions?"))
   ;
-} 
+}
 } /* namespace Clinfo*/
 } /* namespace App*/
 } /* namespace Dimbo*/

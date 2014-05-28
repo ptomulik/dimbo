@@ -77,7 +77,7 @@ void read(Dimbo::Protobuf::Clinfo::Platform_Layer_Info const& buf,
 
   int i, j;
 
-  Platform_Info_Ptrs platforms; 
+  Platform_Info_Ptrs platforms;
   for(i = 0; i < buf.platform_size(); ++i)
     {
       Platform_Info_Ptr platform(new Platform_Info());

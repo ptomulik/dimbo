@@ -23,7 +23,7 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = CLVar() 
+libs = CLVar()
 
 defs = env.get('CPPDEFINES', {}).copy()
 defs.update({'DIMBO_COMPILING_TEST' : 1})

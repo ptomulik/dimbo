@@ -42,7 +42,7 @@
  * directory. There is also an amount of associated code scattered over the
  * other directories, for example generic swig interface files for the OpenCL
  * functionality (\c src/lib/dimbo/swig/dimbo/cl/), python-specific swig
- * interface files for the OpenCL functionality 
+ * interface files for the OpenCL functionality
  * (\c src/lib/dimbo/python/dimbo/cl/) etc.
  *
  * <h3 class="groupheader">Contents</h3>
@@ -106,7 +106,7 @@
  * instance of Dimbo::Clinfo::Platform_Layer_Info. Querying all the information
  * and storing it with Dimbo::Clinfo::Platform_Layer_Info is as simple as
  * single call to Dimbo::Cl::query_platform_layer_info().
- * 
+ *
  * With the help of %Dimbo data streaming utilities, code for dumping
  * properties of all locally available OpenCL platforms and devices may be
  * reduced to a single line:

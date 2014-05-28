@@ -34,14 +34,14 @@
  *
  * The source code providing the core of this module's content may be found in
  * @c src/lib/dimbo/clinfo directory. There is also an amount of associated
- * code scattered over other directories, for example serialization is in 
- * @c src/lib/dimbo/serialization/clinfo, support for protocol buffers within 
+ * code scattered over other directories, for example serialization is in
+ * @c src/lib/dimbo/serialization/clinfo, support for protocol buffers within
  * @c src/lib/dimbo/protobuf/clinfo etc.
  *
  * <h3 class="groupheader">Contents</h3>
  *
  * Currently the following classes constitute the core of %Dimbo Clinfo module:
- *    - platform/device information (Dimbo::Clinfo::Platform_Info, 
+ *    - platform/device information (Dimbo::Clinfo::Platform_Info,
  *      Dimbo::Clinfo::Device_Info),
  *    - information selectors/query objects (Dimbo::Clinfo::Platform_Query,
  *      Dimbo::Clinfo::Device_Query),
