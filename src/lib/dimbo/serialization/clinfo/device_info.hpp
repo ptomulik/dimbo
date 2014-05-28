@@ -30,7 +30,6 @@
 #define DIMBO_SERIALIZATION_CLINFO_DEVICE_INFO_HPP_INCLUDED
 
 #include <dimbo/clinfo/device_info.hpp>
-#include <dimbo/clinfo/device_info_ptr.hpp>
 #include <boost/serialization/version.hpp>
 
 // FIXME: replace with more verbose constant, e.g. DIMBO_USE_BOOST_SERIALIZATION
