@@ -37,6 +37,7 @@
 
 #define DIMBO_SHARED_PTR(__t) boost::shared_ptr<__t>
 
+// DIMBO_DECL_CLASS_SHARED_PTR1(__ns1,__klass)
 // Having __ns1::__klass create wrappers for its shared_ptr, such that
 // the following objects will be available to target language:
 //
@@ -49,8 +50,8 @@ namespace __ns1 {
   typedef DIMBO_SHARED_PTR(__ns1::__klass) __klass ## _Ptr;
   typedef DIMBO_SHARED_PTR(__ns1::__klass const) Const_ ## __klass ## _Ptr;
 }
-%template(__klass ## _Ptr) DIMBO_SHARED_PTR(__ns1::__klass ## _Ptr);
-%template(Const_ ## __klass ## _Ptr) DIMBO_SHARED_PTR(__ns1::__klass ## _Ptr const);
+//%template(__klass ## _Ptr) DIMBO_SHARED_PTR(__ns1::__klass ## _Ptr);
+//%template(Const_ ## __klass ## _Ptr) DIMBO_SHARED_PTR(__ns1::__klass ## _Ptr const);
 %enddef
 
 // DIMBO_DECL_CLASS_SHARED_PTR2(__ns1,__ns2,__klass)
@@ -66,8 +67,8 @@ namespace __ns1 { namespace __ns2 {
   typedef DIMBO_SHARED_PTR(__ns1::__ns2::__klass) __klass ## _Ptr;
   typedef DIMBO_SHARED_PTR(__ns1::__ns2::__klass const) Const_ ## __klass ## _Ptr;
 } }
-%template(__klass ## _Ptr) DIMBO_SHARED_PTR(__ns1::__ns2::__klass ## _Ptr);
-%template(Const_ ## __klass ## _Ptr) DIMBO_SHARED_PTR(__ns1::__ns2::__klass ## _Ptr const);
+//%template(__klass ## _Ptr) DIMBO_SHARED_PTR(__ns1::__ns2::__klass ## _Ptr);
+//%template(Const_ ## __klass ## _Ptr) DIMBO_SHARED_PTR(__ns1::__ns2::__klass ## _Ptr const);
 %enddef
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

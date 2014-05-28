@@ -21,7 +21,7 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-/** // doc: dimbo/clinfo/platform_info_mod.i {{{
+/** // doc: dimbo/serialization/clinfo/platform_info_mod.i {{{
  * \file dimbo/clinfo/platform_info_mod.i
  * \todo Write documentation
  */ // }}}

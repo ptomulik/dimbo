@@ -20,37 +20,32 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/serialization/clinfo/device_info.hpp
-
-/** // doc: dimbo/serialization/clinfo/device_info.hpp {{{
- * \file dimbo/serialization/clinfo/device_info.hpp
+/** // doc: dimbo/boost/archive/xml_iarchive.swg {{{
+ * \file dimbo/boost/archive/xml_iarchive.swg
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_SERIALIZATION_CLINFO_DEVICE_INFO_HPP_INCLUDED
-#define DIMBO_SERIALIZATION_CLINFO_DEVICE_INFO_HPP_INCLUDED
 
+%{
+#include <dimbo/std/iostream_mod.hpp>
+#include <boost/archive/xml_iarchive.hpp>
 #include <dimbo/clinfo/device_info.hpp>
-#include <dimbo/clinfo/device_info_ptr.hpp>
-#include <boost/serialization/version.hpp>
+#include <boost/serialization/shared_ptr.hpp>
+%}
 
-// FIXME: replace with more verbose constant, e.g. DIMBO_USE_BOOST_SERIALIZATION
-#ifndef SWIG
-BOOST_CLASS_VERSION( Dimbo::Clinfo::Device_Info
-                   , Dimbo::Clinfo::Device_Info::class_version )
-#endif
+%import <dimbo/std/iostream_mod.i>
 
 namespace boost {
-namespace serialization {
-
-/** // doc: serialize(ar,obj,ver) {{{
- * \todo Write documentation
- */ // }}}
-template<class Archive>
-void serialize(Archive& ar, Dimbo::Clinfo::Device_Info& obj, const unsigned int ver);
-
-} /* namespace serialization */
+namespace archive {
+class xml_iarchive 
+  {
+  public:
+    xml_iarchive(std::istream &os, unsigned int flags = 0);
+   ~xml_iarchive();
+    template<class T>
+    xml_iarchive& operator>>(T const&);
+  };
+} /* namespace archive */
 } /* namespace boost */
 
-#endif /* DIMBO_SERIALIZATION_CLINFO_DEVICE_INFO_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

@@ -27,8 +27,22 @@
 
 %{
 #include <dimbo/serialization/clinfo/device_info.hpp>
+#include <dimbo/boost/archive/boost_archives.hpp>
+#include <boost/serialization/shared_ptr.hpp>
 %}
-%include <dimbo/serialization/clinfo/device_info.hpp>
+
+//namespace boost {
+//namespace serialization {
+//  text_oarchive& text_oarchive::operator<<(Dimbo::Clinfo::Device_Info const&);
+//  text_oarchive& text_oarchive::operator<<(Dimbo::Clinfo::Const_Device_Info_Ptr const&);
+//}
+//}
+%include <dimbo/boost/archive/boost_archives.swg>
+%extend boost::archive::text_oarchive {
+    %template() operator<< <Dimbo::Clinfo::Device_Info>;
+    %template() operator<< <Dimbo::Clinfo::Const_Device_Info_Ptr>;
+}
+
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:
