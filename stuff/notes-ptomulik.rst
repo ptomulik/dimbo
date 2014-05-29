@@ -8,6 +8,7 @@ CONTENTS
 --------
 
 1. `GPU related notes`_
+2. `OpenCL based libraries`_
 
 
 .. _GPU related notes:
@@ -23,3 +24,11 @@ CUDA Environment variables
 ``````````````````````````
 
 There is a bunch of environment variables which affect CUDA drivers, see `the documentation <http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#env-vars>`_.
+
+.. _OpenCL based libraries: 
+OpenCL based libraries
+^^^^^^^^^^^^^^^^^^^^^^
+
+Here is list of libraries that may be useful for OpenCL programming:
+
+* `VexCL <https://github.com/ddemidov/vexcl>`_ vector expression template library for OpenCL/CUDA. Created for ease of GPGPU development with C++. Many useful things including vector expressions for `scattered data interpolation with multilevel B-Splines <https://github.com/ddemidov/vexcl#mba>`_. Note that `Boost.Numeric.Odeint <www.boost.org/libs/numeric/odeint/doc/html/index.html>`_ (ODE integrators in C++) supports OpenCL via `VexCL <https://github.com/ddemidov/vexcl>`_.
