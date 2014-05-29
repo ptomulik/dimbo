@@ -15,14 +15,28 @@ CONTENTS
 GPU related notes
 ^^^^^^^^^^^^^^^^^
 
-* How to hide some CUDA devices from an application? Use ``CUDA_VISIBLE_DEVICES``, see `this article <https://devblogs.nvidia.com/parallelforall/cuda-pro-tip-control-gpu-visibility-cuda_visible_devices/>`_ and `this blog post <http://acceleware.com/blog/cudavisibledevices-masking-gpus>`_.
+* How to hide some CUDA devices from an application? Use ``CUDA_VISIBLE_DEVICES``,
+  see `this article <https://devblogs.nvidia.com/parallelforall/cuda-pro-tip-control-gpu-visibility-cuda_visible_devices/>`_
+  and `this blog post <http://acceleware.com/blog/cudavisibledevices-masking-gpus>`_.
 
-* CUDA Environment variables. There is a bunch of environment variables which affect CUDA drivers, see `the documentation <http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#env-vars>`_.
+* CUDA Environment variables. There is a bunch of environment variables which
+  affect CUDA drivers, see `the documentation
+  <http://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html#env-vars>`_.
 
-.. _OpenCL based libraries: 
+.. _OpenCL based libraries:
 OpenCL based libraries
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Here is list of libraries that may be useful for OpenCL programming:
 
-* `VexCL <https://github.com/ddemidov/vexcl>`_ vector expression template library for OpenCL/CUDA. Created for ease of GPGPU development with C++. Many useful things including vector expressions for `scattered data interpolation with multilevel B-Splines <https://github.com/ddemidov/vexcl#mba>`_. Note that `Boost.Numeric.Odeint <www.boost.org/libs/numeric/odeint/doc/html/index.html>`_ (ODE integrators in C++) supports OpenCL via `VexCL <https://github.com/ddemidov/vexcl>`_.
+* `VexCL <https://github.com/ddemidov/vexcl>`_ vector expression template
+  library for OpenCL/CUDA. Created for ease of GPGPU development with C++.
+
+  Many useful things including vector expressions for `scattered data
+  interpolation with multilevel B-Splines <https://github.com/ddemidov/vexcl#mba>`_.
+  Note that `Boost.Numeric.Odeint <www.boost.org/libs/numeric/odeint/doc/html/index.html>`_
+  (ODE integrators in C++) supports OpenCL via `VexCL <https://github.com/ddemidov/vexcl>`_.
+
+* `Boost.Compute <http://kylelutz.github.io/compute/>`_. Not yet an official
+  boost library. Provides C++ interface to multi-core CPU and GPGPU computing
+  platforms. Header only.
