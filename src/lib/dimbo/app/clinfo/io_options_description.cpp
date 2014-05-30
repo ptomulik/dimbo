@@ -37,27 +37,32 @@
 namespace Dimbo {
 namespace App {
 namespace Clinfo {
+
+/* ------------------------------------------------------------------------ */
 IO_Options_Description::
 IO_Options_Description( unsigned line_length
-                          , unsigned min_description_length )
+                      , unsigned min_description_length )
   : Dimbo::App::Options::Options_Description(_("Output Options"), line_length
                                             , min_description_length )
 {
   this->_init_options_description();
 }
+/* ------------------------------------------------------------------------ */
 IO_Options_Description::
 IO_Options_Description( const std::string & caption
-                          , unsigned line_length
-                          , unsigned min_description_length )
+                      , unsigned line_length
+                      , unsigned min_description_length )
   : Dimbo::App::Options::Options_Description( caption, line_length
                                             , min_description_length )
 {
   this->_init_options_description();
 }
+/* ------------------------------------------------------------------------ */
 IO_Options_Description::
 ~IO_Options_Description()
 { 
 }
+/* ------------------------------------------------------------------------ */
 void IO_Options_Description::
 _init_options_description()
 {
@@ -65,8 +70,8 @@ _init_options_description()
   using std::string;
   using Dimbo::App::Options::value;
   this->add_options()
-    ("output-format,O", value<string>()->value_name("fmt")->default_value("human"),
-      _("output format (human/xml/text/bin)"))
+    ("output-format,O", value<string>()->value_name("fmt"),
+      _("output format (uff/xml/txt/bin)"))
     ("input-format,I", value<string>()->value_name("fmt")->default_value("xml"),
       _("input format (xml/text/bin), relevant only with --input"))
     ("input,i", value<string>()->value_name("file"),
@@ -75,6 +80,8 @@ _init_options_description()
       _("save the output to file instead of stdout, see also --output-format"))
   ;
 }
+/* ------------------------------------------------------------------------ */
+
 } /* namespace Clinfo*/
 } /* namespace App*/
 } /* namespace Dimbo*/
