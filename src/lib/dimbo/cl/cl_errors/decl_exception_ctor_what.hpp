@@ -46,7 +46,7 @@ template<> \
   { \
   public: \
     Cl_Error_No(Dimbo::Debug_Info const& debug_info) throw() \
-      : Standardized_Exception(debug_info, std::string("Dimbo::Cl: " __what)){ } \
+      : Standardized_Exception(debug_info, std::string(__what)){ } \
     Cl_Error_No(Cl_Error_No const& e) throw() \
       : Standardized_Exception(e) { }  \
     virtual ~Cl_Error_No() throw() { } \

@@ -50,7 +50,7 @@ template<> \
       : Standardized_Exception(e) { } \
     virtual ~Cl_Error_No() throw() { } \
     virtual char const* what() const throw() \
-    { return "Dimbo::Cl: " __what;  } \
+    { return __what;  } \
     virtual cl_int cl_error() const throw() \
     { return __clcode; } \
   };

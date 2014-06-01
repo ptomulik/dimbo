@@ -31,8 +31,8 @@
 
 #include <dimbo/exceptions/decl_exception_const_what.hpp>
 
-#define DIMBO_DECL_EXCEPTION(__ns,__klass,__name,__what) \
-  DIMBO_DECL_EXCEPTION_CONST_WHAT(__ns,__klass,__name,__what,std::exception)
+#define DIMBO_DECL_EXCEPTION(__klass,__name,__what) \
+  DIMBO_DECL_EXCEPTION_CONST_WHAT(__klass,__name,__what,std::exception)
 
 #endif /* DIMBO_DECL_EXCEPTION_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

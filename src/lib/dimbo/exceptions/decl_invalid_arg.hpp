@@ -32,8 +32,8 @@
 #include <dimbo/exceptions/decl_exception_ctor_what.hpp>
 #include <stdexcept>
 
-#define DIMBO_DECL_INVALID_ARG(__ns,__klass,__name,__what) \
-  DIMBO_DECL_EXCEPTION_CTOR_WHAT(__ns,__klass,__name,__what,std::invalid_argument)
+#define DIMBO_DECL_INVALID_ARG(__klass,__name,__what) \
+  DIMBO_DECL_EXCEPTION_CTOR_WHAT(__klass,__name,__what,std::invalid_argument)
 
 #endif /* DIMBO_DECL_INVALID_ARG_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

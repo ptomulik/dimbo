@@ -32,8 +32,8 @@
 #include <dimbo/exceptions/decl_exception_ctor_what.hpp>
 #include <stdexcept>
 
-#define DIMBO_DECL_OUT_OF_RANGE(__ns,__klass,__name,__what) \
-  DIMBO_DECL_EXCEPTION_CTOR_WHAT(__ns,__klass,__name,__what,std::out_of_range)
+#define DIMBO_DECL_OUT_OF_RANGE(__klass,__name,__what) \
+  DIMBO_DECL_EXCEPTION_CTOR_WHAT(__klass,__name,__what,std::out_of_range)
 
 #endif /* DIMBO_DECL_OUT_OF_RANGE_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

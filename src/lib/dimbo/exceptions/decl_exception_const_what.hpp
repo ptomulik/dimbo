@@ -32,9 +32,9 @@
 #include <dimbo/util/debug_info.hpp>
 #include <dimbo/standardized_exception.hpp>
 
-#define DIMBO_DECL_EXCEPTION_CONST_WHAT(__ns,__klass,__name,__what,__stdexcpt) \
+#define DIMBO_DECL_EXCEPTION_CONST_WHAT(__klass,__name,__what,__stdexcpt) \
 class Exception_##__name \
-  : public Dimbo::Standardized_Exception<__ns::__klass,__stdexcpt> \
+  : public Dimbo::Standardized_Exception<__klass,__stdexcpt> \
 { \
 public: \
   Exception_##__name(Dimbo::Debug_Info const& debug_info) throw() \
@@ -43,7 +43,7 @@ public: \
     : Standardized_Exception(e) { } \
   virtual ~Exception_##__name() throw() { } \
   virtual char const* what() const throw() \
-  { return #__ns ": " __what;  } \
+  { return __what;  } \
 };
 
 

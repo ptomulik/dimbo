@@ -36,7 +36,7 @@
 namespace Dimbo {
 namespace Cl {
 
-DIMBO_DECL_LOGIC_ERROR(Dimbo::Cl, Exception, Uninitialized_Program, "Access to uninitialized program object")
+DIMBO_DECL_LOGIC_ERROR(Dimbo::Cl::Exception, Uninitialized_Program, "Access to uninitialized program object")
 
 } /* namespace Cl */
 } /* namespace Dimbo */
