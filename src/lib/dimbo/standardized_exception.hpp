@@ -30,7 +30,7 @@
 #define DIMBO_STANDARDIZED_EXCEPTION_HPP_INCLUDED
 
 #include <dimbo/util/std_except_ctor_arg.hpp>
-#include <dimbo/src_at.hpp>
+#include <dimbo/util/debug_info.hpp>
 #include <exception>
 
 namespace Dimbo {
@@ -85,8 +85,8 @@ namespace Dimbo {
  *      : Standardized_Exception()
  *     {
  *     }
- *     My_Dimbo_Exception(const Src_At& at)
- *      : Standardized_Exception(at)
+ *     My_Dimbo_Exception(const Debug_Info& debug_info)
+ *      : Standardized_Exception(debug_info)
  *     {
  *     }
  *     const char* what() const throw()
@@ -124,12 +124,12 @@ template <
      * An argument, that gets passed to the constructor of StdClass. In normal
      * use it is the string that will be returned by the what() method.
      * The method what() is assumed to be implemented in StdClass.
-     * \param at
-     * A reference to Src_At object that points to the source point of this
+     * \param debug_info
+     * A reference to Debug_Info object that points to the source point of this
      * exception in the source code.
      */ // }}}
-    Standardized_Exception(Src_At const& at, StdCtorArg const& arg) throw ()
-      :  ExceptionBase(at), StdClass(arg) { }
+    Standardized_Exception(Debug_Info const& debug_info, StdCtorArg const& arg) throw ()
+      :  ExceptionBase(debug_info), StdClass(arg) { }
     /** // {{{
      * \todo Write documentation
      */ // }}}
@@ -164,12 +164,12 @@ template <class ExceptionBase, class StdClass>
     /** // {{{
      * \brief Constructor
      *
-     * \param at
-     * A reference to Src_At object that points to the source point of this
+     * \param debug_info
+     * A reference to Debug_Info object that points to the source point of this
      * exception in the source code.
      */ // }}}
-    Standardized_Exception(Src_At const& at) throw ()
-      : ExceptionBase(at), StdClass() { }
+    Standardized_Exception(Debug_Info const& debug_info) throw ()
+      : ExceptionBase(debug_info), StdClass() { }
     /** // {{{
      * \todo Write documetation
      */ // }}}

@@ -42,21 +42,21 @@ class Dimbo::Exception_TestSuite : public CxxTest::TestSuite
 {
   struct Base_Exception : public Exception
     {
-      Base_Exception(Src_At const& at) : Exception(at) { }
+      Base_Exception(Debug_Info const& debug_info) : Exception(debug_info) { }
     };
   class Test_Exception1
     : public Standardized_Exception<Base_Exception, std::domain_error>
     {
     public:
-      Test_Exception1(Src_At const& at)
-        : Standardized_Exception(at, "Test exception") { }
+      Test_Exception1(Debug_Info const& debug_info)
+        : Standardized_Exception(debug_info, "Test exception") { }
     };
   class Test_Exception2
     : public Standardized_Exception<Base_Exception, std::bad_alloc>
     {
     public:
-      Test_Exception2(Src_At const& at)
-        : Standardized_Exception(at) { }
+      Test_Exception2(Debug_Info const& debug_info)
+        : Standardized_Exception(debug_info) { }
     };
 public:
   /** // doc: test_1() {{{
@@ -88,24 +88,24 @@ public:
    */ // }}}
   void test_at_file( )
   {
-    TS_ASSERT_EQUALS(Test_Exception1(DIMBO_HERE).at().file(), DIMBO_HERE.file());
-    TS_ASSERT_EQUALS(Test_Exception2(DIMBO_HERE).at().file(), DIMBO_HERE.file());
+    TS_ASSERT_EQUALS(Test_Exception1(DIMBO_HERE).debug_info().file(), DIMBO_HERE.file());
+    TS_ASSERT_EQUALS(Test_Exception2(DIMBO_HERE).debug_info().file(), DIMBO_HERE.file());
   }
   /** // doc: test_5() {{{
    * \todo Write documentation
    */ // }}}
   void test_at_line( )
   {
-    TS_ASSERT_EQUALS(Test_Exception1(DIMBO_HERE).at().line(), DIMBO_HERE.line());
-    TS_ASSERT_EQUALS(Test_Exception2(DIMBO_HERE).at().line(), DIMBO_HERE.line());
+    TS_ASSERT_EQUALS(Test_Exception1(DIMBO_HERE).debug_info().line(), DIMBO_HERE.line());
+    TS_ASSERT_EQUALS(Test_Exception2(DIMBO_HERE).debug_info().line(), DIMBO_HERE.line());
   }
   /** // doc: test_6() {{{
    * \todo Write documentation
    */ // }}}
   void test_at_function( )
   {
-    TS_ASSERT_EQUALS(Test_Exception1(DIMBO_HERE).at().function(), DIMBO_HERE.function());
-    TS_ASSERT_EQUALS(Test_Exception2(DIMBO_HERE).at().function(), DIMBO_HERE.function());
+    TS_ASSERT_EQUALS(Test_Exception1(DIMBO_HERE).debug_info().function(), DIMBO_HERE.function());
+    TS_ASSERT_EQUALS(Test_Exception2(DIMBO_HERE).debug_info().function(), DIMBO_HERE.function());
   }
   /** // doc: test_7() {{{
    * \todo Write documentation

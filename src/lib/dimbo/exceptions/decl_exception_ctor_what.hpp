@@ -30,7 +30,7 @@
 #define DIMBO_DECL_EXCEPTION_CTOR_WHAT_HPP_INCLUDED
 
 #include <dimbo/standardized_exception.hpp>
-#include <dimbo/src_at.hpp>
+#include <dimbo/util/debug_info.hpp>
 #include <string>
 
 #define DIMBO_DECL_EXCEPTION_CTOR_WHAT(__ns,__klass,__name,__what,__stdexcpt) \
@@ -38,8 +38,8 @@ class Exception_##__name \
   : public Dimbo::Standardized_Exception<__ns::__klass,__stdexcpt> \
 { \
 public: \
-  Exception_##__name(Dimbo::Src_At const& at) throw() \
-    : Standardized_Exception(at, std::string(#__ns ": " __what)) { } \
+  Exception_##__name(Dimbo::Debug_Info const& debug_info) throw() \
+    : Standardized_Exception(debug_info, std::string(#__ns ": " __what)) { } \
   Exception_##__name(Exception_##__name const& e) throw() \
     : Standardized_Exception(e) { } \
   virtual ~Exception_##__name() throw() { } \

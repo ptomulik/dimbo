@@ -33,9 +33,9 @@ int main(int argc, char const* argv[])
   catch(Dimbo::Exception const& e)
     {
       std::cerr << "error"
-                << ": " << e.at().file()
-                << ": " << e.at().line()
-                << ": " << e.at().function()
+                << ": " << e.debug_info().file()
+                << ": " << e.debug_info().line()
+                << ": " << e.debug_info().function()
                 << ": " << e.std_except().what()
                 << std::endl;
     }

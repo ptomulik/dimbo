@@ -29,7 +29,7 @@
 #include <dimbo/standardized_exception.hpp>
 %}
 %include <dimbo/util/std_except_ctor_arg.swg>
-%include <dimbo/src_at.swg>
+%include <dimbo/util/debug_info.swg>
 %include <dimbo/standardized_exception.hpp>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

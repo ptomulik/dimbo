@@ -20,15 +20,15 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-/** // doc: dimbo/src_at.swg {{{
- * \file dimbo/src_at.swg
+/** // doc: dimbo/util/debug_info.swg {{{
+ * \file dimbo/util/debug_info.swg
  * \todo Write documentation
  */ // }}}
 
 %{
-#include <dimbo/src_at.hpp>
+#include <dimbo/util/debug_info.hpp>
 %}
-%include <dimbo/src_at.hpp>
+%include <dimbo/util/debug_info.hpp>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

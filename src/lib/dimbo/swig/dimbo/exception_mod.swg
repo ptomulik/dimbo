@@ -35,7 +35,7 @@
 %import  <dimbo/std/exception_mod.i>
 %import  <dimbo/std/bad_alloc_mod.i>
 
-%include <dimbo/src_at.swg>
+%include <dimbo/util/debug_info.swg>
 %include <dimbo/exception.swg>
 
 // vim: set expandtab tabstop=2 shiftwidth=2:

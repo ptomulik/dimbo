@@ -63,8 +63,8 @@ class Exception
      * This constructor stores into Dimbo::Exception the reference to exception
      * source in source code.
      */ // }}}
-    explicit Exception(Src_At const& at) throw()
-      : Dimbo::Exception(at) { }
+    explicit Exception(Debug_Info const& debug_info) throw()
+      : Dimbo::Exception(debug_info) { }
     /** // doc: ~Exception () {{{
      * \todo Write documentation
      */ // }}}
