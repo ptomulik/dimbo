@@ -29,15 +29,25 @@
 #ifndef DIMBO_APP_OPTIONS_EXCEPTIONS_INVALID_COMMAND_LINE_SYNTAX_HPP_INCLUDED
 #define DIMBO_APP_OPTIONS_EXCEPTIONS_INVALID_COMMAND_LINE_SYNTAX_HPP_INCLUDED
 
+#include <dimbo/app/options/exception.hpp>
 #include <dimbo/exceptions/decl_wrapped_exception.hpp>
 #include <boost/program_options/errors.hpp>
+
+namespace Dimbo {
+template<>
+struct std_except_ctor_arg< boost::program_options::invalid_command_line_syntax >
+  { typedef boost::program_options::invalid_command_line_syntax type; };
+} /* namespace Dimbo */
 
 namespace Dimbo {
 namespace App {
 namespace Options {
 
-DIMBO_DECL_WRAPPED_EXCEPTION(Dimbo::App::Options::Exception,
-    Invalid_Command_Line_Syntax, boost::program_options::invalid_command_line_syntax);
+DIMBO_DECL_WRAPPED_EXCEPTION(
+    Dimbo::App::Options::Exception,
+    Invalid_Command_Line_Syntax,
+    boost::program_options::invalid_command_line_syntax
+);
 
 } /* namespace Options */
 } /* namesapce App */

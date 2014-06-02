@@ -29,15 +29,25 @@
 #ifndef DIMBO_APP_OPTIONS_EXCEPTIONS_UNKNOWN_OPTION_HPP_INCLUDED
 #define DIMBO_APP_OPTIONS_EXCEPTIONS_UNKNOWN_OPTION_HPP_INCLUDED
 
+#include <dimbo/app/options/exception.hpp>
 #include <dimbo/exceptions/decl_wrapped_exception.hpp>
 #include <boost/program_options/errors.hpp>
+
+namespace Dimbo {
+template<>
+struct std_except_ctor_arg< boost::program_options::unknown_option>
+  { typedef boost::program_options::unknown_option type; };
+} /* namespace Dimbo */
 
 namespace Dimbo {
 namespace App {
 namespace Options {
 
-DIMBO_DECL_WRAPPED_EXCEPTION(Dimbo::App::Options::Exception,
-    Unknown_Option, boost::program_options::unknown_option);
+DIMBO_DECL_WRAPPED_EXCEPTION(
+    Dimbo::App::Options::Exception,
+    Unknown_Option,
+    boost::program_options::unknown_option
+);
 
 } /* namespace Options */
 } /* namesapce App */

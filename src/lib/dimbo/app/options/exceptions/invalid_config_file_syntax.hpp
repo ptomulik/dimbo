@@ -29,15 +29,25 @@
 #ifndef DIMBO_APP_OPTIONS_EXCEPTIONS_INVALID_CONFIG_FILE_SYNTAX_HPP_INCLUDED
 #define DIMBO_APP_OPTIONS_EXCEPTIONS_INVALID_CONFIG_FILE_SYNTAX_HPP_INCLUDED
 
+#include <dimbo/app/options/exception.hpp>
 #include <dimbo/exceptions/decl_wrapped_exception.hpp>
 #include <boost/program_options/errors.hpp>
+
+namespace Dimbo {
+template<>
+struct std_except_ctor_arg< boost::program_options::invalid_config_file_syntax>
+  { typedef boost::program_options::invalid_config_file_syntax type; };
+} /* namespace Dimbo */
 
 namespace Dimbo {
 namespace App {
 namespace Options {
 
-DIMBO_DECL_WRAPPED_EXCEPTION(Dimbo::App::Options::Exception,
-    Invalid_Config_File_Format, boost::program_options::invalid_config_file_format);
+DIMBO_DECL_WRAPPED_EXCEPTION(
+    Dimbo::App::Options::Exception,
+    Invalid_Config_File_Syntax,
+    boost::program_options::invalid_config_file_syntax
+);
 
 } /* namespace Options */
 } /* namesapce App */

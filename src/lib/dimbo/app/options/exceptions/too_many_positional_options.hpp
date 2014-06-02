@@ -29,15 +29,27 @@
 #ifndef DIMBO_APP_OPTIONS_EXCEPTIONS_TOO_MANY_POSITIONAL_OPTIONS_HPP_INCLUDED
 #define DIMBO_APP_OPTIONS_EXCEPTIONS_TOO_MANY_POSITIONAL_OPTIONS_HPP_INCLUDED
 
+#include <dimbo/app/options/exception.hpp>
 #include <dimbo/exceptions/decl_wrapped_exception.hpp>
 #include <boost/program_options/errors.hpp>
+
+namespace Dimbo {
+template<>
+struct std_except_ctor_arg<
+  boost::program_options::too_many_positional_options_error
+>
+  { typedef boost::program_options::too_many_positional_options_error type; };
+} /* namespace Dimbo */
 
 namespace Dimbo {
 namespace App {
 namespace Options {
 
-DIMBO_DECL_WRAPPED_EXCEPTION(Dimbo::App:Options::Exception,
-    Too_Many_Positional_Options, boost::program_options::too_many_positional_options_error);
+DIMBO_DECL_WRAPPED_EXCEPTION(
+    Dimbo::App::Options::Exception,
+    Too_Many_Positional_Options,
+    boost::program_options::too_many_positional_options_error
+);
 
 } /* namespace Options */
 } /* namesapce App */

@@ -29,15 +29,25 @@
 #ifndef DIMBO_APP_OPTIONS_EXCEPTIONS_MULTIPLE_OCCURRENCES_HPP_INCLUDED
 #define DIMBO_APP_OPTIONS_EXCEPTIONS_MULTIPLE_OCCURRENCES_HPP_INCLUDED
 
+#include <dimbo/app/options/exception.hpp>
 #include <dimbo/exceptions/decl_wrapped_exception.hpp>
 #include <boost/program_options/errors.hpp>
+
+namespace Dimbo {
+template<>
+struct std_except_ctor_arg< boost::program_options::multiple_occurrences>
+  { typedef boost::program_options::multiple_occurrences type; };
+} /* namespace Dimbo */
 
 namespace Dimbo {
 namespace App {
 namespace Options {
 
-DIMBO_DECL_WRAPPED_EXCEPTION(Dimbo::App::Options::Exception,
-    Multiple_Occurrences, boost::program_options::multiple_occurrences);
+DIMBO_DECL_WRAPPED_EXCEPTION(
+    Dimbo::App::Options::Exception,
+    Multiple_Option_Occurrences,
+    boost::program_options::multiple_occurrences
+);
 
 } /* namespace Options */
 } /* namesapce App */

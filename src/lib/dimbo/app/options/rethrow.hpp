@@ -45,17 +45,17 @@
  */ // }}}
 #define DIMBO_APP_OPTIONS_RETHROW_ALL() \
   DIMBO_APP_OPTIONS_RETHROW(too_many_positional_options_error, Too_Many_Positional_Options) \
-  DIMBO_APP_OPTIONS_RETHROW(invalid_command_line_syntax, Invalid_Command_Line_Syntax) \
+  DIMBO_APP_OPTIONS_RETHROW(invalid_command_line_style, Invalid_Command_Line_Style) \
   DIMBO_APP_OPTIONS_RETHROW(reading_file, Reading_Options_File) \
-  DIMBO_APP_OPTIONS_RETHROW(multiple_values, Multiple_Values) \
-  DIMBO_APP_OPTIONS_RETHROW(multiple_occurrences, Multiple_Occurrences) \
+  DIMBO_APP_OPTIONS_RETHROW(multiple_values, Multiple_Option_Values) \
+  DIMBO_APP_OPTIONS_RETHROW(multiple_occurrences, Multiple_Option_Occurrences) \
   DIMBO_APP_OPTIONS_RETHROW(required_option, Required_Option) \
   DIMBO_APP_OPTIONS_RETHROW(unknown_option, Unknown_Option) \
-  DIMBO_APP_OPTIONS_RETHROW(ambiguous_option, Ambiguous_Optin) \
+  DIMBO_APP_OPTIONS_RETHROW(ambiguous_option, Ambiguous_Option) \
   DIMBO_APP_OPTIONS_RETHROW(invalid_config_file_syntax, Invalid_Config_File_Syntax) \
   DIMBO_APP_OPTIONS_RETHROW(invalid_command_line_syntax, Invalid_Command_Line_Syntax) \
   DIMBO_APP_OPTIONS_RETHROW(invalid_option_value, Invalid_Option_Value) \
-  DIMBO_APP_OPTIONS_RETHROW(invalid_bool_value, Invalid_Bool_Value)
+  DIMBO_APP_OPTIONS_RETHROW(invalid_bool_value, Invalid_Bool_Option_Value)
 
 #endif /* DIMBO_APP_OPTIONS_RETHROW_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

@@ -23,17 +23,17 @@ Import('env')
 
 from SCons.Util import CLVar
 
-libs = CLVar('dimbo_cl_test dimbo_clinfo')
+libs = CLVar('dimbo_app boost_program_options')
 
 defs = env.get('CPPDEFINES', {}).copy()
 defs.update({'DIMBO_COMPILING_TEST' : 1})
 
-env.CxxTest('dimbo-cl-test', env.Glob('*.t.h'),
+env.CxxTest('dimbo-app-test', env.Glob('*.t.h') + env.Glob('options/*.t.h'),
             LIBS = libs,
             CXXTEST_CPPPATH = ['../..'],
             CXXTEST_LIBPATH = env.get('LIBPATH', CLVar()),
-            CXXTEST_TARGET = 'check-dimbo-cl')
-env.Alias('check', ['check-dimbo-cl'])
+            CXXTEST_TARGET = 'check-dimbo-app')
+env.Alias('check', ['check-dimbo-app'])
 
 # Local Variables:
 # # tab-width:4
