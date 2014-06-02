@@ -36,7 +36,7 @@
 namespace Dimbo {
 namespace Cl {
 
-DIMBO_DECL_INVALID_ARG(Dimbo::Cl::Exception, Invalid_Argument, "Invalid argument")
+DIMBO_DECL_INVALID_ARG(Dimbo::Cl::Exception, Invalid_Argument, "Invalid argument");
 
 } // namespace Cl
 } // namespace Dimbo

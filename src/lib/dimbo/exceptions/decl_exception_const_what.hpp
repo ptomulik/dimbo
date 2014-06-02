@@ -44,7 +44,7 @@ public: \
   virtual ~Exception_##__name() throw() { } \
   virtual char const* what() const throw() \
   { return __what;  } \
-};
+}
 
 
 #endif /* DIMBO_DECL_EXCEPTION_CONST_WHAT_HPP_INCLUDED */

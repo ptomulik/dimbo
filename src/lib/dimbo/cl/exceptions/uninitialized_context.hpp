@@ -36,7 +36,7 @@
 namespace Dimbo {
 namespace Cl {
 
-DIMBO_DECL_LOGIC_ERROR(Dimbo::Cl::Exception, Uninitialized_Context, "Access to uninitialized context object")
+DIMBO_DECL_LOGIC_ERROR(Dimbo::Cl::Exception, Uninitialized_Context, "Access to uninitialized context object");
 
 } /* namespace Cl */
 } /* namespace Dimbo */

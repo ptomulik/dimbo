@@ -43,7 +43,7 @@ public: \
   Exception_##__name(Exception_##__name const& e) throw() \
     : Standardized_Exception(e) { } \
   virtual ~Exception_##__name() throw() { } \
-};
+}
 
 #endif /* DIMBO_DECL_EXCEPTION_CTOR_WHAT_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
