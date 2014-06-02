@@ -33,6 +33,7 @@
 #include <dimbo/clinfo/platform_layer_info.hpp>
 #include <dimbo/s11n/clinfo/platform_layer_info.hpp>
 #include <dimbo/format/clinfo/platform_layer_info.hpp>
+#include <dimbo/app/options/rethrow.hpp>
 
 #include <dimbo/config.h>
 #define DIMBO_GETTEXT_DOMAIN LIBDIMBO_APP_CLINFO_GETTEXT_DOMAIN
@@ -351,8 +352,13 @@ init(int argc, char const* argv[])
   using boost::program_options::store;
 
   this->_options_map.clear();
-  store(parse_command_line(argc, argv, this->options_description()),
-        this->_options_map);
+  try
+    {
+      store(parse_command_line(argc, argv, this->options_description()),
+            this->_options_map);
+    }
+  DIMBO_APP_OPTIONS_RETHROW_ALL()
+
   notify(this->_options_map);
 }
 
