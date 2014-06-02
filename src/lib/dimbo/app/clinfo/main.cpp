@@ -347,14 +347,19 @@ run()
 void Main::
 init(int argc, char const* argv[])
 {
-  using boost::program_options::parse_command_line;
+  using boost::program_options::command_line_parser;
   using boost::program_options::notify;
   using boost::program_options::store;
+
+  /* FIXME: move it such that it becomes a class member */
+  boost::program_options::positional_options_description p;
 
   this->_options_map.clear();
   try
     {
-      store(parse_command_line(argc, argv, this->options_description()),
+      store(command_line_parser(argc, argv).
+            options(this->options_description()).
+            positional(p).run(),
             this->_options_map);
     }
   DIMBO_APP_OPTIONS_RETHROW_ALL()
