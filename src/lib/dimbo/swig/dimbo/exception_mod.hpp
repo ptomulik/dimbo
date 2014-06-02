@@ -30,7 +30,7 @@
 #define DIMBO_EXCEPTION_MOD_HPP_INCLUDED
 
 // module core
-#include <dimbo/src_at.hpp>
+#include <dimbo/util/debug_info.hpp>
 #include <dimbo/exception.hpp>
 
 // dependencies from other modules

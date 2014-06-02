@@ -67,8 +67,8 @@ class Cl_Error
      * This constructor stores into Dimbo::Exception the reference to exception
      * source in source code.
      */ // }}}
-    explicit Cl_Error(Src_At const& at) throw()
-      : Exception(at) { }
+    explicit Cl_Error(Debug_Info const& debug_info) throw()
+      : Exception(debug_info) { }
     /** // doc: ~Cl_Error {{{
      * \todo Write documentation
      */ // }}}

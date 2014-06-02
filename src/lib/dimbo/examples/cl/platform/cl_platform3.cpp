@@ -86,8 +86,8 @@ public:
 void print_exception(Dimbo::Exception const&e)
 {
   cerr << "Exception caught: " << endl;
-  cerr << "  at: " << e.at().file() <<":"<< e.at().line() << endl;
-  cerr << "  in: " << e.at().function() << endl;
+  cerr << "  at: " << e.debug_info().file() <<":"<< e.debug_info().line() << endl;
+  cerr << "  in: " << e.debug_info().function() << endl;
   cerr << " msg: " << e.std_except().what() << endl;
 }
 

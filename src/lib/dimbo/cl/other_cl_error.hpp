@@ -53,8 +53,8 @@ class Other_Cl_Error
     /** // {{{
      * \todo Write documentation
      */ // }}}
-    Other_Cl_Error(cl_int e, Src_At const& at) throw()
-      : Standardized_Exception(at)
+    Other_Cl_Error(cl_int e, Debug_Info const& debug_info) throw()
+      : Standardized_Exception(debug_info)
       ,  _cl_error(e) { }
     /** // {{{
      * \todo Write documentation
@@ -65,7 +65,7 @@ class Other_Cl_Error
      */ // }}}
     virtual char const* what() const throw()
     {
-      return "Dimbo::Cl: other error";
+      return "other error";
     }
     /** // {{{
      * \todo Write documentation

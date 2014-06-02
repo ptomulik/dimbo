@@ -48,7 +48,7 @@ namespace Foo {
  */
 struct Exception : public Dimbo::Exception
   {
-    Exception(Dimbo::Src_At const& at) : Dimbo::Exception(at) { }
+    Exception(Dimbo::Debug_Info const& debug_info) : Dimbo::Exception(debug_info) { }
   };
 // [Exception]
 // [Exception1]
@@ -59,8 +59,8 @@ class Exception1
   : public Dimbo::Standardized_Exception<Exception, std::domain_error>
   {
   public:
-    Exception1(Dimbo::Src_At const& at)
-      : Standardized_Exception(at, "Exception1 domain error") { }
+    Exception1(Dimbo::Debug_Info const& debug_info)
+      : Standardized_Exception(debug_info, "Exception1 domain error") { }
   };
 // [Exception1]
 // [Exception2]
@@ -71,8 +71,8 @@ class Exception2
   : public Dimbo::Standardized_Exception<Exception, std::bad_alloc>
   {
   public:
-    Exception2(Dimbo::Src_At const& at)
-      : Standardized_Exception(at) { }
+    Exception2(Dimbo::Debug_Info const& debug_info)
+      : Standardized_Exception(debug_info) { }
   };
 // [Exception2]
 // [Namespaces_End]
@@ -83,8 +83,8 @@ class Exception2
 // [Test]
 void print_exception(Dimbo::Exception const& e)
 {
-  std::cerr << "foo exception: " << e.at().file()
-            << ":" << e.at().line()
+  std::cerr << "foo exception: " << e.debug_info().file()
+            << ":" << e.debug_info().line()
             << ":" << e.std_except().what() << std::endl;
 }
 

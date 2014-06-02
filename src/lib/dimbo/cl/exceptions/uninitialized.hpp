@@ -36,7 +36,7 @@
 namespace Dimbo {
 namespace Cl {
 
-DIMBO_DECL_RUNTIME_ERROR(Dimbo::Cl, Exception, Uninitialized,"Access to uninitialized variable")
+DIMBO_DECL_RUNTIME_ERROR(Dimbo::Cl::Exception, Uninitialized,"Access to uninitialized variable")
 
 } /* namespace Cl */
 } /* namespace Dimbo */

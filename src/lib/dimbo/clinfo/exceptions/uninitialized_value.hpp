@@ -35,7 +35,7 @@
 namespace Dimbo {
 namespace Clinfo {
 
-DIMBO_DECL_LOGIC_ERROR(Dimbo::Clinfo, Exception, Uninitialized_Value, "Access to uninitialized value")
+DIMBO_DECL_LOGIC_ERROR(Dimbo::Clinfo::Exception, Uninitialized_Value, "Access to uninitialized value")
 
 } /* namespace Clinfo */
 } /* namespace Dimbo */

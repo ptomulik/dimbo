@@ -20,15 +20,24 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-/** // doc: dimbo/src_at.swg {{{
- * \file dimbo/src_at.swg
+// dimbo/app/options/exceptions/invalid_syntax.hpp
+
+/** // doc: dimbo/app/options/exceptions/invalid_syntax.hpp {{{
+ * \file dimbo/app/options/exceptions/invalid_syntax.hpp
  * \todo Write documentation
  */ // }}}
+#ifndef DIMBO_APP_OPTIONS_EXCEPTIONS_INVALID_SYNTAX_HPP_INCLUDED
+#define DIMBO_APP_OPTIONS_EXCEPTIONS_INVALID_SYNTAX_HPP_INCLUDED
 
-%{
-#include <dimbo/src_at.hpp>
-%}
-%include <dimbo/src_at.hpp>
+#include <boost/program_options/errors.hpp>
 
+namespace Dimbo {
+namespace App {
+namespace Options {
+} /* namespace Options */
+} /* namesapce App */
+} /* namespace Dimbo */
+
+#endif /* DIMBO_APP_OPTIONS_EXCEPTIONS_INVALID_SYNTAX_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

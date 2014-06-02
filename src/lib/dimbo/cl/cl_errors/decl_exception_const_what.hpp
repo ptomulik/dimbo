@@ -32,7 +32,7 @@
 #include <dimbo/cl/cl_error_no.hpp>
 #include <dimbo/cl/cl_error.hpp>
 #include <dimbo/standardized_exception.hpp>
-#include <dimbo/src_at.hpp>
+#include <dimbo/util/debug_info.hpp>
 #include <dimbo/cl/cl.hpp>
 
 /** // {{{
@@ -44,13 +44,13 @@ template<> \
     : public Dimbo::Standardized_Exception<Dimbo::Cl::Cl_Error,__stdexcpt> \
   { \
   public: \
-    Cl_Error_No(Dimbo::Src_At const& at) throw() \
-      : Standardized_Exception(at) { } \
+    Cl_Error_No(Dimbo::Debug_Info const& debug_info) throw() \
+      : Standardized_Exception(debug_info) { } \
     Cl_Error_No(Cl_Error_No const& e) throw() \
       : Standardized_Exception(e) { } \
     virtual ~Cl_Error_No() throw() { } \
     virtual char const* what() const throw() \
-    { return "Dimbo::Cl: " __what;  } \
+    { return __what;  } \
     virtual cl_int cl_error() const throw() \
     { return __clcode; } \
   };
