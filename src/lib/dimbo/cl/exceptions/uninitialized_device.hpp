@@ -36,7 +36,7 @@
 namespace Dimbo {
 namespace Cl {
 
-DIMBO_DECL_LOGIC_ERROR(Dimbo::Cl::Exception, Uninitialized_Device, "Access to uninitialized device object")
+DIMBO_DECL_LOGIC_ERROR(Dimbo::Cl::Exception, Uninitialized_Device, "Access to uninitialized device object");
 
 } /* namespace Cl */
 } /* namespace Dimbo */
