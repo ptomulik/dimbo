@@ -20,21 +20,29 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/exceptions/decl_bad_alloc.hpp
+// dimbo/app/options/exceptions.hpp
 
-/** // doc: dimbo/exceptions/decl_bad_alloc.hpp {{{
- * \file dimbo/exceptions/decl_bad_alloc.hpp
+/** // doc: dimbo/app/options/exceptions.hpp {{{
+ * \file dimbo/app/options/exceptions.hpp
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED
-#define DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED
+#ifndef DIMBO_APP_OPTIONS_EXCEPTIONS_HPP_INCLUDED
+#define DIMBO_APP_OPTIONS_EXCEPTIONS_HPP_INCLUDED
 
-#include <dimbo/exceptions/decl_exception_const_what.hpp>
-#include <new> // std::bad_alloc
+#include <dimbo/app/options/exceptions/common.hpp>
+#include <dimbo/app/options/exceptions/too_many_positional_options.hpp>
+#include <dimbo/app/options/exceptions/invalid_command_line_style.hpp>
+#include <dimbo/app/options/exceptions/reading_file.hpp>
+#include <dimbo/app/options/exceptions/multiple_values.hpp>
+#include <dimbo/app/options/exceptions/multiple_occurrences.hpp>
+#include <dimbo/app/options/exceptions/required_option.hpp>
+#include <dimbo/app/options/exceptions/unknown_option.hpp>
+#include <dimbo/app/options/exceptions/ambiguous_option.hpp>
+#include <dimbo/app/options/exceptions/invalid_config_file_syntax.hpp>
+#include <dimbo/app/options/exceptions/invalid_command_line_syntax.hpp>
+#include <dimbo/app/options/exceptions/invalid_option_value.hpp>
+#include <dimbo/app/options/exceptions/invalid_bool_value.hpp>
 
-#define DIMBO_DECL_BAD_ALLOC(__base,__name,__what) \
-  DIMBO_DECL_EXCEPTION_CONST_WHAT(__base,__name,__what,std::bad_alloc)
-
-#endif /* DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED */
+#endif /* DIMBO_APP_OPTIONS_EXCEPTIONS_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

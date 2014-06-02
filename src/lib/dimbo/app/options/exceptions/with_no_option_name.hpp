@@ -20,21 +20,24 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/exceptions/decl_bad_alloc.hpp
+// dimbo/app/options/exceptions/with_no_option_name.hpp
 
-/** // doc: dimbo/exceptions/decl_bad_alloc.hpp {{{
- * \file dimbo/exceptions/decl_bad_alloc.hpp
+/** // doc: dimbo/app/options/exceptions/with_no_option_name.hpp {{{
+ * \file dimbo/app/options/exceptions/with_no_option_name.hpp
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED
-#define DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED
+#ifndef DIMBO_APP_OPTIONS_EXCEPTIONS_WITH_NO_OPTION_NAME_HPP_INCLUDED
+#define DIMBO_APP_OPTIONS_EXCEPTIONS_WITH_NO_OPTION_NAME_HPP_INCLUDED
 
-#include <dimbo/exceptions/decl_exception_const_what.hpp>
-#include <new> // std::bad_alloc
+#include <boost/program_options/errors.hpp>
 
-#define DIMBO_DECL_BAD_ALLOC(__base,__name,__what) \
-  DIMBO_DECL_EXCEPTION_CONST_WHAT(__base,__name,__what,std::bad_alloc)
+namespace Dimbo {
+namespace App {
+namespace Options {
+} /* namespace Options */
+} /* namesapce App */
+} /* namespace Dimbo */
 
-#endif /* DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED */
+#endif /* DIMBO_APP_OPTIONS_EXCEPTIONS_WITH_NO_OPTION_NAME_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

@@ -32,8 +32,8 @@
 #include <dimbo/exceptions/decl_exception_ctor_what.hpp>
 #include <stdexcept>
 
-#define DIMBO_DECL_OVERFLOW_ERROR(__klass,__name,__what) \
-  DIMBO_DECL_EXCEPTION_CTOR_WHAT(__klass,__name,__what,std::overflow_error)
+#define DIMBO_DECL_OVERFLOW_ERROR(__base,__name,__what) \
+  DIMBO_DECL_EXCEPTION_CTOR_WHAT(__base,__name,__what,std::overflow_error)
 
 #endif /* DIMBO_DECL_OVERFLOW_ERROR_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

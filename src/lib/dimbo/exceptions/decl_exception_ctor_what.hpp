@@ -33,9 +33,9 @@
 #include <dimbo/util/debug_info.hpp>
 #include <string>
 
-#define DIMBO_DECL_EXCEPTION_CTOR_WHAT(__klass,__name,__what,__stdexcpt) \
+#define DIMBO_DECL_EXCEPTION_CTOR_WHAT(__base,__name,__what,__stdexcpt) \
 class Exception_##__name \
-  : public Dimbo::Standardized_Exception<__klass,__stdexcpt> \
+  : public Dimbo::Standardized_Exception<__base,__stdexcpt> \
 { \
 public: \
   Exception_##__name(Dimbo::Debug_Info const& debug_info) throw() \

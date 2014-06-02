@@ -20,21 +20,30 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/exceptions/decl_bad_alloc.hpp
+// dimbo/exceptions/decl_wrapped_exception.hpp
 
-/** // doc: dimbo/exceptions/decl_bad_alloc.hpp {{{
- * \file dimbo/exceptions/decl_bad_alloc.hpp
+/** // doc: dimbo/exceptions/decl_wrapped_exception.hpp {{{
+ * \file dimbo/exceptions/decl_wrapped_exception.hpp
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED
-#define DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED
+#ifndef DIMBO_DECL_WRAPPED_EXCEPTION_HPP_INCLUDED
+#define DIMBO_DECL_WRAPPED_EXCEPTION_HPP_INCLUDED
 
-#include <dimbo/exceptions/decl_exception_const_what.hpp>
-#include <new> // std::bad_alloc
+#include <dimbo/standardized_exception.hpp>
+#include <dimbo/util/debug_info.hpp>
 
-#define DIMBO_DECL_BAD_ALLOC(__base,__name,__what) \
-  DIMBO_DECL_EXCEPTION_CONST_WHAT(__base,__name,__what,std::bad_alloc)
+#define DIMBO_DECL_WRAPPED_EXCEPTION(__base,__name,__stdexcpt) \
+class Exception_##__name \
+  : public Dimbo::Standardized_Exception<__base,__stdexcpt> \
+{ \
+public: \
+  Exception_##__name(Dimbo::Debug_Info const& debug_info, __stdexcpt const& e) throw() \
+    : Standardized_Exception(debug_info, e) { } \
+  Exception_##__name(Exception_##__name const& e) throw() \
+    : Standardized_Exception(e) { } \
+  virtual ~Exception_##__name() throw() { } \
+};
 
-#endif /* DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED */
+#endif /* DIMBO_DECL_WRAPPED_EXCEPTION_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

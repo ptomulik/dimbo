@@ -20,21 +20,45 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/exceptions/decl_bad_alloc.hpp
+// dimbo/app/exception.hpp
 
-/** // doc: dimbo/exceptions/decl_bad_alloc.hpp {{{
- * \file dimbo/exceptions/decl_bad_alloc.hpp
+/** // doc:  dimbo/app/exception.hpp {{{
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED
-#define DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED
+#ifndef DIMBO_APP_EXCEPTION_HPP_INCLUDED
+#define DIMBO_APP_EXCEPTION_HPP_INCLUDED
 
-#include <dimbo/exceptions/decl_exception_const_what.hpp>
-#include <new> // std::bad_alloc
 
-#define DIMBO_DECL_BAD_ALLOC(__base,__name,__what) \
-  DIMBO_DECL_EXCEPTION_CONST_WHAT(__base,__name,__what,std::bad_alloc)
+/* Dimbo includes */
+#include <dimbo/exception.hpp>
 
-#endif /* DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED */
+namespace Dimbo {
+namespace App {
+class Exception
+  : public Dimbo::Exception
+  {
+  public:
+    /** // doc: Exception (...) {{{
+     * \todo Write documentation
+     */ // }}}
+    explicit Exception(Exception const& e)
+      : Dimbo::Exception(e) { }
+    /** // {{{
+     * \brief Constructor
+     *
+     * This constructor stores into Dimbo::Exception the reference to exception
+     * source in source code.
+     */ // }}}
+    explicit Exception(Debug_Info const& debug_info) throw()
+      : Dimbo::Exception(debug_info) { }
+    /** // doc: ~Exception () {{{
+     * \todo Write documentation
+     */ // }}}
+    virtual ~Exception() throw() { }
+  };
+} /* namespace App */
+} /* namespace Dimbo */
+
+#endif
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

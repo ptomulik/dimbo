@@ -20,21 +20,17 @@
  * DEALINGS IN THE SOFTWARE
  */
 
-// dimbo/exceptions/decl_bad_alloc.hpp
+// dimbo/app/exceptions/common.hpp
 
-/** // doc: dimbo/exceptions/decl_bad_alloc.hpp {{{
- * \file dimbo/exceptions/decl_bad_alloc.hpp
+/** // doc: dimbo/app/exceptions/common.hpp {{{
+ * \file dimbo/app/exceptions/common.hpp
  * \todo Write documentation
  */ // }}}
-#ifndef DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED
-#define DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED
+#ifndef DIMBO_APP_EXCEPTIONS_COMMON_HPP_INCLUDED
+#define DIMBO_APP_EXCEPTIONS_COMMON_HPP_INCLUDED
 
-#include <dimbo/exceptions/decl_exception_const_what.hpp>
-#include <new> // std::bad_alloc
+#define DIMBO_APP_EXCEPTION(__name) Dimbo::App::Exception_##__name
 
-#define DIMBO_DECL_BAD_ALLOC(__base,__name,__what) \
-  DIMBO_DECL_EXCEPTION_CONST_WHAT(__base,__name,__what,std::bad_alloc)
-
-#endif /* DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED */
+#endif /* DIMBO_APP_EXCEPTIONS_COMMON_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:
