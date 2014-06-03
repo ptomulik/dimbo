@@ -20,7 +20,13 @@
 
 Import('env')
 
-subdirs = [ 'exception', 'cl', 'format', 'mpi' ]
+from SCons.Util import CLVar
+
+libs = ['dimbo_format_clinfo', 'dimbo_protobuf_clinfo', 'dimbo_clinfo', 'dimbo_cl', 'protobuf' ]
+
+env.Program(['mpi_clinfo1'], ['mpi_clinfo1.cpp'], LIBS = libs, CC = '$MPICC', CXX = '$MPICXX')
+
+subdirs = [ ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]
 SConscript( scripts, exports = ['env'] )
 
