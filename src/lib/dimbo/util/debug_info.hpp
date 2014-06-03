@@ -20,16 +20,18 @@
  * IN THE SOFTWARE
  */
 
-//  dimbo/common/src_at.hpp
+//  dimbo/util/debug_info.hpp
 
-/** // doc: dimbo/src_at.hpp {{{
- * \file dimbo/src_at.hpp
- * This file provides the class Dimbo::Src_At which defines single point in
+/** // doc: dimbo/util/debug_info.hpp {{{
+ * \file dimbo/util/debug_info.hpp
+ * \todo Write documentation
+ *
+ * This file provides the class Dimbo::Debug_Info which defines single point in
  * source code (including source file name, line number and function). It also
  * provides a \ref DIMBO_HERE helper macro to simplify object creation.
  */ //  }}}
-#ifndef DIMBO_SRC_AT_HPP_INCLUDED
-#define DIMBO_SRC_AT_HPP_INCLUDED
+#ifndef DIMBO_UTIL_DEBUG_INFO_HPP_INCLUDED
+#define DIMBO_UTIL_DEBUG_INFO_HPP_INCLUDED
 
 #include <cstring>
 #include <algorithm>
@@ -39,20 +41,20 @@
  * \def DIMBO_HERE
  * \hideinitializer
  * This macro returns encapsulated information about current line in source
- * code. It simply creates an object of type Dimbo::Src_At. Example usage:
+ * code. It simply creates an object of type Dimbo::Debug_Info. Example usage:
  * \code
  *   throw Dimbo::Cl::Exception_Uninitialized_Device(DIMBO_HERE)
  * \endcode
  *
- * \see Dimbo::Src_At
+ * \see Dimbo::Debug_Info
  */ // }}}
 #ifdef SOURCE_DIR
 // FIXME: I'm not sure if __FILE_ + sth is safe
-#  define DIMBO_HERE Dimbo::Src_At(BOOST_CURRENT_FUNCTION, \
+#  define DIMBO_HERE Dimbo::Debug_Info(BOOST_CURRENT_FUNCTION, \
                                  __FILE__ + std::strlen(SOURCE_DIR) + 1, \
                                  __LINE__)
 #else
-#  define DIMBO_HERE Dimbo::Src_At(BOOST_CURRENT_FUNCTION, \
+#  define DIMBO_HERE Dimbo::Debug_Info(BOOST_CURRENT_FUNCTION, \
                                  __FILE__, \
                                  __LINE__)
 #endif
@@ -69,9 +71,9 @@ namespace Dimbo {
  *
  *
  * The class is designated to hold the source point for exception thrown
- * from within the DIMBO (see the Dimbo::Exception::at() method).
+ * from within the DIMBO (see the Dimbo::Exception::debug_info() method).
  */ // }}}
-class Src_At
+class Debug_Info
 {
 protected:
   /** \brief  Maximum length of function name stored in this class. */
@@ -83,7 +85,7 @@ private:
   char _file[_file_len_max+1];
   int  _line;
 public:
-  virtual ~Src_At() throw() { }
+  virtual ~Debug_Info() throw() { }
   /** // {{{
    * \brief Default constructor.
    *
@@ -92,7 +94,7 @@ public:
    * - file = ""
    * - line = 0
    */ // }}}
-  Src_At() throw()
+  Debug_Info() throw()
   {
     this->set_function("");
     this->set_file("");
@@ -100,22 +102,22 @@ public:
   }
   /** // {{{
    * \brief Copy constructor
-   * \param at
+   * \param debug_info
    *        Source object.
-   * \see Src_At::operator=()
+   * \see Debug_Info::operator=()
    */ // }}}
-  Src_At(Src_At const& at)
+  Debug_Info(Debug_Info const& debug_info)
   {
-    this->assign(at);
+    this->assign(debug_info);
   }
   /** // {{{
    * \brief Constructor with single argument, sets function name.
    * \param fcn
    *        Name of the function, to which this object points.
    * Other values are set to defaults (see default constructor
-   * Src_At::Src_At()).
+   * Debug_Info::Debug_Info()).
    */ // }}}
-  Src_At(char const* fcn) throw()
+  Debug_Info(char const* fcn) throw()
   {
     this->set_function(fcn);
     this->set_file("");
@@ -130,7 +132,7 @@ public:
    * \param line
    *        Line number of the source code within the source file.
    */ // }}}
-  Src_At(char const* fcn, char const* file, int line)
+  Debug_Info(char const* fcn, char const* file, int line)
   {
     this->set_function(fcn);
     this->set_file(file);
@@ -141,7 +143,7 @@ public:
    * \param f
    *        The name of the function
    * \note Too long function names are truncated to the lenth determined by
-   *       Src_At::_function_len_max.
+   *       Debug_Info::_function_len_max.
    */ // }}}
   void set_function(char const* f) throw()
   {
@@ -153,7 +155,7 @@ public:
    * \param f
    *        The name of the file.
    * \note Too long file names are truncated to the lenth determined by
-   *       Src_At::_file_len_max.
+   *       Debug_Info::_file_len_max.
    */ // }}}
   void set_file(char const* f) throw()
   {
@@ -202,7 +204,7 @@ public:
    * \return
    *        The reference to this object.
    */ // }}}
-  Src_At& operator=(Src_At const& rhs)
+  Debug_Info& operator=(Debug_Info const& rhs)
   {
     this->assign(rhs);
     return *this;
@@ -213,7 +215,7 @@ public:
    * \param rhs
    *        An another object, which will be copied to this object.
    */ // }}}
-  void assign(Src_At const& rhs)
+  void assign(Debug_Info const& rhs)
   {
     if(&rhs != this)
       {
@@ -225,6 +227,6 @@ public:
 };
 } /* namespace Dimbo */
 
-#endif /* DIMBO_SRC_AT_HPP_INCLUDED */
+#endif /* DIMBO_UTIL_DEBUG_INFO_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

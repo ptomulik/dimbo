@@ -35,7 +35,7 @@
 namespace Dimbo {
 namespace Clinfo {
 
-DIMBO_DECL_LENGTH_ERROR(Dimbo::Clinfo, Exception, Length_Error, "Length Error")
+DIMBO_DECL_LENGTH_ERROR(Dimbo::Clinfo::Exception, Length_Error, "Length Error");
 
 } /* namespace Clinfo */
 } /* namespace Dimbo */

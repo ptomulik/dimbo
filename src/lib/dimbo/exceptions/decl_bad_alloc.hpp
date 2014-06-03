@@ -32,8 +32,8 @@
 #include <dimbo/exceptions/decl_exception_const_what.hpp>
 #include <new> // std::bad_alloc
 
-#define DIMBO_DECL_BAD_ALLOC(__ns,__klass,__name,__what) \
-  DIMBO_DECL_EXCEPTION_CONST_WHAT(__ns,__klass,__name,__what,std::bad_alloc)
+#define DIMBO_DECL_BAD_ALLOC(__base,__name,__what) \
+  DIMBO_DECL_EXCEPTION_CONST_WHAT(__base,__name,__what,std::bad_alloc)
 
 #endif /* DIMBO_DECL_BAD_ALLOC_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

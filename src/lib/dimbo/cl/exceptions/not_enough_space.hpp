@@ -36,7 +36,7 @@
 namespace Dimbo {
 namespace Cl {
 
-DIMBO_DECL_LOGIC_ERROR(Dimbo::Cl, Exception, Not_Enough_Space, "Not enough space")
+DIMBO_DECL_LOGIC_ERROR(Dimbo::Cl::Exception, Not_Enough_Space, "Not enough space");
 
 } // namespace Cl
 } // namespace Dimbo

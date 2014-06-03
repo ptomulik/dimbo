@@ -30,7 +30,7 @@
 #ifndef DIMBO_EXCEPTION_HPP_INCLUDED
 #define DIMBO_EXCEPTION_HPP_INCLUDED
 
-#include <dimbo/src_at.hpp>
+#include <dimbo/util/debug_info.hpp>
 #include <exception>
 
 
@@ -66,9 +66,9 @@ class Exception
      * This constructor stores into Dimbo::Exception the reference to exception
      * source in source code.
      */ // }}}
-    Exception(Src_At const& at) throw()
+    Exception(Debug_Info const& debug_info) throw()
     {
-      this->set_at(at);
+      this->set_debug_info(debug_info);
     }
     /** // {{{
      * \brief Copy constructor.
@@ -76,7 +76,7 @@ class Exception
      */ // }}}
     explicit Exception(Exception const& e) throw()
     {
-      this->set_at(e.at());
+      this->set_debug_info(e.debug_info());
     }
     /** // {{{
      * \todo Write documentation
@@ -92,25 +92,25 @@ class Exception
     /** // {{{
      * \brief Define the source of this exception
      *
-     * \param at
-     * An object of type Src_At defining the source of this exception within
+     * \param debug_info
+     * An object of type Debug_Info defining the source of this exception within
      * the source code.
      */ // }}}
-    void set_at(Dimbo::Src_At const& at) throw()
+    void set_debug_info(Dimbo::Debug_Info const& debug_info) throw()
     {
-      this->_src_at = at;
+      this->_debug_info = debug_info;
     }
     /** // {{{
      * \brief Get the source of this exception
-     * \return A reference to Src_At object defining the source of this
+     * \return A reference to Debug_Info object defining the source of this
      *         exception.
      */ // }}}
-    Dimbo::Src_At const& at() const throw()
+    Dimbo::Debug_Info const& debug_info() const throw()
     {
-      return this->_src_at;
+      return this->_debug_info;
     }
   private:
-    Src_At _src_at;
+    Debug_Info _debug_info;
     std::exception const* _std_except;
     /** // {{{
      * \todo Write documentation

@@ -110,9 +110,9 @@
  *   // Dimbo calls
  * } catch (const Dimbo::Exception& e) {
  *   // Catch all Dimbo exceptions
- *   std::cout << "File:" << e.at().file() << std::endl;
- *   std::cout << "Line:" << e.at().line() << std::endl;
- *   std::cout << "Function:" << e.at().function() << std::endl;
+ *   std::cout << "File:" << e.debug_info().file() << std::endl;
+ *   std::cout << "Line:" << e.debug_info().line() << std::endl;
+ *   std::cout << "Function:" << e.debug_info().function() << std::endl;
  *   std::cout << e.std_except().what() << std::endl;
  * }
  * @endcode
@@ -123,9 +123,9 @@
  *   // Dimbo calls
  * } catch (const Dimbo::Cl::Exception& e) {
  *   // Catch only Dimbo CL exceptions
- *   std::cout << "File:" << e.at().file() << std::endl;
- *   std::cout << "Line:" << e.at().line() << std::endl;
- *   std::cout << "Function:" << e.at().function() << std::endl;
+ *   std::cout << "File:" << e.debug_info().file() << std::endl;
+ *   std::cout << "Line:" << e.debug_info().line() << std::endl;
+ *   std::cout << "Function:" << e.debug_info().function() << std::endl;
  *   std::cout << e.std_except().what() << std::endl;
  * }
  * @endcode
@@ -136,9 +136,9 @@
  *     // Dimbo calls
  *   } catch (const Dimbo::Exception & e) {
  *     // Print source information and rethrow the exception
- *     std::cout << "File:" << e.at().file() << std::endl;
- *     std::cout << "Line:" << e.at().line() << std::endl;
- *     std::cout << "Function:" << e.at().function() << std::endl;
+ *     std::cout << "File:" << e.debug_info().file() << std::endl;
+ *     std::cout << "Line:" << e.debug_info().line() << std::endl;
+ *     std::cout << "Function:" << e.debug_info().function() << std::endl;
  *     throw;
  *   }
  * } catch(const std::exception& e) {
@@ -176,7 +176,7 @@
  * default-constructible). The reason is to force developers to initialize each
  * exception at very beginning with the information about the exception
  * origin (source file name, line number, function name). A special class
- * Dimbo::Src_At keeps this information encapsulated and macro \ref DIMBO_HERE
+ * Dimbo::Debug_Info keeps this information encapsulated and macro \ref DIMBO_HERE
  * is provided to facilitate exception initialization.
  *
  * We'll use intermediate template class Dimbo::Standardized_Exception
@@ -216,7 +216,7 @@
  * hand, an utility macros might be defined for that.
  *
  * \see dimbo/exception.hpp
- * \see dimbo/src_at.hpp
+ * \see dimbo/util/debug_info.hpp
  * \see Dimbo::Exception,
  * \see Dimbo::Standardized_Exception.
  */ // }}}

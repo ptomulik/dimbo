@@ -36,7 +36,7 @@
 namespace Dimbo {
 namespace Cl {
 
-DIMBO_DECL_BAD_ALLOC(Dimbo::Cl, Exception, Bad_Alloc,"Memory allocation failed")
+DIMBO_DECL_BAD_ALLOC(Dimbo::Cl::Exception, Bad_Alloc,"Memory allocation failed");
 
 } // namespace Cl
 } // namespace Dimbo
