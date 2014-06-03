@@ -9,7 +9,7 @@ CONTENTS
 
 1. `GPU related notes`_
 2. `OpenCL based libraries`_
-
+3. `MPI notes`_
 
 .. _GPU related notes:
 GPU related notes
@@ -40,3 +40,67 @@ Here is list of libraries that may be useful for OpenCL programming:
 * `Boost.Compute <http://kylelutz.github.io/compute/>`_. Not yet an official
   boost library. Provides C++ interface to multi-core CPU and GPGPU computing
   platforms. Header only.
+
+.. _MPI notes:
+MPI notes
+^^^^^^^^^
+
+Compilation should be performed with ``mpicc`` or ``mpic++``. Regarding
+OpenMPI, these executables are **not** just shell scripts, but normal ELF
+executables. So, it's not feasible to replace them with standard compilers +
+extra flags (which are unknown).
+
+Once compiled, a distributed MPI program is started with ``mpirun``. It accepts
+a configuration file which defines the  list of nodes to run the job on. You
+may scale your application easily by just modifying the list of nodes.
+
+The minimal skeleton for an MPI program is the following
+
+.. code-block:: c
+
+  #include <mpi.h>
+  #include <stdio.h>
+  #include <stdlib.h>
+
+  int main(int argc, char** argv) {
+    // Initialize the MPI environment. The two arguments to MPI Init are not
+    // currently used by MPI implementations, but are there in case future
+    // implementations might need the arguments.
+    MPI_Init(NULL, NULL);
+
+    // Get the number of processes
+    int world_size;
+    MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+
+    // Get the rank of the process
+    int world_rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
+
+    // ...
+
+    // Finalize the MPI environment. No more MPI calls can be made after this
+    MPI_Finalize();
+  }
+
+The `mpirun` starts multiple instances of the program. Each one receives
+different rank (the ``world_rank``) in a "global" communicator called
+``MPI_COMM_WORLD``.
+
+An MPI program creates one or more communicators. Each communicator defines a
+group of one or more processes that can communicate. There is always one
+communicator, the ``MPI_COMM_WORLD`` which is available just after
+``MPI_Init()`` and contains all the processes started by ``mpirun``, but 
+obviously you can create custom communicators containing only subgroups of the
+available processes.
+
+BTL stands for Byte Transfer Layer, and BML is a BTL Management Layer. BTL
+represents available communication mechanisms, for example loopback, TCP,
+infiniband.
+
+You may configure many parameters via MCA parameters. For example, you may
+instruct MPI to use only a subset of available BTL mechanisms (for example
+loopback and infiniband).
+
+```
+ptomulik@node00:$ mpirun -mca btl self,openib -n4 -hostfile host_file ./mpi_hello_world
+```
