@@ -10,6 +10,7 @@ CONTENTS
 1. `GPU related notes`_
 2. `OpenCL based libraries`_
 3. `MPI notes`_
+4. `FMI notes`_
 
 .. _GPU related notes:
 GPU related notes
@@ -101,6 +102,32 @@ You may configure many parameters via MCA parameters. For example, you may
 instruct MPI to use only a subset of available BTL mechanisms (for example
 loopback and infiniband).
 
-```
-ptomulik@node00:$ mpirun -mca btl self,openib -n4 -hostfile host_file ./mpi_hello_world
-```
+.. code-block:: sh
+
+    ptomulik@node00:$ mpirun -mca btl self,openib -n4 -hostfile host_file ./mpi_hello_world
+
+
+.. _FMI notes:
+FMI notes
+^^^^^^^^^
+
+`FMI <https://www.fmi-standard.org/>`_ stands for Functional Mockup Interface.
+It's a standard that is being implemented by serveral vendors of engineering
+tools to support cosimulation.
+
+The **FMI 1.0** is somehow limited in the respect that:
+
+- it does not support waveforms, i.e. it assumes that the subsystems and
+  master exchange at the end of every communication step only the values
+  *u(tc_i)* and *y(tc_i)* of inputs/outputs at this particular time point
+  (and eventually their derivatives).
+- it assumes that the whole system consists of submodules (in-out blocks)
+  connected directly one to each other; there seems to be no natural way to
+  introduce constraints equations; generally the kinematical constraints can't
+  be effectively expressed by input-output connections.
+- it assumes particular form of data to be sent (variables, derivatives); for
+  waveform-based co-simulations a more effective ways may be used, for example
+  B-spline coefficients to describe trajectory over *tc_i*, *tc_{i+1}*.
+
+The *FMI 2.0* doesn't seem to have these issues addressed (I still have to
+investigate this).
